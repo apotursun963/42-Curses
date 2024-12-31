@@ -3,19 +3,16 @@
 
 /*Önemli
 
-Tek pointer, stack'in ilk elemanını işaret eder.
-    - Yani, stack'in başındaki düğümün adresini taşır.
-    - Ancak, tek pointer kullanıldığında bu pointer'ın kendisini değiştirmek mümkün değildir.
+-Tek ve Çift Pointer Farkı:
+Tek Pointer: Stack'in ilk elemanını işaret eder ve yalnızca işaret ettiği veriyi değiştirebilir. 
+Pointer'ın kendisi değiştirilemez.
+Tek Pointer Kullanımı: Veriye erişim sağlanacak ve pointer'ın kendisi değiştirilmeyecekse uygundur.
 
-Çift pointer, stack'in ilk elemanını işaret eden pointer'ı işaret eder.
-    - Yani, stack'in başını (top'u) gösteren bir pointer'ın adresini taşır.
-    - Bu sayede, fonksiyon içinde stack'in başını (pointer'ı) doğrudan değiştirebiliriz.
-
-Çift pointer kullanmak zorunda olduğumuz durumlar genellikle şunlardır:
-    Bir Pointer'ın Adresini Değiştirmek:
-        Eğer bir fonksiyon içinde pointer'ın kendisini değiştirmek istiyorsak, çift pointer kullanmalıyız. 
-        Tek pointer ile bir fonksiyonda sadece o pointer'ın içeriğine (yani işaret ettiği değere) erişebilirsiniz
-        fakat pointer'ın kendisini değiştiremezsiniz.
+-Çift Pointer: Stack'in ilk elemanını işaret eden pointer'ın adresini taşır. 
+Bu sayede, fonksiyon içinde pointer'ın kendisi değiştirilebilir.
+Tek ve Çift Pointer Kullanım Durumları:
+Çift Pointer Kullanımı: Pointer'ın kendisinin değiştirilmesi gerekiyorsa 
+(örneğin, bir bağlı listenin başını değiştirmek için) gereklidir.
 */
 
 void change_pointer(int **ptr)
@@ -54,12 +51,12 @@ Yani, top'un adresine geçildiği için, işaretçinin kendisi de güncellenmiş
 */
 void    push(t_stack** top, int value)
 {
-    t_stack* new_elemn = (t_stack*)malloc(sizeof(t_stack));
+    t_stack *new_elemn = (t_stack*)malloc(sizeof(t_stack));
     
     new_elemn->data = value;
     new_elemn->next = *top;         // Yeni düğümün next'i eski baş düğümü gösterir.
     *top = new_elemn;               // Yeni düğüm stack'in yeni başı olur
-    printf("Eleman eklendi: %d\n", value);
+    printf("Eleman eklendi: %d\n", new_elemn->data);
 }
 
 int main()
@@ -76,14 +73,14 @@ Bu versiyonun çalışması için top işaretçisinin değeri fonksiyon içinde 
 Ancak top işaretçisinin kendisi, fonksiyon bitince geri gönderilmez. 
 Yani fonksiyon sadece kendi yerel kopyasını değiştirir ve main fonksiyonundaki stack değeri değişmez.
 */
-void    push(t_stack* top, int value)
+void    push(t_stack *top, int value)
 {
     t_stack* new = (t_stack*)malloc(sizeof(t_stack));
 
     new->data = value;
     new->next = top;
     top = new;           // top pointer'ı değişir, ancak bu değişiklik main fonksiyonunu etkilemez.
-    printf("Eleman eklendi: %d\n", value);
+    printf("Eleman eklendi: %d\n", new->data);
 }
 
 int main()
@@ -99,13 +96,30 @@ int main()
 
 
 /*
-Tek işaretçi kullanımı: 
+-Tek işaretçi kullanımı: 
 Eğer fonksiyonda yalnızca veriye erişim sağlanacak ve dışarıya bir değişiklik yansıtılmayacaksa, 
 tek işaretçi kullanılabilir. Bu, genellikle daha basit durumlarda tercih edilir.
-Çift işaretçi kullanımı: 
+-Çift işaretçi kullanımı: 
 Eğer fonksiyon, işaretçinin kendisini değiştirmeyi amaçlıyorsa 
 (örneğin, bir bağlı listenin başını değiştirmek gibi), çift işaretçi kullanımı gereklidir.
 */
 
+/*
+Çift Pointer: Daha dinamik durumlarda (örneğin, bağlı liste yapılarında) kullanılır 
+ve fonksiyon içinde orijinal pointer'ın güncellenmesini sağlar.
+Tek Pointer: Daha basit durumlarda yeterlidir ve yalnızca veri üzerinde işlemler yapar.
+*/
 
+/*
+malloc ile tahsis edilen bellek: 
+Bellek tahsis edildikten sonra, işaretçi bu belleği tutar. 
+Eğer işaretçiyi NULL yaparsanız, bu bellek alanını kaybedersiniz ve serbest bırakmak mümkün olmaz.
+NULL yapmak: 
+İşaretçiyi NULL yapmak, önceki belleği kaybetmek anlamına gelir ve bu 
+belleği serbest bırakma şansınızı ortadan kaldırır.
+free ile serbest bırakma: Bellek serbest bırakılmadan önce işaretçi, 
+tahsis edilen bellek alanını işaret ediyor olmalıdır. 
+Eğer işaretçi NULL yapılmışsa, serbest bırakma işlemi yapılamaz.
 
+eğer malloc ile ayırdığın bir alana değer vermezsen varsayılan olarak 0 olur linked list'te
+*/
