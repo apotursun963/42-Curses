@@ -14,6 +14,7 @@
 # include "push_swap.h"
 #include <stdio.h>
 
+
 void    printnl(t_list *stack)
 {
     while (stack)
@@ -55,25 +56,16 @@ void fill_stack(t_list  **stack_a, char **arguments, int argc)
     int val;
 
     if (argc == 2)
-    {   
         idx = 0;
-        while (arguments[idx])
-        {
-            val = ft_atoi(arguments[idx]);
-            push_stack_a(stack_a, val);
-            idx++;
-        }
-    }
     else
-    {
         idx = 1;
-        while (idx < argc)
-        {
-            val = ft_atoi(arguments[idx]);          // node olarak değilde sayi olarak ekledin
-            push_stack_a(stack_a, val);
-            idx++;
-        }
+    while (arguments[idx])
+    {
+        val = ft_atoi(arguments[idx]);
+        push_stack_a(stack_a, val);
+        idx++;
     }
+    // is_twin(*stack_a);
 }
 
 int     is_stack_sorted(t_list *stack_a)
@@ -87,7 +79,7 @@ int     is_stack_sorted(t_list *stack_a)
     return (1);
 }
 
-// Free kısmında Güncelliycesk stack_b içinde wile ekliyceksin
+// Free kısmında güncellenecek stack_b içinde while ekliyceksin
 void    free_all_blocks(t_list **stack_a, t_list **stack_b, char **arguments, int argc)
 {
     t_list  *tmp_node;
@@ -110,6 +102,7 @@ void    free_all_blocks(t_list **stack_a, t_list **stack_b, char **arguments, in
     }
 }
 
+
 int main(int argc, char **argv)
 {
     char    **arguments;
@@ -118,23 +111,19 @@ int main(int argc, char **argv)
 
     if (argc < 2)           // kaldır yada kaldırma iyice düşün
         return (0);
+    arguments = check_args(argc, argv);
     stack_a = (t_list **)malloc(sizeof(t_list));
     stack_b = (t_list **)malloc(sizeof(t_list));
     *stack_a = NULL;
     *stack_b = NULL;
-
-    arguments = check_args(argc, argv);
     fill_stack(stack_a, arguments, argc);
     if (is_stack_sorted(*stack_a))
-    {
-        free_all_blocks(stack_a, stack_b, arguments, argc);
-        return (0);
-    }
+        return (free_all_blocks(stack_a, stack_b, arguments, argc), 0);
+
     printnl(*stack_a);
 
     // sort_stack(stack_a, stack_b);
-
-    // printnl(*stack_a);
+    // sort_2(stack_a, stack_b);
 
     free_all_blocks(stack_a, stack_b, arguments, argc);
     return (0);
