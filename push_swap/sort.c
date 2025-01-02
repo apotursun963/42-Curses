@@ -19,22 +19,41 @@ kullanmayada bilirsin çünkü son eklenen eleman top'ta olur ve sıralı bir ş
 //     printnl(*stack_a);
 // }
 
+void    Swap(t_list *first, t_list *second)
+{
+    int tmp = first->data;
+    first->data = second->data;
+    second->data = tmp;
+}
+
+
+void    selection_sort(t_list **stack_a, t_list **stack_b)
+{
+    t_list *first;
+    t_list *second;
+    int idx;
+
+    idx = 0;
+    first = *stack_a;
+    while (first)
+    {
+        second = first->next;
+        while (second)
+        {
+            if (first->data > second->data)
+                Swap(first, second);      // ama bu swap fonksiyonu sadece ilk iki elemanı takas eder her zaan
+            second = second->next;
+        }
+        first = first->next;
+    }
+}
 
 void    sort_stack(t_list **stack_a, t_list **stack_b)
 {
-    t_list  *head_a;
-    t_list  *head_b;
 
-    head_a = *stack_a;
-    head_b = *stack_b;
+    printnl(*stack_a);
 
-    printf("%d\n", (*stack_a)->data);
-    printf("%d\n", (*stack_a)->next->data);
-    printf("%d\n", (*stack_a)->next->next->data);
+    selection_sort(stack_a, stack_b);
 
-    
-
-
-
-    // printnl(*stack_a);
+    printnl(*stack_a);
 }

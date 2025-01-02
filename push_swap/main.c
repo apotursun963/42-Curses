@@ -19,7 +19,7 @@ void    printnl(t_list *stack)
 {
     while (stack)
     {
-        printf("%d\n", stack->data);
+        printf("%d ", stack->data);
         stack = stack->next;
     }
     printf("\n");
@@ -53,7 +53,7 @@ void    push_stack_a(t_list **stack_a, int value)
 void    error_handling(void)
 {
     printf("Error\n");          // ft_putendl() -> kullan çünkü standart output'a olmalı
-    exit(1);
+    exit(EXIT_FAILURE);
 }
 
 int is_twin(char **str, int argc)
@@ -117,10 +117,7 @@ int is_digit(char **str, int ac)
         while (str[i][j])
         {
             if (str[i][j] < '0' || str[i][j] > '9')
-            {
-                free_args(str, ac);
-                return (-1);
-            }
+                return (free_args(str, ac), -1);
             j++;
         }
         i++;
@@ -139,10 +136,7 @@ int max_limit(char **str, int ac)
     {
         num = ft_atoi(str[i]);
         if (num < 0)
-        {
-            free_args(str, ac);
-            return (-1);
-        }
+            return (free_args(str, ac), -1);
         i++;
     }
     return (0);
@@ -176,7 +170,6 @@ int     is_stack_sorted(t_list *stack_a)
     return (1);
 }
 
-
 // Free kısmında güncellenecek stack_b içinde while ekliyceksin
 void    free_all_stack(t_list **stack_a, t_list **stack_b)
 {
@@ -200,21 +193,21 @@ int main(int argc, char **argv)
 
     if (argc < 2)
         return (0);
-    arguments = parse_args(argc, argv);     // proje bittğinde check_args() ekle
+    arguments = parse_args(argc, argv);     // proje bittğinde check_args() ekleyebilirsin
     if (is_digit(arguments, argc) == -1 || max_limit(arguments, argc) == -1 || is_twin(arguments, argc) == -1)
         error_handling();
     stack_a = (t_list **)malloc(sizeof(t_list));
     stack_b = (t_list **)malloc(sizeof(t_list));
+    if (!stack_a || !stack_b)       // dikkat et
+        return (free_all_stack(stack_a, stack_b), free_args(arguments, argc), 0);
     *stack_a = NULL;
     *stack_b = NULL;
     fill_stack(stack_a, arguments, argc);
     if (is_stack_sorted(*stack_a))
         return (free_all_stack(stack_a, stack_b), free_args(arguments, argc), 0);
 
-    printnl(*stack_a);
 
-    // sort_stack(stack_a, stack_b);
-    // sort_2(stack_a, stack_b);
+    sort_stack(stack_a, stack_b);
 
     return (free_all_stack(stack_a, stack_b), free_args(arguments, argc), 0);
 }
