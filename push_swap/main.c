@@ -26,13 +26,13 @@ void    printnl(t_list *stack)
 }
 
 /* ek özelliklerde ekle */
-char    **check_args(int argc, char **argv)
+char    **parse_args(int argc, char **argv)
 {
     char **args;
 
     if (argc == 2)
         args = ft_split(argv[1], ' ');
-    else if (argc > 2)
+    else
         args = argv;
     return (args);
 }
@@ -43,11 +43,109 @@ void    push_stack_a(t_list **stack_a, int value)
 
     node = (t_list *)malloc(sizeof(t_list));
     if (!node)
-        return ;    
+        return ;
     
     node->data = value;
     node->next = *stack_a;
     *stack_a = node;
+}
+
+void    error_handling(void)
+{
+    printf("Error\n");          // ft_putendl() -> kullan çünkü standart output'a olmalı
+    exit(1);
+}
+
+int is_twin(char **str, int argc)
+{
+    int i;
+    int j;
+    int num;
+    int len;
+    int *nums = malloc(sizeof(int) * argc);
+
+    if (argc == 2)
+        i = 0;
+    else
+        i = 1;
+    len = 0;           
+    while (str[i])      // libft'deki ft_memcpy veya benzeri fonksiyon kullan
+    {
+        nums[i] = ft_atoi(str[i]);
+        len++;
+        i++;
+    }
+    i = 0;
+    while (i < len)
+    {
+        j = i + 1;
+        while (j < len + 1)
+        {
+            if (nums[i] == nums[j++])
+                return (free_args(str, argc), free(nums), -1);
+        }
+        i++;
+    }
+    return (free(nums), 0);
+}
+
+void    free_args(char **arguments, int argc)
+{
+    int  idx;
+
+    if (argc == 2)
+    {
+        idx = 0;
+        while (arguments[idx])
+            free(arguments[idx++]);
+        free(arguments);
+    }
+}
+
+int is_digit(char **str, int ac)
+{
+    int i;
+    int j;
+
+    if (ac == 2)
+        i = 0;
+    else
+        i = 1;
+    while (str[i])
+    {
+        j = 0;
+        while (str[i][j])
+        {
+            if (str[i][j] < '0' || str[i][j] > '9')
+            {
+                free_args(str, ac);
+                return (-1);
+            }
+            j++;
+        }
+        i++;
+    }
+    return (0);
+}
+
+int max_limit(char **str, int ac)
+{
+    int i;
+    int j;
+    int num;
+
+    i = 0;
+    while (str[i])
+    {
+        num = ft_atoi(str[i]);
+        if (num < 0)
+        {
+            free_args(str, ac);
+            return (-1);
+        }
+        i++;
+    }
+    return (0);
 }
 
 void fill_stack(t_list  **stack_a, char **arguments, int argc)
@@ -65,7 +163,6 @@ void fill_stack(t_list  **stack_a, char **arguments, int argc)
         push_stack_a(stack_a, val);
         idx++;
     }
-    // is_twin(*stack_a);
 }
 
 int     is_stack_sorted(t_list *stack_a)
@@ -79,11 +176,11 @@ int     is_stack_sorted(t_list *stack_a)
     return (1);
 }
 
+
 // Free kısmında güncellenecek stack_b içinde while ekliyceksin
-void    free_all_blocks(t_list **stack_a, t_list **stack_b, char **arguments, int argc)
+void    free_all_stack(t_list **stack_a, t_list **stack_b)
 {
     t_list  *tmp_node;
-    size_t  idx;
 
     while (*stack_a)
     {
@@ -93,15 +190,7 @@ void    free_all_blocks(t_list **stack_a, t_list **stack_b, char **arguments, in
     }
     free(stack_a);
     free(stack_b);
-    if (argc == 2)
-    {
-        idx = 0;
-        while (arguments[idx])
-            free(arguments[idx++]);
-        free(arguments);
-    }
 }
-
 
 int main(int argc, char **argv)
 {
@@ -109,22 +198,23 @@ int main(int argc, char **argv)
     t_list  **stack_a;
     t_list  **stack_b;
 
-    if (argc < 2)           // kaldır yada kaldırma iyice düşün
+    if (argc < 2)
         return (0);
-    arguments = check_args(argc, argv);
+    arguments = parse_args(argc, argv);     // proje bittğinde check_args() ekle
+    if (is_digit(arguments, argc) == -1 || max_limit(arguments, argc) == -1 || is_twin(arguments, argc) == -1)
+        error_handling();
     stack_a = (t_list **)malloc(sizeof(t_list));
     stack_b = (t_list **)malloc(sizeof(t_list));
     *stack_a = NULL;
     *stack_b = NULL;
     fill_stack(stack_a, arguments, argc);
     if (is_stack_sorted(*stack_a))
-        return (free_all_blocks(stack_a, stack_b, arguments, argc), 0);
+        return (free_all_stack(stack_a, stack_b), free_args(arguments, argc), 0);
 
     printnl(*stack_a);
 
     // sort_stack(stack_a, stack_b);
     // sort_2(stack_a, stack_b);
 
-    free_all_blocks(stack_a, stack_b, arguments, argc);
-    return (0);
+    return (free_all_stack(stack_a, stack_b), free_args(arguments, argc), 0);
 }

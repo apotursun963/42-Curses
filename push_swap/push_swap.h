@@ -1,5 +1,6 @@
 # include <unistd.h>
 # include <stdlib.h>
+# include <limits.h>
 
 typedef struct s_list
 {
@@ -10,7 +11,7 @@ typedef struct s_list
 
 char	**ft_split(char const *str, char c);
 int	ft_atoi(const char *str);
-
+void    free_args(char **arguments, int argc);
 
 void    printnl(t_list *stack); 
 void    free_all_blocks(t_list **stack_a, t_list **stack_b, char **arguments, int argc);
