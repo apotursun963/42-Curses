@@ -16,7 +16,7 @@
     1. İlk önce 'a' ve 'b' isimli iki tane stack tanımla ve başlangıç değerleri olarak 'NULL' ver - ok
     2. Terminalden gelen argümanları kontrol et (boş değerler, hatalı girişler) - ok
     3. Argümanları sayılara dönüştürüp ilk stack'e (`a` stack) yerleştir. -ok
-    4. Stack'lerdeki Durumu Kontrol Et (Empty Check - Sorted Check) - ok
+    4. Stack'lerdeki Durumu Kontrol Et (Empty Check - Sorted Check - ok
     5. Stack a'daki değleri değerlendir işlemler yap . - ok
     6. push, swap, rotate, reverse_rotate aksiyonlarını ekle - ok
 */
