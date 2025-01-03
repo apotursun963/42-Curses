@@ -1,40 +1,59 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/03 11:51:01 by atursun           #+#    #+#             */
+/*   Updated: 2025/01/03 11:51:01 by atursun          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 # include <unistd.h>
 # include <stdlib.h>
 # include <limits.h>
+# include "libs/libft/libft.h"
+# include "libs/ft_printf/ft_printf.h"
 
-typedef struct s_list
+typedef struct s_stack
 {
     int             data;
-    struct s_list   *next;
-}   t_list;
+    struct s_stack   *next;
+}   t_stack;
 
 
-char	**ft_split(char const *str, char c);
-int	ft_atoi(const char *str);
+void    printnl(t_stack *stack);     // Bunu fonksiyonu push'larken siliceksin
+
 void    free_args(char **arguments, int argc);
-
-void    printnl(t_list *stack); 
-void    free_all_blocks(t_list **stack_a, t_list **stack_b, char **arguments, int argc);
-
+void    free_all_stack(t_stack **stack_a, t_stack **stack_b);
 // acts
-void    push_a(t_list **stack_b, t_list **stack_a);
-void    push_b(t_list **stack_a, t_list **stack_b);
+void    push_a(t_stack **stack_b, t_stack **stack_a);
+void    push_b(t_stack **stack_a, t_stack **stack_b);
 
-void    swap_a(t_list **stack_a);
-void    swap_b(t_list **stack_b);
-void    ss(t_list **stack_a, t_list **stack_b);
+void    swap_a(t_stack **stack_a);
+void    swap_b(t_stack **stack_b);
+void    ss(t_stack **stack_a, t_stack **stack_b);
 
-void    rotate_a(t_list **stack_a);
-void    rotate_b(t_list **stack_b);
-void    rr(t_list **stack_a, t_list **stack_b);
+void    rotate_a(t_stack **stack_a);
+void    rotate_b(t_stack **stack_b);
+void    rr(t_stack **stack_a, t_stack **stack_b);
 
-void    reverse_rotate_a(t_list **stack_a);
-void    reverse_rotate_b(t_list **stack_b);
-void    rrr(t_list **stack_a, t_list **stack_b);
+void    reverse_rotate_a(t_stack **stack_a);
+void    reverse_rotate_b(t_stack **stack_b);
+void    rrr(t_stack **stack_a, t_stack **stack_b);
 
-void    sort_2(t_list **stack_a, t_list **stack_b);
-void    sort_stack(t_list **stack_a, t_list **stack_b);
+void    sort_2(t_stack **stack_a, t_stack **stack_b);   // kaldır
+void    sort_stack(t_stack **stack_a, t_stack **stack_b);
 
 
-int     stack_size(t_list *stack);
+int     is_stack_sorted(t_stack *stack_a);
+int     stack_size(t_stack *stack);
+
+// error funs
 void    error_handling(void);
+int is_digit(char **str, int ac);
+int is_twin(char **str, int ac);
+int max_limit(char **str, int ac);
+
+long int	ft_atol(const char *str);

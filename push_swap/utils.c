@@ -1,130 +1,118 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/03 11:53:56 by atursun           #+#    #+#             */
+/*   Updated: 2025/01/03 20:04:11 by atursun          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include "push_swap.h"
+# include "push_swap.h"
 
-int	ft_atoi(const char *str)
+void    error_handling(void)
 {
-	int	result;
-	int	sign;
-
-	sign = 1;
-	result = 0;
-	while ((*str == 32) || (*str >= 9 && *str <= 13))
-		str++;
-	if (*str == '+' || *str == '-')
-	{
-		if (*str == '-')
-			sign *= -1;
-		str++;
-	}
-	while (*str >= '0' && *str <= '9')
-		result = (result * 10) + (*str++ - '0');
-	return (result * sign);
+    ft_putendl_fd("Error", 2);
+    exit(EXIT_FAILURE);
 }
 
-size_t	ft_strlen(const char *str)
+int is_digit(char **str, int ac)
 {
-	size_t	counter;
-
-	counter = 0;
-	while (*str++)
-		counter++;
-	return (counter);
+    int i;
+    int j;
+    long int num;
+    
+    if (ac == 2)
+        i = 0;
+    else
+        i = 1;
+    while (str[i])
+    {
+        j = 0;
+        while (str[i][j])
+        {
+            if (str[i][j] == '-')
+                j++;
+            if (str[i][j] < '0' || str[i][j] > '9')
+                return (free_args(str, ac), -1);
+            j++;
+        }
+        i++;
+    }
+    return (0);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+int max_limit(char **str, int ac)
 {
-	char	*sub;
-	size_t	count;
-	size_t	len_sub;
+    int i;
+    long int num;
 
-	if (ft_strlen(s) <= start)
-		return (0);
-	len_sub = ft_strlen(s + start);
-	if (len_sub < len)
-		len = len_sub;
-	if (!(sub = (char *)malloc(len +1)))
-		return (NULL);
-	count = -1;
-	while (++count < len)
-		sub[count] = s[start + count];
-	sub[count] = '\0';
-	return (sub);
+    i = 0;
+    while (str[i])
+    {
+        num = ft_atol(str[i]);
+        if (num < INT_MIN || num > INT_MAX)
+            return (free_args(str, ac), -1);
+        i++;
+    }
+    return (0);
 }
 
-
-static	int	ft_len_of_word(char const *str, char c)
+int is_twin(char **str, int ac)
 {
-	int	counter;
-
-	counter = 0;
-	while (*str)
-	{
-		while (*str == c)
-			str++;
-		if (*str)
-			counter++;
-		while (*str != c && *str)
-			str++;
-	}
-	return (counter);
+    int i;
+    int j;
+    int len;
+    int m, d;
+    m = 0;
+    d = 0;
+    if (ac == 2)
+    {
+        while (str[d])          // malloc için 
+            m += ft_strlen(str[d++]);
+        i = 0;
+    }
+    else
+    {
+        m = ac;
+        i = 1;
+    }
+    int *nums = malloc(sizeof(int) * m);
+    if (!nums)
+        return (-1);
+    len = 0;           
+    while (str[i])          // libft'deki ft_memcpy veya benzeri fonksiyon kullanabilirsin.
+    {
+        nums[i] = ft_atol(str[i]);
+        len++;
+        i++;
+    }
+    i = 0;
+    while (i < len)
+    {
+        j = i + 1;
+        while (j < len + 1)
+        {
+            if (nums[i] == nums[j++])
+                return (free_args(str, ac), free(nums), -1);
+        }
+        i++;
+    }
+    return (free(nums), 0);
 }
 
-static	void	ft_free(char **str)
+int     stack_size(t_stack *stack)
 {
-	size_t	idx;
+    int     counter;
 
-	idx = 0;
-	while (str[idx])
-	{
-		free(str[idx]);
-		idx++;
-	}
-	free(str);
+    counter = 0;
+    while (stack)
+    {
+        counter++;
+        stack = stack->next;
+    }
+    return (counter);
 }
-
-static	char	**ft_return(char **arr, int idx)
-{
-	arr[idx] = 0;
-	return (arr);
-}
-
-static	char	**ft_split_string(char **arr, char const *str, char c)
-{
-	int	idx;
-	int	arr_idx;
-	int	start;
-
-	idx = 0;
-	arr_idx = 0;
-	while (str[idx])
-	{
-		while (str[idx] == c)
-			idx++;
-		start = idx;
-		while (str[idx] != c && str[idx])
-			idx++;
-		if (idx > start)
-		{
-			arr[arr_idx] = ft_substr(str, start, idx - start);
-			if (!arr[arr_idx])
-			{
-				ft_free(arr);
-				return (NULL);
-			}
-			arr_idx++;
-		}
-	}
-	return (ft_return(arr, arr_idx));
-}
-
-char	**ft_split(char const *str, char c)
-{
-	char	**arr;
-
-	if (!(str) || !(arr = (char **)malloc((ft_len_of_word(str, c) + 1) * sizeof(char *))))
-		return (NULL);
-	arr = ft_split_string(arr, str, c);
-	return (arr);
-}
-
 
