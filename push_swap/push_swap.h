@@ -25,7 +25,7 @@ typedef struct s_stack
 
 void    printnl(t_stack *stack);     // Bunu fonksiyonu push'larken siliceksin
 
-void    free_args(char **arguments, int argc);
+void    free_args(char **arguments);
 void    free_all_stack(t_stack **stack_a, t_stack **stack_b);
 // acts
 void    push_a(t_stack **stack_b, t_stack **stack_a);
@@ -52,8 +52,8 @@ int     stack_size(t_stack *stack);
 
 // error funs
 void    error_handling(void);
-int is_digit(char **str, int ac);
-int is_twin(char **str, int ac);
-int max_limit(char **str, int ac);
+int is_digit(char **str);
+int is_twin(char **str);
+int max_limit(char **str);
 
 long int	ft_atol(const char *str);

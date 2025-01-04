@@ -18,16 +18,12 @@ void    error_handling(void)
     exit(EXIT_FAILURE);
 }
 
-int is_digit(char **str, int ac)
+int is_digit(char **str)
 {
     int i;
     int j;
-    long int num;
-    
-    if (ac == 2)
-        i = 0;
-    else
-        i = 1;
+
+    i = 0;
     while (str[i])
     {
         j = 0;
@@ -36,7 +32,7 @@ int is_digit(char **str, int ac)
             if (str[i][j] == '-')
                 j++;
             if (str[i][j] < '0' || str[i][j] > '9')
-                return (free_args(str, ac), -1);
+                return (free_args(str), -1);
             j++;
         }
         i++;
@@ -44,7 +40,7 @@ int is_digit(char **str, int ac)
     return (0);
 }
 
-int max_limit(char **str, int ac)
+int max_limit(char **str)
 {
     int i;
     long int num;
@@ -54,13 +50,13 @@ int max_limit(char **str, int ac)
     {
         num = ft_atol(str[i]);
         if (num < INT_MIN || num > INT_MAX)
-            return (free_args(str, ac), -1);
+            return (free_args(str), -1);
         i++;
     }
     return (0);
 }
 
-int is_twin(char **str, int ac)
+int is_twin(char **str)
 {
     int i;
     int j;
@@ -68,17 +64,10 @@ int is_twin(char **str, int ac)
     int m, d;
     m = 0;
     d = 0;
-    if (ac == 2)
-    {
-        while (str[d])          // malloc için 
-            m += ft_strlen(str[d++]);
-        i = 0;
-    }
-    else
-    {
-        m = ac;
-        i = 1;
-    }
+
+    while (str[d])          // malloc için 
+        m += ft_strlen(str[d++]);
+    i = 0;
     int *nums = malloc(sizeof(int) * m);
     if (!nums)
         return (-1);
@@ -96,7 +85,7 @@ int is_twin(char **str, int ac)
         while (j < len + 1)
         {
             if (nums[i] == nums[j++])
-                return (free_args(str, ac), free(nums), -1);
+                return (free_args(str), free(nums), -1);
         }
         i++;
     }
@@ -115,4 +104,3 @@ int     stack_size(t_stack *stack)
     }
     return (counter);
 }
-

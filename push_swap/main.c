@@ -43,14 +43,31 @@ int     is_stack_sorted(t_stack *stack_a)
     return (1);
 }
 
-char    **parse_args(int argc, char **argv)
+char    **parse_args(int argc, char **argv, int idx)
 {
-    char **args;
+    char    **args;
+    char    *merge;
+    char    *tmp;
+    char    *tmp2;
 
-    if (argc == 2)
-        args = ft_split(argv[1], ' ');
-    else
-        args = argv;
+    merge = NULL;
+    while (idx < argc)
+    {
+        tmp = merge;
+        if (merge == NULL)
+            merge = ft_strdup(argv[idx]);               // ilk argümanı aldın
+        else
+        {
+            merge = ft_strjoin(merge, " ");             // Argümanlar arasına boşluk ekle
+            tmp2 = merge;
+            merge = ft_strjoin(merge, argv[idx]);
+            free(tmp2);
+        }
+        idx++;
+        free(tmp);
+    }
+    args = ft_split(merge, ' ');
+    free(merge);
     return (args);
 }
 
@@ -67,25 +84,20 @@ void    push_stack_a(t_stack **stack_a, int value)
     *stack_a = node;
 }
 
-void fill_stack(t_stack  **stack_a, char **arguments, int argc)
+void fill_stack(t_stack  **stack_a, char **arguments)
 {
     int idx;
-    long int val;
+    int val;
 
-    if (argc == 2)
-        idx = 0;
-    else
-        idx = 1;
+    idx = 0;
     while (arguments[idx])
     {
-        val = ft_atol(arguments[idx]);
+        val = ft_atoi(arguments[idx]);
         push_stack_a(stack_a, val);
         idx++;
     }
 }
-/*
-argümanları kontrol et çoklu tırnak ("") 
-*/
+
 int main(int argc, char **argv)
 {
     char        **arguments;
@@ -94,22 +106,24 @@ int main(int argc, char **argv)
 
     if (argc < 2)
         return (0);
-    arguments = parse_args(argc, argv);     // proje bittğinde check_args() ekleyebilirsin
-    if (max_limit(arguments, argc) == -1 || is_digit(arguments, argc) == -1 || is_twin(arguments, argc) == -1)
+    arguments = parse_args(argc, argv, 1);     // proje bittğinde check_args() ekleyebilirsin
+    if (max_limit(arguments) == -1 || is_digit(arguments) == -1 || is_twin(arguments) == -1)
         error_handling();
     stack_a = (t_stack **)malloc(sizeof(t_stack));
     stack_b = (t_stack **)malloc(sizeof(t_stack));
     if (!stack_a || !stack_b)       // dikkat et
-        return (free_all_stack(stack_a, stack_b), free_args(arguments, argc), 0);
+        return (free_all_stack(stack_a, stack_b), free_args(arguments), 0);
     *stack_a = NULL;
     *stack_b = NULL;
-    fill_stack(stack_a, arguments, argc);
+    fill_stack(stack_a, arguments);
     if (is_stack_sorted(*stack_a))
-        return (free_all_stack(stack_a, stack_b), free_args(arguments, argc), 0);
+        return (free_all_stack(stack_a, stack_b), free_args(arguments), 0);
 
-    // sort_stack(stack_a, stack_b);
+    printnl(*stack_a);
+    
+    sort_stack(stack_a, stack_b);
 
     printnl(*stack_a);
 
-    return (free_all_stack(stack_a, stack_b), free_args(arguments, argc), 0);
+    return (free_all_stack(stack_a, stack_b), free_args(arguments), 0);
 }

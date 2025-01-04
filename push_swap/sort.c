@@ -40,9 +40,9 @@ void    selection_sort(t_stack **stack_a, t_stack **stack_b)
 
 void    sort_stack(t_stack **stack_a, t_stack **stack_b)
 {
-    printnl(*stack_a);
+    // printnl(*stack_a);
 
     selection_sort(stack_a, stack_b);
 
-    printnl(*stack_a);
+    // printnl(*stack_a);
 }
