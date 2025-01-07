@@ -27,11 +27,11 @@ int is_digit(char **str)
     while (str[i])
     {
         j = 0;
+        if (str[i][j] == '-' || str[i][j] == '+')
+            j++;
         while (str[i][j])
         {
-            if (str[i][j] == '-')
-                j++;
-            if (str[i][j] < '0' || str[i][j] > '9')
+            if (!ft_isdigit(str[i][j]))
                 return (free_args(str), -1);
             j++;
         }
@@ -60,36 +60,20 @@ int is_twin(char **str)
 {
     int i;
     int j;
-    int len;
-    int m, d;
-    m = 0;
-    d = 0;
 
-    while (str[d])          // malloc için 
-        m += ft_strlen(str[d++]);
     i = 0;
-    int *nums = malloc(sizeof(int) * m);
-    if (!nums)
-        return (-1);
-    len = 0;           
-    while (str[i])          // libft'deki ft_memcpy veya benzeri fonksiyon kullanabilirsin.
-    {
-        nums[i] = ft_atol(str[i]);
-        len++;
-        i++;
-    }
-    i = 0;
-    while (i < len)
+    while (str[i])
     {
         j = i + 1;
-        while (j < len + 1)
+        while (str[j])
         {
-            if (nums[i] == nums[j++])
-                return (free_args(str), free(nums), -1);
+            if (ft_atoi(str[i]) == ft_atoi(str[j]))
+                return (free_args(str), -1);
+            j++;
         }
         i++;
     }
-    return (free(nums), 0);
+    return (0);
 }
 
 int     stack_size(t_stack *stack)

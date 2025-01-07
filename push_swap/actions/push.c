@@ -12,7 +12,7 @@
 
 # include "../push_swap.h"
 
-/* 
+/*
 b stackinin en üstündeki elemanı a stackinin en üstüne koyun.
 Eğer b stacki boş ise bir şey yapmayın. */
 

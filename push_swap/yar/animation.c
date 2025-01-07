@@ -13,11 +13,12 @@ Yeni bir satıra geçmeden, mevcut satırın başından itibaren yazmaya devam e
 void    printchr(char chr)
 {
     printf("%c", chr);
-    printf("\033[1D"); // Move left X column;
+    printf("\033[1D");      // Move left X column;
     fflush(0);
     usleep(200000);
 
 }
+
 int main()
 {
     printf("animation: ");

@@ -12,16 +12,6 @@
 
 # include "push_swap.h"
 
-/*
-    1. İlk önce 'a' ve 'b' isimli iki tane stack tanımla ve başlangıç değerleri olarak 'NULL' ver - ok
-    2. Terminalden gelen argümanları kontrol et (boş değerler, hatalı girişler) - ok
-    3. Argümanları sayılara dönüştürüp ilk stack'e (`a` stack) yerleştir. -ok
-    4. Stack'lerdeki Durumu Kontrol Et (Empty Check - Sorted Check - ok
-    5. Stack a'daki değleri değerlendir işlemler yap . - ok
-    6. push, swap, rotate, reverse_rotate aksiyonlarını ekle - ok
-*/
-
-
 void    printnl(t_stack *stack)
 {
     while (stack)
@@ -36,7 +26,7 @@ int     is_stack_sorted(t_stack *stack_a)
 {
     while (stack_a->next)
     {
-        if (stack_a->data < stack_a->next->data)
+        if (stack_a->data > stack_a->next->data)
             return (0);
         stack_a = stack_a->next;        
     }
@@ -71,17 +61,25 @@ char    **parse_args(int argc, char **argv, int idx)
     return (args);
 }
 
-void    push_stack_a(t_stack **stack_a, int value)
+void    push_to_stack(t_stack **stack_a, int value)
 {
-    t_stack  *node;
+    t_stack *node;
+    t_stack *tmp;
 
     node = (t_stack *)malloc(sizeof(t_stack));
     if (!node)
         return ;
-    
     node->data = value;
-    node->next = *stack_a;
-    *stack_a = node;
+    node->next = NULL;
+    if (*stack_a == NULL)
+        *stack_a = node;
+    else
+    {
+        tmp = *stack_a;
+        while (tmp->next != NULL)
+            tmp = tmp->next;
+        tmp->next = node;
+    }
 }
 
 void fill_stack(t_stack  **stack_a, char **arguments)
@@ -93,7 +91,7 @@ void fill_stack(t_stack  **stack_a, char **arguments)
     while (arguments[idx])
     {
         val = ft_atoi(arguments[idx]);
-        push_stack_a(stack_a, val);
+        push_to_stack(stack_a, val);
         idx++;
     }
 }
@@ -106,24 +104,18 @@ int main(int argc, char **argv)
 
     if (argc < 2)
         return (0);
-    arguments = parse_args(argc, argv, 1);     // proje bittğinde check_args() ekleyebilirsin
+    arguments = parse_args(argc, argv, 1);
     if (max_limit(arguments) == -1 || is_digit(arguments) == -1 || is_twin(arguments) == -1)
         error_handling();
     stack_a = (t_stack **)malloc(sizeof(t_stack));
     stack_b = (t_stack **)malloc(sizeof(t_stack));
-    if (!stack_a || !stack_b)       // dikkat et
+    if (!stack_a || !stack_b)
         return (free_all_stack(stack_a, stack_b), free_args(arguments), 0);
     *stack_a = NULL;
     *stack_b = NULL;
     fill_stack(stack_a, arguments);
     if (is_stack_sorted(*stack_a))
         return (free_all_stack(stack_a, stack_b), free_args(arguments), 0);
-
-    printnl(*stack_a);
-    
     sort_stack(stack_a, stack_b);
-
-    printnl(*stack_a);
-
     return (free_all_stack(stack_a, stack_b), free_args(arguments), 0);
 }

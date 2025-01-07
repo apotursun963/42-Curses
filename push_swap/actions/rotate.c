@@ -18,6 +18,8 @@ void    rotate(t_stack **stack)
     t_stack  *first;
     t_stack  *last;
 
+    if (*stack == NULL || (*stack)->next == NULL)
+        return;
     first = *stack;         // Stack'in ilk elemanını al
     last = *stack;          // Stack'in ilk elemanını al (son node için)
     

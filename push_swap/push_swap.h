@@ -43,7 +43,6 @@ void    reverse_rotate_a(t_stack **stack_a);
 void    reverse_rotate_b(t_stack **stack_b);
 void    rrr(t_stack **stack_a, t_stack **stack_b);
 
-void    sort_2(t_stack **stack_a, t_stack **stack_b);   // kaldır
 void    sort_stack(t_stack **stack_a, t_stack **stack_b);
 
 
