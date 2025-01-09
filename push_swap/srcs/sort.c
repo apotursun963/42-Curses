@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "push_swap.h"
+# include "../inc/push_swap.h"
 
 // Stack A'nın en küçük elemanını ve pozisyonunu bul
 int    find_min_value_pos(t_stack *node)
@@ -113,5 +113,8 @@ void sort_stack(t_stack **stack_a, t_stack **stack_b)
         counter++;
     }
     transfer_all_from_b_to_a(stack_a, stack_b, &counter);
-    // printnl(*stack_a);
 }
+
+/*
+ARG=$(shuf -i 1-2000000 -n 100); ./push_swap $ARG | wc -l
+*/

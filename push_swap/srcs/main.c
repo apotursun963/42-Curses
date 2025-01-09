@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "push_swap.h"
+# include "../inc/push_swap.h"
 
 void    printnl(t_stack *stack)
 {
@@ -45,10 +45,10 @@ char    **parse_args(int argc, char **argv, int idx)
     {
         tmp = merge;
         if (merge == NULL)
-            merge = ft_strdup(argv[idx]);               // ilk argümanı aldın
+            merge = ft_strdup(argv[idx]);
         else
         {
-            merge = ft_strjoin(merge, " ");             // Argümanlar arasına boşluk ekle
+            merge = ft_strjoin(merge, " ");
             tmp2 = merge;
             merge = ft_strjoin(merge, argv[idx]);
             free(tmp2);

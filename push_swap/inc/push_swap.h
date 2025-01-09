@@ -13,8 +13,8 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <limits.h>
-# include "libs/libft/libft.h"
-# include "libs/ft_printf/ft_printf.h"
+# include "../libs/libft/libft.h"
+# include "../libs/ft_printf/ft_printf.h"
 
 typedef struct s_stack
 {
@@ -45,14 +45,13 @@ void    rrr(t_stack **stack_a, t_stack **stack_b);
 
 void    sort_stack(t_stack **stack_a, t_stack **stack_b);
 
-
 int     is_stack_sorted(t_stack *stack_a);
 int     stack_size(t_stack *stack);
 
 // error funs
 void    error_handling(void);
-int is_digit(char **str);
-int is_twin(char **str);
-int max_limit(char **str);
+int     is_digit(char **str);
+int     is_twin(char **str);
+int     max_limit(char **str);
 
 long int	ft_atol(const char *str);

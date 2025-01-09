@@ -1,5 +1,7 @@
 
-# include "push_swap.h"
+
+
+# include "../inc/push_swap.h"
 
 long int	ft_atol(const char *str)
 {

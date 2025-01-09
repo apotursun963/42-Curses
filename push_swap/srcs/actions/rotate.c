@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../push_swap.h"
+# include "../../inc/push_swap.h"
 
 /* rotate  */
 void    rotate(t_stack **stack)
