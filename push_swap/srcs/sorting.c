@@ -12,7 +12,6 @@
 
 # include "../inc/push_swap.h"
 
-// Stack A'nın en küçük elemanını ve pozisyonunu bul
 int    find_min_value_pos(t_stack *node)
 {
     int min_val;
@@ -35,7 +34,6 @@ int    find_min_value_pos(t_stack *node)
     return (min_pos);
 }
 
-// Stack A'yı en küçük değere getirmek için döndürme işlemi yapan fonksiyon
 void    rotate_min_pos_to_head(t_stack **stack_a, int min_pos)
 {
     int size;
@@ -83,38 +81,40 @@ void    sort_stack_if_size_3(t_stack **stack_a)
         swap_a(stack_a);
 }
 
-void    transfer_all_from_b_to_a(t_stack **stack_a, t_stack **stack_b, int *counter)
+void    transfer_all_from_b_to_a(t_stack **stack_a, t_stack **stack_b, int *pushed)
 {
-    while (*counter > 0)
+    while (*pushed > 0)
     {
         push_a(stack_b, stack_a);
-        (*counter)--;
+        (*pushed)--;
     }
 }
 
-void sort_stack(t_stack **stack_a, t_stack **stack_b)
+void sort_stacks(t_stack **stack_a, t_stack **stack_b)
 {
     int min_pos;
-    int counter;
+    int pushed;
+    int size;
 
-    // stack_size(*stack_a) == 4 ve stack_size(*stack_a) == 5 durumlarını ele al
-    counter = 0;
-    while (*stack_a)
+    pushed = 0;
+    size = stack_size(*stack_a);
+    while (size-- > 0)
     {
-        if (stack_size(*stack_a) == 2 && (*stack_a)->data > (*stack_a)->next->data)
+        if (size == 2 && (*stack_a)->data > (*stack_a)->next->data)
             swap_a(stack_a);
-        else if (stack_size(*stack_a) == 3)
+        else if (size == 3)
             sort_stack_if_size_3(stack_a);
-        if (is_stack_sorted(*stack_a))
+        if (is_stack_sorted(*stack_a, 0))
             break;
         min_pos = find_min_value_pos(*stack_a);
         rotate_min_pos_to_head(stack_a, min_pos);
         push_b(stack_a, stack_b);
-        counter++;
+        pushed++;
     }
-    transfer_all_from_b_to_a(stack_a, stack_b, &counter);
+    transfer_all_from_b_to_a(stack_a, stack_b, &pushed);
 }
 
 /*
+test;
 ARG=$(shuf -i 1-2000000 -n 100); ./push_swap $ARG | wc -l
 */

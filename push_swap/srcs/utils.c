@@ -12,7 +12,6 @@
 
 # include "../inc/push_swap.h"
 
-
 void    error_handling(void)
 {
     ft_putendl_fd("Error", 2);
@@ -82,7 +81,7 @@ int     stack_size(t_stack *stack)
     int     counter;
 
     counter = 0;
-    while (stack)
+    while (stack != NULL)
     {
         counter++;
         stack = stack->next;

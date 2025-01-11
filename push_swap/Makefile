@@ -7,11 +7,11 @@ YELLOW = \033[1;33m
 GREEN = \033[1;32m
 RESET = \033[0m
 
-SRCS = srcs/main.c srcs/sort.c srcs/utils.c srcs/utils2.c \
+SRCS = srcs/main.c srcs/sorting.c srcs/utils.c srcs/utils2.c \
 	srcs/actions/push.c srcs/actions/swap.c srcs/actions/rotate.c srcs/actions/reverse_rotate.c
 
-LIBFT = libs/libft/libft.a
-FT_PRINTF = libs/ft_printf/libftprintf.a
+LIBFT = libs/lbft/libft.a
+FT_PRINTF = libs/prnt/libftprintf.a
 
 all: $(LIBFT) $(FT_PRINTF) $(NAME)
 
@@ -22,17 +22,17 @@ $(NAME): $(SRCS) $(LIBFT) $(FT_PRINTF)
 
 $(LIBFT):
 	@echo "$(YELLOW)Building libft...$(RESET)"
-	make all bonus -C libs/libft
+	make all bonus -C libs/lbft
 	@echo "$(GREEN)libft built Successful!$(RESET)"
 
 $(FT_PRINTF):
 	@echo "$(YELLOW)Building ft_printf...$(RESET)"
-	make all -C libs/ft_printf
+	make all -C libs/prnt
 	@echo "$(GREEN)ft_printf built Successful!$(RESET)"
 
 clean:
-	make clean -C libs/libft
-	make clean -C libs/ft_printf 
+	make clean -C libs/lbft
+	make clean -C libs/prnt 
 
 fclean: clean
 	rm -rf $(LIBFT) $(FT_PRINTF) $(NAME)

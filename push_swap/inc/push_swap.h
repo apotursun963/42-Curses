@@ -13,8 +13,8 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <limits.h>
-# include "../libs/libft/libft.h"
-# include "../libs/ft_printf/ft_printf.h"
+# include "../libs/lbft/libft.h"
+# include "../libs/prnt/ft_printf.h"
 
 typedef struct s_stack
 {
@@ -43,9 +43,9 @@ void    reverse_rotate_a(t_stack **stack_a);
 void    reverse_rotate_b(t_stack **stack_b);
 void    rrr(t_stack **stack_a, t_stack **stack_b);
 
-void    sort_stack(t_stack **stack_a, t_stack **stack_b);
+void    sort_stacks(t_stack **stack_a, t_stack **stack_b);
 
-int     is_stack_sorted(t_stack *stack_a);
+int     is_stack_sorted(t_stack *stack_a, int is_order);
 int     stack_size(t_stack *stack);
 
 // error funs

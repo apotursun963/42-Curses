@@ -44,6 +44,12 @@ void    free_all_stack(t_stack **stack_a, t_stack **stack_b)
         *stack_a = (*stack_a)->next;
         free(tmp_node);
     }
+	while (*stack_b)
+    {
+        tmp_node = *stack_b;
+        *stack_b = (*stack_b)->next;
+        free(tmp_node);
+    }
     free(stack_a);
     free(stack_b);
 }

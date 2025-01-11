@@ -8,8 +8,6 @@ Yeni bir satıra geçmeden, mevcut satırın başından itibaren yazmaya devam e
 \r, "satırın başına dön ve oradan yazmaya başla" demektir.
 */
 
-
-
 void    printchr(char chr)
 {
     printf("%c", chr);
@@ -30,16 +28,3 @@ int main()
         printchr('|');
     }
 }
-
-
-// int main()
-// {
-//     for (int i=65; i <= 90; i++)
-//     {
-//         printf("%c\r", i);
-//         fflush(0);
-//         sleep(1);
-//     }
-
-//     printf("\a");        // alarm sesi
-// }
