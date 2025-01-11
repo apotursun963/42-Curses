@@ -1,11 +1,9 @@
 
-
 # include "inc/push_swap.h"
 
 int     read_actions(char *line);
 int     apply_actions(t_stack **stack_a, t_stack **stack_b, char *line);
 int     write_result(t_stack **stack_a, t_stack **stack_b);
-
 
 int main(int argc, char **argv)
 {
@@ -28,7 +26,7 @@ int main(int argc, char **argv)
     fill_stack(stack_a, arguments);
     while (read_actions(&take_line))
     {
-        if (!apply_actions(stack_a, stack_b, take_line))
+        if (apply_actions(stack_a, stack_b, take_line) == -1)
             error_handling();
     }
     write_result(stack_a, stack_b);
