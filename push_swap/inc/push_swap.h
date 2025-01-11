@@ -13,8 +13,8 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <limits.h>
-# include "../libs/lbft/libft.h"
-# include "../libs/prnt/ft_printf.h"
+# include "../libs/libft/libft.h"
+# include "../libs/ft_printf/ft_printf.h"
 
 typedef struct s_stack
 {
