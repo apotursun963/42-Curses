@@ -104,7 +104,7 @@ void sort_stacks(t_stack **stack_a, t_stack **stack_b)
             swap_a(stack_a);
         else if (size == 3)
             sort_stack_if_size_3(stack_a);
-        if (is_stack_sorted(*stack_a, 0))
+        if (is_stack_sorted(*stack_a))
             break;
         min_pos = find_min_value_pos(*stack_a);
         rotate_min_pos_to_head(stack_a, min_pos);

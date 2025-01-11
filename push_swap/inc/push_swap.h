@@ -45,7 +45,7 @@ void    rrr(t_stack **stack_a, t_stack **stack_b);
 
 void    sort_stacks(t_stack **stack_a, t_stack **stack_b);
 
-int     is_stack_sorted(t_stack *stack_a, int is_order);
+int     is_stack_sorted(t_stack *stack_a);
 int     stack_size(t_stack *stack);
 
 // error funs
