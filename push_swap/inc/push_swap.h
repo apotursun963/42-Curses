@@ -66,3 +66,6 @@ void    free_all_stack(t_stack **stack_a, t_stack **stack_b);
 char    **parse_args(int argc, char **argv, int idx);
 void    push_to_stack(t_stack **stack_a, int value);
 void    fill_stack(t_stack  **stack_a, char **arguments);
+
+
+void quick_sort(t_stack **stack_a, t_stack **stack_b, int size, int rotated);

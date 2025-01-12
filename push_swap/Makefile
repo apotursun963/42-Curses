@@ -1,7 +1,8 @@
 NAME = push_swap
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -fsanitize=address -fno-omit-frame-pointer
+CFLAGS = -Wall -Werror -Wextra
+# -fsanitize=address -fno-omit-frame-pointer snra kullan
 
 YELLOW = \033[1;33m
 GREEN = \033[1;32m
