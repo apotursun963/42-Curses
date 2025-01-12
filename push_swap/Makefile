@@ -1,7 +1,7 @@
 NAME = push_swap
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Werror -Wextra -fsanitize=address -fno-omit-frame-pointer
 
 YELLOW = \033[1;33m
 GREEN = \033[1;32m
