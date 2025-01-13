@@ -22,15 +22,28 @@ void    printnl(t_stack *stack)
     ft_printf("\n");
 }
 
-int     is_stack_sorted(t_stack *stack_a)
+int     is_stack_sorted(t_stack *stack_a, int order)
 {
-    while (stack_a->next)
+    if (order == 0)
     {
-        if (stack_a->data > stack_a->next->data)
-            return (0);
-        stack_a = stack_a->next;        
+        while (stack_a->next)
+        {
+            if (stack_a->data > stack_a->next->data)
+                return (0);
+            stack_a = stack_a->next;        
+        }
+        return (1);
     }
-    return (1);
+    else
+    {
+        while (stack_a->next)
+        {
+            if (stack_a->data < stack_a->next->data)
+                return (0);
+            stack_a = stack_a->next;        
+        }
+        return (1);
+    }
 }
 
 char    **parse_args(int argc, char **argv, int idx)
@@ -114,8 +127,12 @@ int main(int argc, char **argv)
     *stack_a = NULL;
     *stack_b = NULL;
     fill_stack(stack_a, arguments);
-    if (is_stack_sorted(*stack_a))
+    if (is_stack_sorted(*stack_a, 0))
         return (free_all_stack(stack_a, stack_b), free_args(arguments), 0);
-    quick_sort(stack_a, stack_b, stack_size(*stack_a), 0);
+    // quick_sort_a(sack_a, stack_b, stack_size(*stack_a), 0);
+    printnl(*stack_a);
+    sort(stack_a, stack_b);
+    printnl(*stack_a);
+    // sort_stacks(stack_a, stack_b);
     return (free_all_stack(stack_a, stack_b), free_args(arguments), 0);
 }

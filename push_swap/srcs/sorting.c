@@ -119,6 +119,9 @@ test;
 ARG=$(shuf -i 1-2000000 -n 100); ./push_swap $ARG | wc -l
 */
 
+/*
+Bubble sort algo
+*/
 void    tmp_sort(int *numbers, int size)
 {
     int	i;
@@ -150,6 +153,8 @@ int median(t_stack **stack_a, int size)
     int i;
 
     tmp_stack = (int *)malloc(sizeof(int) * size);
+    if (!tmp_stack)
+        return (0);
     i = 0;
     t_stack *node = *stack_a;
     while (node)
@@ -162,23 +167,53 @@ int median(t_stack **stack_a, int size)
     return (free(tmp_stack), pivot);
 }
 
-void quick_sort_b(t_stack **stack_a, t_stack **stack_b, int size, int rotated)
+int sort_three_numbers(t_stack **stack_a)
 {
-    if (is_stack_sorted(*stack_b))
-        while (size--)
-            push_a(stack_b, stack_b);
+    int first;
+    int second;
+    int third;
 
-    int save_nmbrs = size;
-    int pivot = median(stack_b, size);
-    int pushed = 0;
+    first = (*stack_a)->data;
+    second = (*stack_a)->next->data;
+    third = (*stack_a)->next->next->data;
+    if (first > second && second > third && first > third)
+    {
+        swap_a(stack_a);
+        reverse_rotate_a(stack_a);
+    }
+    else if (first < second && second > third && first < third)
+    {
+        swap_a(stack_a);
+        rotate_a(stack_a);
+    }
+    else if (first > second && second < third && first > third)
+        rotate_a(stack_a);
+    else if (first < second && second > third && first > third)
+        reverse_rotate_a(stack_a);
+    else if (first > second && second < third && first < third)
+        swap_a(stack_a);
+    return (0);
+}
 
-    while (size != (save_nmbrs / 2)) 
+int quick_sort_b(t_stack **stack_a, t_stack **stack_b, int len, int rotated)
+{
+    int pivot;
+    int numbers;
+
+    if (len <= 1 || is_stack_sorted(*stack_b, 1))
+    {
+        while (len--)
+            push_a(stack_b, stack_a);
+        return 1;
+    }
+    numbers = len;
+    pivot = median(stack_b, len);
+    while (len > numbers / 2)
     {
         if ((*stack_b)->data >= pivot)
         {
-            size--;
+            len--;
             push_a(stack_b, stack_a);
-            pushed++;
         }
         else
         {
@@ -186,31 +221,31 @@ void quick_sort_b(t_stack **stack_a, t_stack **stack_b, int size, int rotated)
             rotate_b(stack_b);
         }
     }
-    while (stack_size(*stack_b) != save_nmbrs / 2)
+    while (stack_size(*stack_b) < numbers / 2)      // yada len < 
     {
         rotated--;
         reverse_rotate_b(stack_b);
     }
-    quick_sort(stack_a, stack_b, pushed, 0);
-    quick_sort_b(stack_a, stack_b, size - pushed, 0);
+    quick_sort_a(stack_a, stack_b, numbers / 2 + numbers % 2, 0);
+    quick_sort_b(stack_a, stack_b, numbers / 2, 0);
+    return 1;
 }
 
-
-void quick_sort(t_stack **stack_a, t_stack **stack_b, int size, int rotated)
+int quick_sort_a(t_stack **stack_a, t_stack **stack_b, int len, int rotated)
 {
-    if (size <= 1 || is_stack_sorted(*stack_a))
-        return;
+    int pivot;
+    int numbers;
 
-    int save_nmbrs = size;
-    int pivot = median(stack_a, size);
-    int pushed = 0;
-    while (size != (save_nmbrs / 2 + save_nmbrs % 2))
+    if (len <= 1 || is_stack_sorted(*stack_a, 0))
+        return 1;
+    numbers  = len;
+    pivot = median(stack_a, len);
+    while (len > numbers / 2 + numbers % 2)
     {
         if ((*stack_a)->data < pivot)
         {
-            size--;
+            len--;
             push_b(stack_a, stack_b);
-            pushed++;
         }
         else
         {
@@ -218,12 +253,28 @@ void quick_sort(t_stack **stack_a, t_stack **stack_b, int size, int rotated)
             rotate_a(stack_a);
         }
     }
-    while (stack_size(*stack_a) != save_nmbrs / 2 + save_nmbrs % 2)
+    while (stack_size(*stack_a) < numbers / 2 + numbers % 2)
     {
         rotated--;
         reverse_rotate_a(stack_a);
     }
-    quick_sort(stack_a, stack_b, size - pushed, 0);
-    quick_sort_b(stack_a, stack_b, pushed, 0);
-    printnl(*stack_a);
+    quick_sort_a(stack_a, stack_b, numbers / 2 + numbers % 2, 0);
+    quick_sort_b(stack_a, stack_b, numbers / 2, 0);
+    return 1;
 }
+
+int sort(t_stack **stack_a, t_stack **stack_b)
+{
+    int size = stack_size(*stack_a);
+    
+    if (size == 2)
+        swap_a(stack_a);
+    else if (size == 3)
+        sort_three_numbers(stack_a);
+    else
+        quick_sort_a(stack_a, stack_b, size, 0);
+    return (1);
+}
+/*
+./push_swap 4 1 6 54 79 55 22 5
+*/

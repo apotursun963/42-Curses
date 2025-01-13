@@ -49,7 +49,7 @@ void    sort_stack_if_size_3(t_stack **stack_a);
 void    transfer_all_from_b_to_a(t_stack **stack_a, t_stack **stack_b, int *pushed);
 
 
-int     is_stack_sorted(t_stack *stack_a);
+int     is_stack_sorted(t_stack *stack_a, int order);
 int     stack_size(t_stack *stack);
 
 // error funs
@@ -68,4 +68,5 @@ void    push_to_stack(t_stack **stack_a, int value);
 void    fill_stack(t_stack  **stack_a, char **arguments);
 
 
-void quick_sort(t_stack **stack_a, t_stack **stack_b, int size, int rotated);
+int quick_sort_a(t_stack **stack_a, t_stack **stack_b, int len, int rotated);
+int sort(t_stack **stack_a, t_stack **stack_b);
