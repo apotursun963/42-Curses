@@ -42,10 +42,10 @@ void    reverse_rotate_b(t_stack **stack_b);
 void    rrr(t_stack **stack_a, t_stack **stack_b);
 
 // sorting
-void    sort_stacks(t_stack **stack_a, t_stack **stack_b);
+void    last_sort(t_stack **stack_a, t_stack **stack_b);
 int    find_min_value_pos(t_stack *node);
 void    rotate_min_pos_to_head(t_stack **stack_a, int min_pos);
-void    sort_stack_if_size_3(t_stack **stack_a);
+int    sort_stack_if_size_3(t_stack **stack);
 void    transfer_all_from_b_to_a(t_stack **stack_a, t_stack **stack_b, int *pushed);
 
 
@@ -68,5 +68,9 @@ void    push_to_stack(t_stack **stack_a, int value);
 void    fill_stack(t_stack  **stack_a, char **arguments);
 
 
-int quick_sort_a(t_stack **stack_a, t_stack **stack_b, int len, int rotated);
-int sort(t_stack **stack_a, t_stack **stack_b);
+int quick_sort_a(t_stack **stack_a, t_stack **stack_b, int len);
+int sorting(t_stack **stack_a, t_stack **stack_b);
+
+void    tmp_sort(int *numbers, int size);
+int     median(t_stack **stack, int size);
+int	    push_type(t_stack **stack_a, t_stack **stack_b, int len, int push);

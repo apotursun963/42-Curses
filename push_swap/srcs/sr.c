@@ -16,13 +16,11 @@ void	quicksort_three_pile_a_and_b(t_piles *pile, int len)
 	}
 	else if (len == 3)
 	{
-		while (len != 3 || !(pile->a[0] < pile->a[1]
-				&& pile->a[1] < pile->a[2]))
+		while (len != 3 || !(pile->a[0] < pile->a[1] && pile->a[1] < pile->a[2]))
 		{
 			if (len == 3 && pile->a[0] > pile->a[1] && pile->a[2])
 				swap_a(pile, 0);
-			else if (len == 3 && !(pile->a[2] > pile->a[0]
-					&& pile->a[2] > pile->a[1]))
+			else if (len == 3 && !(pile->a[2] > pile->a[0] && pile->a[2] > pile->a[1]))
 				len = ft_push(pile, len, 0);
 			else if (pile->a[0] > pile->a[1])
 				swap_a(pile, 0);

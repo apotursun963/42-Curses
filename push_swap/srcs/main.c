@@ -129,10 +129,8 @@ int main(int argc, char **argv)
     fill_stack(stack_a, arguments);
     if (is_stack_sorted(*stack_a, 0))
         return (free_all_stack(stack_a, stack_b), free_args(arguments), 0);
-    // quick_sort_a(sack_a, stack_b, stack_size(*stack_a), 0);
-    printnl(*stack_a);
-    sort(stack_a, stack_b);
-    printnl(*stack_a);
-    // sort_stacks(stack_a, stack_b);
+    // printnl(*stack_a);
+    sorting(stack_a, stack_b);
+    // printnl(*stack_a);
     return (free_all_stack(stack_a, stack_b), free_args(arguments), 0);
 }

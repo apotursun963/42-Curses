@@ -22,7 +22,7 @@ void    push(t_stack **src_stack, t_stack **dst_stack)
 
     if (stack_size(*src_stack) == 0)
         return ;
-    head = *src_stack;                // stack_b'nin ilk elemanını al
+    head = *src_stack;                // stack_b'nin ilk elemanını al   
     *src_stack = head->next;          // stack_b'nin başını bir sonraki elemana kaydır
     head->next = *dst_stack;          // head_b'yi stack_a'nın başına ekle
     *dst_stack = head;                // stack_a'nın başını head_b olarak güncelle

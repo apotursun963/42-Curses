@@ -139,4 +139,3 @@ int main(int argc, char const *argv[])
     printf("%d\n", num);
     return 0;
 }
-    

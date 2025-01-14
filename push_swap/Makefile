@@ -8,7 +8,7 @@ YELLOW = \033[1;33m
 GREEN = \033[1;32m
 RESET = \033[0m
 
-SRCS = srcs/main.c srcs/sorting.c srcs/utils.c srcs/utils2.c \
+SRCS = srcs/main.c srcs/sorting.c  srcs/last_sorting.c srcs/sorting_utils.c srcs/utils.c srcs/utils2.c			\
 	srcs/actions/push.c srcs/actions/swap.c srcs/actions/rotate.c srcs/actions/reverse_rotate.c
 
 LIBFT = libs/libft/libft.a
