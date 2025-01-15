@@ -76,3 +76,31 @@ void last_sort(t_stack **stack_a, t_stack **stack_b)
     }
     transfer_all_from_b_to_a(stack_a, stack_b, &pushed);
 }
+
+
+/*
+Algoritma mantığı
+-----------------
+İlk olarak yığındaki en küçük elemanı bulup, bu öğeyi rotate_a kullanarak dizenin sonuna taşıyacağız. 
+Bu öğe sıralanmış sayılacak ve sonraki adımlarda dikkate alınmayacak.
+Sonraki adımlarda, ilk başta sıraladığımız öğeyi dikkate almayarak, 
+geri kalan öğeler arasında en küçük öğeyi bulup, bu öğeyi de rotate_a ile dizenin sonuna taşıyacağız.
+Her seferinde size'ı bir azaltarak sıralama işlemi yapılacak.
+
+"1 5 24 2 76"
+"5 24 2 76" 1
+"5 24 76" 1 2
+"24 76" 1 2 5
+"76" 1 2 5 24
+1 2 5 24 76 
+
+------------
+
+"8 45 2 75 1"
+"8 45 2 75" 1
+"8 45 75" 1 2
+"45 75" 1 2 8
+"75" 1 2 8 45
+1 2 8 45 75
+*/
+

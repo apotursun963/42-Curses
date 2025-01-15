@@ -22,37 +22,27 @@ void    printnl(t_stack *stack)
     ft_printf("\n");
 }
 
-int     is_stack_sorted(t_stack *stack_a, int order)
+int     is_stack_sorted(t_stack *stack_a, int order)    // order makro olsun
 {
-    if (order == 0)
+    while (stack_a->next)
     {
-        while (stack_a->next)
-        {
-            if (stack_a->data > stack_a->next->data)
-                return (0);
-            stack_a = stack_a->next;        
-        }
-        return (1);
+        if ((order == 0 && stack_a->data > stack_a->next->data)
+            || (order == 1 && stack_a->data < stack_a->next->data))
+            return (0);
+        stack_a = stack_a->next;
     }
-    else
-    {
-        while (stack_a->next)
-        {
-            if (stack_a->data < stack_a->next->data)
-                return (0);
-            stack_a = stack_a->next;        
-        }
-        return (1);
-    }
+    return (1);
 }
 
-char    **parse_args(int argc, char **argv, int idx)
+char    **parse_args(int argc, char **argv)
 {
     char    **args;
     char    *merge;
     char    *tmp;
     char    *tmp2;
+    int     idx;
 
+    idx = 1;
     merge = NULL;
     while (idx < argc)
     {
@@ -70,8 +60,7 @@ char    **parse_args(int argc, char **argv, int idx)
         free(tmp);
     }
     args = ft_split(merge, ' ');
-    free(merge);
-    return (args);
+    return (free(merge), args);
 }
 
 void    push_to_stack(t_stack **stack_a, int value)
@@ -109,28 +98,36 @@ void fill_stack(t_stack  **stack_a, char **arguments)
     }
 }
 
+void inspect_args(char **args, int (*max_limit)(char **), int (*is_digit)(char **), int (*is_twin)(char **))
+{
+    if (max_limit(args) == -1 || is_digit(args) == -1 || is_twin(args) == -1)
+        error_handling();
+}
+
 int main(int argc, char **argv)
 {
-    char        **arguments;
+    char        **args;
     t_stack     **stack_a;
     t_stack     **stack_b;
 
     if (argc < 2)
         return (0);
-    arguments = parse_args(argc, argv, 1);
-    if (max_limit(arguments) == -1 || is_digit(arguments) == -1 || is_twin(arguments) == -1)
-        error_handling();
+    args = parse_args(argc, argv);
+    inspect_args(args, max_limit, is_digit, is_twin);
     stack_a = (t_stack **)malloc(sizeof(t_stack));
     stack_b = (t_stack **)malloc(sizeof(t_stack));
     if (!stack_a || !stack_b)
-        return (free_all_stack(stack_a, stack_b), free_args(arguments), 0);
+        return (free_all_stack(stack_a, stack_b), free_args(args), 0);
     *stack_a = NULL;
     *stack_b = NULL;
-    fill_stack(stack_a, arguments);
+    fill_stack(stack_a, args);
     if (is_stack_sorted(*stack_a, 0))
-        return (free_all_stack(stack_a, stack_b), free_args(arguments), 0);
-    // printnl(*stack_a);
+        return (free_all_stack(stack_a, stack_b), free_args(args), 0);
     sorting(stack_a, stack_b);
-    // printnl(*stack_a);
-    return (free_all_stack(stack_a, stack_b), free_args(arguments), 0);
+    return (free_all_stack(stack_a, stack_b), free_args(args), 0);
 }
+
+/*
+proje bittikten sonra github'a kodu düzelterek ekstra özellikler ekleyerek pushla
+HANDLE_ERROR, makro...
+*/

@@ -10,38 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+
 # include "../inc/push_swap.h"
 
 // ARG=$(shuf -i 1-2000000 -n 100); ./push_swap $ARG | wc -l
-
-// void    sort_three_numbers_in_a(t_stack **stack_a, t_stack **stack_b, int len)
-// {
-//     (void)stack_b;
-//     if (len == 2)
-//     {
-//         if ((*stack_a)->data > (*stack_a)->next->data)
-//             swap_a(stack_a);
-//     }
-//     else if (len == 3)
-//         sort_stack_if_size_3(stack_a);
-// }
-
-// int    sort_three_numbers_in_b(t_stack **stack_a, t_stack **stack_b, int len)
-// {
-//     if (len == 1)
-//         push_a(stack_b, stack_a);
-//     else if (len == 2)
-//     {
-//         if ((*stack_b)->data < (*stack_b)->next->data)
-//             swap_b(stack_b);
-//         while (len--)
-//             push_a(stack_b, stack_a);
-//     }
-// 	else if (len == 3)
-// 		sort_stack_if_size_3(stack_b);
-// 	return (0);
-// }
-
 
 void    sort_three_numbers_in_a(t_stack **stack_a, t_stack **stack_b, int len)
 {
@@ -59,7 +31,10 @@ void    sort_three_numbers_in_a(t_stack **stack_a, t_stack **stack_b, int len)
             if (len == 3 && (*stack_a)->data > (*stack_a)->next->data && (*stack_a)->next->next->data)
                 swap_a(stack_a);
             else if (len == 3 && !((*stack_a)->next->next->data > (*stack_a)->data && (*stack_a)->next->next->data > (*stack_a)->next->data))
-                len = push_type(stack_a, stack_b, len, 0);
+            {
+                push_b(stack_a, stack_b);
+                len--;
+            }
             else if ((*stack_a)->data > (*stack_a)->next->data)
                 swap_a(stack_a);
             else if (len++)
@@ -87,7 +62,10 @@ int    sort_three_numbers_in_b(t_stack **stack_a, t_stack **stack_b, int len)
 				swap_a(stack_a);
 			else if (len == 1 || (len >= 2 && (*stack_b)->data > (*stack_b)->next->data)
 				|| (len == 3 && (*stack_b)->data > (*stack_b)->next->next->data))
-				len = push_type(stack_a, stack_b, len, 1);
+            {
+                push_a(stack_b, stack_a);
+                len--;
+            }
 			else
 				swap_b(stack_b);
 		}
@@ -120,7 +98,7 @@ int quick_sort_b(t_stack **stack_a, t_stack **stack_b, int len)
         reverse_rotate_b(stack_b);
     quick_sort_a(stack_a, stack_b, numbers / 2 + numbers % 2);
     quick_sort_b(stack_a, stack_b, numbers / 2);
-    return 1;
+    return (1);
 }
 
 int quick_sort_a(t_stack **stack_a, t_stack **stack_b, int len)
@@ -147,7 +125,7 @@ int quick_sort_a(t_stack **stack_a, t_stack **stack_b, int len)
         reverse_rotate_a(stack_a);
     quick_sort_a(stack_a, stack_b, half_numbers);
     quick_sort_b(stack_a, stack_b, numbers / 2);
-    return 1;
+    return (1);
 }
 
 int sorting(t_stack **stack_a, t_stack **stack_b)

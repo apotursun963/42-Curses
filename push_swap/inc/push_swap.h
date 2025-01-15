@@ -10,17 +10,60 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include <unistd.h>
+#ifndef PUSH_SWAP_H
+#define PUSH_SWAP_H
+
+# include <unistd.h> 
 # include <stdlib.h>
 # include <limits.h>
 # include "../libs/libft/libft.h"
 # include "../libs/ft_printf/ft_printf.h"
 
+
+/*
+
+tekrar edilecek konular
+-----------------------
+-Fonksiyon işaretçileri
+-"Makefile (program run ve compile time) ve ileri seviye"
+-"Header Dosyalar ("makro", "enum" "struct", "Include guard", "extern", "inline")" ileri seviye kullanımı 
+-Quick Sort ve Stack
+-Time Complexity, Space Complexity, Big-O Notation
+-Pointer, Pointer to Pointer, Adres Referansı
+-Dinamik Bellek tahsisi (malloc, free, ..) ve bunlar hangi bellek alanında tahsis ediliyor
+-Bazı bash komutları:
+-shuf -i 1-1000 -n 10, find . -type f -name "*.c", tree, history, whereis,
+-Bellek Düzeni (memory layout)
+*/
+
+
+
+// sonra ekle
+// # define ASCENDING  0
+// # define DESCENDING 1
+
+// Error macro
+// #define HANDLE_ERROR(condition, action) \
+//     do {                                \
+//         if (condition) {                \
+//             action;                     \
+//             return;                     \
+//         }                               \
+//     } while (0)
+
+// Stack sorting order
+// typedef enum e_order {
+//     ASCENDING,
+//     DESCENDING
+// } t_order;
+
+
+
 typedef struct s_stack
 {
     int             data;
     struct s_stack   *next;
-}   t_stack;
+}               t_stack;
 
 
 void    printnl(t_stack *stack);     // Bunu fonksiyonu push'larken siliceksin
@@ -63,7 +106,7 @@ long int	ft_atol(const char *str);
 void    free_args(char **arguments);
 void    free_all_stack(t_stack **stack_a, t_stack **stack_b);
 
-char    **parse_args(int argc, char **argv, int idx);
+char    **parse_args(int argc, char **argv);
 void    push_to_stack(t_stack **stack_a, int value);
 void    fill_stack(t_stack  **stack_a, char **arguments);
 
@@ -74,3 +117,5 @@ int sorting(t_stack **stack_a, t_stack **stack_b);
 void    tmp_sort(int *numbers, int size);
 int     median(t_stack **stack, int size);
 int	    push_type(t_stack **stack_a, t_stack **stack_b, int len, int push);
+
+#endif

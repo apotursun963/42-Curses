@@ -1,6 +1,5 @@
 NAME = libft.a
 
-
 FUNCS = $(wildcard characters/*.c file_descriptor/*.c memory/*.c numbers/*.c strings/*.c)
 
 BFUNCS = $(wildcard linked_list/*.c)

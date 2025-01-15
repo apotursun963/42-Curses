@@ -30,6 +30,7 @@ int    sort_stack_if_size_3(t_stack **stack)
     return (1);
 }
 
+/*bubble sort*/
 void    tmp_sort(int *numbers, int size)
 {
     int	i;
@@ -75,12 +76,13 @@ int median(t_stack **stack, int size)
     return (free(tmp_stack), pivot);
 }
 
-int	push_type(t_stack **stack_a, t_stack **stack_b, int len, int push)
-{
-	if (push == 0)
-		push_b(stack_a, stack_b);
-	else
-		push_a(stack_b, stack_a);
-	len--;
-	return (len);
-}
+// sil
+// int	push_type(t_stack **stack_a, t_stack **stack_b, int len, int push)
+// {
+// 	if (push == 0)
+// 		push_b(stack_a, stack_b);
+// 	else
+// 		push_a(stack_b, stack_a);
+// 	len--;
+// 	return (len);
+// }
