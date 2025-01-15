@@ -30,5 +30,3 @@ yani, Süreç Bir işletim sisteminde aktif olarak çalışan bir program.
             - Hata Durumu (Beklenmeyen Sonlanma): Süreç, bir hata durumu nedeniyle beklenmedik bir şekilde sona erebilir. Hatalar, program kodunda veya dış etkenlerde oluşabilir. Süreç, bir hata koduyla sonlanır ve hata türü işletim sistemine rapor edilir.
 
             - Kullanıcı veya İşletim Sistemi Tarafından Sonlandırılma: Süreç, dış bir müdahale ile sonlandırılabilir. Kullanıcı, terminalde kill veya Ctrl+C gibi komutlarla süreci sonlandırır. veya İşletim sistemi, kaynak yetersizliği veya yönetim politikaları nedeniyle bir süreci sonlandırabilir. ayrıca süreç sonlandırmaları `sinyaller` yoluyla da gerçekleştirilebilir.
-
-![process-img](https://learnloner.com/wp-content/uploads/2023/05/Process-Management-In-OS.png.webp)
