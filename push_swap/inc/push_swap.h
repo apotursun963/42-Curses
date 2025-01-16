@@ -21,12 +21,12 @@
 
 
 /*
-
-tekrar edilecek konular
+Tekrar edilecek konular
 -----------------------
 -Fonksiyon işaretçileri
 -"Makefile (program run ve compile time) ve ileri seviye"
--"Header Dosyalar ("makro", "enum" "struct", "Include guard", "extern", "inline")" ileri seviye kullanımı 
+-"Compiler" "Flags" ve "Optimizasyon" (-Wall, -Werror, -O2, -g, gdb, valgrind...)
+-"Header Dosyalar ("makro", "enum" "struct", "Include guard", "extern", "inline", "Preprocessor")
 -Quick Sort ve Stack
 -Time Complexity, Space Complexity, Big-O Notation
 -Pointer, Pointer to Pointer, Adres Referansı
