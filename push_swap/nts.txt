@@ -1,0 +1,24 @@
+
+enum nedir ?
+-----------
+Enum (veya numaralandırma), C'de kullanıcı tanımlı bir veri türüdür. 
+Esas olarak tamsayı sabitlerine isim atamak için kullanılır, 
+isimler bir programın okunmasını ve bakımını kolaylaştırır.
+ve sabitleri gruplandırmak için kullanılır. 
+C'deki enum'lar, tam sayı sabitlerine isim atamanıza izin vererek kodu daha okunabilir hale getirir.
+Sabitlere numaralar atanır ve varsayılan olarak bu numaralar 0'dan başlar.
+
+amaç:
+	Sabit değerleri gruplayarak anlamlı isimler oluşturmak.
+veri türü:
+    Sadece tamsayı sabitleri içerir.
+Değişkenler: 
+    Sabit (readonly) değerler içerir.
+
+struct ise
+amaç:
+    Birden fazla türdeki değişkeni bir arada saklamak.
+veri türü:
+    Farklı türde değişkenler içerebilir.
+Değişkenler:
+    Dinamik ve değiştirilebilir değerler içerir.

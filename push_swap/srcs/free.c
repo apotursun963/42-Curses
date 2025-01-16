@@ -3,26 +3,6 @@
 
 # include "../inc/push_swap.h"
 
-long int	ft_atol(const char *str)
-{
-	long int		result;
-	int		sign;
-
-	sign = 1;
-	result = 0;
-	while ((*str == 32) || (*str >= 9 && *str <= 13))
-		str++;
-	if (*str == '+' || *str == '-')
-	{
-		if (*str == '-')
-			sign *= -1;
-		str++;
-	}
-	while (*str >= '0' && *str <= '9')
-		result = (result * 10) + (*str++ - '0');
-	return (result * sign);
-}
-
 void    free_args(char **arguments)
 {
     int  idx;
@@ -33,7 +13,6 @@ void    free_args(char **arguments)
     free(arguments);
 }
 
-// Free kısmında güncellenecek stack_b içinde while ekliyceksin
 void    free_all_stack(t_stack **stack_a, t_stack **stack_b)
 {
     t_stack  *tmp_node;

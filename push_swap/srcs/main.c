@@ -22,18 +22,6 @@ void    printnl(t_stack *stack)
     ft_printf("\n");
 }
 
-int     is_stack_sorted(t_stack *stack_a, int order)    // order makro olsun
-{
-    while (stack_a->next)
-    {
-        if ((order == 0 && stack_a->data > stack_a->next->data)
-            || (order == 1 && stack_a->data < stack_a->next->data))
-            return (0);
-        stack_a = stack_a->next;
-    }
-    return (1);
-}
-
 char    **parse_args(int argc, char **argv)
 {
     char    **args;
@@ -109,6 +97,7 @@ int main(int argc, char **argv)
     char        **args;
     t_stack     **stack_a;
     t_stack     **stack_b;
+    int         size;
 
     if (argc < 2)
         return (0);
@@ -116,14 +105,18 @@ int main(int argc, char **argv)
     inspect_args(args, max_limit, is_digit, is_twin);
     stack_a = (t_stack **)malloc(sizeof(t_stack));
     stack_b = (t_stack **)malloc(sizeof(t_stack));
-    if (!stack_a || !stack_b)
-        return (free_all_stack(stack_a, stack_b), free_args(args), 0);
     *stack_a = NULL;
     *stack_b = NULL;
     fill_stack(stack_a, args);
-    if (is_stack_sorted(*stack_a, 0))
+    if (is_stack_sorted(*stack_a, ASCENDING))
         return (free_all_stack(stack_a, stack_b), free_args(args), 0);
-    sorting(stack_a, stack_b);
+    size = stack_size(*stack_a);
+    if (size == 2)
+       action(stack_a, NULL, SWAP_A);
+    else if (size == 3)
+        sort_stack_if_size_3(stack_a);
+    else
+        quick_sort_a(stack_a, stack_b, size);
     return (free_all_stack(stack_a, stack_b), free_args(args), 0);
 }
 

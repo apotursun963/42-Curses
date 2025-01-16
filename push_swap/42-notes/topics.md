@@ -16,7 +16,7 @@
 - Heap ve Stack Bellek Yapıları
 - Bellek Sızıntıları ve Yönetimi
 
-## Struct (Yapılar)
+## Struct (Yapılar) && enum
 - Struct Tanımlama ve Kullanımı
 - Struct İçinde Pointer Kullanımı
 - Nested Structs (İç İçe Yapılar)

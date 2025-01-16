@@ -34,13 +34,13 @@ void    rotate_min_pos_to_head(t_stack **stack_a, int min_pos)
     if (min_pos <= size / 2)
     {
         while (min_pos-- > 0)
-            rotate_a(stack_a);
+            action(stack_a, NULL, ROTATE_A);
     }
     else
     {
         min_pos = size - min_pos;
         while (min_pos-- > 0)
-            reverse_rotate_a(stack_a);
+            action(stack_a, NULL, REVERSE_ROTATE_A);
     }
 }
 
@@ -48,7 +48,7 @@ void    transfer_all_from_b_to_a(t_stack **stack_a, t_stack **stack_b, int *push
 {
     while (*pushed > 0)
     {
-        push_a(stack_b, stack_a);
+        action(stack_a, stack_b, PUSH_A);
         (*pushed)--;
     }
 }
@@ -64,43 +64,15 @@ void last_sort(t_stack **stack_a, t_stack **stack_b)
     while (size-- > 0)
     {
         if (size == 2 && (*stack_a)->data > (*stack_a)->next->data)
-            swap_a(stack_a);
+            action(stack_a, NULL, SWAP_A);
         else if (size == 3)
             sort_stack_if_size_3(stack_a);
-        if (is_stack_sorted(*stack_a, 0))
+        if (is_stack_sorted(*stack_a, ASCENDING))
             break;
         min_pos = find_min_value_pos(*stack_a);
         rotate_min_pos_to_head(stack_a, min_pos);
-        push_b(stack_a, stack_b);
+        action(stack_a, stack_b, PUSH_B);
         pushed++;
     }
     transfer_all_from_b_to_a(stack_a, stack_b, &pushed);
 }
-
-
-/*
-Algoritma mantığı
------------------
-İlk olarak yığındaki en küçük elemanı bulup, bu öğeyi rotate_a kullanarak dizenin sonuna taşıyacağız. 
-Bu öğe sıralanmış sayılacak ve sonraki adımlarda dikkate alınmayacak.
-Sonraki adımlarda, ilk başta sıraladığımız öğeyi dikkate almayarak, 
-geri kalan öğeler arasında en küçük öğeyi bulup, bu öğeyi de rotate_a ile dizenin sonuna taşıyacağız.
-Her seferinde size'ı bir azaltarak sıralama işlemi yapılacak.
-
-"1 5 24 2 76"
-"5 24 2 76" 1
-"5 24 76" 1 2
-"24 76" 1 2 5
-"76" 1 2 5 24
-1 2 5 24 76 
-
-------------
-
-"8 45 2 75 1"
-"8 45 2 75" 1
-"8 45 75" 1 2
-"45 75" 1 2 8
-"75" 1 2 8 45
-1 2 8 45 75
-*/
-
