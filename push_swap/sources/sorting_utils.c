@@ -1,6 +1,6 @@
 
 
-# include "../inc/push_swap.h"
+# include "../include/push_swap.h"
 
 /*bubble sort olarak ismini değiştir*/
 void    bubble_sort(int *numbers, int size)

@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../inc/push_swap.h"
-# include "../inc/actions.h"
+# include "../include/push_swap.h"
+# include "../include/actions.h"
 
 // ARG=$(shuf -i 1-2000000 -n 100); ./push_swap $ARG | wc -l
 

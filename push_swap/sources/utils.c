@@ -1,7 +1,7 @@
 
 
 
-# include "../inc/push_swap.h"
+# include "../include/push_swap.h"
 
 int     is_stack_sorted(t_stack *stack_a, t_layout order)
 {

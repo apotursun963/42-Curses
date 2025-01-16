@@ -1,7 +1,7 @@
 
 
 
-# include "../inc/push_swap.h"
+# include "../include/push_swap.h"
 
 void    free_args(char **arguments)
 {

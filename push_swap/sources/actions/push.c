@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../inc/push_swap.h"
+# include "../../include/push_swap.h"
 
 /*
 b stackinin en üstündeki elemanı a stackinin en üstüne koyun.

@@ -8,11 +8,11 @@ YELLOW = \033[1;33m
 GREEN = \033[1;32m
 RESET = \033[0m
 
-SRCS = srcs/main.c srcs/sorting.c srcs/sorting_utils.c srcs/utils.c srcs/free.c	srcs/error.c \
-	srcs/actions/actions.c srcs/actions/push.c srcs/actions/swap.c srcs/actions/rotate.c srcs/actions/reverse_rotate.c
+SRCS = sources/main.c sources/sorting.c sources/sorting_utils.c sources/utils.c sources/free.c	sources/error.c \
+	sources/actions/actions.c sources/actions/push.c sources/actions/swap.c sources/actions/rotate.c sources/actions/reverse_rotate.c
 
-LIBFT = libs/libft/libft.a
-FT_PRINTF = libs/ft_printf/libftprintf.a
+LIBFT = libraries/libft/libft.a
+FT_PRINTF = libraries/ft_printf/libftprintf.a
 
 all: $(LIBFT) $(FT_PRINTF) $(NAME)
 
@@ -23,17 +23,17 @@ $(NAME): $(SRCS) $(LIBFT) $(FT_PRINTF)
 
 $(LIBFT):
 	@echo "$(YELLOW)Building libft...$(RESET)"
-	make all bonus -C libs/libft
+	make all bonus -C libraries/libft
 	@echo "$(GREEN)libft built Successful!$(RESET)"
 
 $(FT_PRINTF):
 	@echo "$(YELLOW)Building ft_printf...$(RESET)"
-	make all -C libs/ft_printf
+	make all -C libraries/ft_printf
 	@echo "$(GREEN)ft_printf built Successful!$(RESET)"
 
 clean:
-	make clean -C libs/libft
-	make clean -C libs/ft_printf 
+	make clean -C libraries/libft
+	make clean -C libraries/ft_printf 
 
 fclean: clean
 	rm -rf $(LIBFT) $(FT_PRINTF) $(NAME)

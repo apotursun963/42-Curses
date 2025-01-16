@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../inc/push_swap.h"
-# include "../inc/actions.h"
+# include "../include/push_swap.h"
+# include "../include/actions.h"
 
 void    printnl(t_stack *stack)
 {
