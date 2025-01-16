@@ -53,33 +53,8 @@ typedef enum e_layout
     DESCENDING,
 }               t_layout;
 
-typedef enum e_action
-{
-    PUSH_A,
-    PUSH_B,
-    SWAP_A,
-    SWAP_B,
-    ROTATE_A,
-    ROTATE_B,
-    REVERSE_ROTATE_A,
-    REVERSE_ROTATE_B,
-}               t_action;
 
 void    printnl(t_stack *stack);     // Bunu fonksiyonu push'larken siliceksin
-
-// actions
-void    action(t_stack **stack_a, t_stack **stack_b, t_action action_type);
-void    push_a(t_stack **stack_b, t_stack **stack_a);
-void    push_b(t_stack **stack_a, t_stack **stack_b);
-void    rotate_a(t_stack **stack_a);
-void    rotate_b(t_stack **stack_b);
-void    rr(t_stack **stack_a, t_stack **stack_b);
-void    reverse_rotate_a(t_stack **stack_a);
-void    reverse_rotate_b(t_stack **stack_b);
-void    rrr(t_stack **stack_a, t_stack **stack_b);
-void    swap_a(t_stack **stack_a);
-void    swap_b(t_stack **stack_b);
-void    ss(t_stack **stack_a, t_stack **stack_b);
 
 // sorting
 int     quick_sort_a(t_stack **stack_a, t_stack **stack_b, int len);

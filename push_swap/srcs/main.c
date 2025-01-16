@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 # include "../inc/push_swap.h"
+# include "../inc/actions.h"
 
 void    printnl(t_stack *stack)
 {
