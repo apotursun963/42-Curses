@@ -110,10 +110,7 @@ int quick_sort_b(t_stack **stack_a, t_stack **stack_b, int len)
 	while (len > total / 2)
 	{
 		if ((*stack_b)->data >= pivot)
-		{
-			action(stack_a, stack_b, PUSH_A);
-			len--;
-		}
+            push_type(stack_a, stack_b, &len, STACK_A, DESCREMENT);
 		else
 		{
 			action(NULL, stack_b, ROTATE_B);
@@ -143,10 +140,7 @@ int quick_sort_a(t_stack **stack_a, t_stack **stack_b, int len)
 	while (len > total / 2 + total % 2)
 	{
 		if ((*stack_a)->data < pivot)
-		{
-			action(stack_a, stack_b, PUSH_B);
-			len--;
-		}
+            push_type(stack_a, stack_b, &len, STACK_B, DESCREMENT);
 		else
 		{
 			action(stack_a, NULL, ROTATE_A);
