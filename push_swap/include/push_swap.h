@@ -13,12 +13,17 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include <unistd.h>    
+# include <unistd.h>
 # include <stdlib.h>
 # include <limits.h>
 # include <stdbool.h>
 # include "../libraries/libft/libft.h"
 # include "../libraries/ft_printf/ft_printf.h"
+
+# define STACK_A 1
+# define STACK_B 0
+# define INCREMENT 1
+# define DESCREMENT 0
 
 typedef struct s_stack
 {
@@ -49,6 +54,7 @@ int			is_twin(char **str);
 long		ft_atol(const char *str);
 int			is_stack_sorted(t_stack *stack_a, t_layout order);
 int			stack_size(t_stack *stack);
+void    	push_type(t_stack **stack_a, t_stack **stack_b, int *len, int type, int sign);
 
 void		free_args(char **arguments);
 void		free_all_stack(t_stack **stack_a, t_stack **stack_b);

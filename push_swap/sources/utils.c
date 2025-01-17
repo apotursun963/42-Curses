@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 # include "../include/push_swap.h"
+# include "../include/actions.h"
 
 int     is_stack_sorted(t_stack *stack_a, t_layout order)
 {
@@ -55,4 +56,16 @@ long	ft_atol(const char *str)
 	while (*str >= '0' && *str <= '9')
 		result = (result * 10) + (*str++ - '0');
 	return (result * sign);
+}
+
+void    push_type(t_stack **stack_a, t_stack **stack_b, int *len, int type, int sign)
+{
+    if (type == STACK_A)
+        action(stack_a, stack_b, PUSH_A);
+    else if (type == STACK_B)
+        action(stack_a, stack_b, PUSH_B);
+    if (sign == INCREMENT)
+        (*len)++;
+    else if (sign == DESCREMENT)
+        (*len)--;
 }
