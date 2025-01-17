@@ -22,3 +22,25 @@ veri türü:
     Farklı türde değişkenler içerebilir.
 Değişkenler:
     Dinamik ve değiştirilebilir değerler içerir.
+
+
+/*
+Tekrar edilecek konular
+-----------------------
+-Fonksiyon işaretçileri
+-"Makefile (program run ve compile time) ve ileri seviye"
+-"Compiler" "Flags" ve "Optimizasyon" (-Wall, -Werror, -O2, -g, gdb, valgrind...)
+-"Header Dosyalar ("makro", "enum" "struct", "Include guard", "extern", "inline", "Preprocessor")
+-Quick Sort ve Stack
+-Time Complexity, Space Complexity, Big-O Notation
+-Pointer, Pointer to Pointer, Adres Referansı
+-Dinamik Bellek tahsisi (malloc, free, ..) ve bunlar hangi bellek alanında tahsis ediliyor
+-Bazı bash komutları:
+-shuf -i 1-1000 -n 10, find . -type f -name "*.c", tree, history, whereis,
+-Bellek Düzeni (memory layout)
+-ANSI kodu 
+*/
+
+
+// ARG=($(shuf -i 1-2000000 -n 100)); ./push_swap $ARG | wc -l
+// ARG=($(seq -200000  200000 | shuf -n 100 | tr '\n' ' ')); ./push_swap $ARG | wc -l

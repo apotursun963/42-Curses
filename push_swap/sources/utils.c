@@ -1,5 +1,14 @@
-
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/17 12:40:03 by atursun           #+#    #+#             */
+/*   Updated: 2025/01/17 12:40:03 by atursun          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 # include "../include/push_swap.h"
 
@@ -28,9 +37,9 @@ int     stack_size(t_stack *stack)
     return (counter);
 }
 
-long int	ft_atol(const char *str)
+long	ft_atol(const char *str)
 {
-	long int		result;
+	long		result;
 	int		sign;
 
 	sign = 1;
