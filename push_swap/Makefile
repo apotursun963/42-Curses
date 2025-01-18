@@ -1,8 +1,7 @@
 NAME = push_swap
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra
-# -fsanitize=address -fno-omit-frame-pointer snra kullan
+CFLAGS = -Wall -Werror -Wextra -fsanitize=address
 
 YELLOW = \033[1;33m
 GREEN = \033[1;32m
@@ -17,26 +16,24 @@ FT_PRINTF = libraries/ft_printf/libftprintf.a
 all: $(LIBFT) $(FT_PRINTF) $(NAME)
 
 $(NAME): $(SRCS) $(LIBFT) $(FT_PRINTF)
-	@echo "$(YELLOW)Linking...$(RESET)"
-	$(CC) $(CFLAGS) $(SRCS) $(LIBFT) $(FT_PRINTF) -o $(NAME)
-	@echo "$(GREEN)Build Successful!$(RESET)"
+	@echo "$(YELLOW)Compiling and Linking..$(RESET)"
+	@$(CC) $(CFLAGS) $(SRCS) $(LIBFT) $(FT_PRINTF) -o $(NAME)
+	@echo "$(GREEN)Push_swap Executable Created!$(RESET)"
 
 $(LIBFT):
 	@echo "$(YELLOW)Building libft...$(RESET)"
-	make all bonus -C libraries/libft
-	@echo "$(GREEN)libft built Successful!$(RESET)"
+	@make all bonus -s -C libraries/libft
 
 $(FT_PRINTF):
 	@echo "$(YELLOW)Building ft_printf...$(RESET)"
-	make all -C libraries/ft_printf
-	@echo "$(GREEN)ft_printf built Successful!$(RESET)"
+	@make all -s -C libraries/ft_printf
 
 clean:
-	make clean -C libraries/libft
-	make clean -C libraries/ft_printf 
+	@make clean -s -C libraries/libft
+	@make clean -s -C libraries/ft_printf 
 
 fclean: clean
-	rm -rf $(LIBFT) $(FT_PRINTF) $(NAME)
+	@rm -rf $(LIBFT) $(FT_PRINTF) $(NAME)
 
 re: fclean all
 

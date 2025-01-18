@@ -46,17 +46,20 @@ void sort_under_three_in_a(t_stack **stack_a, t_stack **stack_b, int len)
 	{
 		if ((*stack_a)->data > (*stack_a)->next->data)
 			action(stack_a, NULL, SWAP_A);
-		return;
+		return ;
 	}
 	if (len == 3)
 	{
 		while (len != 3 || !is_stack_sorted(*stack_a, ASCENDING))
 		{
-			if ((*stack_a)->data > (*stack_a)->next->data)
+			if (len == 3 && (*stack_a)->data > (*stack_a)->next->data 
+				&& (*stack_a)->next->next->data)
 				action(stack_a, NULL, SWAP_A);
-			else if (!((*stack_a)->next->next->data > (*stack_a)->data 
+			else if (len == 3 && !((*stack_a)->next->next->data > (*stack_a)->data 
 					&& (*stack_a)->next->next->data > (*stack_a)->next->data))
                 push_type(stack_a, stack_b, &len, STACK_B, DESCREMENT);
+			else if ((*stack_a)->data > (*stack_a)->next->data)
+				action(stack_a, NULL, SWAP_A);
 			else
                 push_type(stack_a, stack_b, &len, STACK_A, INCREMENT);
 		}
@@ -92,48 +95,45 @@ void    sort_under_three_in_b(t_stack **stack_a, t_stack **stack_b, int len)
 	}
 }
 
-int quick_sort_b(t_stack **stack_a, t_stack **stack_b, int len)
+void quick_sort_b(t_stack **stack_a, t_stack **stack_b, int len)
 {
 	int pivot;
-	int total = len;
-	int rotations = 0;
+	int total;
+	int rotations;
 
 	if (is_stack_sorted(*stack_b, DESCENDING))
 	{
-		while (len--)
+		while (len--) 
 			action(stack_a, stack_b, PUSH_A);
-		return (1);
 	}
 	if (len <= 3)
-		return (sort_under_three_in_b(stack_a, stack_b, len), 1);
+		return (sort_under_three_in_b(stack_a, stack_b, len));
+	total = len;
+	rotations =  0;
 	pivot = median(stack_b, len);
 	while (len > total / 2)
 	{
 		if ((*stack_b)->data >= pivot)
             push_type(stack_a, stack_b, &len, STACK_A, DESCREMENT);
-		else
-		{
+		else if (++rotations)
 			action(NULL, stack_b, ROTATE_B);
-			rotations++;
-		}
 	}
 	while (total / 2 < stack_size(*stack_b) && rotations--)
 		action(NULL, stack_b, REVERSE_ROTATE_B);
 	quick_sort_a(stack_a, stack_b, total / 2 + total % 2);
 	quick_sort_b(stack_a, stack_b, total / 2);
-	return (1);
 }
 
-int quick_sort_a(t_stack **stack_a, t_stack **stack_b, int len)
+void quick_sort_a(t_stack **stack_a, t_stack **stack_b, int len)
 {
 	int pivot;
 	int total;
 	int rotations;
 
 	if (is_stack_sorted(*stack_a, ASCENDING))
-		return (1);
+		return ;
 	if (len <= 3)
-		return (sort_under_three_in_a(stack_a, stack_b, len), 1);
+		return (sort_under_three_in_a(stack_a, stack_b, len));
 	total = len;
 	rotations = 0;
 	pivot = median(stack_a, len);
@@ -141,15 +141,11 @@ int quick_sort_a(t_stack **stack_a, t_stack **stack_b, int len)
 	{
 		if ((*stack_a)->data < pivot)
             push_type(stack_a, stack_b, &len, STACK_B, DESCREMENT);
-		else
-		{
+		else if (++rotations)
 			action(stack_a, NULL, ROTATE_A);
-			rotations++;
-		}
 	}
 	while (total / 2 + total % 2 < stack_size(*stack_a) && rotations--)
 		action(stack_a, NULL, REVERSE_ROTATE_A);
 	quick_sort_a(stack_a, stack_b, total / 2 + total % 2);
 	quick_sort_b(stack_a, stack_b, total / 2);
-	return (1);
 }

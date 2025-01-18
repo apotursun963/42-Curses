@@ -12,7 +12,7 @@
 
 #include "../include/push_swap.h"
 
-void	bubble_sort(int *numbers, int size)
+void	bubble_sort(int *arr, int size)
 {
 	int	i;
 	int	j;
@@ -24,11 +24,11 @@ void	bubble_sort(int *numbers, int size)
 		j = i + 1;
 		while (j < size)
 		{
-			if (numbers[i] > numbers[j])
+			if (arr[i] > arr[j])
 			{
-				tmp = numbers[i];
-				numbers[i] = numbers[j];
-				numbers[j] = tmp;
+				tmp = arr[i];
+				arr[i] = arr[j];
+				arr[j] = tmp;
 			}
 			j++;
 		}

@@ -25,7 +25,6 @@ void    reverse_rotate(t_stack **stack)
     first = *stack;
     last = *stack;
     prev = NULL;
-
     while (last->next)
     {
         prev = last;        // (sondan bir önceki elemanı işaret eder).
