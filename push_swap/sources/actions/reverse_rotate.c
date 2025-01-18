@@ -12,8 +12,6 @@
 
 # include "../../include/push_swap.h"
 
-
-/* reverse rotate  */
 void    reverse_rotate(t_stack **stack)
 {
     t_stack  *first;

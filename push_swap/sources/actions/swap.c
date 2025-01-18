@@ -12,7 +12,6 @@
 
 # include "../../include/push_swap.h"
 
-/* hata durumlarını kontrol et ör 2'den az yada NULL */
 void    swap(t_stack **stack)
 {
     t_stack  *first;

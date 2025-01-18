@@ -48,7 +48,7 @@ void sort_under_three_in_a(t_stack **stack_a, t_stack **stack_b, int len)
 			action(stack_a, NULL, SWAP_A);
 		return ;
 	}
-	if (len == 3)
+	else if (len == 3)
 	{
 		while (len != 3 || !is_stack_sorted(*stack_a, ASCENDING))
 		{
@@ -70,14 +70,14 @@ void    sort_under_three_in_b(t_stack **stack_a, t_stack **stack_b, int len)
 {
 	if (len == 1)
 		action(stack_a, stack_b, PUSH_A);
-	if (len == 2)
+	else if (len == 2)
 	{
 		if ((*stack_b)->data < (*stack_b)->next->data)
 			action(stack_a, stack_b, SWAP_B);
 		while (len--)
 			action(stack_a, stack_b, PUSH_A);
 	}
-	if (len == 3)
+	else if (len == 3)
 	{
 		while (len > 0)
 		{

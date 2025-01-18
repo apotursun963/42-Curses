@@ -30,6 +30,4 @@ void    action(t_stack **stack_a, t_stack **stack_b, t_action action_type)
         reverse_rotate_a(stack_a);
     else if (action_type == REVERSE_ROTATE_B)
         reverse_rotate_b(stack_b);
-    else
-        error_handling();
 }

@@ -7,8 +7,8 @@ YELLOW = \033[1;33m
 GREEN = \033[1;32m
 RESET = \033[0m
 
-SRCS = sources/main.c sources/sorting.c sources/sorting_utils.c sources/utils.c sources/free.c	sources/error.c \
-	sources/actions/actions.c sources/actions/push.c sources/actions/swap.c sources/actions/rotate.c sources/actions/reverse_rotate.c
+SRCS = sources/push_swap.c sources/sorting_algo.c sources/sorting_utils.c sources/utility_funcs.c sources/free_resources.c sources/error_handling.c \
+	sources/actions/perform_actions.c sources/actions/push.c sources/actions/swap.c sources/actions/rotate.c sources/actions/reverse_rotate.c
 
 LIBFT = libraries/libft/libft.a
 FT_PRINTF = libraries/ft_printf/libftprintf.a

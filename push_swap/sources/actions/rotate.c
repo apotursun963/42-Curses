@@ -12,7 +12,6 @@
 
 # include "../../include/push_swap.h"
 
-/* rotate  */
 void    rotate(t_stack **stack)
 {
     t_stack  *first;
