@@ -57,11 +57,11 @@ void sort_under_three_in_a(t_stack **stack_a, t_stack **stack_b, int len)
 				action(stack_a, NULL, SWAP_A);
 			else if (len == 3 && !((*stack_a)->next->next->data > (*stack_a)->data 
 					&& (*stack_a)->next->next->data > (*stack_a)->next->data))
-                push_type(stack_a, stack_b, &len, STACK_B, DESCREMENT);
+                		push_type(stack_a, stack_b, &len, STACK_B, DESCREMENT);
 			else if ((*stack_a)->data > (*stack_a)->next->data)
 				action(stack_a, NULL, SWAP_A);
 			else
-                push_type(stack_a, stack_b, &len, STACK_A, INCREMENT);
+                		push_type(stack_a, stack_b, &len, STACK_A, INCREMENT);
 		}
 	}
 }
@@ -85,12 +85,12 @@ void    sort_under_three_in_b(t_stack **stack_a, t_stack **stack_b, int len)
 			{
 				if ((*stack_a)->data > (*stack_a)->next->data)
 					action(stack_a, NULL, SWAP_A);
-                push_type(stack_a, stack_b, &len, STACK_A, DESCREMENT);
+                		push_type(stack_a, stack_b, &len, STACK_A, DESCREMENT);
 			}
 			else if ((*stack_b)->data < (*stack_b)->next->data)
 				action(NULL, stack_b, SWAP_B);
 			else
-                push_type(stack_a, stack_b, &len, STACK_A, DESCREMENT);
+                		push_type(stack_a, stack_b, &len, STACK_A, DESCREMENT);
 		}
 	}
 }
@@ -114,7 +114,7 @@ void quick_sort_b(t_stack **stack_a, t_stack **stack_b, int len)
 	while (len > total / 2)
 	{
 		if ((*stack_b)->data >= pivot)
-            push_type(stack_a, stack_b, &len, STACK_A, DESCREMENT);
+            		push_type(stack_a, stack_b, &len, STACK_A, DESCREMENT);
 		else if (++rotations)
 			action(NULL, stack_b, ROTATE_B);
 	}
@@ -140,7 +140,7 @@ void quick_sort_a(t_stack **stack_a, t_stack **stack_b, int len)
 	while (len > total / 2 + total % 2)
 	{
 		if ((*stack_a)->data < pivot)
-            push_type(stack_a, stack_b, &len, STACK_B, DESCREMENT);
+            		push_type(stack_a, stack_b, &len, STACK_B, DESCREMENT);
 		else if (++rotations)
 			action(stack_a, NULL, ROTATE_A);
 	}
