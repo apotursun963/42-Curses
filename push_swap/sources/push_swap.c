@@ -84,29 +84,29 @@ void	inspect_args(char **args, int (*is_int_range)(char **),
 		error_handling();
 }
 
-int	main(int argc, char **argv)
-{
-	t_stack	**stack_a;
-	t_stack	**stack_b;
-	char	**args;
-	int		size;
+// int	main(int argc, char **argv)
+// {
+// 	t_stack	**stack_a;
+// 	t_stack	**stack_b;
+// 	char	**args;
+// 	int		size;
 
-	is_valid_args(argc, argv);
-	args = parse_args(argc, argv);
-	inspect_args(args, is_int_range, is_digit, is_twin);
-	stack_a = (t_stack **)malloc(sizeof(t_stack));
-	stack_b = (t_stack **)malloc(sizeof(t_stack));
-	*stack_a = NULL;
-	*stack_b = NULL;
-	fill_stack(stack_a, args);
-	if (is_stack_sorted(*stack_a, ASCENDING))
-		return (free_all_stack(stack_a, stack_b), free_args(args), 0);
-	size = stack_size(*stack_a);
-	if (size == 2)
-		action(stack_a, NULL, SWAP_A);
-	else if (size == 3)
-		sort_stack_if_size_3(stack_a);
-	else
-		quick_sort_a(stack_a, stack_b, size);
-	return (free_all_stack(stack_a, stack_b), free_args(args), 0);
-}
+// 	is_valid_args(argc, argv);
+// 	args = parse_args(argc, argv);
+// 	inspect_args(args, is_int_range, is_digit, is_twin);
+// 	stack_a = (t_stack **)malloc(sizeof(t_stack));
+// 	stack_b = (t_stack **)malloc(sizeof(t_stack));
+// 	*stack_a = NULL;
+// 	*stack_b = NULL;
+// 	fill_stack(stack_a, args);
+// 	if (is_stack_sorted(*stack_a, ASCENDING))
+// 		return (free_all_stack(stack_a, stack_b), free_args(args), 0);
+// 	size = stack_size(*stack_a);
+// 	if (size == 2)
+// 		action(stack_a, NULL, SWAP_A);
+// 	else if (size == 3)
+// 		sort_stack_if_size_3(stack_a);
+// 	else
+// 		quick_sort_a(stack_a, stack_b, size);
+// 	return (free_all_stack(stack_a, stack_b), free_args(args), 0);
+// }
