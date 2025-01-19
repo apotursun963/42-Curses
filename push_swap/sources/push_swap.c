@@ -77,10 +77,10 @@ void	fill_stack(t_stack **stack_a, char **arguments)
 	}
 }
 
-void	inspect_args(char **args, int (*max_limit)(char **),
+void	inspect_args(char **args, int (*is_int_range)(char **),
 	int (*is_digit)(char **), int (*is_twin)(char **))
 {
-	if (max_limit(args) == -1 || is_digit(args) == -1 || is_twin(args) == -1)
+	if (is_int_range(args) == -1 || is_digit(args) == -1 || is_twin(args) == -1)
 		error_handling();
 }
 
@@ -91,10 +91,9 @@ int	main(int argc, char **argv)
 	char	**args;
 	int		size;
 
-	if (argc < 2 || !argv[1][0] || argv[1][0] == ' ')
-		return (0);
+	is_valid_args(argc, argv);
 	args = parse_args(argc, argv);
-	inspect_args(args, max_limit, is_digit, is_twin);
+	inspect_args(args, is_int_range, is_digit, is_twin);
 	stack_a = (t_stack **)malloc(sizeof(t_stack));
 	stack_b = (t_stack **)malloc(sizeof(t_stack));
 	*stack_a = NULL;

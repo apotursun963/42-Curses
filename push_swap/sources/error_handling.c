@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   error_handling.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 11:53:56 by atursun           #+#    #+#             */
-/*   Updated: 2025/01/17 17:39:49 by atursun          ###   ########.fr       */
+/*   Updated: 2025/01/19 19:13:30 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,38 @@ void	error_handling(void)
 	exit(EXIT_FAILURE);
 }
 
+int	is_valid_args(int argc, char **str)
+{
+	int	i;
+
+	if (argc < 2)
+		exit(0);
+	i = 0;
+	while (str[i])
+	{
+		if (!str[i][0] || (str[i][0] == ' ' && !str[i][1]))
+			error_handling();
+		i++;
+	}
+	return (0);
+}
+
+int	is_int_range(char **str)
+{
+	long int	num;
+	int			i;
+
+	i = 0;
+	while (str[i])
+	{
+		num = ft_atol(str[i]);
+		if (num < INT_MIN || num > INT_MAX)
+			return (free_args(str), -1);
+		i++;
+	}
+	return (0);
+}
+
 int	is_digit(char **str)
 {
 	int	i;
@@ -27,9 +59,10 @@ int	is_digit(char **str)
 	while (str[i])
 	{
 		j = 0;
-		if ((str[i][j] == '-' || str[i][j] == '+') && str[i][j + 1] == '\0')
-            return (-1);
-        else if (str[i][j] == '-' || str[i][j] == '+')
+		if ((str[i][j] == '-' || str[i][j] == '+')
+			&& (str[i][j + 1] == '\0' || str[i][j + 1] == ' '))
+			return (free_args(str), -1);
+		else if (str[i][j] == '-' || str[i][j] == '+')
 			j++;
 		while (str[i][j])
 		{
@@ -37,22 +70,6 @@ int	is_digit(char **str)
 				return (free_args(str), -1);
 			j++;
 		}
-		i++;
-	}
-	return (0);
-}
-
-int	max_limit(char **str)
-{
-	int			i;
-	long int	num;
-
-	i = 0;
-	while (str[i])
-	{
-		num = ft_atol(str[i]);
-		if (num < INT_MIN || num > INT_MAX)
-			return (free_args(str), -1);
 		i++;
 	}
 	return (0);

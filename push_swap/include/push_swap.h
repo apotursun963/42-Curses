@@ -47,8 +47,9 @@ void		bubble_sort(int *numbers, int size);
 int			median(t_stack **stack, int len);
 
 void		error_handling(void);
+int			is_valid_args(int argc, char **str);
+int			is_int_range(char **str);
 int			is_digit(char **str);
-int			max_limit(char **str);
 int			is_twin(char **str);
 
 long		ft_atol(const char *str);
@@ -62,5 +63,7 @@ void		free_all_stack(t_stack **stack_a, t_stack **stack_b);
 char		**parse_args(int argc, char **argv);
 void		push_to_stack(t_stack **stack_a, int value);
 void		fill_stack(t_stack **stack_a, char **arguments);
+void		inspect_args(char **args, int (*is_int_range)(char **),
+	int (*is_digit)(char **), int (*is_twin)(char **));
 
 #endif

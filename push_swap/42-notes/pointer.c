@@ -1,8 +1,8 @@
 # include <stdio.h>
 # include <stdlib.h>
 
-/*Önemli
 
+/*Önemli
 -Tek ve Çift Pointer Farkı:
 Tek Pointer: Stack'in ilk elemanını işaret eder ve yalnızca işaret ettiği veriyi değiştirebilir. 
 Pointer'ın kendisi değiştirilemez.

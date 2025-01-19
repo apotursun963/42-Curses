@@ -10,14 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../include/push_swap.h"
-# include "../include/actions.h"
+#include "../include/push_swap.h"
+#include "../include/actions.h"
 
-void    sort_stack_if_size_3(t_stack **stack_a)
+void	sort_stack_if_size_3(t_stack **stack_a)
 {
-	int first;
-	int second;
-	int third;
+	int	first;
+	int	second;
+	int	third;
 
 	first = (*stack_a)->data;
 	second = (*stack_a)->next->data;
@@ -40,7 +40,7 @@ void    sort_stack_if_size_3(t_stack **stack_a)
 		action(stack_a, NULL, SWAP_A);
 }
 
-void sort_under_three_in_a(t_stack **stack_a, t_stack **stack_b, int len)
+void	sort_under_three_in_a(t_stack **stack_a, t_stack **stack_b, int len)
 {
 	if (len == 2)
 	{
@@ -52,21 +52,22 @@ void sort_under_three_in_a(t_stack **stack_a, t_stack **stack_b, int len)
 	{
 		while (len != 3 || !is_stack_sorted(*stack_a, ASCENDING))
 		{
-			if (len == 3 && (*stack_a)->data > (*stack_a)->next->data 
+			if (len == 3 && (*stack_a)->data > (*stack_a)->next->data
 				&& (*stack_a)->next->next->data)
 				action(stack_a, NULL, SWAP_A);
-			else if (len == 3 && !((*stack_a)->next->next->data > (*stack_a)->data 
+			else if (len == 3
+				&& !((*stack_a)->next->next->data > (*stack_a)->data
 					&& (*stack_a)->next->next->data > (*stack_a)->next->data))
-                		push_type(stack_a, stack_b, &len, STACK_B, DESCREMENT);
+				push_type(stack_a, stack_b, &len, STACK_B, DESCREMENT);
 			else if ((*stack_a)->data > (*stack_a)->next->data)
 				action(stack_a, NULL, SWAP_A);
 			else
-                		push_type(stack_a, stack_b, &len, STACK_A, INCREMENT);
+				push_type(stack_a, stack_b, &len, STACK_A, INCREMENT);
 		}
 	}
 }
 
-void    sort_under_three_in_b(t_stack **stack_a, t_stack **stack_b, int len)
+void	sort_under_three_in_b(t_stack **stack_a, t_stack **stack_b, int len)
 {
 	if (len == 1)
 		action(stack_a, stack_b, PUSH_A);
@@ -85,36 +86,36 @@ void    sort_under_three_in_b(t_stack **stack_a, t_stack **stack_b, int len)
 			{
 				if ((*stack_a)->data > (*stack_a)->next->data)
 					action(stack_a, NULL, SWAP_A);
-                		push_type(stack_a, stack_b, &len, STACK_A, DESCREMENT);
+				push_type(stack_a, stack_b, &len, STACK_A, DESCREMENT);
 			}
 			else if ((*stack_b)->data < (*stack_b)->next->data)
 				action(NULL, stack_b, SWAP_B);
 			else
-                		push_type(stack_a, stack_b, &len, STACK_A, DESCREMENT);
+				push_type(stack_a, stack_b, &len, STACK_A, DESCREMENT);
 		}
 	}
 }
 
-void quick_sort_b(t_stack **stack_a, t_stack **stack_b, int len)
+void	quick_sort_b(t_stack **stack_a, t_stack **stack_b, int len)
 {
-	int pivot;
-	int total;
-	int rotations;
+	int	pivot;
+	int	total;
+	int	rotations;
 
 	if (is_stack_sorted(*stack_b, DESCENDING))
 	{
-		while (len--) 
+		while (len--)
 			action(stack_a, stack_b, PUSH_A);
 	}
 	if (len <= 3)
 		return (sort_under_three_in_b(stack_a, stack_b, len));
 	total = len;
-	rotations =  0;
+	rotations = 0;
 	pivot = median(stack_b, len);
 	while (len > total / 2)
 	{
 		if ((*stack_b)->data >= pivot)
-            		push_type(stack_a, stack_b, &len, STACK_A, DESCREMENT);
+			push_type(stack_a, stack_b, &len, STACK_A, DESCREMENT);
 		else if (++rotations)
 			action(NULL, stack_b, ROTATE_B);
 	}
@@ -124,11 +125,11 @@ void quick_sort_b(t_stack **stack_a, t_stack **stack_b, int len)
 	quick_sort_b(stack_a, stack_b, total / 2);
 }
 
-void quick_sort_a(t_stack **stack_a, t_stack **stack_b, int len)
+void	quick_sort_a(t_stack **stack_a, t_stack **stack_b, int len)
 {
-	int pivot;
-	int total;
-	int rotations;
+	int	pivot;
+	int	total;
+	int	rotations;
 
 	if (is_stack_sorted(*stack_a, ASCENDING))
 		return ;
@@ -140,7 +141,7 @@ void quick_sort_a(t_stack **stack_a, t_stack **stack_b, int len)
 	while (len > total / 2 + total % 2)
 	{
 		if ((*stack_a)->data < pivot)
-            		push_type(stack_a, stack_b, &len, STACK_B, DESCREMENT);
+			push_type(stack_a, stack_b, &len, STACK_B, DESCREMENT);
 		else if (++rotations)
 			action(stack_a, NULL, ROTATE_A);
 	}

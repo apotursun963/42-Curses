@@ -1,47 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   utility_funcs.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 12:40:03 by atursun           #+#    #+#             */
-/*   Updated: 2025/01/17 12:40:03 by atursun          ###   ########.fr       */
+/*   Updated: 2025/01/19 19:14:27 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../include/push_swap.h"
-# include "../include/actions.h"
+#include "../include/push_swap.h"
+#include "../include/actions.h"
 
-int     is_stack_sorted(t_stack *stack_a, t_layout order)
+int	is_stack_sorted(t_stack *stack_a, t_layout order)
 {
-    while (stack_a->next)
-    {
-        if ((order == ASCENDING && stack_a->data > stack_a->next->data)
-            || (order == DESCENDING && stack_a->data < stack_a->next->data))
-            return (false);
-        stack_a = stack_a->next;
-    }
-    return (true);
+	while (stack_a->next)
+	{
+		if ((order == ASCENDING && stack_a->data > stack_a->next->data)
+			|| (order == DESCENDING && stack_a->data < stack_a->next->data))
+			return (false);
+		stack_a = stack_a->next;
+	}
+	return (true);
 }
 
-int     stack_size(t_stack *stack)
+int	stack_size(t_stack *stack)
 {
-    int     counter;
+	int	counter;
 
-    counter = 0;
-    while (stack != NULL)
-    {
-        counter++;
-        stack = stack->next;
-    }
-    return (counter);
+	counter = 0;
+	while (stack != NULL)
+	{
+		counter++;
+		stack = stack->next;
+	}
+	return (counter);
 }
 
 long	ft_atol(const char *str)
 {
 	long		result;
-	int		sign;
+	int			sign;
 
 	sign = 1;
 	result = 0;
@@ -58,14 +58,15 @@ long	ft_atol(const char *str)
 	return (result * sign);
 }
 
-void    push_type(t_stack **stack_a, t_stack **stack_b, int *len, int type, int sign)
+void	push_type(t_stack **stack_a, t_stack **stack_b
+	, int *len, int type, int sign)
 {
-    if (type == STACK_A)
-        action(stack_a, stack_b, PUSH_A);
-    else if (type == STACK_B)
-        action(stack_a, stack_b, PUSH_B);
-    if (sign == INCREMENT)
-        (*len)++;
-    else if (sign == DESCREMENT)
-        (*len)--;
+	if (type == STACK_A)
+		action(stack_a, stack_b, PUSH_A);
+	else if (type == STACK_B)
+		action(stack_a, stack_b, PUSH_B);
+	if (sign == INCREMENT)
+		(*len)++;
+	else if (sign == DESCREMENT)
+		(*len)--;
 }
