@@ -82,3 +82,8 @@ bu da stack overflow'a yol açar.
 
 Bus Error | Abort Error 
 Buffer Overflow | Stack Overflow
+
+
+zaman dalgası sorunları çözmek için
+---
+sudo date --set="2025-01-20 17:04:31"

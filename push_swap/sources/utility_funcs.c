@@ -58,15 +58,31 @@ long	ft_atol(const char *str)
 	return (result * sign);
 }
 
-void	push_type(t_stack **stack_a, t_stack **stack_b
-	, int *len, int type, int sign)
+void	push_type(t_stack **stack_a, t_stack **stack_b, int *len, t_type which)
 {
-	if (type == STACK_A)
+	int	increment;
+	int	decrement;
+
+	increment = (which == STACK_A_INCREMENT) || (which == STACK_B_INCREMENT);
+	decrement = (which == STACK_A_DESCREMENT) || (which == STACK_B_DESCREMENT);
+	if (which == STACK_A_INCREMENT || which == STACK_A_DESCREMENT)
 		action(stack_a, stack_b, PUSH_A);
-	else if (type == STACK_B)
+	else if (which == STACK_B_INCREMENT || which == STACK_B_DESCREMENT)
 		action(stack_a, stack_b, PUSH_B);
-	if (sign == INCREMENT)
+	if (increment)
 		(*len)++;
-	else if (sign == DESCREMENT)
+	else if (decrement)
 		(*len)--;
+}
+
+t_stack	*create_node(int value)
+{
+	t_stack	*node;
+
+	node = (t_stack *)malloc(sizeof(t_stack));
+	if (!node)
+		return (NULL);
+	node->data = value;
+	node->next = NULL;
+	return (node);
 }

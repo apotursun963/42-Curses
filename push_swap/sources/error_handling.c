@@ -62,7 +62,8 @@ int	is_digit(char **str)
 		if ((str[i][j] == '-' || str[i][j] == '+')
 			&& (str[i][j + 1] == '\0' || str[i][j + 1] == ' '))
 			return (free_args(str), -1);
-		else if (str[i][j] == '-' || str[i][j] == '+')
+		else if ((str[i][j] == '-' || str[i][j] == '+')
+			&& (str[i][j + 1] != '\0' || str[i][j + 1] != ' '))
 			j++;
 		while (str[i][j])
 		{
