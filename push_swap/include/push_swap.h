@@ -34,10 +34,8 @@ typedef enum e_layout
 
 typedef enum e_type
 {
-	STACK_A_INCREMENT,
-	STACK_A_DESCREMENT,
-	STACK_B_INCREMENT,
-	STACK_B_DESCREMENT,
+	STACK_A,
+	STACK_B,
 }	t_type;
 
 void		quick_sort_a(t_stack **stack_a, t_stack **stack_b, int len);
@@ -69,5 +67,10 @@ char		**parse_args(int argc, char **argv);
 void		fill_stack(t_stack **stack_a, char **arguments);
 void		inspect_args(char **args, int (*is_int_range)(char **),
 				int (*is_digit)(char **), int (*is_twin)(char **));
+
+void		sort_stack_if_size_4_or_5(t_stack **stack_a, t_stack **stack_b,
+				int size);
+void		rotate_min_to_head(t_stack **stack_a, int min_pos);
+int			find_min_value(t_stack **stack_a);
 
 #endif

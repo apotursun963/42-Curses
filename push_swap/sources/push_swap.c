@@ -45,13 +45,15 @@ char	**parse_args(int argc, char **argv)
 void	fill_stack(t_stack **stack_a, char **arguments)
 {
 	int		idx;
+	int		value;
 	t_stack	*node;
 	t_stack	*current_node;
 
 	idx = 0;
 	while (arguments[idx])
 	{
-		node = create_node(ft_atoi(arguments[idx]));
+		value = ft_atoi(arguments[idx]);
+		node = create_node(value);
 		if (*stack_a == NULL)
 			*stack_a = node;
 		else
@@ -94,6 +96,8 @@ int	main(int argc, char **argv)
 		action(stack_a, NULL, SWAP_A);
 	else if (size == 3)
 		sort_stack_if_size_3(stack_a);
+	else if (size == 4 || size == 5)
+		sort_stack_if_size_4_or_5(stack_a, stack_b, size);
 	else
 		quick_sort_a(stack_a, stack_b, size);
 	return (free_all_stack(stack_a, stack_b), free_args(args), 0);

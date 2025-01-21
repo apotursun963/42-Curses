@@ -60,19 +60,11 @@ long	ft_atol(const char *str)
 
 void	push_type(t_stack **stack_a, t_stack **stack_b, int *len, t_type which)
 {
-	int	increment;
-	int	decrement;
-
-	increment = (which == STACK_A_INCREMENT) || (which == STACK_B_INCREMENT);
-	decrement = (which == STACK_A_DESCREMENT) || (which == STACK_B_DESCREMENT);
-	if (which == STACK_A_INCREMENT || which == STACK_A_DESCREMENT)
+	if (which == STACK_A)
 		action(stack_a, stack_b, PUSH_A);
-	else if (which == STACK_B_INCREMENT || which == STACK_B_DESCREMENT)
+	else if (which == STACK_B)
 		action(stack_a, stack_b, PUSH_B);
-	if (increment)
-		(*len)++;
-	else if (decrement)
-		(*len)--;
+	(*len)--;
 }
 
 t_stack	*create_node(int value)
