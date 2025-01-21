@@ -1,7 +1,7 @@
 
 enum nedir ?
 -----------
-Enum (veya numaralandırma), C'de kullanıcı tanımlı bir veri türüdür. 
+Enum, C'de kullanıcı tanımlı bir veri türüdür. 
 Esas olarak tamsayı sabitlerine isim atamak için kullanılır, 
 isimler bir programın okunmasını ve bakımını kolaylaştırır.
 ve sabitleri gruplandırmak için kullanılır. 
@@ -22,6 +22,25 @@ veri türü:
     Farklı türde değişkenler içerebilir.
 Değişkenler:
     Dinamik ve değiştirilebilir değerler içerir.
+
+
+C dilinde Enumeration (Enum), kullanıcı tarafından tanımlanan özel bir veri türüdür. Bu tür, kullanıcı tarafından adlandırılmış sabit tam sayılardan (integer) oluşur. Enum kullanmak, tam sayı değerlerini isimlendirmek suretiyle programın öğrenilmesini, anlaşılmasını ve bakımını kolaylaştırır. Bu sayede aynı ya da farklı bir programcı tarafından daha anlaşılır ve bakımı kolay kodlar yazılabilir.
+
+
+fonksiyon işaretçiler
+---------------------
+bir fonksiyonun adresini tutan ve bu adres aracılığıyla o fonksiyonu çağırmanıza olanak tanıyan işaretçilerdir. Fonksiyon tanımlarında başında kullanılan *, fonksiyon işaretçisini belirtir. Bu işaretçi, bir fonksiyonun adresini tutar. 
+
+
+Neden stackleri linked list ile tanımladık
+------------------------------------------
+Stack'leri linked list ile tanımlamanın amacı, dinamik ve esnek bir yapı sağlamaktır. Bellek, yalnızca ihtiyaç duyulan elemanlar için tahsis edilir ve bu sayede sabit boyut sınırlaması ortadan kalkar. Push ve pop işlemleri, yalnızca pointer'ları güncelleyerek hızlıca gerçekleştirilir. Linked list, boyutun önceden bilinmediği veya sık sık değiştiği durumlarda idealdir. Ayrıca, dizilerde karşılaşılan kapasite sorunlarını ortadan kaldırarak bellek kullanımını optimize eder.
+
+
+Ctrl + D
+--------
+CTRL + D terminalde EOF (End Of File) karakterini gönderir.
+Ctrl+D, bir Veri İletimi Sonu (EOT) sinyali gönderir ve bu genellikle giriş okuyan bir programın giriş dosyasını kapatmasına neden olur. ASCII tablosundaki konumu, Dosya Sonu (EOF) kontrol karakteriyle ilişkilidir.
 
 
 /*

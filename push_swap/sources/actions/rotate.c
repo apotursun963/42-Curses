@@ -17,7 +17,7 @@ void	rotate(t_stack **stack)
 	t_stack	*first;
 	t_stack	*last;
 
-	if (stack_size(*stack) == 0 || stack_size(*stack) == 1)
+	if (stack_size(*stack) < 2)
 		return ;
 	first = *stack;
 	last = *stack;

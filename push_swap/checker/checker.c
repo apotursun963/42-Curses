@@ -1,6 +1,3 @@
-/*
-Leak'leri kontrole et
-*/
 #include "../include/checker.h"
 
 int	apply_actions(t_stack **stack_a, t_stack **stack_b, char *command)
@@ -45,9 +42,9 @@ void	take_actions(t_stack **stack_a, t_stack **stack_b, char **args)
 		free(action);
 	}
 	if (is_stack_sorted(*stack_a, ASCENDING))
-		ft_printf("\033[1;32mOK\n");
+		ft_printf("\033[1;32mOK\033[0m\n");
 	else
-		ft_printf("\033[1;31mKO\n");
+		ft_printf("\033[1;31mKO\033[0m\n");
 }
 
 int	main(int argc, char **argv)

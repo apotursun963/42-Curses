@@ -18,7 +18,7 @@ void	reverse_rotate(t_stack **stack)
 	t_stack	*last;
 	t_stack	*prev;
 
-	if (stack_size(*stack) == 0 || stack_size(*stack) == 1)
+	if (stack_size(*stack) < 2)
 		return ;
 	first = *stack;
 	last = *stack;

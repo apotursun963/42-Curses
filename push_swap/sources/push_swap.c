@@ -83,7 +83,7 @@ int	main(int argc, char **argv)
 
 	is_valid_args(argc, argv);
 	args = parse_args(argc, argv);
-	inspect_args(args, is_int_range, is_digit, is_twin);
+	inspect_args(args, &is_int_range, &is_digit, &is_twin);
 	stack_a = (t_stack **)malloc(sizeof(t_stack));
 	stack_b = (t_stack **)malloc(sizeof(t_stack));
 	*stack_a = NULL;

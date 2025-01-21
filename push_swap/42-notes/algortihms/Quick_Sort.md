@@ -10,7 +10,7 @@
 
 3. **Rekürsif Uygulama**:
    - Alt listeler üzerinde aynı işlem tekrarlanır.
-   
+
 4. **Birleştirme**:
    - Alt listeler sıralandıktan sonra pivot ile birleştirilerek sonuç elde edilir.
 
