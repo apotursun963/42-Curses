@@ -12,7 +12,8 @@
 
 #include "../../include/actions.h"
 
-void	action(t_stack **stack_a, t_stack **stack_b, t_action action_type, int write_action)
+void	action(t_stack **stack_a, t_stack **stack_b, t_action action_type
+	, int write_action)
 {
 	if (action_type == SWAP_A)
 		swap_a(stack_a, write_action);

@@ -27,7 +27,8 @@ typedef enum e_action
 	REVERSE_ROTATE_B,
 }	t_action;
 
-void	action(t_stack **stack_a, t_stack **stack_b, t_action action_type, int write_action);
+void	action(t_stack **stack_a, t_stack **stack_b, t_action action_type,
+			int write_action);
 
 void	push(t_stack **src_stack, t_stack **dst_stack);
 void	push_a(t_stack **stack_b, t_stack **stack_a, int write_action);

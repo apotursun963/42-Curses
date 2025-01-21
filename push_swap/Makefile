@@ -1,5 +1,5 @@
 NAME = push_swap
-CHECK = checker_1
+CHECK = my_checker		# burayı checker olarak değiştir PDF'te öyle diyor
 
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
@@ -10,7 +10,9 @@ RESET = \033[0m
 
 SRCS = sources/push_swap.c sources/sorting_algo.c sources/sorting_small.c sources/sorting_utils.c sources/utility_funcs.c sources/free_resources.c sources/error_handling.c \
 	sources/actions/perform_actions.c sources/actions/push.c sources/actions/swap.c sources/actions/rotate.c sources/actions/reverse_rotate.c
-BSRCS = Checker/checker.c
+
+BSRCS = checker/checker.c checker/checker_utils.c checker/get_actions.c sources/utility_funcs.c sources/free_resources.c sources/error_handling.c \
+	sources/actions/perform_actions.c sources/actions/push.c sources/actions/swap.c sources/actions/rotate.c sources/actions/reverse_rotate.c
 
 LIBFT = libraries/libft/libft.a
 FT_PRINTF = libraries/ft_printf/libftprintf.a
@@ -30,11 +32,11 @@ $(FT_PRINTF):
 	@echo "$(YELLOW)Building ft_printf...$(RESET)"
 	@make all -s -C libraries/ft_printf
 
-bonus: $(CHECK)
+bonus: $(LIBFT) $(FT_PRINTF) $(CHECK)
 
-$(CHECK): $(BSRCS) $(LIBFT) $(FT_PRINTF)
+$(CHECK): $(LIBFT) $(FT_PRINTF) $(BSRCS) 
 	@echo "$(YELLOW)Compiling and Linking..$(RESET)"
-	@$(CC) $(CFLAGS) $(SRCS) $(BSRCS) $(LIBFT) $(FT_PRINTF) -o $(CHECK)
+	@$(CC) $(CFLAGS) $(BSRCS) $(LIBFT) $(FT_PRINTF) -o $(CHECK)
 	@echo "$(GREEN)checker Executable Created!$(RESET)"
 
 clean:
@@ -42,8 +44,8 @@ clean:
 	@make clean -s -C libraries/ft_printf
 
 fclean: clean
-	@rm -rf $(LIBFT) $(FT_PRINTF) $(NAME) $(CHECK)
+	@rm -f $(LIBFT) $(FT_PRINTF) $(NAME) $(CHECK)
 
 re: fclean all bonus
 
-.PHONY: all clean fclean re
+.PHONY: all bonus clean fclean re
