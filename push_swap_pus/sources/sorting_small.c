@@ -24,20 +24,20 @@ void	sort_stack_if_size_3(t_stack **stack_a)
 	third = (*stack_a)->next->next->data;
 	if (first > second && second > third && first > third)
 	{
-		action(stack_a, NULL, SWAP_A, true);
-		action(stack_a, NULL, REVERSE_ROTATE_A, true);
+		action(stack_a, NULL, SWAP_A);
+		action(stack_a, NULL, REVERSE_ROTATE_A);
 	}
 	else if (first < second && second > third && first < third)
 	{
-		action(stack_a, NULL, SWAP_A, true);
-		action(stack_a, NULL, ROTATE_A, true);
+		action(stack_a, NULL, SWAP_A);
+		action(stack_a, NULL, ROTATE_A);
 	}
 	else if (first > second && second < third && first > third)
-		action(stack_a, NULL, ROTATE_A, true);
+		action(stack_a, NULL, ROTATE_A);
 	else if (first < second && second > third && first > third)
-		action(stack_a, NULL, REVERSE_ROTATE_A, true);
+		action(stack_a, NULL, REVERSE_ROTATE_A);
 	else if (first > second && second < third && first < third)
-		action(stack_a, NULL, SWAP_A, true);
+		action(stack_a, NULL, SWAP_A);
 }
 
 void	sort_stack_if_size_4_or_5(t_stack **stack_a, t_stack **stack_b
@@ -51,9 +51,9 @@ void	sort_stack_if_size_4_or_5(t_stack **stack_a, t_stack **stack_b
 	{
 		min_pos = find_min_value(stack_a);
 		rotate_min_to_head(stack_a, min_pos);
-		action(stack_a, stack_b, PUSH_B, true);
+		action(stack_a, stack_b, PUSH_B);
 	}
 	sort_stack_if_size_3(stack_a);
 	while (*stack_b)
-		action(stack_a, stack_b, PUSH_A, true);
+		action(stack_a, stack_b, PUSH_A);
 }

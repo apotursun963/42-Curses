@@ -117,7 +117,12 @@ Memory Leak Tespiti: "Valgrind" ve "AddressSanitizer"
 
 
 Segmentation Fault Hatasına yol açan hatalar
---------------------------------------------
+-----------------------------------------Ctrl + D
+--------
+CTRL + D terminalde EOF (End Of File) karakterini gönderir.
+Ctrl+D, bir Veri İletimi Sonu (EOT) sinyali gönderir ve bu genellikle giriş okuyan bir programın giriş dosyasını kapatmasına neden olur. ASCII tablosundaki konumu, Dosya Sonu (EOF) kontrol karakteriyle ilişkilidir.
+
+---
 Segmentation Fault (Segfault) hatası, 
 programın izin verilmeyen bir bellek alanına erişmeye çalışması nedeniyle oluşur. 
 
