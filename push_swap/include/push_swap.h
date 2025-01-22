@@ -39,8 +39,6 @@ typedef enum e_type
 
 void		quick_sort_a(t_stack **stack_a, t_stack **stack_b, int len);
 void		quick_sort_b(t_stack **stack_a, t_stack **stack_b, int len);
-void		sort_a_under_three(t_stack **stack_a, t_stack **stack_b, int len);
-void		sort_b_under_three(t_stack **stack_a, t_stack **stack_b, int len);
 void		sort_stack_if_size_3(t_stack **stack_a);
 
 void		bubble_sort(int *numbers, int size);

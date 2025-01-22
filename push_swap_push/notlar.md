@@ -29,20 +29,11 @@ C dilinde Enumeration (Enum), kullanıcı tarafından tanımlanan özel bir veri
 
 fonksiyon işaretçiler
 ---------------------
-bir fonksiyonun adresini tutan ve bu adres aracılığıyla o fonksiyonu çağırmanıza olanak tanıyan işaretçilerdir. Fonksiyon tanımlarında başında kullanılan *, fonksiyon işaretçisini belirtir. Bu işaretçi, bir fonksiyonun adresini tutar. 
-
+bir fonksiyonun adresini tutan ve bu adres aracılığıyla o fonksiyonu çağırmanıza olanak tanıyan işaretçilerdir. Fonksiyon tanımlarında başında kullanılan *, fonksiyon işaretçisini belirtir. Bu işaretçi, bir fonksiyonun adresini tutar.
 
 Neden stackleri linked list ile tanımladık
 ------------------------------------------
 Stack'leri linked list ile tanımlamanın amacı, dinamik ve esnek bir yapı sağlamaktır. Bellek, yalnızca ihtiyaç duyulan elemanlar için tahsis edilir ve bu sayede sabit boyut sınırlaması ortadan kalkar. Push ve pop işlemleri, yalnızca pointer'ları güncelleyerek hızlıca gerçekleştirilir. Linked list, boyutun önceden bilinmediği veya sık sık değiştiği durumlarda idealdir. Ayrıca, dizilerde karşılaşılan kapasite sorunlarını ortadan kaldırarak bellek kullanımını optimize eder.
-
-
-Ctrl + D
---------
-CTRL + D terminalde EOF (End Of File) karakterini gönderir.
-Ctrl+D, bir Veri İletimi Sonu (EOT) sinyali gönderir ve bu genellikle giriş okuyan bir programın giriş dosyasını kapatmasına neden olur. ASCII tablosundaki konumu, Dosya Sonu (EOF) kontrol karakteriyle ilişkilidir.
-
-
 
 
 total / 2 + total % 2 
@@ -52,6 +43,13 @@ Bu ifade, toplam eleman sayısını ikiye böldüğümüzde ortaya çıkabilecek
 total / 2: Toplam eleman sayısını ikiye böler ve tam sayıya yuvarlanmış şekilde bölme sonucu verir.
 total % 2: toplam eleman sayısının tek mi yoksa çift mi olduğunu kontrol eder. eğer 0 ise çift 1 ise tek
 Bu ifade, elemanların eşit veya dengeli bir şekilde bölünmesini garanti etmek için kullanılır ve özellikle tek sayıda eleman olduğunda doğru bir şekilde çalışır.
+
+
+
+Sıralam algoritmasını çalışma mantığı
+-------------------------------------
+Bu kod, bir yığın üzerinde çalışan Quick Sort algoritmasının stack_a ve stack_b olmak üzere iki yığın kullanılarak gerçekleştirilmiş bir uyarlamasıdır. quick_sort_a, stack_a yığınını artan sırada, quick_sort_b ise stack_b yığınını azalan sırada sıralar. Algoritma, her iki yığın için bir pivot değeri seçer ve bu değere göre elemanları diğer yığına taşıyarak ayırır. Döngülerde yapılan rotasyon işlemleri (ROTATE_A veya ROTATE_B), elemanların sıralama sırasında doğru konumlara gelmesini sağlar, ancak bu rotasyonlar sonradan geri alınır (REVERSE_ROTATE_A veya REVERSE_ROTATE_B) ve yığının düzeni korunur. Rekürsif olarak çağrılan quick_sort_a ve quick_sort_b fonksiyonları, yığınları küçük parçalara ayırarak sıralama işlemini tamamlar.
+
 
 
 Quick sort algoritmasını çalışma mantığı
@@ -77,20 +75,12 @@ Yığın uzunluğu 1 veya daha küçükse ya da zaten sıralıysa işlem durur.
 
 
 
-
-
-
 /*
 Tekrar edilecek konular
 -----------------------
--Fonksiyon işaretçileri
 -"Makefile (program run ve compile time) ve ileri seviye"
 -"Compiler" "Flags" ve "Optimizasyon" (-Wall, -Werror, -O2, -g, gdb, valgrind...)
--"Header Dosyalar ("makro", "enum" "struct", "Include guard", "extern", "inline", "Preprocessor")
--Quick Sort ve Stack
--Time Complexity, Space Complexity, Big-O Notation
--Pointer, Pointer to Pointer, Adres Referansı
--Dinamik Bellek tahsisi (malloc, free, ..) ve bunlar hangi bellek alanında tahsis ediliyor
+-"Header Dosyalar ("enum" "struct", "Include guard", "extern", "inline", "Preprocessor")
 -Bazı bash komutları:
 -shuf -i 1-1000 -n 10, find . -type f -name "*.c", tree, history, whereis,
 -Bellek Düzeni (memory layout)
@@ -100,10 +90,6 @@ Tekrar edilecek konular
 
 ARG=($(shuf -i 1-2000000 -n 100)); ./push_swap $ARG | wc -l
 ARG=($(seq -200000  200000 | shuf -n 100 | tr '\n' ' ')); ./push_swap $ARG | wc -l
-
-fish:
-set ARG (seq -200000 200000 | shuf -n 100 | tr '\n' ' '); ./push_swap $ARG | wc -l
-
 
 Memory Leak Nedir
 -----------------
@@ -115,9 +101,8 @@ Bu da sistemin performansını olumsuz etkileyebilir.
 Memory Leak Tespiti: "Valgrind" ve "AddressSanitizer"
 
 
-
 Segmentation Fault Hatasına yol açan hatalar
------------------------------------------Ctrl + D
+-----------------------------------------
 --------
 CTRL + D terminalde EOF (End Of File) karakterini gönderir.
 Ctrl+D, bir Veri İletimi Sonu (EOT) sinyali gönderir ve bu genellikle giriş okuyan bir programın giriş dosyasını kapatmasına neden olur. ASCII tablosundaki konumu, Dosya Sonu (EOF) kontrol karakteriyle ilişkilidir.
