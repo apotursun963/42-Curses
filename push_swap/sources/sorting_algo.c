@@ -67,7 +67,7 @@ void	quick_sort_a(t_stack **stack_a, t_stack **stack_b, int len)
 	quick_sort_b(stack_a, stack_b, pushed, 0);
 }
 
-int	sorting(t_stack **stack_a, t_stack **stack_b)
+int	sort_stack(t_stack **stack_a, t_stack **stack_b)
 {
 	int		size;
 

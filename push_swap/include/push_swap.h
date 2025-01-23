@@ -31,7 +31,7 @@ typedef enum e_layout
 	DESCENDING,
 }	t_layout;
 
-int			sorting(t_stack **stack_a, t_stack **stack_b);
+int			sort_stack(t_stack **stack_a, t_stack **stack_b);
 void		quick_sort_a(t_stack **stack_a, t_stack **stack_b, int len);
 void		quick_sort_b(t_stack **stack_a, t_stack **stack_b, int len, int i);
 void		sort_stack_if_size_3(t_stack **stack_a);

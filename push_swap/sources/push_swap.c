@@ -90,8 +90,9 @@ int	main(int argc, char **argv)
 	*stack_a = NULL;
 	*stack_b = NULL;
 	fill_stack(stack_a, args);
-	if (is_stack_sorted(*stack_a, ASCENDING))
-		return (free_all_stack(stack_a, stack_b), free_args(args), 0);
-	sorting(stack_a, stack_b);
-	return (free_all_stack(stack_a, stack_b), free_args(args), 0);
+	if (!is_stack_sorted(*stack_a, ASCENDING))
+		sort_stack(stack_a, stack_b);
+	free_all_stack(stack_a, stack_b);
+	free_args(args);
+	return (0);
 }
