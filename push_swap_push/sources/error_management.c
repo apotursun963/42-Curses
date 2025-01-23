@@ -18,12 +18,10 @@ void	error_handling(void)
 	exit(EXIT_FAILURE);
 }
 
-int	is_valid_args(int argc, char **str)
+int	is_argv_null(char **str)
 {
 	int	i;
 
-	if (argc < 2)
-		exit(0);
 	i = 0;
 	while (str[i])
 	{

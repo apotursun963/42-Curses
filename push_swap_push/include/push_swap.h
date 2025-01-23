@@ -37,6 +37,7 @@ typedef enum e_type
 	STACK_B,
 }	t_type;
 
+int			sorting(t_stack **stack_a, t_stack **stack_b);
 void		quick_sort_a(t_stack **stack_a, t_stack **stack_b, int len);
 void		quick_sort_b(t_stack **stack_a, t_stack **stack_b, int len);
 void		sort_stack_if_size_3(t_stack **stack_a);
@@ -45,7 +46,7 @@ void		bubble_sort(int *numbers, int size);
 int			median(t_stack **stack, int len);
 
 void		error_handling(void);
-int			is_valid_args(int argc, char **str);
+int			is_argv_null(char **str);
 int			is_int_range(char **str);
 int			is_digit(char **str);
 int			is_twin(char **str);
@@ -61,7 +62,7 @@ void		free_args(char **arguments);
 void		free_all_stack(t_stack **stack_a, t_stack **stack_b);
 
 char		**parse_args(int argc, char **argv);
-void		fill_stack(t_stack **stack_a, char **arguments);
+void		fill_stack(t_stack **stack_a, char **args);
 void		inspect_args(char **args, int (*is_int_range)(char **),
 				int (*is_digit)(char **), int (*is_twin)(char **));
 

@@ -58,15 +58,6 @@ long	ft_atol(const char *str)
 	return (result * sign);
 }
 
-void	push_type(t_stack **stack_a, t_stack **stack_b, int *len, t_type which)
-{
-	if (which == STACK_A)
-		action(stack_a, stack_b, PUSH_A);
-	else if (which == STACK_B)
-		action(stack_a, stack_b, PUSH_B);
-	(*len)--;
-}
-
 t_stack	*create_node(int value)
 {
 	t_stack	*node;

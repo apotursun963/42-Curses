@@ -13,63 +13,10 @@
 #include "../include/push_swap.h"
 #include "../include/actions.h"
 
-// void	quick_sort_b(t_stack **stack_a, t_stack **stack_b, int len)
-// {
-// 	int	pivot;
-// 	int	total;
-// 	int	rotations;
-
-// 	if (len <= 1 || is_stack_sorted(*stack_b, DESCENDING))
-// 	{
-// 		while (len--)
-// 			action(stack_a, stack_b, PUSH_A);
-// 		return ;
-// 	}
-// 	total = len;
-// 	rotations = 0;
-// 	pivot = median(stack_b, len);
-// 	while (len > (total / 2))
-// 	{
-// 		if ((*stack_b)->data >= pivot)
-// 			push_type(stack_a, stack_b, &len, STACK_A);
-// 		else if (++rotations)
-// 			action(NULL, stack_b, ROTATE_B);
-// 	}
-// 	while (stack_size(*stack_b) > (total / 2) && rotations--)
-// 		action(NULL, stack_b, REVERSE_ROTATE_B);
-// 	quick_sort_a(stack_a, stack_b, (total / 2 + total % 2));
-// 	quick_sort_b(stack_a, stack_b, (total / 2));
-// }
-
-// void	quick_sort_a(t_stack **stack_a, t_stack **stack_b, int len)
-// {
-// 	int	pivot;
-// 	int	total;
-// 	int	rotations;
-
-// 	if (len <= 1 || is_stack_sorted(*stack_a, ASCENDING))
-// 		return ;
-// 	total = len;
-// 	rotations = 0;
-// 	pivot = median(stack_a, len);
-// 	while (len > (total / 2 + total % 2))
-// 	{
-// 		if ((*stack_a)->data < pivot)
-// 			push_type(stack_a, stack_b, &len, STACK_B);
-// 		else if (++rotations)
-// 			action(stack_a, NULL, ROTATE_A);
-// 	}
-// 	while (stack_size(*stack_a) > (total / 2 + total % 2) && rotations--)
-// 		action(stack_a, NULL, REVERSE_ROTATE_A);
-// 	quick_sort_a(stack_a, stack_b, (total / 2 + total % 2));
-// 	quick_sort_b(stack_a, stack_b, (total / 2));
-// }
-
-
 void	quick_sort_b(t_stack **stack_a, t_stack **stack_b, int len)
 {
-	int pivot;
-	int pushed;
+	int	pivot;
+	int	pushed;
 	int	rotated;
 	int	i;
 
@@ -96,12 +43,12 @@ void	quick_sort_b(t_stack **stack_a, t_stack **stack_b, int len)
 	quick_sort_b(stack_a, stack_b, len - pushed);
 }
 
-void quick_sort_a(t_stack **stack_a, t_stack **stack_b, int len)
+void	quick_sort_a(t_stack **stack_a, t_stack **stack_b, int len)
 {
-	int pivot;
-	int pushed;
+	int	pivot;
+	int	pushed;
 	int	rotated;
-	int i;
+	int	i;
 
 	if (len <= 1 || is_stack_sorted(*stack_a, ASCENDING))
 		return ;
@@ -120,4 +67,20 @@ void quick_sort_a(t_stack **stack_a, t_stack **stack_b, int len)
 		action(stack_a, NULL, REVERSE_ROTATE_A);
 	quick_sort_a(stack_a, stack_b, len - pushed);
 	quick_sort_b(stack_a, stack_b, pushed);
+}
+
+int	sorting(t_stack **stack_a, t_stack **stack_b)
+{
+	int		size;
+
+	size = stack_size(*stack_a);
+	if (size == 2)
+		action(stack_a, NULL, SWAP_A);
+	else if (size == 3)
+		sort_stack_if_size_3(stack_a);
+	else if (size == 4 || size == 5)
+		sort_stack_if_size_4_or_5(stack_a, stack_b, size);
+	else
+		quick_sort_a(stack_a, stack_b, size);
+	return (0);
 }
