@@ -13,12 +13,11 @@
 #include "../include/push_swap.h"
 #include "../include/actions.h"
 
-void	quick_sort_b(t_stack **stack_a, t_stack **stack_b, int len)
+void	quick_sort_b(t_stack **stack_a, t_stack **stack_b, int len, int i)
 {
 	int	pivot;
 	int	pushed;
 	int	rotated;
-	int	i;
 
 	if (len <= 1 || is_stack_sorted(*stack_b, DESCENDING))
 	{
@@ -26,7 +25,6 @@ void	quick_sort_b(t_stack **stack_a, t_stack **stack_b, int len)
 			action(stack_a, stack_b, PUSH_A);
 		return ;
 	}
-	i = 0;
 	pushed = 0;
 	rotated = 0;
 	pivot = median(stack_b, len);
@@ -40,7 +38,7 @@ void	quick_sort_b(t_stack **stack_a, t_stack **stack_b, int len)
 	while (stack_size(*stack_b) > len && rotated--)
 		action(NULL, stack_b, REVERSE_ROTATE_B);
 	quick_sort_a(stack_a, stack_b, pushed);
-	quick_sort_b(stack_a, stack_b, len - pushed);
+	quick_sort_b(stack_a, stack_b, len - pushed, 0);
 }
 
 void	quick_sort_a(t_stack **stack_a, t_stack **stack_b, int len)
@@ -66,7 +64,7 @@ void	quick_sort_a(t_stack **stack_a, t_stack **stack_b, int len)
 	while (stack_size(*stack_a) > len && rotated--)
 		action(stack_a, NULL, REVERSE_ROTATE_A);
 	quick_sort_a(stack_a, stack_b, len - pushed);
-	quick_sort_b(stack_a, stack_b, pushed);
+	quick_sort_b(stack_a, stack_b, pushed, 0);
 }
 
 int	sorting(t_stack **stack_a, t_stack **stack_b)

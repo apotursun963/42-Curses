@@ -120,16 +120,12 @@ belleği serbest bırakma şansınızı ortadan kaldırır.
 free ile serbest bırakma: Bellek serbest bırakılmadan önce işaretçi, 
 tahsis edilen bellek alanını işaret ediyor olmalıdır. 
 Eğer işaretçi NULL yapılmışsa, serbest bırakma işlemi yapılamaz.
-
 eğer malloc ile ayırdığın bir alana değer vermezsen varsayılan olarak 0 olur linked list'te
 */
 
 
 
-void    increase(int *number)
-{
-    *number = 10;
-}
+void    increase(int *number) { *number = 10; }
 
 #include <stdio.h>
 int main(int argc, char const *argv[])

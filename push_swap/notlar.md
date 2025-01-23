@@ -45,7 +45,6 @@ total % 2: toplam eleman sayısının tek mi yoksa çift mi olduğunu kontrol ed
 Bu ifade, elemanların eşit veya dengeli bir şekilde bölünmesini garanti etmek için kullanılır ve özellikle tek sayıda eleman olduğunda doğru bir şekilde çalışır.
 
 
-
 Sıralam algoritmasını çalışma mantığı
 -------------------------------------
 Bu kod, bir yığın üzerinde çalışan Quick Sort algoritmasının stack_a ve stack_b olmak üzere iki yığın kullanılarak gerçekleştirilmiş bir uyarlamasıdır. quick_sort_a, stack_a yığınını artan sırada, quick_sort_b ise stack_b yığınını azalan sırada sıralar. Algoritma, her iki yığın için bir pivot değeri seçer ve bu değere göre elemanları diğer yığına taşıyarak ayırır. Döngülerde yapılan rotasyon işlemleri (ROTATE_A veya ROTATE_B), elemanların sıralama sırasında doğru konumlara gelmesini sağlar, ancak bu rotasyonlar sonradan geri alınır (REVERSE_ROTATE_A veya REVERSE_ROTATE_B) ve yığının düzeni korunur. Rekürsif olarak çağrılan quick_sort_a ve quick_sort_b fonksiyonları, yığınları küçük parçalara ayırarak sıralama işlemini tamamlar.

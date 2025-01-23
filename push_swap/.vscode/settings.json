@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "actions.h": "c",
+        "push_swap.h": "c"
+    }
+}

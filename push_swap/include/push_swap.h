@@ -31,15 +31,9 @@ typedef enum e_layout
 	DESCENDING,
 }	t_layout;
 
-typedef enum e_type
-{
-	STACK_A,
-	STACK_B,
-}	t_type;
-
 int			sorting(t_stack **stack_a, t_stack **stack_b);
 void		quick_sort_a(t_stack **stack_a, t_stack **stack_b, int len);
-void		quick_sort_b(t_stack **stack_a, t_stack **stack_b, int len);
+void		quick_sort_b(t_stack **stack_a, t_stack **stack_b, int len, int i);
 void		sort_stack_if_size_3(t_stack **stack_a);
 
 void		bubble_sort(int *numbers, int size);
@@ -55,8 +49,6 @@ t_stack		*create_node(int value);
 long		ft_atol(const char *str);
 int			is_stack_sorted(t_stack *stack_a, t_layout order);
 int			stack_size(t_stack *stack);
-void		push_type(t_stack **stack_a, t_stack **stack_b,
-				int *len, t_type which);
 
 void		free_args(char **arguments);
 void		free_all_stack(t_stack **stack_a, t_stack **stack_b);
