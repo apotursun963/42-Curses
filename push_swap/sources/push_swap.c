@@ -42,7 +42,7 @@ char	**parse_args(int argc, char **argv)
 	return (free(merge), args);
 }
 
-void	fill_stack(t_stack **stack_a, char **args)
+t_stack	**fill_stack(t_stack **stack_a, char **args)
 {
 	int		idx;
 	int		value;
@@ -65,6 +65,7 @@ void	fill_stack(t_stack **stack_a, char **args)
 		}
 		idx++;
 	}
+	return (stack_a);
 }
 
 void	inspect_args(char **args, int (*is_int_range)(char **),
@@ -96,7 +97,7 @@ int	main(int argc, char **argv)
 	args = parse_args(argc, argv);
 	inspect_args(args, &is_int_range, &is_digit, &is_twin);
 	initialize_stacks(&stack_a, &stack_b);
-	fill_stack(stack_a, args);
+	stack_a = fill_stack(stack_a, args);
 	if (!is_stack_sorted(*stack_a, ASCENDING))
 		sort_stack(stack_a, stack_b);
 	free_all_stack(stack_a, stack_b);

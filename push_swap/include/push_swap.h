@@ -54,7 +54,7 @@ void		free_args(char **arguments);
 void		free_all_stack(t_stack **stack_a, t_stack **stack_b);
 
 char		**parse_args(int argc, char **argv);
-void		fill_stack(t_stack **stack_a, char **args);
+t_stack		**fill_stack(t_stack **stack_a, char **args);
 void		initialize_stacks(t_stack ***stack_a, t_stack ***stack_b);
 void		inspect_args(char **args, int (*is_int_range)(char **),
 				int (*is_digit)(char **), int (*is_twin)(char **));
