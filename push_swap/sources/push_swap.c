@@ -74,6 +74,16 @@ void	inspect_args(char **args, int (*is_int_range)(char **),
 		error_handling();
 }
 
+void	initialize_stacks(t_stack ***stack_a, t_stack ***stack_b)
+{
+	*stack_a = (t_stack **)malloc(sizeof(t_stack *));
+	*stack_b = (t_stack **)malloc(sizeof(t_stack *));
+	if (!(*stack_a) || !(*stack_b))
+		exit(1);
+	**stack_a = NULL;
+	**stack_b = NULL;
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack	**stack_a;
@@ -85,10 +95,7 @@ int	main(int argc, char **argv)
 	is_argv_null(argv);
 	args = parse_args(argc, argv);
 	inspect_args(args, &is_int_range, &is_digit, &is_twin);
-	stack_a = (t_stack **)malloc(sizeof(t_stack));
-	stack_b = (t_stack **)malloc(sizeof(t_stack));
-	*stack_a = NULL;
-	*stack_b = NULL;
+	initialize_stacks(&stack_a, &stack_b);
 	fill_stack(stack_a, args);
 	if (!is_stack_sorted(*stack_a, ASCENDING))
 		sort_stack(stack_a, stack_b);
