@@ -68,13 +68,6 @@ t_stack	**fill_stack(t_stack **stack_a, char **args)
 	return (stack_a);
 }
 
-void	inspect_args(char **args, int (*is_int_range)(char **),
-	int (*is_digit)(char **), int (*is_twin)(char **))
-{
-	if (is_int_range(args) == -1 || is_digit(args) == -1 || is_twin(args) == -1)
-		error_handling();
-}
-
 void	initialize_stacks(t_stack ***stack_a, t_stack ***stack_b)
 {
 	*stack_a = (t_stack **)malloc(sizeof(t_stack *));
@@ -83,6 +76,13 @@ void	initialize_stacks(t_stack ***stack_a, t_stack ***stack_b)
 		exit(1);
 	**stack_a = NULL;
 	**stack_b = NULL;
+}
+
+void	inspect_args(char **args, int (*is_int_range)(char **),
+	int (*is_digit)(char **), int (*is_twin)(char **))
+{
+	if (is_int_range(args) == -1 || is_digit(args) == -1 || is_twin(args) == -1)
+		error_handling();
 }
 
 int	main(int argc, char **argv)
