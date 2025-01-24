@@ -6,8 +6,8 @@ OBJECTS = $(SRC:.c=.o)
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-REM = rm -vf
-AR = ar -r
+REM = rm -f
+AR = ar -cr
 
 all: $(NAME)
 

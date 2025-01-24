@@ -13,8 +13,8 @@ BONUS_OBJECTS = $(BFUNCS:.c=.o)
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-REM = rm -vf
-AR = ar -r
+REM = rm -f
+AR = ar -cr
 
 all: $(NAME)
 

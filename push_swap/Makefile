@@ -10,7 +10,7 @@ RESET = \033[0m
 SRCS = sources/push_swap.c sources/sorting_algo.c sources/sorting_small.c sources/sorting_utils.c sources/utility_funcs.c sources/free_resources.c sources/error_management.c \
 	sources/actions/perform_actions.c sources/actions/push.c sources/actions/swap.c sources/actions/rotate.c sources/actions/reverse_rotate.c
 LIBFT = libraries/libft/libft.a
-FT_PRINTF = libraries/ft_printf/libftprintf.a
+FT_PRINTF = libraries/printf/libftprintf.a
 
 all: $(LIBFT) $(FT_PRINTF) $(NAME)
 
@@ -24,12 +24,12 @@ $(LIBFT):
 	@make all bonus -s -C libraries/libft
 
 $(FT_PRINTF):
-	@echo "$(YELLOW)Building ft_printf...$(RESET)"
-	@make all -s -C libraries/ft_printf
+	@echo "$(YELLOW)Building printf...$(RESET)"
+	@make all -s -C libraries/printf
 
 clean:
 	@make clean -s -C libraries/libft
-	@make clean -s -C libraries/ft_printf
+	@make clean -s -C libraries/printf
 
 fclean: clean
 	@rm -f $(LIBFT) $(FT_PRINTF) $(NAME) $(CHECK)
