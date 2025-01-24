@@ -1,6 +1,6 @@
 
 
-#include "minilibx-linux/mlx.h"
+#include "minilibx/mlx.h"
 #include <stdlib.h>
 
 // gcc main.c libmlx.a -lX11 -lXext -lm -o fdf
