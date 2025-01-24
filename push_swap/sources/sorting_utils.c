@@ -13,7 +13,7 @@
 #include "../include/push_swap.h"
 #include "../include/actions.h"
 
-void	bubble_sort(int *arr, int size)
+void	temp_sort(int *arr, int size)
 {
 	int	i;
 	int	j;
@@ -52,7 +52,7 @@ int	median(t_stack **stack, int len)
 		arr[i] = tmp->data;
 		tmp = tmp->next;
 	}
-	bubble_sort(arr, len);
+	temp_sort(arr, len);
 	median = arr[len / 2];
 	return (free(arr), median);
 }

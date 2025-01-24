@@ -1,10 +1,10 @@
 NAME = libftprintf.a
 
-SRC = $(addprefix src/, ft_printf.c ft_type.c ft_hexa.c ft_nbr.c ft_chrs.c)
+SRC = ft_printf.c ft_type.c ft_hexa.c ft_nbr.c ft_chrs.c
 
 OBJECTS = $(SRC:.c=.o)
 
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
 REM = rm -vf
 AR = ar -r
