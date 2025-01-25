@@ -100,6 +100,5 @@ int	main(int argc, char **argv)
 	message = argv[2];
 	process_id = ft_atoi_10(argv[1]);
 	send_signal(process_id, message);
-	write(1, "\033[1;32mMessage Received!👌\n", 29);
 	return (0);
 }

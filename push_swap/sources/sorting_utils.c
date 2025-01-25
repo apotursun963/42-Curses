@@ -64,10 +64,10 @@ int	find_min_value(t_stack **stack_a)
 	int		pos;
 	t_stack	*node;
 
+	pos = 0;
+	min_pos = 0;
 	node = *stack_a;
 	min_value = node->data;
-	min_pos = 0;
-	pos = 0;
 	while (node)
 	{
 		if (node->data < min_value)
