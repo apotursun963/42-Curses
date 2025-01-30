@@ -3,32 +3,31 @@
 #include "minilibx/mlx.h"
 #include <stdlib.h>
 
+// Adımlar
+// 1. ilk önce verileri parse et. 2D haritaları naısl ele alacağını belirle
+// 2. sonra çizgi çizme algoritmasını yap noktaları birleştir.
+// 3. basit bir kare çiz
+
+
 // gcc main.c libmlx.a -lX11 -lXext -lm -o fdf
 
-
-int    dest_window(int keycode)
+int    dst_win(int keycode)
 {
-    if (keycode == 65307)
+    if (keycode == 65307)               // bunları makro olarak tanımla
         exit(0);
     return (0);
 }
 
 int main(int argc, char const *argv[])
 {
-    void    *init_window = mlx_init();
-    void    *create_window = mlx_new_window(init_window, 1500, 1500, "FdF");
+    void    *mlx;
+    void    *mlx_win;
 
-    // "y" ekseninde pixel çizer
-    for (int i=0; i < 1500; i++)
-        mlx_pixel_put(init_window, create_window, 750, i, 0xff0000);
+    mlx = mlx_init();
+    mlx_win = mlx_new_window(mlx, 1000, 1000, "FDF");
 
-    // "x" ekseninde pixel çizer
-    for (int i=0; i < 1500; i++)
-        mlx_pixel_put(init_window, create_window, i, 750, 0x0000ff);
-    
-    // klavye tuşlarını ele almak için funcs
-    mlx_key_hook(create_window, dest_window, NULL);
-    
-    // pencerenin süreki olarka açık kalması için
-    mlx_loop(init_window);
+    mlx_pixel_put(mlx, mlx_win, 500, 500, 0x00FF0000);      // bu fonksiyon çok yavaş çalışıyor düzlet
+    mlx_key_hook(mlx_win, dst_win, NULL);
+    mlx_loop(mlx);
+    return (0);
 }

@@ -7,10 +7,17 @@ render: render, bir görüntünün ekrana yansıtılma sürecini ifade eder. Ba�
 
 
 
-
 ## Öğrenilecekler
 1. Minilibx Kütüphanesi
+2. Harita verisini okuma
 2. izometrik projoksiyon nedir ?
 3. Çizgi çizme algoritma nedir ?
 4. 3D Dönüşümler
 5. mlx hooks
+
+## Eksenler
+- X: Yatay (sağa-sola)
+- Y: Dikey (yukarı-aşağı)
+- Z: Derinlik (ön-arka ya da yükseklik)
+x ve y eksenleri pozisyonları belirlerken, z ekseni her noktanın yüksekliğini belirtir.
+
