@@ -8,7 +8,6 @@
 // 2. sonra çizgi çizme algoritmasını yap noktaları birleştir.
 // 3. basit bir kare çiz
 
-
 // gcc main.c libmlx.a -lX11 -lXext -lm -o fdf
 
 int    dst_win(int keycode)

@@ -48,7 +48,7 @@ char	*merge_str(char *leftover, char *buffer)
 	}
 	if (!buffer)
 		return (NULL);
-	if (!(assemble = malloc(ft_len_of_str(leftover) + ft_len_of_str(buffer) + 1)));
+	if (!(assemble = malloc(len_of_str(leftover) + len_of_str(buffer) + 1)));
 		return (NULL);
 	leftover_begin_adrs = leftover;
 	assemble_begin_adrs = assemble;

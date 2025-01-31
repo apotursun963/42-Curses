@@ -23,7 +23,7 @@ char	*pull_left(char *leftover)
 		leftover++;
 	if (!*leftover)
 		return (free(leftover_begin_adrs), NULL);
-	if (!(res = (char *)malloc(ft_len_of_str(leftover) + 1)))
+	if (!(res = (char *)malloc(len_of_str(leftover) + 1)))
 		return (NULL);
 	res_begin_adrs = res;
 	while (*leftover != '\0')
@@ -63,13 +63,13 @@ char	*read_file(int fd, char *leftover)
 	if (!(buffer = malloc(BUFFER_SIZE +1)))
 		return (NULL);
 	bytes = 1;
-	while (ft_search_new_line(leftover) == NULL && bytes != 0)
+	while (search_new_line(leftover) == NULL && bytes != 0)
 	{
 		bytes = read(fd, buffer, BUFFER_SIZE);
 		if (bytes == -1)
 			return (free(buffer), free(leftover), leftover = NULL, NULL);
 		buffer[bytes] = '\0';
-		leftover = ft_merge_str(leftover, buffer);
+		leftover = merge_str(leftover, buffer);
 	}
 	free(buffer);
 	return (leftover);
@@ -82,9 +82,9 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	if (!(leftover[fd] = ft_read_file(fd, leftover[fd])))
+	if (!(leftover[fd] = read_file(fd, leftover[fd])))
 		return (NULL);
-	one_line = ft_pull_line(leftover[fd]);
-	leftover[fd] = ft_pull_left(leftover[fd]);
+	one_line = pull_line(leftover[fd]);
+	leftover[fd] = pull_left(leftover[fd]);
 	return (one_line);
 }

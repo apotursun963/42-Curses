@@ -20,7 +20,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-int	len_of_str(char *str);
+int len_of_str(char *str);
 char	*get_next_line(int fd);
 char	*pull_line(char *leftover);
 char	*pull_left(char *leftover);
