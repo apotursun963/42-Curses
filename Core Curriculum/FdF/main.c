@@ -1,12 +1,11 @@
-
-
 #include "minilibx/mlx.h"
 #include <stdlib.h>
 
 // Adımlar
-// 1. ilk önce verileri parse et. 2D haritaları naısl ele alacağını belirle
-// 2. sonra çizgi çizme algoritmasını yap noktaları birleştir.
-// 3. basit bir kare çiz
+// 1. ilk önce dosya uzantısı kontorl et .fdf
+// 2. Verileri parse et. 2D haritaları nasıl ele alacağını belirle
+// 3. sonra çizgi çizme algoritmasını yap noktaları birleştir. (Bresenham’s Line Drawing Algorithm)
+// 4. basit bir kare çiz
 
 // gcc main.c libmlx.a -lX11 -lXext -lm -o fdf
 
