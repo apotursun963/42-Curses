@@ -12,7 +12,7 @@ SRCS = sources/push_swap.c sources/sorting_algo.c sources/sorting_small.c source
 LIBFT = libraries/libft/libft.a
 FT_PRINTF = libraries/printf/libftprintf.a
 
-all: $(NAME)   		# Sildin   $(LIBFT) $(FT_PRINTF)
+all: $(NAME)
 
 $(NAME): $(SRCS) $(LIBFT) $(FT_PRINTF)
 	@echo "$(YELLOW)Compiling and Linking..$(RESET)"

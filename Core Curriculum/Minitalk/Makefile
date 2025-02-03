@@ -1,22 +1,24 @@
 NAME = minitalk
 
+SERVER = server
+CLIENT = client
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-SERVER = srcs/server
-CLIENT = srcs/client
+REM = rm -rf
+
 
 all: $(NAME)
 
 $(NAME): $(SERVER) $(CLIENT)
 
-$(SERVER): srcs/server.c
-	$(CC) $(CFLAGS) srcs/server.c -o srcs/server
+$(SERVER): server.c
+	$(CC) $(CFLAGS) server.c -o server
 
-$(CLIENT): srcs/client.c
-	$(CC) $(CFLAGS) srcs/client.c -o srcs/client
+$(CLIENT): client.c
+	$(CC) $(CFLAGS) client.c -o client
 
 clean:
-	rm -rf $(SERVER) $(CLIENT)
+	$(REM) $(SERVER) $(CLIENT)
 
 fclean: clean
 
