@@ -6,13 +6,25 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:00:08 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/04 13:00:11 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/04 18:23:15 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-static char	*get_projection_name(t_fdf *fdf);
+static char	*get_projection_name(t_fdf *fdf)
+{	
+	char	*projection;
+
+	projection = "";
+	if (fdf->cam->projection == ISOMETRIC)
+		projection = "Isometric projection";
+	else if (fdf->cam->projection == PERSPECTIVE)
+		projection = "Perspective projection";
+	else if (fdf->cam->projection == TOP)
+		projection = "Top view";
+	return (projection);
+}
 
 void	print_menu(t_fdf *fdf)
 {
@@ -40,18 +52,4 @@ void	print_menu(t_fdf *fdf)
 	mlx_string_put(mlx, win, 50, y += 20, C_TEXT, "Top View: press 'O'");
 	mlx_string_put(mlx, win, 50, y += 35, C_TEXT, "Colors: press 'SPACE'");
 	mlx_string_put(mlx, win, 50, y += 35, C_TEXT, "Reset view: press 'R'");
-}
-
-static char	*get_projection_name(t_fdf *fdf)
-{	
-	char	*projection;
-
-	projection = "";
-	if (fdf->cam->projection == ISOMETRIC)
-		projection = "Isometric projection";
-	else if (fdf->cam->projection == PERSPECTIVE)
-		projection = "Perspective projection";
-	else if (fdf->cam->projection == TOP)
-		projection = "Top view";
-	return (projection);
 }

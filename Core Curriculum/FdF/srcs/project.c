@@ -6,24 +6,11 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 12:59:17 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/04 12:59:21 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/04 18:00:11 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
-
-static void	isometric(t_line *line);
-static void	perspective(t_line *line);
-
-void	project(t_cam *cam, t_line *line)
-{
-	if (cam->projection == ISOMETRIC)
-		isometric(line);
-	else if (cam->projection == PERSPECTIVE)
-		perspective(line);
-	else if (cam->projection == TOP)
-		return ;
-}
 
 static void	isometric(t_line *line)
 {
@@ -31,8 +18,7 @@ static void	isometric(t_line *line)
 	t_point	new_end;
 
 	new_start.x = (line->start.x - line->start.y) * cos(ANG_30);
-	new_start.y = (line->start.x + line->start.y) * sin(ANG_30) - \
-		line->start.z;
+	new_start.y = (line->start.x + line->start.y) * sin(ANG_30) - line->start.z;
 	line->start.x = new_start.x;
 	line->start.y = new_start.y;
 	new_end.x = (line->end.x - line->end.y) * cos(ANG_30);
@@ -59,4 +45,14 @@ static void	perspective(t_line *line)
 	line->end.x = new_end.x;
 	line->end.y = -new_end.y;
 	scale(line, line->transform_z);
+}
+
+void	project(t_cam *cam, t_line *line)
+{
+	if (cam->projection == ISOMETRIC)
+		isometric(line);
+	else if (cam->projection == PERSPECTIVE)
+		perspective(line);
+	else if (cam->projection == TOP)
+		return ;
 }

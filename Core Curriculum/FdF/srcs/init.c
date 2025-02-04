@@ -6,7 +6,7 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:00:25 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/04 13:00:27 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/04 18:10:59 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ t_fdf	*init_fdf(char *file_name)
 	fdf->win = mlx_new_window(fdf->mlx, fdf->win_x, fdf->win_y, WINDOW_NAME);
 	fdf->image = init_image(fdf->mlx);
 	if (!fdf->image)
-		close_map(fdf, 5);
+		free_map(fdf, 5);
 	fdf->cam = init_cam(fdf->map);
 	if (!fdf->cam)
-		close_all(fdf, 6);
+		free_all(fdf, 6);
 	return (fdf);
 }
 

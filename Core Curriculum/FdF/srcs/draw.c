@@ -6,7 +6,7 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:00:56 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/04 13:00:58 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/04 18:10:40 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	bresenham(t_fdf *fdf, t_point start, t_point end)
 	y_step /= max_steps;
 	color = color_init(start, end);
 	if (!color)
-		close_all(fdf, 8);
+		free_all(fdf, 8);
 	i_line = 0;
 	while (i_line < max_steps)
 	{

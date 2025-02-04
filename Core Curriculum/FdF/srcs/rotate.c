@@ -6,18 +6,11 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 12:59:42 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/04 12:59:44 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/04 16:17:12 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
-
-void	rotate(t_cam *cam, t_line *line)
-{
-	rotate_x(line, cam->alpha);
-	rotate_y(line, cam->beta);
-	rotate_z(line, cam->gamma);
-}
 
 void	rotate_x(t_line *line, double angle)
 {
@@ -62,4 +55,11 @@ void	rotate_z(t_line *line, double angle)
 	new_end.y = line->end.x * sin(angle) + line->end.y * cos(angle);
 	line->end.x = new_end.x;
 	line->end.y = new_end.y;
+}
+
+void	rotate(t_cam *cam, t_line *line)
+{
+	rotate_x(line, cam->alpha);
+	rotate_y(line, cam->beta);
+	rotate_z(line, cam->gamma);
 }

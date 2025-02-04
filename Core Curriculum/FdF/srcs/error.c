@@ -6,11 +6,21 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:00:52 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/04 13:00:54 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/04 17:32:12 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
+
+int 	is_file_extension_valid(char *filename)
+{
+	char	*res;
+	
+	res = ft_strrchr(filename, '.');
+	if (ft_strncmp(res, ".fdf", 4) != 0)
+		return (0);
+	return (1);
+}
 
 void	error(int exit_code)
 {

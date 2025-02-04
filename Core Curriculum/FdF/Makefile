@@ -9,8 +9,8 @@ MLX_PATH = ./mlx_linux/
 SRCDIR = ./srcs/
 OBJDIR = objs/
 
-SRC = main.c close.c color.c draw.c error.c init_utils.c \
-	  init.c key_handle.c menu.c project.c read.c render.c \
+SRC = main.c free.c color.c draw.c error.c init_utils.c \
+	  init.c keybord.c menu.c project.c read.c \
 	  rotate.c transform.c utils.c
 
 OBJ = $(patsubst %.c, $(OBJDIR)/%.o, $(SRC))

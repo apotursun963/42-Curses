@@ -6,41 +6,11 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 12:59:28 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/04 13:37:33 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/04 17:26:17 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
-
-static int	get_width(char *file_name);
-static int	get_depth(char *file_name);
-static void	get_points(char *file_name, t_map *map);
-static void	fill_point(char *point, t_map *map, int coord_x, int coord_y);
-
-t_map	*read_map(char *file_name)
-{
-	t_map	*map;
-	int		fd;
-
-	fd = open(file_name, O_RDONLY, 0);
-	if (fd < 0)
-		error(2);
-	close(fd);
-	map = init_map();
-	if (!map)
-		return (NULL);
-	map->max_x = get_width(file_name);
-	map->max_y = get_depth(file_name);
-	map->coordinates = init_coordinates(map->max_x, map->max_y);
-	if (!map->coordinates)
-	{
-		free(map);
-		return (NULL);
-	}
-	get_points(file_name, map);
-	center_to_origin(map);
-	return (map);
-}
 
 static int	get_width(char *file_name)
 {
@@ -90,6 +60,35 @@ static int	get_depth(char *file_name)
 	return (depth);
 }
 
+static void	fill_point(char *point, t_map *map, int coord_x, int coord_y)
+{
+	char	**info;
+	int		i;
+
+	map->coordinates[coord_x][coord_y].x = (float)coord_x;
+	map->coordinates[coord_x][coord_y].y = (float)coord_y;
+	if (ft_strchr(point, ','))
+	{
+		info = ft_split(point, ',');
+		map->coordinates[coord_x][coord_y].z = (float)ft_atoi(info[0]);
+		map->coordinates[coord_x][coord_y].color = \
+			ft_atoi_base(info[1], HEXADECIMAL_L_BASE);
+		i = 0;
+		while (info[i])
+			free(info[i++]);
+		free(info);
+	}
+	else
+	{
+		map->coordinates[coord_x][coord_y].z = (float)ft_atoi(point);
+		map->coordinates[coord_x][coord_y].color = -1;
+	}
+	if (map->coordinates[coord_x][coord_y].z > map->max_z)
+		map->max_z = map->coordinates[coord_x][coord_y].z;
+	if (map->coordinates[coord_x][coord_y].z < map->min_z)
+		map->min_z = map->coordinates[coord_x][coord_y].z;
+}
+
 static void	get_points(char *file_name, t_map *map)
 {
 	int		fd;
@@ -119,31 +118,28 @@ static void	get_points(char *file_name, t_map *map)
 	close(fd);
 }
 
-static void	fill_point(char *point, t_map *map, int coord_x, int coord_y)
-{
-	char	**info;
-	int		i;
 
-	map->coordinates[coord_x][coord_y].x = (float)coord_x;
-	map->coordinates[coord_x][coord_y].y = (float)coord_y;
-	if (ft_strchr(point, ','))
+t_map	*read_map(char *file_name)
+{
+	t_map	*map;
+	// int		fd;
+
+	// fd = open(file_name, O_RDONLY, 0);
+	// if (fd < 0)
+	// 	error(2);
+	// close(fd);
+	map = init_map();
+	if (!map)
+		return (NULL);
+	map->max_x = get_width(file_name);
+	map->max_y = get_depth(file_name);
+	map->coordinates = init_coordinates(map->max_x, map->max_y);
+	if (!map->coordinates)
 	{
-		info = ft_split(point, ',');
-		map->coordinates[coord_x][coord_y].z = (float)ft_atoi(info[0]);
-		map->coordinates[coord_x][coord_y].color = \
-			ft_atoi_base(info[1], HEXADECIMAL_L_BASE);
-		i = 0;
-		while (info[i])
-			free(info[i++]);
-		free(info);
+		free(map);
+		return (NULL);
 	}
-	else
-	{
-		map->coordinates[coord_x][coord_y].z = (float)ft_atoi(point);
-		map->coordinates[coord_x][coord_y].color = -1;
-	}
-	if (map->coordinates[coord_x][coord_y].z > map->max_z)
-		map->max_z = map->coordinates[coord_x][coord_y].z;
-	if (map->coordinates[coord_x][coord_y].z < map->min_z)
-		map->min_z = map->coordinates[coord_x][coord_y].z;
+	get_points(file_name, map);
+	center_to_origin(map);
+	return (map);
 }

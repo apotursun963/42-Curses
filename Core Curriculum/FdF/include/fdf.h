@@ -6,41 +6,21 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:01:38 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/04 13:31:50 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/04 18:09:24 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-/*------LIBRARIES------*/
-
-/*
-** Basic libraries for the previous allowed functions: open, read, write, close,
-** malloc, free, perror, strerror and exit. 
-*/
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
-
-/*
-** Allowed libraries: math and minilibx, witch is appended in the project's 
-** folder to guarantee usage by testers. 
-*/
 # include <math.h>
-# include "../mlx_linux/mlx.h"
-
-/*
-** My own libft library, completed with previously implemented functions such as
-** get_next_line and ft_printf. 
-*/
-# include "../libs/libft/libft.h"
-
-/*
-** Other fdf libraries
-*/
 # include "keys.h"
 # include "colors.h"
+# include "../mlx_linux/mlx.h"
+# include "../libs/libft/libft.h"
 
 /*------STRUCTS-------*/
 
@@ -144,34 +124,22 @@ typedef struct s_fdf
 	t_cam	*cam;
 }	t_fdf;
 
-/*-----MACROS---------*/
 
-/*
-** Window basic configuration
-*/
 # define WINDOW_NAME	 	"fdf"
 # define WINDOW_WIDTH		1200
 # define WINDOW_HEIGHT		900
 # define MAX_PIXEL			1080000
-
-/*
-** Colors configuration
-*/
 # define LINE_DEFAULT		C_WHITE
 # define BACKGROUND_DEFAULT	C_GREY
 # define C_TEXT				C_WHITE
 
-/*
-** Conversion bases & useful angles in rad
-*/
+
 # define HEXADECIMAL_L_BASE	"0123456789abcdef"
 # define ANG_1				0.01745329
 # define ANG_30				0.52359877
 # define ANG_45				0.78539816
 
-/*
-** Enumerator for projection names and boolean
-*/
+
 enum e_projection
 {
 	ISOMETRIC,
@@ -185,7 +153,7 @@ enum e_bool
 	TRUE
 };
 
-/*-----FUNCTIONS------*/
+
 
 /*
 ** Read and parse maps
@@ -195,6 +163,7 @@ t_map	*read_map(char *file_name);
 /*
 ** Error management
 */
+int 	is_file_extension_valid(char *filename);
 void	error(int exit_code);
 
 /*
@@ -207,14 +176,14 @@ t_line	*init_line(t_point start, t_point end, t_fdf *fdf);
 t_cam	*init_cam(t_map *map);
 
 /*
-** Initialization and closing utilities
+** Initialization and closing (free) utilities
 */
 t_point	**init_coordinates(int width, int depth);
 void	center_to_origin(t_map *map);
 float	scale_to_fit(t_map *map);
 void	reset(t_fdf *fdf);
-void	close_all(t_fdf *fdf, int exit_code);
-void	close_map(t_fdf *fdf, int exit_code);
+void	free_all(t_fdf *fdf, int exit_code);
+void	free_map(t_fdf *fdf, int exit_code);
 t_color	*color_init(t_point start, t_point end);
 t_color	*color_pallet_init(int min_color, int max_color);
 
@@ -228,7 +197,7 @@ float	min(float a, float b);
 /*
 ** Drawing functions
 */
-void	render(t_fdf *fdf);
+int		render(t_fdf *fdf);
 void	draw_image(t_image *image, int max_x, int max_y);
 void	bresenham(t_fdf *fdf, t_point start, t_point end);
 void	pixel_to_image(t_image *image, float x, float y, int color);
