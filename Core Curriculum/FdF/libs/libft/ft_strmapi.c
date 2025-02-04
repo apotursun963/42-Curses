@@ -1,16 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ft.c                                            :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/28 14:47:19 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/04 16:21:20 by atursun          ###   ########.fr       */
+/*   Created: 2024/10/08 18:37:50 by atursun           #+#    #+#             */
+/*   Updated: 2024/10/18 12:22:20 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_ft(int *nbr)
+#include "libft.h"
+
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	*nbr = 42;
+	int		index;
+	char	*str;
+
+	if (!s)
+		return (NULL);
+	str = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
+	if (!str)
+		return (NULL);
+	index = -1;
+	while (s[++index])
+		str[index] = f(index, s[index]);
+	str[index] = '\0';
+	return (str);
 }

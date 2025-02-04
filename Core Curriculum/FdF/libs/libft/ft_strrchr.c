@@ -1,16 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ft.c                                            :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/28 14:47:19 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/04 16:21:20 by atursun          ###   ########.fr       */
+/*   Created: 2024/10/07 18:41:33 by atursun           #+#    #+#             */
+/*   Updated: 2024/10/18 10:21:44 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_ft(int *nbr)
+#include "libft.h"
+
+char	*ft_strrchr(const char *str, int chr)
 {
-	*nbr = 42;
+	int	len;
+
+	len = ft_strlen(str);
+	while (len >= 0)
+	{
+		if (str[len] == (char)chr)
+			return ((char *)(&str[len]));
+		len--;
+	}
+	return (NULL);
 }

@@ -1,16 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ft.c                                            :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/28 14:47:19 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/04 16:21:20 by atursun          ###   ########.fr       */
+/*   Created: 2024/10/14 11:56:27 by atursun           #+#    #+#             */
+/*   Updated: 2024/10/18 10:16:35 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_ft(int *nbr)
+#include "libft.h"
+
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	*nbr = 42;
+	new->next = *lst;
+	*lst = new;
 }

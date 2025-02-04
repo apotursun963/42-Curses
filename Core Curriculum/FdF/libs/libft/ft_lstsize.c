@@ -1,16 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ft.c                                            :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/28 14:47:19 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/04 16:21:20 by atursun          ###   ########.fr       */
+/*   Created: 2024/10/14 11:59:58 by atursun           #+#    #+#             */
+/*   Updated: 2024/10/18 10:17:14 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_ft(int *nbr)
+#include "libft.h"
+
+int	ft_lstsize(t_list *lst)
 {
-	*nbr = 42;
+	t_list	*current_unit;
+	int		counter;
+
+	if (!lst)
+		return (0);
+	counter = 0;
+	current_unit = lst;
+	while (current_unit)
+	{
+		current_unit = current_unit->next;
+		counter++;
+	}
+	return (counter);
 }

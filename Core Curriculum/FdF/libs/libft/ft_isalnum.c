@@ -1,16 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ft.c                                            :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/28 14:47:19 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/04 16:21:20 by atursun          ###   ########.fr       */
+/*   Created: 2024/10/07 12:39:51 by atursun           #+#    #+#             */
+/*   Updated: 2024/10/18 18:30:28 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_ft(int *nbr)
+#include "libft.h"
+
+int	ft_isalnum(int a)
 {
-	*nbr = 42;
+	if (ft_isalpha(a) || ft_isdigit(a))
+		return (1);
+	return (0);
 }

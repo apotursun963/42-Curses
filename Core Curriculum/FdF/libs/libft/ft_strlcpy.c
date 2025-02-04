@@ -1,16 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ft.c                                            :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/28 14:47:19 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/04 16:21:20 by atursun          ###   ########.fr       */
+/*   Created: 2024/10/07 15:16:35 by atursun           #+#    #+#             */
+/*   Updated: 2024/10/18 10:20:38 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_ft(int *nbr)
+#include "libft.h"
+
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	*nbr = 42;
+	size_t	idx;
+	size_t	lenght;
+
+	lenght = ft_strlen(src);
+	if (dstsize)
+	{
+		idx = 0;
+		while ((*src) && (idx < (dstsize - 1)))
+			dst[idx++] = *src++;
+		dst[idx] = '\0';
+	}
+	return (lenght);
 }

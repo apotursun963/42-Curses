@@ -1,16 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ft.c                                            :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/28 14:47:19 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/04 16:21:20 by atursun          ###   ########.fr       */
+/*   Created: 2024/10/08 17:51:58 by atursun           #+#    #+#             */
+/*   Updated: 2024/10/18 12:06:01 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_ft(int *nbr)
+#include "libft.h"
+
+void	*ft_memchr(const void *str, int chr, size_t n)
 {
-	*nbr = 42;
+	unsigned char	*ptr;
+
+	ptr = (unsigned char *)str;
+	while (n--)
+	{
+		if (*(ptr++) == (unsigned char)chr)
+			return ((void *)(ptr - 1));
+	}
+	return (NULL);
 }

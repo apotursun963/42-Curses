@@ -1,16 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ft.c                                            :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/28 14:47:19 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/04 16:21:20 by atursun          ###   ########.fr       */
+/*   Created: 2024/10/14 12:14:55 by atursun           #+#    #+#             */
+/*   Updated: 2024/10/18 16:34:37 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_ft(int *nbr)
+#include "libft.h"
+
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	*nbr = 42;
+	t_list	*current_unit;
+	t_list	*next_unit;
+
+	if (!(lst) || !(*lst))
+		return ;
+	current_unit = *lst;
+	while (current_unit)
+	{
+		next_unit = current_unit->next;
+		if (del && current_unit->content)
+			del(current_unit->content);
+		free(current_unit);
+		current_unit = next_unit;
+	}
+	*lst = NULL;
 }
