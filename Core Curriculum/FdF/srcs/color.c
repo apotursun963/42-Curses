@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:01:02 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/04 16:24:23 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/05 17:01:55 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,13 @@ t_color	*color_init(t_point start, t_point end)
 	return (color);
 }
 
+/*
+Bu fonksiyon, iki renk (başlangıç ve bitiş renkleri) arasındaki farkları hesaplayan bir yapı (t_color) başlatır. 
+min_color ve max_color değerlerini alarak, her iki rengin kırmızı, yeşil ve mavi bileşenlerini ayrıştırır. 
+Ardından, bu bileşenler arasındaki farkları (delta) hesaplar. 
+Fonksiyon, başlangıç ve bitiş renkleri ile bu farkları içeren bir t_color yapısını döndürür.
+Bu yapı, renk geçişleri veya animasyonları için kullanılabilir.
+*/
 t_color	*color_pallet_init(int min_color, int max_color)
 {
 	t_color	*color;

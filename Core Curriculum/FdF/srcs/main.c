@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:00:14 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/04 18:29:01 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/05 17:15:38 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@ void	apply_colors(t_fdf *fdf, t_point *point)
 			free(col);
 		}
 	}
-}
+}	
 
 /*
 İki nokta arasındaki çizgiyi çizer. z ölçeklendirmesi, renk ayarı, rotasyon, projeksiyon ve dönüşümler 
-yapıldıktan sonra Bresenham algoritması ile çizim yapılır.  
+yapıldıktan sonra Bresenham algoritması ile çizim yapılır.
 */
 void	render_line(t_fdf *fdf, t_point start, t_point end)
 {
@@ -59,7 +59,7 @@ void	render_line(t_fdf *fdf, t_point start, t_point end)
 	if (!fdf->image->line)
 		free_all(fdf, 7);
 	rotate(fdf->cam, fdf->image->line);
-	project(fdf->cam, fdf->image->line);
+	projection(fdf->cam, fdf->image->line);
 	transform(fdf->cam, fdf->image->line);
 	bresenham(fdf, fdf->image->line->start, fdf->image->line->end);
 	free(fdf->image->line);
@@ -98,15 +98,14 @@ int	render(t_fdf *fdf)
 
 int	main(int argc, char **argv)
 {
-	char	*file_name;
 	t_fdf	*fdf;
 
-	file_name = argv[1];
-	if (argc != 2 || !is_file_extension_valid(file_name))
+	if (argc != 2 || !is_file_extension_valid(argv[1]))
 		error(1);
-	fdf = init_fdf(file_name);
+	fdf = init_fdf(argv[1]);
 	render(fdf);
 	mlx_key_hook(fdf->win, &key_handle, fdf);
 	// mlx_expose_hook(fdf->win, &render, fdf);		// kaldir yada kaldirma
 	mlx_loop(fdf->mlx);
+	return (0);
 }

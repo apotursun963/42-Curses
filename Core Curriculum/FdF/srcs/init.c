@@ -3,15 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:00:25 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/04 18:10:59 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/05 12:33:14 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
+/*
+Bu fonksiyon, bir harita verisini okur, bir pencere oluşturur, 
+resim ve kamera başlatır, ardından her şey başarılı bir şekilde 
+başlatıldığında bu yapıyı geri döndürür.
+*/
 t_fdf	*init_fdf(char *file_name)
 {
 	t_fdf	*fdf;
@@ -38,6 +43,14 @@ t_fdf	*init_fdf(char *file_name)
 	return (fdf);
 }
 
+/*
+Bu fonksiyon, bir harita nesnesi (t_map) oluşturur ve harita için başlangıç 
+değerlerini ayarlar. Koordinatlar NULL olarak başlatılır ve harita boyutları 
+ve yükseklik değerleri sıfırlanır. Fonksiyon başarılı bir şekilde oluşturulan 
+harita nesnesini döndürür.
+max_x, max_y: Haritanın en geniş ve en uzun boyutları.
+max_z, min_z: Haritanın en yüksek ve en düşük Z koordinatları (yükseklik değerleri).
+*/
 t_map	*init_map(void)
 {
 	t_map	*map;
@@ -53,6 +66,11 @@ t_map	*init_map(void)
 	return (map);
 }
 
+/*
+Bu fonksiyon, MLX kütüphanesini kullanarak yeni bir resim nesnesi (t_image) oluşturur. 
+Resmin verilerine (piksel, satır uzunluğu vb.) doğrudan erişim sağlamak için gerekli 
+olan tüm bilgileri toplar. 
+*/
 t_image	*init_image(void *mlx)
 {
 	t_image	*image;
@@ -67,6 +85,12 @@ t_image	*init_image(void *mlx)
 	return (image);
 }
 
+/*
+Bu fonksiyon, bir kamera nesnesi oluşturur ve harita verilerini uygun şekilde 
+görüntülemek için gerekli başlangıç ayarlarını yapar. Kameranın projeksiyon tipi, 
+renk paleti, ölçek faktörü, konum ve dönüş açıları gibi özellikler belirlenir.
+Fonksiyon başarılı bir şekilde bir kamera nesnesi döndürür.
+*/
 t_cam	*init_cam(t_map *map)
 {
 	t_cam	*cam;

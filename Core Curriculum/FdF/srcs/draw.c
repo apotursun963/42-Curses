@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:00:56 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/04 18:10:40 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/05 14:04:17 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,18 @@ void	bresenham(t_fdf *fdf, t_point start, t_point end)
 	free(color);
 }
 
+/*
+Bu fonksiyon, bir görüntü (image) üzerindeki belirli bir x, y koordinatındaki pikselin rengini (color) belleğe yazar.
+// "endian" Byte Sıralaması: Renk verisinin bellekte nasıl saklandığını belirler.
+Big Endian: En yüksek bayt önce gelir. 1
+Little Endian: En düşük bayt önce gelir. 0
+*/
 void	pixel_to_image(t_image *image, float x, float y, int color)
 {
 	int	pixel;
 
-	pixel = ((int)y * image->line_bytes) + ((int)x * 4);
-	if (image->endian == 1)
+	pixel = ((int)y * image->line_bytes) + ((int)x * 4);	// Belirtilen x ve y koordinatlarındaki pikselin hafıza adresi hesaplanır.
+	if (image->endian == 1)									
 	{
 		image->buffer[pixel + 0] = (color >> 24);
 		image->buffer[pixel + 1] = (color >> 16) & 0xff;
@@ -62,6 +68,11 @@ void	pixel_to_image(t_image *image, float x, float y, int color)
 	}
 }
 
+/*
+Bu fonksiyon, bir resim (image) üzerinde tüm pikselleri sıfırlayıp, 
+her pikseli belirli bir arka plan rengi ile doldurur. 
+Bu, genellikle yeni bir çizim yapılmadan önce önceki içeriklerin silinmesi gerektiğinde kullanılır. 
+*/
 void	clear_image(t_image *image, int image_size)
 {
 	int	x;

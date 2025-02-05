@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_handle.c                                       :+:      :+:    :+:   */
+/*   keybord.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:00:20 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/04 18:11:12 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/05 16:48:22 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-static void	key_translate(int keycode, t_fdf *fdf)
+void	key_translate(int keycode, t_fdf *fdf)
 {
 	if (keycode == KEY_RIGHT)
 		fdf->cam->move_x += 10;
@@ -24,7 +24,7 @@ static void	key_translate(int keycode, t_fdf *fdf)
 		fdf->cam->move_y -= 10;
 }
 
-static void	key_scale(int keycode, t_fdf *fdf)
+void	key_scale(int keycode, t_fdf *fdf)
 {
 	if (keycode == KEY_PLUS)
 		fdf->cam->scale_factor += 1;
@@ -36,7 +36,7 @@ static void	key_scale(int keycode, t_fdf *fdf)
 		fdf->cam->scale_z += 0.1;
 }
 
-static void	key_rotate(int keycode, t_fdf *fdf)
+void	key_rotate(int keycode, t_fdf *fdf)
 {
 	if (keycode == KEY_S)
 		fdf->cam->alpha -= (5 * ANG_1);
@@ -52,7 +52,7 @@ static void	key_rotate(int keycode, t_fdf *fdf)
 		fdf->cam->beta += (5 * ANG_1);
 }
 
-static void	key_project(int keycode, t_fdf *fdf)
+void	key_project(int keycode, t_fdf *fdf)
 {
 	if (keycode == KEY_P)
 		fdf->cam->projection = PERSPECTIVE;

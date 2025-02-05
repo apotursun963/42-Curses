@@ -10,7 +10,7 @@ SRCDIR = ./srcs/
 OBJDIR = objs/
 
 SRC = main.c free.c color.c draw.c error.c init_utils.c \
-	  init.c keybord.c menu.c project.c read.c \
+	  init.c keybord.c menu.c projection.c read.c \
 	  rotate.c transform.c utils.c
 
 OBJ = $(patsubst %.c, $(OBJDIR)/%.o, $(SRC))

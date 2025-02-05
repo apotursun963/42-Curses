@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:00:30 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/04 13:00:47 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/05 13:07:54 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,10 @@ t_point	**init_coordinates(int width, int depth)
 	return (coordinates);
 }
 
+/*
+Bu fonksiyon, harita koordinatlarını haritanın merkezine göre kaydırarak orijine taşır. 
+Her bir noktanın x ve y koordinatlarından haritanın yarı genişliği ve yüksekliği kadar çıkarma işlemi yapılır. 
+*/
 void	center_to_origin(t_map *map)
 {
 	int	x;
@@ -52,8 +56,8 @@ void	center_to_origin(t_map *map)
 		x = 0;
 		while (x < map->max_x)
 		{
-			map->coordinates[x][y].x -= map->max_x / 2;
-			map->coordinates[x][y].y -= map->max_y / 2;
+			map->coordinates[x][y].x -= map->max_x / 2;		// x koordinatını haritanın yatay ortalamasına göre kaydırıyoruz.
+			map->coordinates[x][y].y -= map->max_y / 2;		// y koordinatını haritanın dikey ortalamasına göre kaydırıyoruz.
 			x++;
 		}
 		y++;
