@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:00:30 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/05 13:07:54 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/06 13:02:03 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ float	scale_to_fit(t_map *map)
 	float	scale_y;
 	float	scale_factor;
 
-	scale_x = WINDOW_WIDTH / map->max_x;
-	scale_y = WINDOW_HEIGHT / map->max_y;
+	scale_x = WIDTH / map->max_x;
+	scale_y = HEIGHT / map->max_y;
 	scale_factor = min(scale_x, scale_y);
 	if (scale_factor < 4)
 		return (2);
@@ -82,8 +82,8 @@ void	reset(t_fdf *fdf)
 {
 	fdf->cam->scale_factor = scale_to_fit(fdf->map);
 	fdf->cam->scale_z = 1;
-	fdf->cam->move_x = WINDOW_WIDTH / 2;
-	fdf->cam->move_y = WINDOW_HEIGHT / 2;
+	fdf->cam->move_x = WIDTH / 2;
+	fdf->cam->move_y = HEIGHT / 2;
 	fdf->cam->alpha = 0;
 	fdf->cam->beta = 0;
 	fdf->cam->gamma = 0;

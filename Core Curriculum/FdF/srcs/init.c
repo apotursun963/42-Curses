@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:00:25 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/05 12:33:14 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/06 13:01:49 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ t_fdf	*init_fdf(char *file_name)
 		error(4);
 	}
 	fdf->mlx = mlx_init();
-	fdf->win_x = WINDOW_WIDTH;
-	fdf->win_y = WINDOW_HEIGHT;
-	fdf->win = mlx_new_window(fdf->mlx, fdf->win_x, fdf->win_y, WINDOW_NAME);
+	fdf->win_x = WIDTH;
+	fdf->win_y = HEIGHT;
+	fdf->win = mlx_new_window(fdf->mlx, fdf->win_x, fdf->win_y, NAME);
 	fdf->image = init_image(fdf->mlx);
 	if (!fdf->image)
 		free_map(fdf, 5);
@@ -78,7 +78,7 @@ t_image	*init_image(void *mlx)
 	image = malloc(sizeof(t_image));
 	if (!image)
 		return (NULL);
-	image->image = mlx_new_image(mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+	image->image = mlx_new_image(mlx, WIDTH, HEIGHT);
 	image->buffer = mlx_get_data_addr(image->image, &image->pixel_bits, \
 			&image->line_bytes, &image->endian);
 	image->line = NULL;
@@ -102,8 +102,8 @@ t_cam	*init_cam(t_map *map)
 	cam->color_pallet = FALSE;
 	cam->scale_factor = scale_to_fit(map);
 	cam->scale_z = 1;
-	cam->move_x = WINDOW_WIDTH / 2;
-	cam->move_y = WINDOW_HEIGHT / 2;
+	cam->move_x = WIDTH / 2;
+	cam->move_y = HEIGHT / 2;
 	cam->alpha = 0;
 	cam->beta = 0;
 	cam->gamma = 0;

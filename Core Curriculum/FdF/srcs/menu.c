@@ -6,13 +6,13 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:00:08 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/04 18:23:15 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/06 13:02:48 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-static char	*get_projection_name(t_fdf *fdf)
+char	*get_projection_name(t_fdf *fdf)
 {	
 	char	*projection;
 
@@ -26,7 +26,7 @@ static char	*get_projection_name(t_fdf *fdf)
 	return (projection);
 }
 
-void	print_menu(t_fdf *fdf)
+void	print_menu_bar(t_fdf *fdf)
 {
 	int		y;
 	char	*projection;

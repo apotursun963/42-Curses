@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:01:38 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/05 15:01:27 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/06 12:57:30 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,18 +121,17 @@ typedef struct s_fdf
 	t_cam	*cam;
 }	t_fdf;
 
-# define WINDOW_NAME	 	"FDF"
-# define WINDOW_WIDTH		2000
-# define WINDOW_HEIGHT		1500
-# define MAX_PIXEL			1080000
-# define LINE_DEFAULT		C_WHITE
-# define BACKGROUND_DEFAULT	C_GREY
-# define C_TEXT				C_WHITE
-
-# define HEXADECIMAL_L_BASE	"0123456789abcdef"
-# define ANG_1				0.01745329
-# define ANG_30				0.52359877
-# define ANG_45				0.78539816
+# define NAME	 		"FDF"
+# define WIDTH			2000
+# define HEIGHT			1500
+# define MAX_PIXEL		1080000
+# define LINE_DEF		WHITE
+# define BACK_DEF		GREY
+# define C_TEXT			WHITE
+# define HEXADECM	"0123456789abcdef"
+# define ANG_1			0.01745329
+# define ANG_30			0.52359877
+# define ANG_45			0.78539816
 
 
 enum e_projection
@@ -172,6 +171,7 @@ t_color	*color_pallet_init(int min_color, int max_color);
 float	absolute(float nbr);
 float	max(float a, float b);
 float	min(float a, float b);
+int		is_twin(int num1, int num2);
 
 int		render(t_fdf *fdf);
 void	draw_image(t_image *image, int max_x, int max_y);

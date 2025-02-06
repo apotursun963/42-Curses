@@ -3,69 +3,69 @@
 /*                                                        :::      ::::::::   */
 /*   read.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 12:59:28 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/05 16:05:07 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/06 12:59:43 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
 /*
-Bu fonksiyon, harita dosyasındaki her satırdaki "en geniş" 
-öğe sayısını (yani, satırdaki öğe sayısını) tespit eder.
+Bu fonksiyon, verilen dosyanın her satırındaki kelime sayısının
+sabit olup olmadığını kontrol ediyor.
+yani her satırdaki kelime (sayı) sayısı eşitse yani sütün sayısı eşitse 
+okeydir
 */
-int	get_width(char *file_name)
+int	get_number_of_col(char *file)
 {
 	int		fd;
 	char	*line;
-	int		width;
-	int		new_width;
-
-	fd = open(file_name, O_RDONLY, 0);
+	int		col;
+	int		next_col;
+	
+	fd = open(file, O_RDONLY, 0);
 	line = get_next_line(fd);
-	if (!line)
+	if (line == NULL)
 		return (0);
-	width = ft_len_of_word(line, ' ');
+	col = ft_len_of_word(line, ' ');
 	free(line);
 	while (1)
 	{
 		line = get_next_line(fd);
 		if (line == NULL)
 			break ;
-		new_width = ft_len_of_word(line, ' ');
-		if (width != new_width)
+		next_col = ft_len_of_word(line, ' ');
+		if (!is_twin(col, next_col))
 			return (0);
 		free(line);
 	}
-	close(fd);
-	return (width);
+	return (close(fd), col);
 }
 
 /*
 Bu fonksiyon, dosyadaki toplam satır sayısını yani "derinliği" hesaplar. 
 Bu, haritadaki satır sayısını (Y eksenindeki boyutu) belirler.
 */
-int	get_depth(char *file_name)
+int	get_number_of_row(char *file)
 {
 	int		fd;
-	int		depth;
+	int		row;
 	char	*line;
-	
-	fd = open(file_name, O_RDONLY, 0);
-	depth = 0;
+
+	row = 0;
+	fd = open(file, O_RDONLY, 0);
 	while (1)
 	{
 		line = get_next_line(fd);
 		if (line == NULL)
-			break ;
-		if (ft_isprint(*line))
-			depth++;
+			break;
+		if (ft_isprint(*line))		// *line -> line dizisinin ilk karakterini temsil eder
+			row++;
 		free(line);
 	}
-	close(fd);
-	return (depth);
+	return (close(fd), row);
 }
 
 /*
@@ -83,7 +83,7 @@ void	fill_point(char *point, t_map *map, int coord_x, int coord_y)
 		info = ft_split(point, ',');
 		map->coordinates[coord_x][coord_y].z = (float)ft_atoi(info[0]);
 		map->coordinates[coord_x][coord_y].color = \
-			ft_atoi_base(info[1], HEXADECIMAL_L_BASE);
+			ft_atoi_base(info[1], HEXADECM);
 		i = 0;
 		while (info[i])
 			free(info[i++]);
@@ -104,14 +104,14 @@ void	fill_point(char *point, t_map *map, int coord_x, int coord_y)
 get_points fonksiyonu, her bir harita noktasının değerlerini dosyadan okur ve 
 fill_point fonksiyonu ile bu verileri harita yapısına yerleştirir.
 */
-void	get_points(char *file_name, t_map *map)
+void	get_points(char *file, t_map *map)
 {
 	int		fd;
 	char	*line;
 	char	**split;
 	int		coord[2];
 
-	fd = open(file_name, O_RDONLY, 0);
+	fd = open(file, O_RDONLY, 0);
 	coord[1] = 0;
 	while (1)
 	{
@@ -136,19 +136,19 @@ void	get_points(char *file_name, t_map *map)
 /*
 Bu fonksiyon, harita dosyasını baştan sona okur ve harita verilerini işleyip bir t_map yapısında toplar.
 */
-t_map	*read_map(char *file_name)
+t_map	*read_map(char *file)
 {
 	t_map	*map;
 
 	map = init_map();
 	if (!map)
 		return (NULL);
-	map->max_x = get_width(file_name);			// Harita dosyasının genişliğini alır. max clos
-	map->max_y = get_depth(file_name);			// Harita dosyasının derinliğini alır. max rows
+	map->max_x = get_number_of_col(file);
+	map->max_y = get_number_of_row(file);
 	map->coordinates = init_coordinates(map->max_x, map->max_y);
 	if (!map->coordinates)
 		return (free(map), NULL);
-	get_points(file_name, map);
+	get_points(file, map);
 	center_to_origin(map);
 	return (map);
 }

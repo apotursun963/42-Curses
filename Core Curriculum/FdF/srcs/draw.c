@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:00:56 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/05 14:04:17 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/06 13:01:08 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@ void	bresenham(t_fdf *fdf, t_point start, t_point end)
 	while (i_line < max_steps)
 	{
 		start.color = get_color(color, i_line++, max_steps);
-		if (start.x > 0 && start.y > 0 && start.x < WINDOW_WIDTH && start.y < \
-				WINDOW_HEIGHT)
+		if (start.x > 0 && start.y > 0 && start.x < WIDTH && start.y < HEIGHT)
 			pixel_to_image(fdf->image, start.x, start.y, start.color);
 		start.x += x_step;
 		start.y += y_step;
@@ -80,12 +79,12 @@ void	clear_image(t_image *image, int image_size)
 
 	ft_bzero(image->buffer, image_size);
 	y = 0;
-	while (y < WINDOW_HEIGHT)
+	while (y < HEIGHT)
 	{
 		x = 0;
-		while (x < WINDOW_WIDTH)
+		while (x < WIDTH)
 		{
-			pixel_to_image(image, x, y, BACKGROUND_DEFAULT);
+			pixel_to_image(image, x, y, BACK_DEF);
 			x++;
 		}
 		y++;

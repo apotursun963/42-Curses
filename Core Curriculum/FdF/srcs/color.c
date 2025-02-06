@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:01:02 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/05 17:01:55 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/06 13:00:25 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,13 @@ t_color	*color_init(t_point start, t_point end)
 	if (!color)
 		return (NULL);
 	color->start_color = start.color;
-	color->start_r = (C_RED & start.color) >> 16;
-	color->start_g = (C_GREEN & start.color) >> 8;
-	color->start_b = (C_BLUE & start.color);
+	color->start_r = (RED & start.color) >> 16;
+	color->start_g = (GREEN & start.color) >> 8;
+	color->start_b = (BLUE & start.color);
 	color->end_color = end.color;
-	color->end_r = (C_RED & end.color) >> 16;
-	color->end_g = (C_GREEN & end.color) >> 8;
-	color->end_b = (C_BLUE & end.color);
+	color->end_r = (RED & end.color) >> 16;
+	color->end_g = (GREEN & end.color) >> 8;
+	color->end_b = (BLUE & end.color);
 	color->delta_r = (color->end_r - color->start_r);
 	color->delta_g = (color->end_g - color->start_g);
 	color->delta_b = (color->end_b - color->start_b);
@@ -82,13 +82,13 @@ t_color	*color_pallet_init(int min_color, int max_color)
 	if (!color)
 		return (NULL);
 	color->start_color = min_color;
-	color->start_r = (C_RED & min_color) >> 16;
-	color->start_g = (C_GREEN & min_color) >> 8;
-	color->start_b = (C_BLUE & min_color);
+	color->start_r = (RED & min_color) >> 16;
+	color->start_g = (GREEN & min_color) >> 8;
+	color->start_b = (BLUE & min_color);
 	color->end_color = max_color;
-	color->end_r = (C_RED & max_color) >> 16;
-	color->end_g = (C_GREEN & max_color) >> 8;
-	color->end_b = (C_BLUE & max_color);
+	color->end_r = (RED & max_color) >> 16;
+	color->end_g = (GREEN & max_color) >> 8;
+	color->end_b = (BLUE & max_color);
 	color->delta_r = (color->end_r - color->start_r);
 	color->delta_g = (color->end_g - color->start_g);
 	color->delta_b = (color->end_b - color->start_b);

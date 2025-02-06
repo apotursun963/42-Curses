@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:00:14 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/05 17:15:38 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/06 13:02:29 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,20 @@ void	apply_colors(t_fdf *fdf, t_point *point)
 	if (fdf->cam->color_pallet == FALSE)
 	{
 		if (point->color == -1)
-			point->color = LINE_DEFAULT;
+			point->color = LINE_DEF;
 	}
 	else
 	{
 		if (point->z >= 0)
 		{
-			col = color_pallet_init(C_GREY, C_ORANGY);
+			col = color_pallet_init(GREY, ORANGY);
 			point->color = get_color(col, absolute(point->z), \
 				absolute(fdf->map->max_z));
 			free(col);
 		}
 		else
 		{
-			col = color_pallet_init(C_GREY, C_BLUEY);
+			col = color_pallet_init(GREY, BLUE);
 			point->color = get_color(col, absolute(point->z), \
 				absolute(fdf->map->max_z));
 			free(col);
