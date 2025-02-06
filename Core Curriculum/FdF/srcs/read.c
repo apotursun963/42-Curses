@@ -6,7 +6,7 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 12:59:28 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/06 12:59:43 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/06 13:25:48 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,10 @@ int	get_number_of_row(char *file)
 }
 
 /*
-Bu fonksiyon, her bir harita noktasına ait veriyi alır ve bu veriyi map yapısındaki uygun koordinatlara yerleştirir.
+Bu fonksiyon, her bir harita noktasına ait veriyi (nokta) alır ve bu veriyi 
+map yapısındaki uygun koordinatlara yerleştirir.
+Bu fonksiyon, her bir harita noktası için hem yükseklik hem de renk 
+bilgilerini alarak harita yapısını oluşturur.
 */
 void	fill_point(char *point, t_map *map, int coord_x, int coord_y)
 {
@@ -84,7 +87,7 @@ void	fill_point(char *point, t_map *map, int coord_x, int coord_y)
 		map->coordinates[coord_x][coord_y].z = (float)ft_atoi(info[0]);
 		map->coordinates[coord_x][coord_y].color = \
 			ft_atoi_base(info[1], HEXADECM);
-		i = 0;
+		i = 0;			// bunu kolayca free liycek daha kolay bir fonksoyn vardi free dosyasinda
 		while (info[i])
 			free(info[i++]);
 		free(info);
@@ -92,7 +95,7 @@ void	fill_point(char *point, t_map *map, int coord_x, int coord_y)
 	else
 	{
 		map->coordinates[coord_x][coord_y].z = (float)ft_atoi(point);
-		map->coordinates[coord_x][coord_y].color = -1;
+		map->coordinates[coord_x][coord_y].color = false;
 	}
 	if (map->coordinates[coord_x][coord_y].z > map->max_z)
 		map->max_z = map->coordinates[coord_x][coord_y].z;
@@ -103,6 +106,8 @@ void	fill_point(char *point, t_map *map, int coord_x, int coord_y)
 /*
 get_points fonksiyonu, her bir harita noktasının değerlerini dosyadan okur ve 
 fill_point fonksiyonu ile bu verileri harita yapısına yerleştirir.
+kisacasi belirtilen dosyadaki verileri okuyarak her satırdaki her bir 
+değeri harita yapısındaki ilgili noktalara yerleştirir.
 */
 void	get_points(char *file, t_map *map)
 {
@@ -112,14 +117,14 @@ void	get_points(char *file, t_map *map)
 	int		coord[2];
 
 	fd = open(file, O_RDONLY, 0);
-	coord[1] = 0;
+	coord[1] = 0;		// y ekseni rows
 	while (1)
 	{
 		line = get_next_line(fd);
 		if (line == NULL)
 			break ;
 		split = ft_split(line, ' ');
-		coord[0] = 0;
+		coord[0] = 0;		// x ekseni cols
 		while (coord[0] < map->max_x)
 		{
 			fill_point(split[coord[0]], map, coord[0], coord[1]);

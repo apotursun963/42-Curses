@@ -6,7 +6,7 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:01:38 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/06 12:57:30 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/06 14:50:57 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <math.h>
+# include <stdbool.h>
 # include "keys.h"
 # include "colors.h"
 # include "../mlx_linux/mlx.h"
@@ -126,9 +127,9 @@ typedef struct s_fdf
 # define HEIGHT			1500
 # define MAX_PIXEL		1080000
 # define LINE_DEF		WHITE
-# define BACK_DEF		GREY
+# define BACK_DEF		BLACK
 # define C_TEXT			WHITE
-# define HEXADECM	"0123456789abcdef"
+# define HEXADECM		"0123456789abcdef"
 # define ANG_1			0.01745329
 # define ANG_30			0.52359877
 # define ANG_45			0.78539816
@@ -178,7 +179,7 @@ void	draw_image(t_image *image, int max_x, int max_y);
 void	bresenham(t_fdf *fdf, t_point start, t_point end);
 void	pixel_to_image(t_image *image, float x, float y, int color);
 void	clear_image(t_image *image, int image_size);
-void	print_menu(t_fdf *fdf);
+void	write_menu_bar(t_fdf *fdf);
 int		get_color(t_color *color, int i_line, int line_size);
 
 void	rotate(t_cam *cam, t_line *line);

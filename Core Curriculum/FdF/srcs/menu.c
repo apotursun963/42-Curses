@@ -6,7 +6,7 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:00:08 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/06 13:02:48 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/06 10:12:02 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*get_projection_name(t_fdf *fdf)
 	return (projection);
 }
 
-void	print_menu_bar(t_fdf *fdf)
+void	write_menu_bar(t_fdf *fdf)
 {
 	int		y;
 	char	*projection;

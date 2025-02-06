@@ -6,12 +6,18 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 12:59:42 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/04 16:17:12 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/06 20:14:56 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
+
+/*
+Doğruyu X ekseni etrafında döndürür.
+X koordinatı sabit kalır.
+Y ve Z koordinatları formüllere gore değişir:
+*/
 void	rotate_x(t_line *line, double angle)
 {
 	t_point	new_start;
@@ -27,6 +33,11 @@ void	rotate_x(t_line *line, double angle)
 	line->end.z = new_end.z;
 }
 
+/*
+Doğruyu Y ekseni etrafında döndürür.
+Y koordinatı sabit kalır.
+X ve Z koordinatları formüllere gore değişir:
+*/
 void	rotate_y(t_line *line, double angle)
 {
 	t_point	new_start;
@@ -42,6 +53,11 @@ void	rotate_y(t_line *line, double angle)
 	line->end.z = new_end.z;
 }
 
+/*
+Doğruyu Z ekseni etrafında döndürür.
+Z koordinatı sabit kalır.
+X ve Y koordinatları formüllere gore değişir:
+*/
 void	rotate_z(t_line *line, double angle)
 {
 	t_point	new_start;

@@ -12,9 +12,9 @@ NAME = libft.a
 OBJECTS = $(FUNCS:.c=.o)
 BONUS_OBJECTS = $(BFUNCS:.c=.o)
 
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
-REM = rm -vf
+REM = rm -f
 AR = ar -r
 
 all: $(NAME)

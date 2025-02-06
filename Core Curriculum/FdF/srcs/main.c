@@ -6,7 +6,7 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:00:14 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/06 13:02:29 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/06 20:00:50 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,35 +15,25 @@
 /*
 Bir Noktanın (point) rengini belirler. Eğer renk paleti devre dışıysa varsayılan rengi atar. 
 Aksi halde, z değerine göre uygun renk paletinden renk hesaplar.
+
+Eğer renk paleti aktifse (color_pallet == TRUE), noktanın yüksekliğine 
+(z değeri) göre renk belirlenir:
 */
 void	apply_colors(t_fdf *fdf, t_point *point)
 {
 	t_color	*col;
 
 	col = NULL;
-	if (fdf->cam->color_pallet == FALSE)
+	if (fdf->cam->color_pallet == FALSE && point->color == false)
+		point->color = LINE_DEF;
+	else if (fdf->cam->color_pallet == TRUE)
 	{
-		if (point->color == -1)
-			point->color = LINE_DEF;
+		col = color_pallet_init(BLACK, DBLUE);
+		point->color = get_color(col, absolute(point->z), \
+			absolute(fdf->map->max_z));
+		free(col);
 	}
-	else
-	{
-		if (point->z >= 0)
-		{
-			col = color_pallet_init(GREY, ORANGY);
-			point->color = get_color(col, absolute(point->z), \
-				absolute(fdf->map->max_z));
-			free(col);
-		}
-		else
-		{
-			col = color_pallet_init(GREY, BLUE);
-			point->color = get_color(col, absolute(point->z), \
-				absolute(fdf->map->max_z));
-			free(col);
-		}
-	}
-}	
+}
 
 /*
 İki nokta arasındaki çizgiyi çizer. z ölçeklendirmesi, renk ayarı, rotasyon, projeksiyon ve dönüşümler 
@@ -60,7 +50,7 @@ void	render_line(t_fdf *fdf, t_point start, t_point end)
 		free_all(fdf, 7);
 	rotate(fdf->cam, fdf->image->line);
 	projection(fdf->cam, fdf->image->line);
-	transform(fdf->cam, fdf->image->line);
+	transform(fdf->cam, fdf->image->line);	
 	bresenham(fdf, fdf->image->line->start, fdf->image->line->end);
 	free(fdf->image->line);
 }
@@ -92,7 +82,7 @@ int	render(t_fdf *fdf)
 		y++;
 	}
 	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->image->image, 0, 0);
-	print_menu(fdf);
+	write_menu_bar(fdf);
 	return (0);
 }
 

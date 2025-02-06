@@ -6,38 +6,55 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:01:02 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/06 13:00:25 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/06 12:52:12 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
+/*
+Bu fonksiyon, bir renk geçişi hesaplar. 
+Renk, RGB (kırmızı, yeşil, mavi) bileşenlerinden oluşur ve her 
+bileşen için bir değişim (delta) miktarı vardır. progress parametresi, 
+renk geçişinin ne kadar ilerlediğini belirten bir orandır (0 ile 1 arasında bir değer). 
+Bu oran, başlangıç renginden hedef renge doğru yapılan geçişin miktarını belirler.
+bir renk genellikle 24 bit ile temsil edilir. 8 bit * 3 = 24 bit (24-bit renk)
+*/
 int	color_gradient(t_color *color, float progress)
 {
-	int		r;
-	int		g;
-	int		b;
+	int		red;
+	int		green;
+	int		blue;
 
-	r = color->delta_r * progress;
-	if (r < -255)
-		r = 0;
-	else if (r > 255)
-		r = 255;
-	r = r << 16;
-	g = color->delta_g * progress;
-	if (g < -255)
-		g = 0;
-	else if (g > 255)
-		g = 255;
-	g = g << 8;
-	b = color->delta_b * progress;
-	if (b < -255)
-		b = 0;
-	else if (b > 255)
-		b = 255;
-	return (color->start_color + r + g + b);
+	// delta_r (kırmızı bileşeninin değişim miktarı) ile geçiş oranı (progress) çarpılır 
+		// ve kırmızı bileşenin yeni değeri hesaplanır.
+	red = color->delta_r * progress;
+	if (red < -255)
+		red = 0;
+	else if (red > 255)
+		red = 255;
+	red = red << 16;			// 16 bit sola kaydiriliyor
+	green = color->delta_g * progress;
+	if (green < -255)
+		green = 0;
+	else if (green > 255)
+		green = 255;
+	green = green << 8;
+	blue = color->delta_b * progress;
+	if (blue < -255)
+		blue = 0;
+	else if (blue > 255)
+		blue = 255;
+	return (color->start_color + red + green + blue);	// yeni renk degeri return ediliyor
 }
 
+/*
+get_color fonksiyonu, bir renk geçişi oranı hesaplamak için kullanılır 
+ve belirli bir satır için renk değerini elde eder.
+i_line parametresi, şu anda işlenen satırın numarasını temsil eder, 
+line_size ise toplam satır sayısını ifade eder. 
+Bu oran, o satırın geçişin ne kadar ilerlediğini belirtir.
+*/
 int	get_color(t_color *color, int i_line, int line_size)
 {
 	float	progress;

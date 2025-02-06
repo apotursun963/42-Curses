@@ -6,12 +6,17 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:00:56 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/06 13:01:08 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/06 13:03:17 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
+/*
+Bu fonksiyon, Bresenham algoritması kullanarak iki nokta arasındaki doğruyu çizer. 
+Renk geçişleri get_color ile yapılır ve her bir nokta için piksel ekranda yerleştirilir. 
+Fonksiyon, çizgi boyunca her bir adımı hesaplayarak çizim işlemi gerçekleştirir.
+*/
 void	bresenham(t_fdf *fdf, t_point start, t_point end)
 {
 	float	x_step;
@@ -20,6 +25,9 @@ void	bresenham(t_fdf *fdf, t_point start, t_point end)
 	int		i_line;
 	t_color	*color;
 
+	/*
+	çizgiyi oluşturacak iki nokta arasındaki farklar hesaplanir
+	*/
 	x_step = end.x - start.x;
 	y_step = end.y - start.y;
 	max_steps = (int)max(absolute(x_step), absolute(y_step));
@@ -51,7 +59,7 @@ void	pixel_to_image(t_image *image, float x, float y, int color)
 	int	pixel;
 
 	pixel = ((int)y * image->line_bytes) + ((int)x * 4);	// Belirtilen x ve y koordinatlarındaki pikselin hafıza adresi hesaplanır.
-	if (image->endian == 1)									
+	if (image->endian == 1)						
 	{
 		image->buffer[pixel + 0] = (color >> 24);
 		image->buffer[pixel + 1] = (color >> 16) & 0xff;
