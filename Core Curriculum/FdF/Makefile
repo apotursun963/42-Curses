@@ -48,7 +48,4 @@ fclean: clean
 
 re: fclean all
 
-install:
-	sudo apt-get update && sudo apt-get install xorg libxext-dev zlib1g-dev libbsd-dev
-
 .PHONY: clean fclean re all install

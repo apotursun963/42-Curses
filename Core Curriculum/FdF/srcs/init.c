@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:00:25 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/06 20:04:39 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/07 11:38:27 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_fdf	*init_fdf(char *file_name)
 	fdf->map = read_map(file_name);
 	if (!fdf->map)
 	{
-		free(fdf);
+		free(fdf);			// yada böyle yap daha kısa oluyor "(free(fdf), error(4))";
 		error(4);
 	}
 	fdf->mlx = mlx_init();

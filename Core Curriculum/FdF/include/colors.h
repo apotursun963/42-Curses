@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colors.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:01:30 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/06 10:50:00 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/07 17:02:02 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,6 @@
 # define RED	0xff0000
 # define GREEN	0x00ff00
 # define BLUE	0x0000ff
-# define YELLOW	0xffff00
-# define CYAN	0x00ffff
-# define PINK	0xff00ff
-# define DBLUE	0x05337f
-# define BLUEY	0x0492c2
+# define PURPLE	0x8a0286
 
 #endif

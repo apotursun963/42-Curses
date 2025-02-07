@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:01:02 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/06 12:52:12 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/07 17:16:47 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ bir renk genellikle 24 bit ile temsil edilir. 8 bit * 3 = 24 bit (24-bit renk)
 */
 int	color_gradient(t_color *color, float progress)
 {
-	int		red;
-	int		green;
-	int		blue;
+	int	red;
+	int	green;
+	int	blue;
 
 	// delta_r (kırmızı bileşeninin değişim miktarı) ile geçiş oranı (progress) çarpılır 
 		// ve kırmızı bileşenin yeni değeri hesaplanır.

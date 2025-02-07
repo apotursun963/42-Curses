@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:00:14 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/06 20:00:50 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/07 17:06:48 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	apply_colors(t_fdf *fdf, t_point *point)
 		point->color = LINE_DEF;
 	else if (fdf->cam->color_pallet == TRUE)
 	{
-		col = color_pallet_init(BLACK, DBLUE);
+		col = color_pallet_init(BLACK, PURPLE);
 		point->color = get_color(col, absolute(point->z), \
 			absolute(fdf->map->max_z));
 		free(col);
@@ -50,7 +50,7 @@ void	render_line(t_fdf *fdf, t_point start, t_point end)
 		free_all(fdf, 7);
 	rotate(fdf->cam, fdf->image->line);
 	projection(fdf->cam, fdf->image->line);
-	transform(fdf->cam, fdf->image->line);	
+	transform(fdf->cam, fdf->image->line);
 	bresenham(fdf, fdf->image->line->start, fdf->image->line->end);
 	free(fdf->image->line);
 }
@@ -94,8 +94,8 @@ int	main(int argc, char **argv)
 		error(1);
 	fdf = init_fdf(argv[1]);
 	render(fdf);
-	mlx_key_hook(fdf->win, &key_handle, fdf);
-	// mlx_expose_hook(fdf->win, &render, fdf);		// kaldir yada kaldirma
+	mlx_hook(fdf->win, 2, 1L << 0, &key_handle, fdf);
+	mlx_hook(fdf->win, 17, 0, &free_all, fdf);
 	mlx_loop(fdf->mlx);
 	return (0);
 }

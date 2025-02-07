@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:00:30 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/06 13:02:03 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/07 11:36:04 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,11 @@ void	center_to_origin(t_map *map)
 	}
 }
 
+/*
+Bu fonksiyon, haritanın boyutlarını ekranın boyutlarına sığacak şekilde ölçeklendirir. 
+scale_x ve scale_y oranlarını hesaplayıp, hangisi küçükse onu seçer, 
+böylece harita boyutları ekranın içine sığacak şekilde ayarlanır.
+*/
 float	scale_to_fit(t_map *map)
 {
 	float	scale_x;

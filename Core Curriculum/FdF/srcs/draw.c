@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:00:56 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/06 13:03:17 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/07 15:19:27 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,24 +53,25 @@ Bu fonksiyon, bir görüntü (image) üzerindeki belirli bir x, y koordinatında
 // "endian" Byte Sıralaması: Renk verisinin bellekte nasıl saklandığını belirler.
 Big Endian: En yüksek bayt önce gelir. 1
 Little Endian: En düşük bayt önce gelir. 0
-*/
+RGBA = ABGA
+*/	
 void	pixel_to_image(t_image *image, float x, float y, int color)
 {
 	int	pixel;
 
 	pixel = ((int)y * image->line_bytes) + ((int)x * 4);	// Belirtilen x ve y koordinatlarındaki pikselin hafıza adresi hesaplanır.
-	if (image->endian == 1)						
+	if (image->endian == 1)										// yani bellekteki adresi .
 	{
 		image->buffer[pixel + 0] = (color >> 24);
-		image->buffer[pixel + 1] = (color >> 16) & 0xff;
-		image->buffer[pixel + 2] = (color >> 8) & 0xff;
-		image->buffer[pixel + 3] = (color) & 0xff;
+		image->buffer[pixel + 1] = (color >> 16);
+		image->buffer[pixel + 2] = (color >> 8);
+		image->buffer[pixel + 3] = (color);
 	}
 	else if (image->endian == 0)
 	{
-		image->buffer[pixel + 0] = (color) & 0xff;
-		image->buffer[pixel + 1] = (color >> 8) & 0xff;
-		image->buffer[pixel + 2] = (color >> 16) & 0xff;
+		image->buffer[pixel + 0] = (color);
+		image->buffer[pixel + 1] = (color >> 8);
+		image->buffer[pixel + 2] = (color >> 16);
 		image->buffer[pixel + 3] = (color >> 24);
 	}
 }

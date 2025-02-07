@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:01:38 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/06 14:50:57 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/07 12:11:53 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,7 +164,7 @@ t_point	**init_coordinates(int width, int depth);
 void	center_to_origin(t_map *map);
 float	scale_to_fit(t_map *map);
 void	reset(t_fdf *fdf);
-void	free_all(t_fdf *fdf, int exit_code);
+int	free_all(t_fdf *fdf, int exit_code);
 void	free_map(t_fdf *fdf, int exit_code);
 t_color	*color_init(t_point start, t_point end);
 t_color	*color_pallet_init(int min_color, int max_color);

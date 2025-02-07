@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:01:08 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/04 18:09:00 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/07 12:12:10 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	free_map(t_fdf *fdf, int exit_code)
 	error(exit_code);
 }
 
-void	free_all(t_fdf *fdf, int exit_code)
+int	free_all(t_fdf *fdf, int exit_code)
 {
 	free_coordinates(fdf->map->coordinates, fdf->map->max_x);
 	free(fdf->map);
@@ -44,4 +44,5 @@ void	free_all(t_fdf *fdf, int exit_code)
 	free(fdf->mlx);
 	free(fdf);
 	error(exit_code);
+	return (0);
 }
