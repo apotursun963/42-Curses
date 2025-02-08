@@ -6,7 +6,7 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:00:20 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/08 17:34:57 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/08 18:55:05 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 void	key_translate(int keycode, t_fdf *fdf)
 {
 	if (keycode == KEY_RIGHT)
-		fdf->cam->move_x += 10;
+		fdf->cam->move_x += 20;
 	else if (keycode == KEY_LEFT)
-		fdf->cam->move_x -= 10;
+		fdf->cam->move_x -= 20;
 	else if (keycode == KEY_DOWN)
-		fdf->cam->move_y += 10;
+		fdf->cam->move_y += 20;
 	else if (keycode == KEY_UP)
-		fdf->cam->move_y -= 10;
+		fdf->cam->move_y -= 20;
 }
 
 void	key_scale(int keycode, t_fdf *fdf)
@@ -39,17 +39,17 @@ void	key_scale(int keycode, t_fdf *fdf)
 void	key_rotate(int keycode, t_fdf *fdf)
 {
 	if (keycode == KEY_S)
-		fdf->cam->alpha -= (5 * ANG_1);
+		fdf->cam->alpha -= (3 * ANG_1);
 	else if (keycode == KEY_W)
-		fdf->cam->alpha += (5 * ANG_1);
+		fdf->cam->alpha += (3 * ANG_1);
 	else if (keycode == KEY_A)
-		fdf->cam->gamma -= (5 * ANG_1);
+		fdf->cam->gamma -= (3 * ANG_1);
 	else if (keycode == KEY_D)
-		fdf->cam->gamma += (5 * ANG_1);
+		fdf->cam->gamma += (3 * ANG_1);
 	else if (keycode == KEY_Q)
-		fdf->cam->beta -= (5 * ANG_1);
+		fdf->cam->beta -= (3 * ANG_1);
 	else if (keycode == KEY_E)
-		fdf->cam->beta += (5 * ANG_1);
+		fdf->cam->beta += (3 * ANG_1);
 }
 
 void	key_project(int keycode, t_fdf *fdf)

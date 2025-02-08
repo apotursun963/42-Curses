@@ -1,22 +1,19 @@
 NAME = fdf
+
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 MLX_FLAGS = -lm -lbsd -lmlx -lXext -lX11
 
 LIBFT_PATH = ./libs/libft/
 MLX_PATH = ./libs/mlx_linux/
-SRCDIR = ./srcs/
-
-SRC = srcs/main.c srcs/core/free.c srcs/graphics/color.c srcs/graphics/draw.c srcs/core/utils.c srcs/core/init.c \
-		srcs/core/keyhandle.c srcs/graphics/projection.c srcs/io/read.c \
-		srcs/transformation/rotate.c srcs/transformation/translate.c srcs/transformation/scale.c
-
-OBJ = $(SRC:.c=.o)
-
 LIBFT = $(LIBFT_PATH)libft.a
 MLX = $(MLX_PATH)libmlx.a
 
-RM = rm -rf
+SRC = srcs/core/main.c srcs/core/free.c srcs/graphics/color.c srcs/graphics/draw.c srcs/core/utils.c \
+		srcs/core/init.c srcs/core/keyhandle.c srcs/graphics/projection.c srcs/core/read.c \
+		srcs/transformation/rotate.c srcs/transformation/translate.c srcs/transformation/scale.c
+
+OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
@@ -32,10 +29,10 @@ $(LIBFT):
 clean:
 	@make clean -C $(LIBFT_PATH)
 	@make clean -C $(MLX_PATH)
-	$(RM) $(OBJ)
+	rm -rf $(OBJ)
 
 fclean: clean
-	$(RM) $(NAME)
+	rm -rf $(NAME)
 	@make fclean -C $(LIBFT_PATH)
 
 re: fclean all

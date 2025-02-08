@@ -6,7 +6,7 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:00:56 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/08 17:34:48 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/08 18:48:35 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,16 +77,19 @@ void	pixel_to_image(t_image *image, float x, float y, int color)
 }
 
 /*
+Bu fonksiyounun amaci görüntü sürekli güncelleniyor ve önceki çizimlerin 
+kalmaması için clear_image fonksiyonunu çağıriliyo.
+Yani görüntüye yeni bir şey çizmeden önce eski kalıntıları silmek için bu işlemi yapıyorsun.
 Bu fonksiyon, bir resim (image) üzerinde tüm pikselleri sıfırlayıp, 
 her pikseli belirli bir arka plan rengi ile doldurur. 
 Bu, genellikle yeni bir çizim yapılmadan önce önceki içeriklerin silinmesi gerektiğinde kullanılır. 
 */
-void	clear_image(t_image *image, int image_size)
+void	clear_image(t_image *image)
 {
 	int	x;
 	int	y;
 
-	ft_bzero(image->buffer, image_size);
+	ft_bzero(image->buffer, MAX_PIXEL);
 	y = 0;
 	while (y < HEIGHT)
 	{
