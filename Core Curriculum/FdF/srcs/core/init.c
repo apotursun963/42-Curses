@@ -6,11 +6,11 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:00:25 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/08 17:19:28 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/08 17:34:55 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/fdf.h"
+#include "../../headers/fdf.h"
 
 /*
 Bu fonksiyon, bir harita verisini okur, bir pencere oluşturur, 

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/fdf.h"
+#include "../../headers/fdf.h"
 
 void	scale(t_line *line, int scale_factor)
 {

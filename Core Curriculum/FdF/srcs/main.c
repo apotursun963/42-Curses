@@ -6,11 +6,11 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:00:14 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/08 17:14:47 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/08 17:34:31 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "../headers/fdf.h"
 
 /*
 Bir Noktanın (point) rengini belirler. Eğer renk paleti devre dışıysa varsayılan rengi atar. 

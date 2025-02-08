@@ -6,11 +6,11 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 12:59:17 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/08 17:19:38 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/08 17:34:50 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/fdf.h"
+#include "../../headers/fdf.h"
 
 char	*get_projection_name(t_fdf *fdf)
 {	

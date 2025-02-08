@@ -6,11 +6,11 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:00:20 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/08 17:19:30 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/08 17:34:57 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/fdf.h"
+#include "../../headers/fdf.h"
 
 void	key_translate(int keycode, t_fdf *fdf)
 {

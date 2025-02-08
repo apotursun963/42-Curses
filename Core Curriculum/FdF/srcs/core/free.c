@@ -6,11 +6,11 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:01:08 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/08 17:19:18 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/08 17:34:53 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/fdf.h"
+#include "../../headers/fdf.h"
 
 void	free_coordinates(t_point **coordinates, int width)
 {
