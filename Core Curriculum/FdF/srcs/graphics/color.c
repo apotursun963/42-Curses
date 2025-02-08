@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:01:02 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/07 17:16:47 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/08 17:19:35 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "../../include/fdf.h"
 
 /*
 Bu fonksiyon, bir renk geçişi hesaplar. 

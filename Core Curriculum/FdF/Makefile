@@ -5,15 +5,14 @@ MLX_FLAGS = -lm -lbsd -lmlx -lXext -lX11
 INCLUDES = -I./include
 
 LIBFT_PATH = ./libs/libft/
-MLX_PATH = ./mlx_linux/
+MLX_PATH = ./libs/mlx_linux/
 SRCDIR = ./srcs/
-OBJDIR = objs/
 
-SRC = main.c free.c color.c draw.c error.c init_utils.c \
-	  init.c keybord.c menu.c projection.c read.c \
-	  rotate.c transform.c utils.c
+SRC = $(SRCDIR)main.c $(SRCDIR)/core/free.c $(SRCDIR)/graphics/color.c $(SRCDIR)/graphics/draw.c $(SRCDIR)/core/utils.c $(SRCDIR)/core/init.c \
+		$(SRCDIR)/core/keyhandle.c $(SRCDIR)/graphics/projection.c $(SRCDIR)/io/read.c \
+		$(SRCDIR)/transformation/rotate.c $(SRCDIR)/transformation/translate.c $(SRCDIR)/transformation/scale.c
 
-OBJ = $(patsubst %.c, $(OBJDIR)/%.o, $(SRC))
+OBJ = $(SRC:.c=.o)
 
 LIBFT = $(LIBFT_PATH)libft.a
 MLX = $(MLX_PATH)libmlx.a
@@ -25,12 +24,6 @@ all: $(NAME)
 $(NAME): $(OBJ) $(LIBFT) $(MLX)
 	$(CC) $(CFLAGS) $(OBJ) -L$(LIBFT_PATH) -lft -L$(MLX_PATH) $(MLX_FLAGS) -o $(NAME)
 
-$(OBJDIR)/%.o: $(SRCDIR)%.c | $(OBJDIR)
-	$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDES)
-
-$(OBJDIR):
-	mkdir -p $(OBJDIR)
-
 $(MLX):
 	@make -C $(MLX_PATH)
 
@@ -40,7 +33,7 @@ $(LIBFT):
 clean:
 	@make clean -C $(LIBFT_PATH)
 	@make clean -C $(MLX_PATH)
-	$(RM) $(OBJDIR)
+	$(RM) $(OBJ)
 
 fclean: clean
 	$(RM) $(NAME)
@@ -48,4 +41,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: clean fclean re all install
+.PHONY: all clean fclean re

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_utils.c                                       :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:00:30 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/07 11:36:04 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/08 17:19:33 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "../../include/fdf.h"
 
 t_point	**init_coordinates(int width, int depth)
 {
@@ -42,8 +42,11 @@ t_point	**init_coordinates(int width, int depth)
 }
 
 /*
-Bu fonksiyon, harita koordinatlarını haritanın merkezine göre kaydırarak orijine taşır. 
+koordinat sistemini haritanın merkezine göre sıfırlamaktır. 
+Bu fonksiyon, harita koordinatlarını haritanın merkezine göre kaydırarak orijine taşır.
+Orijin, koordinat sisteminde (0,0) noktası olup tüm koordinatların referans alındığı merkez noktasıdır.
 Her bir noktanın x ve y koordinatlarından haritanın yarı genişliği ve yüksekliği kadar çıkarma işlemi yapılır. 
+X ekseni haritanın genişliğinin yarısı kadar, Y ekseni haritanın yüksekliğinin yarısı kadar kaydırılır.
 */
 void	center_to_origin(t_map *map)
 {
@@ -56,8 +59,8 @@ void	center_to_origin(t_map *map)
 		x = 0;
 		while (x < map->max_x)
 		{
-			map->coordinates[x][y].x -= map->max_x / 2;		// x koordinatını haritanın yatay ortalamasına göre kaydırıyoruz.
-			map->coordinates[x][y].y -= map->max_y / 2;		// y koordinatını haritanın dikey ortalamasına göre kaydırıyoruz.
+			map->coordinates[x][y].x -= map->max_x / 2;		// x koordinatını haritanın yatay ortalamasına göre sola kaydırıyoruz.
+			map->coordinates[x][y].y -= map->max_y / 2;		// y koordinatını haritanın dikey ortalamasına göre yukarı kaydırıyoruz.
 			x++;
 		}
 		y++;

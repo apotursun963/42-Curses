@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:00:56 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/07 15:19:27 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/08 17:19:37 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "../../include/fdf.h"
 
 /*
 Bu fonksiyon, Bresenham algoritması kullanarak iki nokta arasındaki doğruyu çizer. 
@@ -35,7 +35,7 @@ void	bresenham(t_fdf *fdf, t_point start, t_point end)
 	y_step /= max_steps;
 	color = color_init(start, end);
 	if (!color)
-		free_all(fdf, 8);
+		free_all(fdf);
 	i_line = 0;
 	while (i_line < max_steps)
 	{

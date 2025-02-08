@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   keybord.c                                          :+:      :+:    :+:   */
+/*   keyhandle.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:00:20 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/07 14:41:11 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/08 17:19:30 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "../../include/fdf.h"
 
 void	key_translate(int keycode, t_fdf *fdf)
 {
@@ -65,7 +65,7 @@ void	key_project(int keycode, t_fdf *fdf)
 int	key_handle(int keycode, t_fdf *fdf)
 {
 	if (keycode == KEY_ESC)
-		free_all(fdf, 0);
+		free_all(fdf);
 	else if (keycode == KEY_RIGHT || keycode == KEY_LEFT || keycode == KEY_UP \
 		|| keycode == KEY_DOWN)
 		key_translate(keycode, fdf);

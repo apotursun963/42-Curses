@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:00:14 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/07 17:06:48 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/08 17:14:47 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,11 @@ void	render_line(t_fdf *fdf, t_point start, t_point end)
 	apply_colors(fdf, &end);
 	fdf->image->line = init_line(start, end, fdf);
 	if (!fdf->image->line)
-		free_all(fdf, 7);
+		free_all(fdf);
 	rotate(fdf->cam, fdf->image->line);
 	projection(fdf->cam, fdf->image->line);
-	transform(fdf->cam, fdf->image->line);
+	scale(fdf->image->line, fdf->cam->scale_factor);
+	translate(fdf->image->line, fdf->cam->move_x, fdf->cam->move_y);
 	bresenham(fdf, fdf->image->line->start, fdf->image->line->end);
 	free(fdf->image->line);
 }
@@ -86,12 +87,22 @@ int	render(t_fdf *fdf)
 	return (0);
 }
 
+int 	is_file_extension_valid(char *filename)
+{
+	char	*res;
+	
+	res = ft_strrchr(filename, '.');
+	if (ft_strncmp(res, ".fdf", 4) != 0)
+		return (0);
+	return (1);
+}
+
 int	main(int argc, char **argv)
 {
 	t_fdf	*fdf;
 
 	if (argc != 2 || !is_file_extension_valid(argv[1]))
-		error(1);
+		exit(1);
 	fdf = init_fdf(argv[1]);
 	render(fdf);
 	mlx_hook(fdf->win, 2, 1L << 0, &key_handle, fdf);

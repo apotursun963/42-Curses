@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   read.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 12:59:28 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/07 11:20:54 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/08 17:19:40 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "../../include/fdf.h"
 
 /*
 Bu fonksiyon, verilen dosyanın her satırındaki kelime sayısının
@@ -37,7 +37,7 @@ int	get_number_of_col(char *file)
 		if (line == NULL)
 			break ;
 		next_col = ft_len_of_word(line, ' ');
-		if (!is_twin(col, next_col))
+		if (col != next_col)
 			return (0);
 		free(line);
 	}
@@ -87,7 +87,7 @@ void	fill_point(char *point, t_map *map, int coord_x, int coord_y)
 		map->coordinates[coord_x][coord_y].z = (float)ft_atoi(info[0]);
 		map->coordinates[coord_x][coord_y].color = \
 			ft_atoi_base(info[1], HEXADECM);
-		i = 0;			// bunu kolayca free liycek daha kolay bir fonksoyn vardi free dosyasinda
+		i = 0;
 		while (info[i])
 			free(info[i++]);
 		free(info);

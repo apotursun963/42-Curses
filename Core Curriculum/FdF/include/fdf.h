@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:01:38 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/07 12:11:53 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/08 17:31:45 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <stdbool.h>
 # include "keys.h"
 # include "colors.h"
-# include "../mlx_linux/mlx.h"
+# include "../libs/mlx_linux/mlx.h"
 # include "../libs/libft/libft.h"
 
 
@@ -152,7 +152,6 @@ enum e_bool
 t_map	*read_map(char *file_name);
 
 int 	is_file_extension_valid(char *filename);
-void	error(int exit_code);
 
 t_fdf	*init_fdf(char *file_name);
 t_map	*init_map(void);
@@ -164,15 +163,14 @@ t_point	**init_coordinates(int width, int depth);
 void	center_to_origin(t_map *map);
 float	scale_to_fit(t_map *map);
 void	reset(t_fdf *fdf);
-int	free_all(t_fdf *fdf, int exit_code);
-void	free_map(t_fdf *fdf, int exit_code);
+int		free_all(t_fdf *fdf);
+void	free_map(t_fdf *fdf);
 t_color	*color_init(t_point start, t_point end);
 t_color	*color_pallet_init(int min_color, int max_color);
 
 float	absolute(float nbr);
 float	max(float a, float b);
 float	min(float a, float b);
-int		is_twin(int num1, int num2);
 
 int		render(t_fdf *fdf);
 void	draw_image(t_image *image, int max_x, int max_y);
