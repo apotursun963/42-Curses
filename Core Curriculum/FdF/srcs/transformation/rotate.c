@@ -6,7 +6,7 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 12:59:42 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/08 17:34:36 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/09 18:51:00 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 Doğruyu X ekseni etrafında döndürür.
 X koordinatı sabit kalır.
 Y ve Z koordinatları formüllere gore değişir:
+
+alpha → Döndürme açısı 
+line->start.y ve line->start.z → Döndürülecek noktanın eski y ve z koordinatlarıdır.
 */
 void	rotate_x(t_line *line, double alpha)
 {

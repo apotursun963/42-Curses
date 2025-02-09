@@ -6,21 +6,21 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:28:41 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/04 13:28:43 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/09 13:09:57 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 /*
-*	DESCRIPTION
-*	The atoi_base() function converts the initial portion of the string pointed 
-*	to by str to its int representation considering a given base.
-*	PARAMETERS
-*	#1. The string to convert to integer.
-*	#2. The base in which to convert the string from, all lowercased.
-*	RETURN VALUES
-*	The atoi_base() function returns its converted int representation.
+Bu fonksiyon, belirtilen bir tabanda (base) verilen bir metin (string) 
+ifadesinin tamsayı (int) karşılığını döndürür.
+
+str → Dönüştürülmek istenen metin (string).
+base → Metnin dönüştürüleceği sayı tabanı (küçük harflerle yazılmış olmalı).
+
+Dönüş Değeri:
+atoi_base() fonksiyonu, verilen metni belirtilen tabana göre tamsayıya (int) çevirerek geri döndürür.
 */
 
 int	ft_convert_from_base(char *str, char *base)
@@ -96,4 +96,3 @@ int	ft_atoi_base(char *str, char *base)
 	total = ft_convert_from_base(&str[i], base);
 	return (total * sign);
 }
-

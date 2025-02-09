@@ -6,7 +6,7 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 18:34:46 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/08 16:54:45 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/09 13:06:07 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ char	*ft_search_new_line(char *str);
 char	*ft_merge_str(char *leftover, char *buffer);
 int		ft_len_of_word(char const *str, char c);
 int		ft_atoi_base(char *str, char *base);
-char	*ft_uitoa_base(unsigned long nbr, char *base);
 float	max(float a, float b);
 float	min(float a, float b);
 float	absolute(float nbr);

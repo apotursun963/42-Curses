@@ -6,7 +6,7 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 12:59:17 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/08 17:34:50 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/10 00:04:47 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 char	*get_projection_name(t_fdf *fdf)
 {	
 	char	*projection;
-	
+
 	projection = "";
 	if (fdf->cam->projection == ISOMETRIC)
-	projection = "Isometric projection";
+		projection = "Isometric projection";
 	else if (fdf->cam->projection == PERSPECTIVE)
-	projection = "Perspective projection";
+		projection = "Perspective projection";
 	else if (fdf->cam->projection == TOP)
-	projection = "Top view";
+		projection = "Top view";
 	return (projection);
 }
 
@@ -96,7 +96,6 @@ void	perspective(t_line *line)
 	line->end.y = -new_end.y;
 	scale(line, line->transform_z);
 }
-
 
 void	projection(t_cam *cam, t_line *line)
 {
