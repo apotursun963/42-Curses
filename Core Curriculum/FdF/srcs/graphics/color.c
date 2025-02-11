@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:01:02 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/10 13:55:15 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/11 15:00:52 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 /*
 Bu fonksiyon, bir renk geçişi hesaplar. 
 Renk, RGB (kırmızı, yeşil, mavi) bileşenlerinden oluşur ve her 
-bileşen için bir değişim (delta) miktarı vardır. progress parametresi, 
+bileşen için bir değişim (delta) miktarı vardır. 
+progress parametresi, 
 renk geçişinin ne kadar ilerlediğini belirten bir orandır (0 ile 1 arasında bir değer). 
 Bu oran, başlangıç renginden hedef renge doğru yapılan geçişin miktarını belirler.
 bir renk genellikle 24 bit ile temsil edilir. 8 bit * 3 = 24 bit (24-bit renk)
@@ -52,7 +53,7 @@ int	color_gradient(t_color *color, float progress)
 get_color fonksiyonu, bir renk geçişi oranı hesaplamak için kullanılır 
 ve belirli bir satır için renk değerini elde eder.
 i_line parametresi, şu anda işlenen satırın numarasını temsil eder, 
-line_size ise toplam satır sayısını ifade eder. 
+line_size ise toplam satır (adım) /piksel sayısını ifade eder. 
 Bu oran, o satırın geçişin ne kadar ilerlediğini belirtir.
 */
 int	get_color(t_color *color, int i_line, int line_size)
@@ -71,13 +72,15 @@ t_color	*color_init(t_point start, t_point end)
 	if (!color)
 		return (NULL);
 	color->start_color = start.color;
-	color->start_r = (RED & start.color) >> 16;
+	color->start_r = (RED & start.color) >> 16;		// RED & start.color: 0xFF0000 & 0xFF5733 = 0xFF0000 >> 16 = 0xFF (kırmızı)
 	color->start_g = (GREEN & start.color) >> 8;
 	color->start_b = (BLUE & start.color);
+	
 	color->end_color = end.color;
 	color->end_r = (RED & end.color) >> 16;
 	color->end_g = (GREEN & end.color) >> 8;
 	color->end_b = (BLUE & end.color);
+
 	color->delta_r = (color->end_r - color->start_r);
 	color->delta_g = (color->end_g - color->start_g);
 	color->delta_b = (color->end_b - color->start_b);

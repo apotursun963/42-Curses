@@ -1,6 +1,3 @@
-# renkleri mavi yap
-# key handling degistir
-# 
 
 
 # mlx_get_data_addr():

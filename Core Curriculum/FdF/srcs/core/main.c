@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:00:14 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/10 15:15:45 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/11 15:25:28 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,10 @@ int	render(t_fdf *fdf)
 		while (x < fdf->map->max_x)
 		{
 			if (x < fdf->map->max_x - 1)
-				render_line(fdf, fdf->map->coordinates[x][y], \
+				render_line(fdf, fdf->map->coordinates[x][y], \		// yatay çizgi çizilir
 					fdf->map->coordinates[x + 1][y]);
 			if (y < fdf->map->max_y - 1)
-				render_line(fdf, fdf->map->coordinates[x][y], \
+				render_line(fdf, fdf->map->coordinates[x][y], \		// dikey çizgi çizilir
 					fdf->map->coordinates[x][y + 1]);
 			x++;
 		}
@@ -104,7 +104,7 @@ int	main(int argc, char **argv)
 	if (argc != 2 || !is_file_extension_valid(argv[1]))
 		exit(1);
 	fdf = init_fdf(argv[1]);
-	render(fdf);
+	render(fdf);		// hazır hale gelen verilerin/haritanın görselleştirilmesi
 	/*
 		events (olaylar - kullanıcı etkileşimleri)
 		- 2 -> KeyPress: Bir tuşa basıldığında tetiklenir.

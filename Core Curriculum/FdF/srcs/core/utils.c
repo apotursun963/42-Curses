@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:00:30 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/10 15:29:33 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/11 12:31:45 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ Bu fonksiyon, harita koordinatlarını haritanın merkezine göre kaydırarak or
 Orijin, koordinat sisteminde (0,0) noktası olup tüm koordinatların referans alındığı merkez noktasıdır.
 Her bir noktanın x ve y koordinatlarından haritanın yarı genişliği ve yüksekliği kadar çıkarma işlemi yapılır. 
 X ekseni haritanın genişliğinin yarısı kadar, Y ekseni haritanın yüksekliğinin yarısı kadar kaydırılır.
+map->max_x / 2 → Haritanın x ekseni merkezini bulur.
+map->max_y / 2 → Haritanın y ekseni merkezini bulur.
 */
 void	center_to_origin(t_map *map)
 {

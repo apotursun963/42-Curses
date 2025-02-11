@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 12:59:28 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/10 15:31:45 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/11 12:26:03 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void	fill_point(char *point, t_map *map, int coord_x, int coord_y)
 	char	**info;
 	int		i;
 
+	// burada değer değil x ve y koordinatlarını atıyorum
 	map->coordinates[coord_x][coord_y].x = (float)coord_x;
 	map->coordinates[coord_x][coord_y].y = (float)coord_y;
 	if (ft_strchr(point, ','))
@@ -97,6 +98,7 @@ void	fill_point(char *point, t_map *map, int coord_x, int coord_y)
 		map->coordinates[coord_x][coord_y].z = (float)ft_atoi(point);
 		map->coordinates[coord_x][coord_y].color = false;
 	}
+	// harita içindeki maksimum ve minimum z değerlerini güncelliyor.
 	if (map->coordinates[coord_x][coord_y].z > map->max_z)
 		map->max_z = map->coordinates[coord_x][coord_y].z;
 	if (map->coordinates[coord_x][coord_y].z < map->min_z)
@@ -139,7 +141,8 @@ void	get_points(char *file, t_map *map)
 }
 
 /*
-Bu fonksiyon, harita dosyasını baştan sona okur ve harita verilerini işleyip bir t_map yapısında toplar.
+Bu fonksiyon, harita dosyasını baştan sona okur ve 
+harita verilerini işleyip bir t_map yapısında toplar.
 */
 t_map	*read_map(char *file)
 {

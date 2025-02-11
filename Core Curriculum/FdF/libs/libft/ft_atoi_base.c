@@ -6,7 +6,7 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:28:41 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/09 13:09:57 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/11 12:13:31 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ Bu fonksiyon, belirtilen bir tabanda (base) verilen bir metin (string)
 ifadesinin tamsayı (int) karşılığını döndürür.
 
 str → Dönüştürülmek istenen metin (string).
-base → Metnin dönüştürüleceği sayı tabanı (küçük harflerle yazılmış olmalı).
+base → Metnin dönüştürüleceği sayı tabanı
 
 Dönüş Değeri:
 atoi_base() fonksiyonu, verilen metni belirtilen tabana göre tamsayıya (int) çevirerek geri döndürür.

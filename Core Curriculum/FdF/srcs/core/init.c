@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:00:25 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/10 12:59:28 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/11 12:51:09 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,6 @@ t_line	*init_line(t_point start, t_point end, t_fdf *fdf)
 	Aynı zamanda haritanın X ve Y boyutlarının maksimum değeri bulunur.
 	transform_z, bu iki değerin maksimum değeri olarak belirlenir.
 	*/
-	line->transform_z = max((fdf->map->max_z - fdf->map->min_z), \
-		max(fdf->map->max_x, fdf->map->max_y));
+	line->transform_z = max((fdf->map->max_z - fdf->map->min_z), max(fdf->map->max_x, fdf->map->max_y));
 	return (line);
 }

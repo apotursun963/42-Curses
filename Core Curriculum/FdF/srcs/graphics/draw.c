@@ -3,61 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:00:56 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/10 15:19:50 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/11 15:08:20 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/fdf.h"
 
 /*
-Bu fonksiyon, Bresenham algoritması kullanarak iki nokta arasındaki doğruyu çizer. 
-Renk geçişleri get_color ile yapılır ve her bir nokta için piksel ekranda yerleştirilir. 
+Bu fonksiyon, Bresenham algoritması kullanarak iki nokta arasındaki doğruyu çizer.
+Renk geçişleri get_color ile yapılır ve her bir nokta için piksel ekranda yerleştirilir.
 Fonksiyon, çizgi boyunca her bir adımı hesaplayarak çizim işlemi gerçekleştirir.
 kisaca Bu fonksiyon, başlangıç ve bitiş noktaları arasındaki çizgiyi hesaplayıp çizer.
 */
-void	bresenham(t_fdf *fdf, t_point start, t_point end)
+void bresenham(t_fdf *fdf, t_point start, t_point end)
 {
-	float	x_step;
-	float	y_step;
-	int		max_steps;
-	int		i_line;
-	t_color	*color;
+	float x_step;
+	float y_step;
+	int max_steps;
+	int i_line;
+	t_color *color;
 
-	/*
-	İki nokta arasındaki yatay (x) ve dikey (y) farkları hesaplanır.
-	Yani, çizginin ne kadar sağa (x yönü) ve ne kadar yukarı/aşağı (y yönü) ilerleyeceğini belirleriz.
-	*/
 	x_step = end.x - start.x;
 	y_step = end.y - start.y;
-
-	// Çizginin kaç piksel boyunca çizileceğini belirleriz.
-	// X farkı büyükse yatay uzun çizgi, Y farkı büyükse dikey uzun çizgi olur.
 	max_steps = (int)max(absolute(x_step), absolute(y_step));
-
-	// X ve Y koordinatlarını küçük küçük artırarak doğru boyunca ilerlemek.
 	x_step /= max_steps;
 	y_step /= max_steps;
-
-	// start ve end arasinda Çizginin rengini hesaplamak için bir renk yapısı oluşturulur.
 	color = color_init(start, end);
 	if (!color)
-		return ;
-	
-	i_line = 0;		// i_line sayacı, kaçıncı pikselde olduğumuzu takip eder.
-	// Çizgi Çizme Döngüsü
-	// Döngü max_steps kadar çalışarak her pikseli teker teker çizer.
+		return;
+	i_line = 0;
 	while (i_line < max_steps)
 	{
-		start.color = get_color(color, i_line++, max_steps);	// Her pikselin rengini ayarlar
-
-		// Koordinatların ekran sınırları içinde olup olmadığını kontrol eder.
+		start.color = get_color(color, i_line++, max_steps);
 		if (start.x > 0 && start.y > 0 && start.x < WIDTH && start.y < HEIGHT)
-			pixel_to_image(fdf->image, start.x, start.y, start.color);	// bir piksel ekrana basma
-		
-		// X ve Y koordinatlarını güncelle.
+			pixel_to_image(fdf->image, start.x, start.y, start.color);
 		start.x += x_step;
 		start.y += y_step;
 	}
@@ -74,20 +56,20 @@ Piksel rengi 32 bit (4 byte) olarak saklanır:
 Bit kaydırma (>>) ile rengi bölerek belleğe doğru sırayla yazıyoruz.
 */
 
-void	pixel_to_image(t_image *image, float x, float y, int color)
+void pixel_to_image(t_image *image, float x, float y, int color)
 {
-	int	pixel;
+	int pixel;
 
-	pixel = ((int)y * image->line_bytes) + ((int)x * 4);	// Belirtilen x ve y koordinatlarındaki pikselin hafıza adresi hesaplanır.
-																// yani bellekteki adresi .
+	pixel = ((int)y * image->line_bytes) + ((int)x * 4); // Belirtilen x ve y koordinatlarındaki pikselin hafıza adresi hesaplanır.
+														 // yani bellekteki adresi .
 	// Endian türüne göre belleğe yazma sırasını ayarlıyoruz
 	if (image->endian == 1)
 	{
 		// Burada, bit kaydırarak ilgili renk bileşenini en sağa getiriyoruz ve sadece en sağdaki 8 biti alıyoruz.
-		image->buffer[pixel + 0] = (color >> 24);		// En sol 8 bit (Alpha)
-		image->buffer[pixel + 1] = (color >> 16);		// İkinci 8 bit (Red)
-		image->buffer[pixel + 2] = (color >> 8);		// Üçüncü 8 bit (Green)
-		image->buffer[pixel + 3] = (color);			    // En sağ 8 bit (Blue)
+		image->buffer[pixel + 0] = (color >> 24); // En sol 8 bit (Alpha)
+		image->buffer[pixel + 1] = (color >> 16); // İkinci 8 bit (Red)
+		image->buffer[pixel + 2] = (color >> 8);  // Üçüncü 8 bit (Green)
+		image->buffer[pixel + 3] = (color);		  // En sağ 8 bit (Blue)
 	}
 	else if (image->endian == 0)
 	{
@@ -99,17 +81,17 @@ void	pixel_to_image(t_image *image, float x, float y, int color)
 }
 
 /*
-Bu fonksiyounun amaci görüntü sürekli güncelleniyor ve önceki çizimlerin 
+Bu fonksiyounun amaci görüntü sürekli güncelleniyor ve önceki çizimlerin
 kalmaması için clear_image fonksiyonunu çağıriliyo.
 Yani görüntüye yeni bir şey çizmeden önce eski kalıntıları silmek için bu işlemi yapıyorsun.
-Bu fonksiyon, bir resim (image) üzerinde tüm pikselleri sıfırlayıp, 
-her pikseli belirli bir arka plan rengi ile doldurur. 
-Bu, genellikle yeni bir çizim yapılmadan önce önceki içeriklerin silinmesi gerektiğinde kullanılır. 
+Bu fonksiyon, bir resim (image) üzerinde tüm pikselleri sıfırlayıp,
+her pikseli belirli bir arka plan rengi ile doldurur.
+Bu, genellikle yeni bir çizim yapılmadan önce önceki içeriklerin silinmesi gerektiğinde kullanılır.
 */
-void	clear_image(t_image *image)
+void clear_image(t_image *image)
 {
-	int	x;
-	int	y;
+	int x;
+	int y;
 
 	ft_bzero(image->buffer, MAX_PIXEL);
 	y = 0;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   projection.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 12:59:17 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/10 13:38:37 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/11 12:56:17 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	perspective(t_line *line)
 
 	/// z nin başlangıç noktası için prespektif
 	z = line->start.z + line->transform_z;
-	new_start.x = line->start.x / z;	
+	new_start.x = line->start.x / z;
 	new_start.y = line->start.y / z;
 	line->start.x = new_start.x;
 	line->start.y = -new_start.y;
