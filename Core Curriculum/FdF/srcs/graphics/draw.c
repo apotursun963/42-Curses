@@ -6,7 +6,7 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:00:56 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/11 15:08:20 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/11 22:38:43 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,18 @@ void bresenham(t_fdf *fdf, t_point start, t_point end)
 	int i_line;
 	t_color *color;
 
+	// X ve Y farkları hesaplanıyor Böylece, çizginin ne kadar hareket edeceği belirleniyor.
 	x_step = end.x - start.x;
 	y_step = end.y - start.y;
+
+	/*	Adım sayısı belirleniyor
+	Bir çizgiyi çizerken X veya Y ekseninde en büyük değişimi temel alıyoruz.
+	Çünkü çizgi, her adımda X ve Y ekseninde belirli bir miktar ilerler.
+	X veya Y'den hangisi daha büyükse, o kadar adımda çizgiyi tamamlamamız gerekir.
+	*/ 
 	max_steps = (int)max(absolute(x_step), absolute(y_step));
+	
+	// Bu satırlar, X ve Y yönünde her adımda ne kadar ilerleyeceğimizi belirler.
 	x_step /= max_steps;
 	y_step /= max_steps;
 	color = color_init(start, end);

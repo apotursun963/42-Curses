@@ -6,7 +6,7 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:00:14 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/11 15:25:28 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/11 22:13:31 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,11 @@ int	render(t_fdf *fdf)
 		x = 0;
 		while (x < fdf->map->max_x)
 		{
-			if (x < fdf->map->max_x - 1)
-				render_line(fdf, fdf->map->coordinates[x][y], \		// yatay çizgi çizilir
+			if (x < fdf->map->max_x - 1)			// yatay çizgi çizilir
+				render_line(fdf, fdf->map->coordinates[x][y], \		
 					fdf->map->coordinates[x + 1][y]);
-			if (y < fdf->map->max_y - 1)
-				render_line(fdf, fdf->map->coordinates[x][y], \		// dikey çizgi çizilir
+			if (y < fdf->map->max_y - 1)			// dikey çizgi çizilir
+				render_line(fdf, fdf->map->coordinates[x][y], \		
 					fdf->map->coordinates[x][y + 1]);
 			x++;
 		}

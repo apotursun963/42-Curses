@@ -6,7 +6,7 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:00:25 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/11 12:51:09 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/11 22:41:06 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,6 @@ t_line	*init_line(t_point start, t_point end, t_fdf *fdf)
 	line->end.color = end.color;
 	// Z Eksenindeki Dönüşüm Değerinin Hesaplanması
 	/*
-	transform_z, doğru çizimini ekran boyutlarına sığdırmak ve uygun bir ölçeklendirme yapmak için kullanılır.
 	Haritanın Z eksenindeki yüksekliği heaplanır.
 	Aynı zamanda haritanın X ve Y boyutlarının maksimum değeri bulunur.
 	transform_z, bu iki değerin maksimum değeri olarak belirlenir.
