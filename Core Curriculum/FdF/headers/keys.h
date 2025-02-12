@@ -6,7 +6,7 @@
 /*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:01:44 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/07 14:40:31 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/10 12:27:35 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define KEY_Z		122
 # define KEY_X		120
 # define KEY_P		112
-# define KEY_İ		105
+# define KEY_I		105
 # define KEY_O		111
 # define KEY_R		114
 # define KEY_A		97

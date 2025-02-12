@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 18:34:46 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/09 13:06:07 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/10 12:16:31 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,14 +69,13 @@ void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstdelone(t_list *lst, void (*del)(void*));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
-
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
 # endif
 
 char	*get_next_line(int fd);
 
-int	ft_len_of_str(char *str);
+int		ft_len_of_str(char *str);
 char	*ft_search_new_line(char *str);
 char	*ft_merge_str(char *leftover, char *buffer);
 int		ft_len_of_word(char const *str, char c);

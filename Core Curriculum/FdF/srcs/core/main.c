@@ -3,22 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:00:14 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/11 22:13:31 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/10 12:21:24 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/fdf.h"
 
-/*
-Bir Noktanın (point) rengini belirler. Eğer renk paleti devre dışıysa varsayılan rengi atar. 
-Aksi halde, z değerine göre uygun renk paletinden renk hesaplar.
-
-Eğer renk paleti aktifse (color_pallet == TRUE), noktanın yüksekliğine 
-(z değeri) göre renk belirlenir:
-*/
 void	apply_colors(t_fdf *fdf, t_point *point)
 {
 	t_color	*col;
@@ -35,10 +28,6 @@ void	apply_colors(t_fdf *fdf, t_point *point)
 	}
 }
 
-/*
-İki nokta arasındaki çizgiyi çizer. z ölçeklendirmesi, renk ayarı, rotasyon, projeksiyon ve dönüşümler 
-yapıldıktan sonra Bresenham algoritması ile çizim yapılır.
-*/
 void	render_line(t_fdf *fdf, t_point start, t_point end)
 {
 	start.z *= fdf->cam->scale_z;
@@ -56,10 +45,6 @@ void	render_line(t_fdf *fdf, t_point start, t_point end)
 	free(fdf->image->line);
 }
 
-/*
-Tüm haritayı satır satır ve sütun sütun tarayarak çizgileri oluşturur. 
-Önce görüntüyü temizler, sonra tüm noktalar arasında çizgiler oluşturur ve ekrana çizer.  
-*/
 int	render(t_fdf *fdf)
 {
 	int	x;
@@ -72,11 +57,11 @@ int	render(t_fdf *fdf)
 		x = 0;
 		while (x < fdf->map->max_x)
 		{
-			if (x < fdf->map->max_x - 1)			// yatay çizgi çizilir
-				render_line(fdf, fdf->map->coordinates[x][y], \		
+			if (x < fdf->map->max_x - 1)
+				render_line(fdf, fdf->map->coordinates[x][y], \
 					fdf->map->coordinates[x + 1][y]);
-			if (y < fdf->map->max_y - 1)			// dikey çizgi çizilir
-				render_line(fdf, fdf->map->coordinates[x][y], \		
+			if (y < fdf->map->max_y - 1)
+				render_line(fdf, fdf->map->coordinates[x][y], \
 					fdf->map->coordinates[x][y + 1]);
 			x++;
 		}
@@ -87,10 +72,10 @@ int	render(t_fdf *fdf)
 	return (0);
 }
 
-int 	is_file_extension_valid(char *filename)
+int	is_file_extension_valid(char *filename)
 {
 	char	*res;
-	
+
 	res = ft_strrchr(filename, '.');
 	if (ft_strncmp(res, ".fdf", 4) != 0)
 		return (0);
@@ -104,16 +89,9 @@ int	main(int argc, char **argv)
 	if (argc != 2 || !is_file_extension_valid(argv[1]))
 		exit(1);
 	fdf = init_fdf(argv[1]);
-	render(fdf);		// hazır hale gelen verilerin/haritanın görselleştirilmesi
-	/*
-		events (olaylar - kullanıcı etkileşimleri)
-		- 2 -> KeyPress: Bir tuşa basıldığında tetiklenir.
-
-		masks (olay maskeleri): maskeler hangi olayların dinleyeceğini belirtir
-		- 1L << 0 -> Sadece "KeyPress" olayını dinleyeceğinizi belirtir.
-	*/
+	render(fdf);
 	mlx_hook(fdf->win, 2, 1L << 0, &key_handle, fdf);
-	mlx_hook(fdf->win, 17, 0, &free_all, fdf);		// 17: DestroyNotify | 0: NoEventMask
+	mlx_hook(fdf->win, 17, 0, &free_all, fdf);
 	mlx_loop(fdf->mlx);
 	return (0);
 }

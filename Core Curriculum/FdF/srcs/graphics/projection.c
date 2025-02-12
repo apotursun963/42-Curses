@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   projection.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 12:59:17 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/11 12:56:17 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/10 12:23:39 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,7 @@ void	write_menu_bar(t_fdf *fdf)
 	mlx_string_put(mlx, win, 50, y += 35, C_TEXT, "Colors: press 'SPACE'");
 	mlx_string_put(mlx, win, 50, y += 35, C_TEXT, "Reset view: press 'R'");
 }
-/*
-İzometrik projeksiyon 3D nesneleri 2D düzlemde gösterirken, eksenler arasındaki açıyı 30 derece tutarak, 
-tüm eksenlerde eşit ölçüler sağlar. Yani, x, y ve z eksenleri birbirinden eşit mesafeyle ve eşit derecede uzanır.
-*/
+
 void	isometric(t_line *line)
 {
 	t_point	new_start;
@@ -72,32 +69,18 @@ void	isometric(t_line *line)
 	line->end.y = new_end.y;
 }
 
-/*
-Perspektif projeksiyonu, gerçek dünyada olduğu gibi, uzaktaki nesnelerin daha küçük, 
-yakındaki nesnelerin ise daha büyük görünmesini sağlar.
-Bu tür projeksiyonlar, genellikle bir gözlemcinin bakış açısından, derinliği yansıtarak görüntü oluşturur.
-Bu fonksiyon, bir çizginin perspektif projeksiyonunu yapar. Perspektif projeksiyon, 
-3D uzaydaki nesneleri 2D düzleme aktarırken, derinliği (z eksenini) dikkate alır ve uzak nesnelerin daha küçük görünmesini sağlar.
-*/
 void	perspective(t_line *line)
 {
 	t_point	new_start;
 	t_point	new_end;
 	double	z;
 
-	// X Ekseninde Döndürme
-	rotate_x(line, 3 * -ANG_45);	// ters döndürüyor çünkü negatif açı
-
-	//  Z Koordinatına Perspektif Uygulama
-
-	/// z nin başlangıç noktası için prespektif
+	rotate_x(line, 3 * -ANG_45);
 	z = line->start.z + line->transform_z;
 	new_start.x = line->start.x / z;
 	new_start.y = line->start.y / z;
 	line->start.x = new_start.x;
 	line->start.y = -new_start.y;
-
-	/// z nin bitiş noktası için prespektif
 	z = line->end.z + line->transform_z;
 	new_end.x = line->end.x / z;
 	new_end.y = line->end.y / z;

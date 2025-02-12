@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:01:38 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/09 18:29:10 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/10 12:17:23 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,14 @@
 # include "../libs/mlx_linux/mlx.h"
 # include "../libs/libft/libft.h"
 
-
-/*
-** Tek nokta yapısı: haritadaki her nokta için x, y, z ve renk değerleri.
-*/
 typedef struct s_point
 {
-	float	x;				// x eksenindeki konumunu belirtir. noktanın "yatay" düzlemdeki yerini temsil eder
-	float	y;				// y eksenindeki konumunu belirtir. noktanın "dikey" düzlemdeki yerini ifade eder.
-	float	z;				// z eksenindeki konumunu belirtir.  3D koordinat sisteminde noktanın "derinliğini" gösterir.
-	int		color;			// noktanın görsel özelliğini ifade eder. Genellikle, renk değeri z noktasından sonra gelir
-}	t_point;					// Bazı durumlarda, bazı noktalar renk içermez. Bu durumda, nokta için bir varsayılan renk ayarlamalısın.
+	float	x;
+	float	y;
+	float	z;
+	int		color;
+}	t_point;
 
-/*
-** Harita veri yapısı: ayrıştırılan harita hakkında bilgi tutar, örneğin bir matris ile 
-** koordinatlarındaki noktası, toplam genişlik, derinlik ve yükseklik değerleri geçti. 
-*/
 typedef struct s_map
 {
 	t_point	**coordinates;
@@ -48,9 +40,6 @@ typedef struct s_map
 	int		min_z;
 }	t_map;
 
-/*
-** Yazdırılmakta olan geçerli (şuanki) satır
-*/
 typedef struct s_line
 {
 	t_point	start;
@@ -58,9 +47,6 @@ typedef struct s_line
 	float	transform_z;
 }	t_line;
 
-/*
-Renk yapısı (struct): çizgi için geçerlidir.
-*/
 typedef struct s_color
 {
 	int	start_color;
@@ -76,25 +62,16 @@ typedef struct s_color
 	int	delta_b;
 }	t_color;
 
-/*
-Görüntü veri yapısı: MiniLibX tarafından sağlanan görüntü işaretçileri ile son 
-görüntünün yazdırılacağı tampon işaretçisi ve tampon içine aktarılacak mevcut 
-satır hakkında bilgi tutar.
-*/
 typedef struct s_image
 {
 	void	*image;
-	int		pixel_bits;				// Her pikselin kaç bit olduğu (renk derinliği).
-	int		line_bytes;				// Her satırın kaç byte uzunluğunda olduğu.
+	int		pixel_bits;
+	int		line_bytes;
 	int		endian;
 	char	*buffer;
 	t_line	*line;
 }	t_image;
 
-/*
-Kamera veri yapısı: Görüntülenen görüntü hakkında, projeksiyon türü, ölçek, 
-çeviri delta'sı ve üç eksende dönüş için açı değerleri gibi bilgileri tutar.
-*/
 typedef struct s_cam
 {
 	int		projection;
@@ -108,9 +85,6 @@ typedef struct s_cam
 	double	gamma;
 }	t_cam;
 
-/*
-FDF ana veri yapısı: FDF'nin çalışması için gerekli tüm bilgileri tutar,
-*/
 typedef struct s_fdf
 {
 	void	*mlx;
@@ -147,9 +121,8 @@ enum e_bool
 	TRUE
 };
 
-
 t_map	*read_map(char *file_name);
-int 	is_file_extension_valid(char *filename);
+int		is_file_extension_valid(char *filename);
 t_fdf	*init_fdf(char *file_name);
 t_map	*init_map(void);
 t_image	*init_image(void *mlx);

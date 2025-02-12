@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keyhandle.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:00:20 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/08 18:55:05 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/10 12:27:56 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	key_project(int keycode, t_fdf *fdf)
 {
 	if (keycode == KEY_P)
 		fdf->cam->projection = PERSPECTIVE;
-	else if (keycode == KEY_İ)
+	else if (keycode == KEY_I)
 		fdf->cam->projection = ISOMETRIC;
 	else if (keycode == KEY_O)
 		fdf->cam->projection = TOP;
@@ -75,7 +75,7 @@ int	key_handle(int keycode, t_fdf *fdf)
 	else if (keycode == KEY_A || keycode == KEY_S || keycode == KEY_D \
 		|| keycode == KEY_Q || keycode == KEY_W || keycode == KEY_E)
 		key_rotate(keycode, fdf);
-	else if (keycode == KEY_P || keycode == KEY_İ || keycode == KEY_O)
+	else if (keycode == KEY_P || keycode == KEY_I || keycode == KEY_O)
 		key_project(keycode, fdf);
 	else if (keycode == KEY_SPACE)
 	{

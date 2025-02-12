@@ -3,28 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   read.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 12:59:28 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/11 12:26:03 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/10 12:21:45 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/fdf.h"
 
-/*
-Bu fonksiyon, verilen dosyanın her satırındaki kelime sayısının
-sabit olup olmadığını kontrol ediyor.
-yani her satırdaki kelime (sayı) sayısı eşitse yani sütün sayısı eşitse 
-okeydir
-*/
 int	get_number_of_col(char *file)
 {
 	int		fd;
 	char	*line;
 	int		col;
 	int		next_col;
-	
+
 	fd = open(file, O_RDONLY, 0);
 	line = get_next_line(fd);
 	if (line == NULL)
@@ -44,10 +38,6 @@ int	get_number_of_col(char *file)
 	return (close(fd), col);
 }
 
-/*
-Bu fonksiyon, dosyadaki toplam satır sayısını yani "derinliği" hesaplar. 
-Bu, haritadaki satır sayısını (Y eksenindeki boyutu) belirler.
-*/
 int	get_number_of_row(char *file)
 {
 	int		fd;
@@ -60,26 +50,19 @@ int	get_number_of_row(char *file)
 	{
 		line = get_next_line(fd);
 		if (line == NULL)
-			break;
-		if (ft_isprint(*line))		// *line -> line dizisinin ilk karakterini temsil eder
+			break ;
+		if (ft_isprint(*line))
 			row++;
 		free(line);
 	}
 	return (close(fd), row);
 }
 
-/*
-Bu fonksiyon, her bir harita noktasına ait veriyi (nokta) alır ve bu veriyi 
-map yapısındaki uygun koordinatlara yerleştirir.
-Bu fonksiyon, her bir harita noktası için hem yükseklik hem de renk 
-bilgilerini alarak harita yapısını oluşturur.
-*/
 void	fill_point(char *point, t_map *map, int coord_x, int coord_y)
 {
 	char	**info;
 	int		i;
 
-	// burada değer değil x ve y koordinatlarını atıyorum
 	map->coordinates[coord_x][coord_y].x = (float)coord_x;
 	map->coordinates[coord_x][coord_y].y = (float)coord_y;
 	if (ft_strchr(point, ','))
@@ -98,19 +81,12 @@ void	fill_point(char *point, t_map *map, int coord_x, int coord_y)
 		map->coordinates[coord_x][coord_y].z = (float)ft_atoi(point);
 		map->coordinates[coord_x][coord_y].color = false;
 	}
-	// harita içindeki maksimum ve minimum z değerlerini güncelliyor.
 	if (map->coordinates[coord_x][coord_y].z > map->max_z)
 		map->max_z = map->coordinates[coord_x][coord_y].z;
 	if (map->coordinates[coord_x][coord_y].z < map->min_z)
 		map->min_z = map->coordinates[coord_x][coord_y].z;
 }
 
-/*
-get_points fonksiyonu, her bir harita noktasının değerlerini dosyadan okur ve 
-fill_point fonksiyonu ile bu verileri harita yapısına yerleştirir.
-kisacasi belirtilen dosyadaki verileri okuyarak her satırdaki her bir 
-değeri harita yapısındaki ilgili noktalara yerleştirir.
-*/
 void	get_points(char *file, t_map *map)
 {
 	int		fd;
@@ -119,14 +95,14 @@ void	get_points(char *file, t_map *map)
 	int		coord[2];
 
 	fd = open(file, O_RDONLY, 0);
-	coord[1] = 0;		// y ekseni rows
+	coord[1] = 0;
 	while (1)
 	{
 		line = get_next_line(fd);
 		if (line == NULL)
 			break ;
 		split = ft_split(line, ' ');
-		coord[0] = 0;		// x ekseni cols
+		coord[0] = 0;
 		while (coord[0] < map->max_x)
 		{
 			fill_point(split[coord[0]], map, coord[0], coord[1]);
@@ -140,10 +116,6 @@ void	get_points(char *file, t_map *map)
 	close(fd);
 }
 
-/*
-Bu fonksiyon, harita dosyasını baştan sona okur ve 
-harita verilerini işleyip bir t_map yapısında toplar.
-*/
 t_map	*read_map(char *file)
 {
 	t_map	*map;

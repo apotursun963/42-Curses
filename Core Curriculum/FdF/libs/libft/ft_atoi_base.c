@@ -3,25 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:28:41 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/11 12:13:31 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/10 12:12:49 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-/*
-Bu fonksiyon, belirtilen bir tabanda (base) verilen bir metin (string) 
-ifadesinin tamsayı (int) karşılığını döndürür.
-
-str → Dönüştürülmek istenen metin (string).
-base → Metnin dönüştürüleceği sayı tabanı
-
-Dönüş Değeri:
-atoi_base() fonksiyonu, verilen metni belirtilen tabana göre tamsayıya (int) çevirerek geri döndürür.
-*/
 
 int	ft_convert_from_base(char *str, char *base)
 {
