@@ -41,12 +41,12 @@ int	ft_write_nbr(int num)
 	while (num > 0)
 	{
 		digits[idx++] = (num % 10) + '0';
-		num = num / 10;
+		num /= 10;
 	}
 	return (ft_reverse_str(digits, idx) + size);
 }
 
-int	ft_write_hexa(unsigned int num, char type)
+int	ft_write_hexa(unsigned int num)
 {
 	char	hex_digits[32];
     int     size = 0;
@@ -54,7 +54,6 @@ int	ft_write_hexa(unsigned int num, char type)
 	if (!num)
 		return (write(1, "0", 1));
 	int idx = 0;
-	int left = 0;
 	while (num > 0)
 	{
 		hex_digits[idx++] = "0123456789abcdef"[num % 16];
@@ -79,7 +78,7 @@ int	ft_printf(const char *str, ...)
             else if (*str == 'd')
                 size += ft_write_nbr(va_arg(args, int));
             else if (*str == 'x')
-                size += ft_write_hexa(va_arg(args, unsigned int), *str);   
+                size += ft_write_hexa(va_arg(args, unsigned int));
         }
 		else
 			size += write(1, str, 1);

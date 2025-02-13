@@ -47,18 +47,32 @@ char    *get_next_line(int fd)
 }
 
 
-// #include <fcntl.h>
-// #include <stdio.h>
-// int main(int argc, char const *argv[])
-// {
-//     int fd = open("test.txt", O_RDONLY, 0777);
-//     char *line;
 
-//     while ((line = get_next_line(fd)) != NULL)
-//     {
-//         printf("%s", line);
-//         free(line);
-//     }
-//     close(fd);
-//     return 0;
-// }
+// daha basit olanı
+char    *get_next_line(int fd)
+{
+    char *s = malloc(BUFFER_SIZE), *c = s;
+
+    while (read(fd, c, 1) > 0 && *c++ != '\n');
+    if (c > s)
+        return (*c = 0, s);
+    else
+        return (free(s), NULL);
+}
+
+
+#include <fcntl.h>
+#include <stdio.h>
+int main(int argc, char **argv)
+{
+    int fd = open("test.txt", O_RDONLY, 0777);
+    char *line;
+
+    while ((line = get_next_line(fd)) != NULL)
+    {
+        printf("%s", line);
+        free(line);
+    }
+    close(fd);
+    return 0;
+}
