@@ -19,7 +19,7 @@ Thread'lerin avantajları şunlardır:
 - Aynı bellek alanını paylaştıkları için işlem (Process) oluşturmak kadar maliyetli değildir.
 */
 
-#include "includes/philo.h"
+#include "../includes/philo.h"
 
 // thread fonksiyonu
 void    print_msg(char *str)
@@ -27,11 +27,11 @@ void    print_msg(char *str)
     for (int i=1; i <= 5; i++)
     {
         printf("%s - %d\n", str, i);
-        sleep(1);
+        usleep(500);
     }
 }
 
-int main()
+int main(int argc, char **argv)
 {
     pthread_t   thrd1;
     char *msg = "Yeni Thread";
