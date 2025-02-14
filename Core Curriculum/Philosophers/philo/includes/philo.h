@@ -14,11 +14,12 @@
 #define PHILO_H
 
 # include <stdio.h>
+# include <limits.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <pthread.h>
 
 
-
+int	ft_atoi(const char *str);
 
 #endif
