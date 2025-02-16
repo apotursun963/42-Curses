@@ -25,10 +25,10 @@ Kurallar:
   number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_times_each_philosopher_must_eat]
   ```  
   - **number_of_philosophers**: Filozofların ve çatalların sayısı.  
-  - **time_to_die (milisaniye cinsinden)**: Bir filozof, son yemeğine veya simülasyonun başlangıcına göre `time_to_die` milisaniye içinde yemek yemeye başlamazsa ölür.  
+  - **time_to_die (milisaniye cinsinden)**: Bir filozofun yemek yemeden önce maksimum dayanabileceği süre (ms).
   - **time_to_eat (milisaniye cinsinden)**: Bir filozofun yemek yemesi için geçen süredir. Bu süre boyunca iki çatalı da tutmalıdır.  
   - **time_to_sleep (milisaniye cinsinden)**: Bir filozofun uyuyarak geçirdiği süredir.  
-  - **number_of_times_each_philosopher_must_eat (isteğe bağlı argüman)**: Eğer tüm filozoflar en az bu kadar yemek yemişse, simülasyon durur. Belirtilmezse, simülasyon bir filozof ölünce sona erer.  
+  - **number_of_times_each_philosopher_must_eat (isteğe bağlı argüman)**: Eğer belirlenirse, tüm filozoflar belirtilen sayıda yemek yedikten sonra simülasyon durur. Belirtilmezse, biri öldüğünde simülasyon sona erer.  
 
 - Her filozofun **1’den number_of_philosophers’a kadar bir numarası vardır.**  
 - **Filozof 1**, **filozof number_of_philosophers’ın** yanına oturur.  
