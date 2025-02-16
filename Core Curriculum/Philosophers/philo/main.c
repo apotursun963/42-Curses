@@ -79,6 +79,7 @@ int inspect_args(int argc, char **argv)
 	return (1);
 }
 
+https://github.com/dpetrosy/42-Philosophers
 int main(int argc, char **argv)
 {
 	t_simulation	simulation;
