@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:04:04 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/17 17:21:23 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/18 20:16:17 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@
 
 typedef pthread_t		t_thread;
 typedef pthread_mutex_t	t_mutex;
-typedef struct timeval	t_timeval;
 
 typedef struct s_mutexes
 {
@@ -71,22 +70,14 @@ typedef enum e_error
 {
 	WRONG_ARGUMENT_COUNT,
 	INVALID_PHILOS_NUMBER,
-	ARGS_CANT_NEGATIVE_OR_ZERO,
+	ARGS_MUST_BE_DIGITS,
 }	t_error;
 
-
-bool	is_all_eat(t_philo *philos);
-void	*obsorver(void *ptr);
-void	philo_routine(t_philo *philo);
-void	*start_simulation(void *ptr);
-void	launcher(t_simulation *engine, int count);
-
-void	error_message(char *text, int signal);
-void	finish_all(t_simulation *engine, char *str, int count, int signal);
+int		ft_atoi(char *str);
+int		get_current_time(void);
+int		throw_error_msg(t_error msg);
+void	start_sim_threads(t_simulation *sim, int count);
+void	finish_all(t_simulation *sim,  int count);
 void	print_action(t_philo *philo, char *action);
-size_t	get_current_time(void);
-void	ft_usleep(size_t mls);
-size_t	ft_strlen(char *str);
-long	ft_atoi(char *str);
 
 #endif

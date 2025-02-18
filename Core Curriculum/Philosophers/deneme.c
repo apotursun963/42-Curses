@@ -3,23 +3,23 @@
 
 /*
 Thread (İş Parçacığı)
-Thread, bir programın içinde bağımsız olarak çalışabilen en küçük yürütme birimidir. 
+Thread, bir programın içinde bağımsız olarak çalışabilen en küçük yürütme birimidir.
 Bir işlem (process) içinde birden fazla thread bulunabilir ve bu thread'ler 
 aynı bellek alanını paylaşarak çalışır.
 
 Thread Kullanımının Avantajları:
 Paralel işlem yapmayı sağlar: Aynı anda birden fazla işin yürütülmesine olanak tanır.
 Daha düşük maliyetlidir: İşlemler (process) gibi tamamen yeni bellek alanı tahsis etmez, aynı bellek alanını paylaşarak çalışır.
-Ancak, thread'ler süreçler (process) gibi birbirlerinden tamamen bağımsız değildir. 
+Ancak, thread'ler süreçler (process) gibi birbirlerinden tamamen bağımsız değildir.
 Aynı süreç içinde çalıştıkları için bir thread'in yaptığı değişiklik diğer thread'leri etkileyebilir.
 
 
 Mutex (Karşılıklı Dışlama, Mutual Exclusion)
-Mutex, çoklu iş parçacıklarının (thread) bir kaynağa 
+Mutex, çoklu iş parçacıklarının (thread) bir kaynağa
 aynı anda erişmesini engelleyen bir senkronizasyon
 (birden fazla işlemin belirli bir düzen içinde çalışmasını sağlama sürecidir. ) aracıdır.
-Yani, bir iş parçacığı bir kaynağa erişmeye başladığında, o kaynağa diğer 
-iş parçacıkları tarafından aynı anda erişilmesini engeller. 
+Yani, bir iş parçacığı bir kaynağa erişmeye başladığında, o kaynağa diğer
+iş parçacıkları tarafından aynı anda erişilmesini engeller.
 İş parçacığı kaynağı serbest bıraktığında, diğer iş parçacıkları kaynağa erişebilir.
 Bu, veri tutarsızlığını önler ve güvenli erişimi sağlar.
 
@@ -28,10 +28,9 @@ Bu, veri tutarsızlığını önler ve güvenli erişimi sağlar.
 Thread: İşlemi birden fazla parçaya bölerek aynı anda çalıştırır, böylece işlem süresini kısaltır.
 Mutex: Ortak kaynaklara erişimde senkronizasyon sağlayarak çakışmaları önler.
 
-
 Thread'lerin Paralel Çalışması Nasıl Gerçekleşir?
-Thread'lerin paralel çalışmasını sağlayan temel mekanizmalardan 
-biri sleep(1); fonksiyonudur. Bu fonksiyon, thread'in CPU'yu belirli 
+Thread'lerin paralel çalışmasını sağlayan temel mekanizmalardan
+biri sleep(1); fonksiyonudur. Bu fonksiyon, thread'in CPU'yu belirli
 bir süre serbest bırakmasını sağlar ve işletim sistemi başka bir thread'i çalıştırabilir.
 
 Örnek İşleyiş:
@@ -68,7 +67,6 @@ void    *func(void *)
     usleep(1000);
     printf("trs\n");
 }
-
 
 int main(int argc, char **argv)
 {
