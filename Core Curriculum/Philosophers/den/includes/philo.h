@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dapetros <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/17 16:04:04 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/19 15:24:13 by atursun          ###   ########.fr       */
+/*   Created: 2024/03/15 16:54:52 by dapetros          #+#    #+#             */
+/*   Updated: 2024/03/15 16:55:37 by dapetros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,17 @@
 # define PHILO_H
 
 # include <stdbool.h>
-# include <limits.h>
 # include <pthread.h>
-# include <sys/time.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdio.h>
 
 # define RESET    "\033[0m"
-# define RED      "\033[31m"
-# define GREEN    "\033[32m"
+# define RED      "\033[31m"    /* Red */
+# define GREEN    "\033[32m"    /* Green */
 
-# define NUMBER_OF_PHILO 200
+# define PHILO_MAX_COUNT 200
 
-typedef pthread_t		t_thread;
+typedef pthread_t		t_id;
 typedef pthread_mutex_t	t_mutex;
+typedef struct timeval	t_timeval;
 
 typedef struct s_mutexes
 {
@@ -53,32 +49,17 @@ typedef struct s_philo
 	t_times		times;
 	t_mutexes	mutexes;
 	int			must_eat;
-	t_thread		thread_id;
+	t_id		thread_id;
 	int			meals_eaten;
 	int			philo_count;
 }	t_philo;
 
-typedef struct s_simulation
+typedef struct s_engine
 {
 	t_mutex	*forks;
 	t_philo	*philos;
 	t_mutex	meal_lock;
 	t_mutex	write_lock;
-}	t_simulation;
+}	t_engine;
 
-typedef enum e_error
-{
-	WRONG_ARGUMENT_COUNT,
-	INVALID_PHILOS_NUMBER,
-	ARGS_MUST_BE_DIGITS,
-}	t_error;
-
-int		ft_atoi(char *str);
-int		get_current_time(void);
-int		throw_error_msg(t_error msg);
-void	*start_simulation(void *ptr);
-void	*check_philo_eating_time(void *ptr);
-void	finish_all(t_simulation *sim,  int count);
-void	print_action(t_philo *philo, char *action);
-
-#endif
+#endif   /* PHILO_H */

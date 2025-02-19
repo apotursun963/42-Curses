@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:03:53 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/18 20:17:48 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/19 16:52:02 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../philo.h"
 
 int	throw_error_msg(t_error msg)
 {
@@ -23,6 +23,7 @@ int	throw_error_msg(t_error msg)
 	return (0);
 }
 
+// Bu fonksiyonu sil
 void	finish_all(t_simulation *sim, int num_of_philo)
 {
 	while (--num_of_philo >= 0)

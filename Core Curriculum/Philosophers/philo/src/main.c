@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:04:12 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/18 15:22:56 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/19 16:51:52 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../philo.h"
 
 static void	init_philos(t_simulation *sim, t_philo *philos, t_mutex *forks, char **argv)
 {
@@ -89,6 +89,8 @@ static int inspect_args(int argc, char **argv)
 
 int	main(int argc, char **argv)
 {
+	t_thread 		id;
+	int 			i;
 	t_simulation	simulation;
 	t_philo			philos[NUMBER_OF_PHILO];
 	t_mutex			forks[NUMBER_OF_PHILO];
@@ -98,7 +100,15 @@ int	main(int argc, char **argv)
 		init_simulation(&simulation, philos, forks);
 		init_forks(&simulation, forks, ft_atoi(argv[1]));
 		init_philos(&simulation, philos, forks, argv);
-		start_sim_threads(&simulation, philos[0].philo_count);
+		i = -1;
+		pthread_create(&id, NULL, &check_philo_eating_time, simulation.philos);
+		while (++i < philos[0].philo_count)
+			pthread_create(&simulation.philos[i].thread_id, NULL,
+				start_simulation, &simulation.philos[i]);
+		i = -1;
+		pthread_join(id, NULL);
+		while (++i < philos[0].philo_count)
+			pthread_detach(simulation.philos[i].thread_id);
 		finish_all(&simulation, philos[0].philo_count);
 	}
 	return (0);
