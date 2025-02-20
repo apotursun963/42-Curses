@@ -1,0 +1,3 @@
+# Kavramlar
+
+## Thread ve Mutex
