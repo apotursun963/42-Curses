@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:03:53 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/19 16:52:02 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/20 22:59:07 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ void	finish_all(t_simulation *sim, int num_of_philo)
 
 void	print_action(t_philo *philo, char *action)
 {
-	int	time;
+	int	time;	
 
 	pthread_mutex_lock(philo->mutexes.write_lock);
-	time = get_current_time() - philo->times.born_time;
+	time = get_current_time() - philo->times.born_time;		// filozofun kaç milisaniyedir yaşadığını belirlemek için kullanılır.
 	printf(GREEN"[%d]"RESET" %d%s\n", time, philo->id, action);
 	pthread_mutex_unlock(philo->mutexes.write_lock);
 }
