@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:03:53 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/20 22:59:07 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/21 13:03:53 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../philo.h"
+#include "../inc/philo.h"
 
 int	throw_error_msg(t_error msg)
 {
@@ -23,7 +23,6 @@ int	throw_error_msg(t_error msg)
 	return (0);
 }
 
-// Bu fonksiyonu sil
 void	finish_all(t_simulation *sim, int num_of_philo)
 {
 	while (--num_of_philo >= 0)
@@ -37,29 +36,23 @@ void	print_action(t_philo *philo, char *action)
 	int	time;	
 
 	pthread_mutex_lock(philo->mutexes.write_lock);
-	time = get_current_time() - philo->times.born_time;		// filozofun kaç milisaniyedir yaşadığını belirlemek için kullanılır.
+	time = get_current_time() - philo->times.born_time;
 	printf(GREEN"[%d]"RESET" %d%s\n", time, philo->id, action);
 	pthread_mutex_unlock(philo->mutexes.write_lock);
 }
 
-// Bu fonksiyon, sistemin geçerli zamanını "milisaniye" cinsinden almak için kullanılır. 
-// "sistemin geçerli zamanını": sistemin başlangıcından itibaren geçen süreyi ifade eder.
-// Dönüş değeri olarak "milisaniye" cinsinden bir int değerini döndürür.
 int	get_current_time(void)
 {
-	struct timeval	time;	// bu değişken zaman bilgisini tutmak için kullanılır.
+	struct timeval	time;
 
-	// Bu fonksiyon, sistemdeki geçerli zamanı almak için kullanılır.
-	// &time: Geçerli zamanı bu adrese yazdırır. Bu, saniye (tv_sec) ve mikrosaniye (tv_usec) bilgilerini içerir.
-	gettimeofday(&time, NULL);		
-	return (time.tv_sec * 1000 + time.tv_usec / 1000);		// Elde edilen Zamanı milisaniyeye dönüştür
-	// Sonuç olarak, saniye ve mikrosaniye cinsinden olan zaman, milisaniye cinsine çevrilmiş olur.
+	gettimeofday(&time, NULL);
+	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }
 
 int	ft_atoi(char *str)
 {
 	int		result;
-	int			sign;
+	int		sign;
 
 	sign = 1;
 	result = 0;

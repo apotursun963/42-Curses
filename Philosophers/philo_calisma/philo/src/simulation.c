@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   simulation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:04:00 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/20 22:51:12 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/21 14:31:41 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../philo.h"
+#include "../inc/philo.h"
 
 /*
 Bu bu fonsiyon yerine direkt olarak usleep fonksiyonu kullanabilirdim ama 
