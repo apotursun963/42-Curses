@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:04:12 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/21 14:51:02 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/22 23:05:27 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,22 +102,3 @@ int	main(int argc, char **argv)
 	}
 	return (0);
 }
-
-/*
-	131 601 200 200 10
-1       Fail    [x]     [602] 1 died
-2       Pass    [✓]     [4000] 79 is eating
-3       Fail    [x]     [602] 1 died
-4       Pass    [✓]     [4000] 16 is eating
-5       Pass    [✓]     [599] 128 is thinking
-6       Fail    [x]     [602] 1 died
-7       Pass    [✓]     [4000] 87 is eating
-8       Fail    [x]     [602] 1 died
-9       Fail    [x]     [602] 1 died
-10      Pass    [✓]     [4000] 97 is eating
-	50 % correct
-
-
-
-
-*/

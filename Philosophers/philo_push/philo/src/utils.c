@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:03:53 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/21 13:03:53 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/22 23:08:23 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	throw_error_msg(t_error msg)
 		printf("Arguments Must Be Only Digits\n");
 	return (0);
 }
-
+#include <stdlib.h>
 void	finish_all(t_simulation *sim, int num_of_philo)
 {
 	while (--num_of_philo >= 0)

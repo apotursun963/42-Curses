@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:03:53 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/21 14:07:27 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/22 22:55:45 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ int	throw_error_msg(t_error msg)
 	return (0);
 }
 
-// Bu fonksiyonu sil
+/*
+finish_all fonksiyonu, filozof simülasyonu sona erdiğinde kullanılan mutex kilitlerini 
+temizler ve serbest bırakır.
+*/
 void	finish_all(t_simulation *sim, int num_of_philo)
 {
 	while (--num_of_philo >= 0)
@@ -34,7 +37,7 @@ void	finish_all(t_simulation *sim, int num_of_philo)
 
 void	print_action(t_philo *philo, char *action)
 {
-	int	time;	
+	int	time;
 
 	pthread_mutex_lock(philo->mutexes.write_lock);
 	time = get_current_time() - philo->times.born_time;		// filozofun kaç milisaniyedir yaşadığını belirlemek için kullanılır.
