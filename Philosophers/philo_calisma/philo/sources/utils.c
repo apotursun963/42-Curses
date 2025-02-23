@@ -6,11 +6,11 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:03:53 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/22 23:08:23 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/23 23:30:58 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/philo.h"
+#include "../include/philo.h"
 
 int	throw_error_msg(t_error msg)
 {
@@ -22,7 +22,11 @@ int	throw_error_msg(t_error msg)
 		printf("Arguments Must Be Only Digits\n");
 	return (0);
 }
-#include <stdlib.h>
+
+/*
+Bu fonksiyon, filozof simülasyonu sona erdiğinde kullanılan mutex kilitlerini 
+temizler ve serbest bırakır.
+*/
 void	finish_all(t_simulation *sim, int num_of_philo)
 {
 	while (--num_of_philo >= 0)
@@ -33,26 +37,18 @@ void	finish_all(t_simulation *sim, int num_of_philo)
 
 void	print_action(t_philo *philo, char *action)
 {
-	int	time;	
+	int	time;
 
 	pthread_mutex_lock(philo->mutexes.write_lock);
-	time = get_current_time() - philo->times.born_time;
+	time = get_current_time() - philo->times.born_time;		// filozofun kaç milisaniyedir yaşadığını belirlemek için kullanılır.
 	printf(GREEN"[%d]"RESET" %d%s\n", time, philo->id, action);
 	pthread_mutex_unlock(philo->mutexes.write_lock);
-}
-
-int	get_current_time(void)
-{
-	struct timeval	time;
-
-	gettimeofday(&time, NULL);
-	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }
 
 int	ft_atoi(char *str)
 {
 	int		result;
-	int		sign;
+	int			sign;
 
 	sign = 1;
 	result = 0;

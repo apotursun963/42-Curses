@@ -3,30 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   simulation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:04:00 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/21 14:31:41 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/23 23:30:39 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/philo.h"
-
-/*
-Bu bu fonsiyon yerine direkt olarak usleep fonksiyonu kullanabilirdim ama 
-benim "geçen zamanı" kontrol etmem gerekiyor.
-Bu fonksiyon, Belirli bir süre boyunca (milisaniye cinsinden) beklerken, get_current_time() 
-fonksiyonu kullanılarak geçen süre takip edilir ve sürekli kısa beklemelerle (usleep(500)) 
-daha verimli bir bekleme yapılır.
-*/
-static void	ft_usleep(int mls)
-{
-	int	start;
-
-	start = get_current_time();
-	while (get_current_time() - start < mls)	// Geçerli zaman ile başlama zamanının farkını alır ve bu fark, geçen süreyi temsil eder.
-		usleep(500);	// Bu fonksiyon mikro saniye cinsinden bir bekleme yapar. 500 mikro saniye
-}
+#include "../include/philo.h"
 
 // Bu fonksiyon, her filozofun belirli bir sayıda yemek yiyip yemediğini kontrol eder.
 // Eğer, Tüm filozoflar yemek yemişse, true döner. yoksa false
@@ -136,4 +120,20 @@ void	*start_simulation(void *ptr)
 	while (true)
 		philo_routine(philo);
 	return (NULL);
+}
+
+void	create_threads(t_simulation *sim, t_philo *philo)
+{
+	t_thread	id;
+	int			i;
+
+	i = -1;
+	pthread_create(&id, NULL, &check_philo_eating_time, sim->philos);
+	while (++i < philo[0].philo_count)
+		pthread_create(&sim->philos[i].thread_id, NULL, 
+			start_simulation, &sim->philos[i]);
+	i = -1;
+	pthread_join(id, NULL);
+	while (++i < philo[0].philo_count)
+		pthread_detach(sim->philos[i].thread_id);
 }

@@ -1,13 +1,12 @@
 NAME = philo
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
-SRCS = src/main.c src/utils.c src/simulation.c
-
+SRCS = sources/main.c sources/simulation.c sources/timing.c sources/utils.c
 OBJS = $(SRCS:.c=.o)
 
-all: $(OBJS) $(NAME)
+all: $(NAME)
 
 $(NAME): $(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)

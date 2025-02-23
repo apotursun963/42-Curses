@@ -6,7 +6,7 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:04:04 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/20 22:51:40 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/23 15:24:13 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define PHILO_H
 
 # include <stdbool.h>
-# include <limits.h>
 # include <pthread.h>
 # include <sys/time.h>
 # include <stdlib.h>
@@ -40,11 +39,11 @@ typedef struct s_mutexes
 
 typedef struct s_times
 {
-	size_t	die;
-	size_t	eat;
-	size_t	sleep;
-	size_t	last_meal;
-	size_t	born_time;
+	int	die;
+	int	eat;
+	int	sleep;
+	int	last_meal;
+	int	born_time;
 }	t_times;
 
 typedef struct s_philo
@@ -74,11 +73,13 @@ typedef enum e_error
 }	t_error;
 
 int		ft_atoi(char *str);
+void	ft_usleep(int mls);
 int		get_current_time(void);
 int		throw_error_msg(t_error msg);
 void	*start_simulation(void *ptr);
 void	*check_philo_eating_time(void *ptr);
 void	finish_all(t_simulation *sim,  int count);
 void	print_action(t_philo *philo, char *action);
+void	create_threads(t_simulation *sim, t_philo *philo);
 
 #endif
