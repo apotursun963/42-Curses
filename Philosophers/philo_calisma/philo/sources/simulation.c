@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   simulation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:04:00 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/23 23:30:39 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/24 14:04:46 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,18 +122,37 @@ void	*start_simulation(void *ptr)
 	return (NULL);
 }
 
+/*
+thradlerin çalışma mantığı
+--------------------------
+start_simulation:
+Her filozof kendi thread'inde paralel olarak çalışıyor, yemek yiyor, uyuyor ve düşünüyor.
+Her filozofun doğum zamanı ve son yemek yediği zaman kaydediliyor.
+
+check_philo_eating_time:
+Ayrı bir thread (check_philo_eating_time) ise düzenli aralıklarla her bir filozofun uzun süre 
+boyunca yemek yiyip yemedini kontrol ediyor.
+Eğer tüm filozoflar tarafından belirtilen "meals_eaten" parametresindeki 
+verilen sayının hepsi yenilmişse, program sona eriyor.
+*/
 void	create_threads(t_simulation *sim, t_philo *philo)
 {
 	t_thread	id;
 	int			i;
 
-	i = -1;
+	i = 0;
 	pthread_create(&id, NULL, &check_philo_eating_time, sim->philos);
-	while (++i < philo[0].philo_count)
-		pthread_create(&sim->philos[i].thread_id, NULL, 
+	while (i < philo[0].philo_count)
+	{
+		pthread_create(&sim->philos[i].thread_id, NULL,
 			start_simulation, &sim->philos[i]);
-	i = -1;
+		i++;
+	}
+	i = 0;
 	pthread_join(id, NULL);
-	while (++i < philo[0].philo_count)
+	while (i < philo[0].philo_count)
+	{
 		pthread_detach(sim->philos[i].thread_id);
+		i++;
+	}
 }

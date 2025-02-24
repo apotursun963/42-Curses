@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:04:12 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/23 23:30:48 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/24 14:16:35 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,24 +92,9 @@ filozof sayisi cift olduounda yasam suresi yemek yeme suresinin 2 kati veya 2 ka
 ayni zamanda filizof sayisi tek veya cift olduunda yemek yeme ve uyuma suresi 
 yasam suresini asmamak zorunda esit veya kuck degerler olabilir 
 
-
 Filozof sayısı çift ise, yaşam süresi yemek süresinin iki katı kadar olmalı veya 
 yemek yeme süresi ile uyku süresinin toplamından daha fazla olmalıdır.
 Filozof sayısı tek ise, yaşam süresi yemek yeme süresinin üç katı kadar olmalıdır. 
-
-
-
-thradlerin çalışma mantığı
---------------------------
-start_simulation:
-Her filozof kendi thread'inde paralel olarak çalışıyor, yemek yiyor, uyuyor ve düşünüyor.
-Her filozofun doğum zamanı ve son yemek yediği zaman kaydediliyor.
-
-check_philo_eating_time:
-Ayrı bir thread (check_philo_eating_time) ise düzenli aralıklarla her bir filozofun uzun süre 
-boyunca yemek yiyip yemedini kontrol ediyor.
-Eğer tüm filozoflar tarafından belirtilen "meals_eaten" parametresindeki 
-verilen sayının hepsi yenilmişse, program sona eriyor.
 */
 int	main(int argc, char **argv)
 {
