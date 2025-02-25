@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:04:04 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/24 13:18:52 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/25 15:09:14 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ typedef struct s_simulation
 {
 	t_mutex	*forks;
 	t_philo	*philos;
+	t_mutex	dead_lock;
 	t_mutex	meal_lock;
 	t_mutex	write_lock;
 }	t_simulation;

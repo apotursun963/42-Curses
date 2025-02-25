@@ -1,18 +1,14 @@
 NAME = philo
 
-CC = cc
-CFLAGS = -Wall -Wextra -Werror -g
-
 SRCS = sources/main.c sources/simulation.c sources/timing.c sources/utils.c
-OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+$(NAME): $(SRCS)
+	@cc -Wall -Wextra -Werror $(SRCS) -o $(NAME)
 
 clean:
-	@rm -f $(OBJS)
+	@rm -f $(NAME)
 
 fclean: clean
 	@rm -f $(NAME)
