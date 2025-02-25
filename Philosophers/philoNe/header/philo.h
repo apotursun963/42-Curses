@@ -6,7 +6,7 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:09:35 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/25 18:16:44 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/25 22:46:19 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <stdbool.h>
 # include <pthread.h>
 # include <sys/time.h>
-# include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
 
@@ -74,7 +73,6 @@ void	ft_usleep(int mls);
 int		get_current_time(void);
 void	create_threads(t_simulation *sim);
 void	print_action(t_philo *philo, char *action);
-void	finish_all(t_simulation *sim, t_mutex *forks, int num_of_philo);
-void	finish_all(t_simulation *sim, t_mutex *forks, int num_of_philo);
+void	destroy_mutexes(t_simulation *sim, t_mutex *forks, int num_of_philo);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:10:06 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/25 18:28:52 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/25 22:38:25 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,29 +48,20 @@ Filozoflar yemek yemek için iki çatal (fork) almak zorundadır: biri solunda, 
 Ancak bir çatal aynı anda yalnızca bir filozofun elinde olabilir.
 Eğer mutex kullanılmazsa, iki filozof aynı çatalı aynı anda alabilir ve sistem hatalı çalışabilir.
 */
-static void	init_forks(t_mutex *forks, int philo_num)
+static void	init_mutexes(t_simulation *sim, t_philo *philos, t_mutex *forks, int philo_num)
 {
 	int	i;
 
 	i = -1;
-	while (++i < philo_num)
-		pthread_mutex_init(&forks[i], NULL);
-}
-
-static void	init_simulation(t_simulation *sim, t_philo *philos)
-{
 	sim->dead_falg = 0;
 	sim->philos = philos;
-
-	// Filozofların bilgilerni ekrana yazarken çıktının karışmasını önlemek için kullanılır. 
-	pthread_mutex_init(&sim->write_lock, NULL);
-
-	// Filozofların son yemek yeme zamanını güvenli bir şekilde güncellemek için kullanılır.
-	pthread_mutex_init(&sim->meal_lock, NULL);
-
-	pthread_mutex_init(&sim->dead_lock, NULL);
+	while (++i < philo_num)
+		pthread_mutex_init(&forks[i], NULL);
+	pthread_mutex_init(&sim->write_lock, NULL);		// Çıktıların karışmasını önler.
+	pthread_mutex_init(&sim->meal_lock, NULL);		// Filozofların yemek zamanlarını güvenli bir şekilde günceller.
+	pthread_mutex_init(&sim->dead_lock, NULL);		// Ölen filozof kontrolü için kullanılır.
 }
-// sdfdfl
+
 static int inspect_args(int argc, char **argv)
 {
 	int i;
@@ -88,6 +79,7 @@ static int inspect_args(int argc, char **argv)
 	return (1);
 }
 
+// bazen bu değeri 5. kez verdiğimde died oluyor normalde ölmemesi gerekiyor "./philo 4 410 200 200 10"
 int	main(int argc, char **argv)
 {
 	t_simulation	simulation;
@@ -96,11 +88,10 @@ int	main(int argc, char **argv)
 
 	if (inspect_args(argc, argv))
 	{
-		init_simulation(&simulation, philos);
-		init_forks(forks, ft_atoi(argv[1]));
+		init_mutexes(&simulation, philos, forks, ft_atoi(argv[1]));
 		init_philos(&simulation, philos, forks, argv);
 		create_threads(&simulation);
-		finish_all(&simulation, forks, philos[0].philo_count);
+		destroy_mutexes(&simulation, forks, philos[0].philo_count);
 	}
 	return (0);
 }

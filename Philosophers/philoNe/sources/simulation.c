@@ -6,12 +6,14 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:10:11 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/25 18:25:26 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/25 22:41:32 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/philo.h"
 
+// Bu fonksiyon, her filozofun belirli bir sayıda yemek yiyip yemediğini kontrol eder.
+// Eğer, Tüm filozoflar yemek yemişse, true döner. yoksa false
 static bool	is_all_eat(t_philo *philos)
 {
 	int		ate;
@@ -38,6 +40,13 @@ static bool	is_all_eat(t_philo *philos)
 	return (false);		// Henüz tüm filozoflar yemek yememiştir
 }
 
+// Bu fonksiyon her filozofun yemek yeme, uyuma ve düşünme döngüsünü simüle eder.
+/*
+İlk olarak sağ ve sol çatallar alınır
+Filozof yemek yer (bu esnada last_meal zamanı güncellenir ve yemek sayısı artırılır).
+Yemek bittikten sonra, çatallar serbest bırakılır ve filozof uyur.
+Son olarak, filozof düşünür.
+*/
 static void	philo_routine(t_philo *philo)
 {
 	pthread_mutex_lock(philo->mutexes.right_fork);
@@ -63,6 +72,12 @@ static void	philo_routine(t_philo *philo)
 	print_action(philo, " is thinking");
 }
 
+// Bu fonksiyon, her filozof için çalışan iş parçacığını (thread) temsil eder.
+// if (philo->id % 2 == 0)
+// 	ft_usleep(1);
+// Bu, iki felsefecinin aynı anda aynı çatala (fork) erişmeye çalışmasını engeller.
+// Eğer tüm felsefeciler aynı anda çatalları almak isterse, 
+// bazı felsefeciler hiçbir zaman yemek yiyemez.
 static void	*start_simulation(void *ptr)
 {
 	t_philo	*philo;
@@ -81,6 +96,17 @@ static void	*start_simulation(void *ptr)
 	return (ptr);
 }
 
+// Bu fonksiyon, filozofları izler ve herhangi bir filozofun çok uzun süre yemek yiyip yemediğini veya 
+// veya tüm filozofların yemek yemeyi tamamlaması durumunda simülasyonu bitirmek için çalışır.
+
+// Eğer bir filozof belirli bir süreyi aşarak yemek yememişse, filozofun ölmesi gerektiği kabul edilir ve "died" mesajı yazdırılır.
+// Tüm filozoflar belirli bir yemek sayısına ulaşmışsa, gözlemci durur.
+/*
+"get_current_time() - philos[i].times.last_meal > philos[i].times.die"
+Burada, felsefecinin en son yediği yemekten bu yana geçen süre, onun hayatta kalabileceği 
+süreyi aşıyor mu diye kontrol edilir. Eğer son yemek zamanından şu anki zamana kadar geçen süre, 
+felsefecinin hayatta kalma süresini aşmışsa, bu durumda felsefeci ölmüş kabul edilir.
+*/
 static void	*check_philo_eating_time(void *ptr)
 {
 	t_philo	*philos;
@@ -111,18 +137,37 @@ static void	*check_philo_eating_time(void *ptr)
 	return (NULL);
 }
 
+/*
+thradlerin çalışma mantığı
+--------------------------
+start_simulation:
+Her filozof kendi thread'inde paralel olarak çalışıyor, yemek yiyor, uyuyor ve düşünüyor.
+Her filozofun doğum zamanı ve son yemek yediği zaman kaydediliyor.
+
+check_philo_eating_time:
+Ayrı bir thread (check_philo_eating_time) ise düzenli aralıklarla her bir filozofun uzun süre 
+boyunca yemek yiyip yemedini kontrol ediyor.
+Eğer tüm filozoflar tarafından belirtilen "meals_eaten" parametresindeki 
+verilen sayının hepsi yenilmişse, program sona eriyor.
+*/
 void	create_threads(t_simulation *sim)
 {
 	t_thread	observer_id;
 	int			i;
 
-	i = -1;
+	i = 0;
 	pthread_create(&observer_id, NULL, &check_philo_eating_time, sim->philos);
-	while (++i < sim->philos[0].philo_count)
+	while (i < sim->philos[0].philo_count)
+	{
 		pthread_create(&sim->philos[i].thread_id, NULL,
 			&start_simulation, &sim->philos[i]);
-	i = -1;
+		i++;
+	}
+	i = 0;
 	pthread_join(observer_id, NULL);
-	while (++i < sim->philos[0].philo_count)
+	while (i < sim->philos[0].philo_count)
+	{
 		pthread_join(sim->philos[i].thread_id, NULL);
+		i++;
+	}
 }
