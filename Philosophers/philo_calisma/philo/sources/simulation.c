@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   simulation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:10:11 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/25 22:41:32 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/26 14:29:07 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ static void	*check_philo_eating_time(void *ptr)
 		while (++i < philos[0].philo_count)
 		{
 			pthread_mutex_lock(philos->mutexes.meal_lock);
-			if (get_current_time() - philos[i].times.last_meal 
+			if (get_current_time() - philos[i].times.last_meal
 				>= philos[i].times.die)		// Eğer filozof uzun süre yemek yememişse
 			{
 				pthread_mutex_unlock(philos->mutexes.meal_lock);

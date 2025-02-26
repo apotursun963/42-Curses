@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:10:06 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/25 22:38:25 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/26 14:26:57 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	init_philos(t_simulation *sim, t_philo *philos, t_mutex *forks, char
 		philos[i].mutexes.left_fork = &forks[i];
 		philos[i].mutexes.right_fork = &forks[philos[i].philo_count - 1];	// İlk filozof, son filozofun sol çatalını alır.
 		if (i != 0)		// Diğer filozoflar, önceki filozofun sol çatalını alır.
-			philos[i].mutexes.right_fork = &forks[i - 1];	
+			philos[i].mutexes.right_fork = &forks[i - 1];
 		philos[i].dead = &sim->dead_falg;
 		philos[i].mutexes.write_lock = &sim->write_lock;
 		philos[i].mutexes.meal_lock = &sim->meal_lock;
@@ -61,7 +61,7 @@ static void	init_mutexes(t_simulation *sim, t_philo *philos, t_mutex *forks, int
 	pthread_mutex_init(&sim->meal_lock, NULL);		// Filozofların yemek zamanlarını güvenli bir şekilde günceller.
 	pthread_mutex_init(&sim->dead_lock, NULL);		// Ölen filozof kontrolü için kullanılır.
 }
-
+	
 static int inspect_args(int argc, char **argv)
 {
 	int i;
