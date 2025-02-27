@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:10:06 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/26 14:26:57 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/27 19:39:02 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,25 +61,7 @@ static void	init_mutexes(t_simulation *sim, t_philo *philos, t_mutex *forks, int
 	pthread_mutex_init(&sim->meal_lock, NULL);		// Filozofların yemek zamanlarını güvenli bir şekilde günceller.
 	pthread_mutex_init(&sim->dead_lock, NULL);		// Ölen filozof kontrolü için kullanılır.
 }
-	
-static int inspect_args(int argc, char **argv)
-{
-	int i;
 
-	if (argc != 5 && argc != 6)
-		return (0);
-	if (ft_atoi(argv[1]) > NUMBER_OF_PHILO)
-		return (0);
-	i = 0;
-	while (++i < argc)
-	{
-		if (ft_atoi(argv[i]) <= 0)
-			return (0);
-	}
-	return (1);
-}
-
-// bazen bu değeri 5. kez verdiğimde died oluyor normalde ölmemesi gerekiyor "./philo 4 410 200 200 10"
 int	main(int argc, char **argv)
 {
 	t_simulation	simulation;

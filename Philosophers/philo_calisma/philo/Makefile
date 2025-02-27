@@ -1,6 +1,6 @@
 NAME = philo
 
-SRCS = sources/main.c sources/simulation.c sources/utils.c
+SRCS = sources/main.c sources/simulation.c sources/utils.c sources/args.c
 
 all: $(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:09:35 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/25 22:46:19 by atursun          ###   ########.fr       */
+/*   Updated: 2025/02/27 19:38:53 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ int		ft_atoi(char *str);
 void	ft_usleep(int mls);
 int		get_current_time(void);
 void	create_threads(t_simulation *sim);
+int		inspect_args(int argc, char **argv);
 void	print_action(t_philo *philo, char *action);
 void	destroy_mutexes(t_simulation *sim, t_mutex *forks, int num_of_philo);
 
