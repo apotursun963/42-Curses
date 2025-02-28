@@ -12,7 +12,6 @@ MLX = $(MLX_PATH)libmlx.a
 SRC = srcs/core/main.c srcs/core/free.c srcs/graphics/color.c srcs/graphics/draw.c srcs/core/utils.c \
 		srcs/core/init.c srcs/core/keyhandle.c srcs/graphics/projection.c srcs/core/read.c \
 		srcs/transformation/rotate.c srcs/transformation/translate.c srcs/transformation/scale.c
-
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
