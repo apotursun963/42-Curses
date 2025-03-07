@@ -52,8 +52,6 @@ int    search_cmd_in_path(char *command, char **env)
     int     result;
     char    *temp;
     t_tokens tokens = tokenize(command);
-    if (!tokens.cmd || !tokens.flg)
-        return (0);
 
     i = 0;
     path = getenv("PATH");
