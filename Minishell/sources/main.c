@@ -52,6 +52,8 @@ int    search_cmd_in_path(char *command, char **env)
     int     result;
     char    *temp;
     t_tokens tokens = tokenize(command);
+    if (!tokens.cmd || !tokens.flg)
+        return (0);
 
     i = 0;
     path = getenv("PATH");
@@ -83,7 +85,7 @@ int main(int argc, char **argv, char **env)
         if (!input)            // burada ise check_signal fonksiyonu kullanarak sinyalleri kontrol etmen gerekiyor
             break ;
         add_history(input);
-        if (search_cmd_in_path(input, env) == 0)        // bundan önce senin tokenize olayını halletmen gerekiyor
+        if (search_cmd_in_path(input, env) == 0)
             printf("command not found: %s\n", input);
     }
     return 0;
