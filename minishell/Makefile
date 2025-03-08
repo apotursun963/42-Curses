@@ -2,7 +2,7 @@ NAME = minishell
 
 SRCS = sources/main.c sources/free.c sources/parse.c
 
-LIBFT = libs/libft/libft.a
+LIBFT = libraries/libft/libft.a
 
 
 all: $(NAME)
@@ -11,7 +11,7 @@ $(NAME): $(SRCS) $(LIBFT)
 	@cc -Wall -Wextra -Werror $(SRCS) $(LIBFT) -o $(NAME) -lreadline
 
 $(LIBFT):
-	@make all -s -C libs/libft
+	@make all -s -C libraries/libft
 
 clean:
 	@rm -f $(NAME)

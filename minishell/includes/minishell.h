@@ -19,7 +19,7 @@
 # include <sys/wait.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-# include "../libs/libft/libft.h"
+# include "../libraries/libft/libft.h"
 
 # define RED    "\033[31m"
 # define GREEN  "\033[32m"

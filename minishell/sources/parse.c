@@ -3,148 +3,119 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 12:39:52 by atursun           #+#    #+#             */
-/*   Updated: 2025/03/07 18:17:21 by atursun          ###   ########.fr       */
+/*   Updated: 2025/03/08 16:14:04 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../includes/minishell.h"
 
 
-
-// char *extract_quoted_or_unquoted(char *input, int *index)
+// bool is_valid_token(char *token, int token_type)
 // {
 //     int i;
-//     int start;
+//     char qutoe;
 //     int len;
-//     char *res;
-//     char quote;
-
-//     i = *index;
-//     while (input[i] == ' ')
-//         i++;
-//     start = i;
-//     if (input[i] == '"' || input[i] == '\'')
-//     {
-//         i++;
-//         quote = input[i];
-//         start = i;
-//         while (input[i] && input[i] != quote)
-//             i++;
-//         len = i - start; // Tırnak içindeki uzunluk
-//         if (input[i] == quote)
-//             i++; // Kapanış tırnağını geç
-//     }
-//     else
-//     {
-//         while (input[i] && input[i] != ' ')
-//             i++;
-//         len = i - start;
-//     }
-//     res = malloc(len + 1);
-//     strncpy(res, input + start, len);
-//     res[len] = '\0';
-//     *index = i; // Yeni konumu güncelle
-//     return (res);
-// }
-
-// t_tokens tokenize(char *input)
-// {
-//     t_tokens tokens = {NULL, NULL};
-//     int i;
 
 //     i = 0;
-//     tokens.cmd = extract_quoted_or_unquoted(input, &i);
-//     if (input[i])
-//         tokens.flg = extract_quoted_or_unquoted(input, &i);
-//     return (tokens);
+//     qutoe = 0;
+//     len = ft_strlen(token);
+//     if (ft_strncmp(token_type, "cmd", 3) == 0)
+//     {
+//         while (input[i] && input[i] == ' ')
+//             i++;
+//     }
+        
 // }
 
-
-
-
-
-
-static char *parse_command(char *input, int cmd_len)
+static char *parse_command(char *input, int *pos)
 {
     char *cmd;
-    int i = 0, j = 0;
+    int i;
+    int j;
     char quote = 0;
-
+    int start;
+    int cmd_len;
+    
+    i = *pos;
+    j = 0;
+    while (input[i] && input[i] == ' ')
+        i++;
+    start = i;
+    while (input[i] && input[i] != ' ')
+        i++;
+    cmd_len = i - start;
     cmd = malloc(cmd_len + 1);
     if (!cmd)
         return (NULL);
-    while (i < cmd_len)
+    i = start;
+    while (i < start + cmd_len)
     {
         if (input[i] == '"' || input[i] == '\'')
         {
             quote = input[i];
-            i++; 
-            while (i < cmd_len && input[i] != quote)
+            i++;
+            while (i < start + cmd_len && input[i] != quote)
                 cmd[j++] = input[i++];
-            if (i < cmd_len && input[i] == quote)
+            if (i < start + cmd_len && input[i] == quote)
                 i++;
         }
         else
             cmd[j++] = input[i++];
     }
     cmd[j] = '\0';
+    *pos = i;
     return (cmd);
 }
 
-static char *parse_flags(char *input, int start)
+static char *parse_flags(char *input, int *pos)
 {
     char *flg;
-    int flg_len = 0;
-    int i = start, j = 0;
+    int j = 0;
     char quote = 0;
+    int i = *pos;
+    int start;
+    int flg_len;
 
-    while (input[i])
-    {
-        flg_len++;
+    while (input[i] && input[i] != ' ')     // cmd atla
         i++;
-    }
+    while (input[i] && input[i] == ' ')     // Boşlukları atla
+        i++;
+    start = i;
+    flg_len = ft_strlen(input) - start;
     if (flg_len <= 0)
         return (NULL);
     flg = malloc(flg_len + 1);
     if (!flg)
         return (NULL);
-    i = start;
     while (input[i])
     {
         if (input[i] == '"' || input[i] == '\'')
         {
             quote = input[i];
-            i++; // Açılış tırnağını atla
+            i++;
             while (input[i] && input[i] != quote)
                 flg[j++] = input[i++];
             if (input[i] == quote)
-                i++; // Kapanış tırnağını atla
+                i++;
         }
         else
             flg[j++] = input[i++];
     }
     flg[j] = '\0';
+    *pos = i;
     return (flg);
 }
 
 t_tokens tokenize(char *input)
 {
     t_tokens tokens = {NULL, NULL};
-    int cmd_len;
-    int start;
-    int i;
+    int position;
 
-    i = 0;
-    while (input[i] && input[i] != ' ')
-        i++;
-    cmd_len = i;
-    start = cmd_len;
-    tokens.cmd = parse_command(input, cmd_len);
-    if (input[start] == ' ')
-        start++;
-    tokens.flg = parse_flags(input, start);
+    position = 0;
+    tokens.cmd = parse_command(input, &position);
+    tokens.flg = parse_flags(input, &position);
     return (tokens);
 }
