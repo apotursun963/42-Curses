@@ -3,32 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 12:39:52 by atursun           #+#    #+#             */
-/*   Updated: 2025/03/08 16:14:04 by atursun          ###   ########.fr       */
+/*   Updated: 2025/03/09 14:26:05 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../includes/minishell.h"
 
-
-// bool is_valid_token(char *token, int token_type)
-// {
-//     int i;
-//     char qutoe;
-//     int len;
-
-//     i = 0;
-//     qutoe = 0;
-//     len = ft_strlen(token);
-//     if (ft_strncmp(token_type, "cmd", 3) == 0)
-//     {
-//         while (input[i] && input[i] == ' ')
-//             i++;
-//     }
-        
-// }
 
 static char *parse_command(char *input, int *pos)
 {
@@ -79,9 +62,9 @@ static char *parse_flags(char *input, int *pos)
     int start;
     int flg_len;
 
-    while (input[i] && input[i] != ' ')     // cmd atla
+    while (input[i] && input[i] != ' ')         // cmd atla
         i++;
-    while (input[i] && input[i] == ' ')     // Boşlukları atla
+    while (input[i] && input[i] == ' ')         // Boşlukları atla
         i++;
     start = i;
     flg_len = ft_strlen(input) - start;

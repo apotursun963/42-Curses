@@ -29,3 +29,31 @@ Ortam değişkenleri (Environment Variables), işletim sisteminde çalışan kul
 bir ortam değişkeni oluşturmak için;
 export VAR=test
 ortam değişkenlerinin kalıcı olması için .bashrc içine girip bazı ayarlamaları yapmamız gerekiyor
+
+
+Sinyaller
+---------
+- Ctrl+C: Yeni Bir Satırda Yeni bir **prompt** gösterir. Yani, **SIGINT** Sinyalini gönderir, ki bu sinyal terminale işlemi *Dur, yani sonlandır* anlamına gelir.
+
+- Ctrl+D: Boş bir Satırda bu sinyal, "dosya sonu" (EOF - End Of File) sinyalini gönderir ve program sona erer.
+
+- Ctrl+\: Bu ise, bir "quit" sinyali (SIGQUIT) gönderir ve çalışan bir programı zorla kapatabilir. ama bizden istediği hiç bir şey yapmamamız.
+
+Redirections (Yönlendirmeler)
+-----------------------------
+- < (Input Redirection - Girdi Yönlendirme):
+Bir komutun girdisini bir dosyadan alır. yani dosyayı (girdiyi) komuta yönlendiriyor.
+    - cat < apo.txt || wc -l < apo.txt
+
+- > (Output Redirection - Çıktı Yönlendirme)
+Bir komutun çıktısını bir dosyaya yazar (dosya varsa üzerine yazar).
+    - echo "merhaba" > apo.txt
+
+- << (Heredoc - Delimiter ile Girdi Alma)
+Kullanıcıdan bir bitiş kelimesine (delimiter) kadar satır satır girdi alır, ama geçmişe (history) eklemez.
+Heredoc, kabukta (shell) kullanıcıdan bir bitiş kelimesine (delimiter) kadar çok satırlı metin girdisi almayı sağlayan bir yöntemdir.
+    - cat << EOF || wc -l << end
+
+- >> (Append Output Redirection - Çıktıyı Ekleme Modunda Yönlendirme)
+Bir komutun çıktısını, bir dosyaya yazar, ama üzerine yazmaz, mevcut içeriğin sonuna ekler.
+    - echo "Yeni" >> apo.txt

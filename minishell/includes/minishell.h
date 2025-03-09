@@ -15,6 +15,8 @@
 
 # include <stdio.h>
 # include <stdlib.h>
+# include <stdbool.h>
+# include <signal.h>
 # include <unistd.h>
 # include <sys/wait.h>
 # include <readline/readline.h>
@@ -32,9 +34,9 @@ typedef struct s_tokens
     char *flg;
 }   t_tokens;
 
-
 t_tokens tokenize(char *input);
 void    ft_free(char **str);
-
+void    handle_signals();
+void redirections_type(char *input);
 
 # endif
