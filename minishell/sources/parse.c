@@ -6,7 +6,7 @@
 /*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 12:39:52 by atursun           #+#    #+#             */
-/*   Updated: 2025/03/10 15:18:24 by atursun          ###   ########.fr       */
+/*   Updated: 2025/03/10 16:18:45 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static char *parse_command(char *input, int *pos)
     char quote = 0;
     int start;
     int cmd_len;
-    
+
     i = *pos;
     j = 0;
     while (input[i] && input[i] == ' ')

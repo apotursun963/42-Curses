@@ -13,13 +13,7 @@
 7. Sinyalleri (CTRL+C, CTRL+D, CTRL+\) Yönetme
 8. Çıkış Durumları ($?)
 
-## hakotu
-10. &&, ||, Wildcards *
-
-
-
+- Bonus kısmı yapılmayacak
 
 
 # Projeye 4/3/2025 tarihinde başlandı
-# Mandatory Kısmı: atursun
-# Bonus Kısmı: hakotu

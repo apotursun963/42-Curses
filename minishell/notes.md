@@ -57,3 +57,6 @@ Heredoc, kabukta (shell) kullanıcıdan bir bitiş kelimesine (delimiter) kadar 
 - >> (Append Output Redirection - Çıktıyı Ekleme Modunda Yönlendirme)
 Bir komutun çıktısını, bir dosyaya yazar, ama üzerine yazmaz, mevcut içeriğin sonuna ekler.
     - echo "Yeni" >> apo.txt
+
+
+// https://github.com/alexnik42/minishell/tree/main
