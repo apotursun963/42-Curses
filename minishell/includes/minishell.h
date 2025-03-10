@@ -34,6 +34,7 @@ typedef struct s_tokens
     char *flg;
 }   t_tokens;
 
+void    cd(char *input);
 t_tokens tokenize(char *input);
 void    ft_free(char **str);
 void    handle_signals();

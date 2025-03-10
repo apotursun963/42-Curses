@@ -1,6 +1,6 @@
 NAME = minishell
 
-SRCS = sources/main.c sources/free.c sources/parse.c sources/signals.c
+SRCS = sources/main.c sources/free.c sources/parse.c sources/signals.c sources/builtins/cd.c
 
 LIBFT = libraries/libft/libft.a
 

@@ -6,12 +6,11 @@
 /*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 12:39:52 by atursun           #+#    #+#             */
-/*   Updated: 2025/03/09 14:26:05 by atursun          ###   ########.fr       */
+/*   Updated: 2025/03/10 15:18:24 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../includes/minishell.h"
-
 
 static char *parse_command(char *input, int *pos)
 {
