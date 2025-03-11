@@ -59,4 +59,7 @@ Bir komutun çıktısını, bir dosyaya yazar, ama üzerine yazmaz, mevcut içer
     - echo "Yeni" >> apo.txt
 
 
-// https://github.com/alexnik42/minishell/tree/main
+
+SHLVL (Shell Level): ortam değişkenidir ve bir shell’in kaç katman derinlikte çalıştığını gösterir. Yani, bir shell içinde başka bir shell başlatıldığında bu seviye artar.
+
+

@@ -1,1 +1,12 @@
-yenisdfdfsdfdf
+Makefile
+a.out
+apo.txt
+de
+includes
+libraries
+main.c
+minishell
+notes.md
+sources
+srcs
+steps.md
