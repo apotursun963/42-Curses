@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
-#include "../include/actions.h"
+#include "../includes/push_swap.h"
+#include "../includes/actions.h"
 
 void	sort_stack_if_size_3(t_stack **stack_a)
 {

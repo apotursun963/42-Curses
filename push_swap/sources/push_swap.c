@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
-#include "../include/actions.h"
+#include "../includes/push_swap.h"
+#include "../includes/actions.h"
 
 char	**parse_args(int argc, char **argv)
 {

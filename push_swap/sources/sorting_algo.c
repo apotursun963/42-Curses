@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
-#include "../include/actions.h"
+#include "../includes/push_swap.h"
+#include "../includes/actions.h"
 
 void	quick_sort_b(t_stack **stack_a, t_stack **stack_b, int len, int i)
 {

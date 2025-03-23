@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 15:06:27 by atursun           #+#    #+#             */
-/*   Updated: 2025/01/22 16:41:23 by atursun          ###   ########.fr       */
+/*   Updated: 2025/03/23 12:19:55 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/push_swap.h"
+#include "../../includes/actions.h"
 
 void	push(t_stack **src_stack, t_stack **dst_stack)
 {

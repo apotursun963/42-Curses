@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/actions.h"
+#include "../../includes/actions.h"
 
 void	action(t_stack **stack_a, t_stack **stack_b, t_action action_type)
 {

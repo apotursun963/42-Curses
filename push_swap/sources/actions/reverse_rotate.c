@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   reverse_rotate.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 15:23:46 by atursun           #+#    #+#             */
-/*   Updated: 2025/01/22 16:41:39 by atursun          ###   ########.fr       */
+/*   Updated: 2025/03/23 12:20:00 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/push_swap.h"
+#include "../../includes/actions.h"
 
 void	reverse_rotate(t_stack **stack)
 {

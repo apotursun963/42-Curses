@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
-#include "../include/actions.h"
+#include "../includes/push_swap.h"
+#include "../includes/actions.h"
 
 void	temp_sort(int *arr, int size)
 {

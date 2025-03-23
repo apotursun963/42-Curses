@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   error_management.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 11:53:56 by atursun           #+#    #+#             */
-/*   Updated: 2025/01/24 12:35:23 by atursun          ###   ########.fr       */
+/*   Updated: 2025/03/23 12:20:45 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "../includes/actions.h"
 
 void	error_handling(void)
 {
