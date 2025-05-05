@@ -22,5 +22,18 @@ Networking (Ağ), Host/cihaz (bilgisayar, sunucu, yazıcı, telefon) ve diğer c
 
 - Hiyerarşik Adresleme: Hiyerarşik Adresleme, IP adreslerinin büyük bir blok hâlinde alınarak ihtiyaç duyulan alt parçalara mantıksal olarak bölünmesi demektir. IP adresleri genellikle hiyerarşik şekilde tahsis edilir. Örneğin “10.0.0.0” bloğu APPLE Şirketi’ne ayrılmış olsun. Şirketin New York, Londra ve Tokyo ofisleri, sırasıyla “10.20.x.x”, “10.30.x.x” ve “10.40.x.x” bloklarını kullanır. New York ofisi içinde de satış, mühendislik ve pazarlama ekipleri “10.20.55.x”, “10.20.66.x”, “10.20.77.x” gibi alt bloklara ayrılabilir. Bu yapı, IP adresinin başındaki “prefiks” ile bir cihazın hangi ofiste veya ekipte olduğunu “ağın” mantıksal sınırları içinde göstermeyi sağlar. İşte “ağ” (network), aynı IP prefiksini paylaşan host’ların oluşturduğu mantıksal gruptur.
 
-3. ping: İki cihaz arasındaki bağlantıyı test etmek için kullanılır. (ör: ping, bir hedef IP adresine ICMP Echo Request paketi (yani “orada mısın?” sinyali) gönderir ve hedef sağlıklıysa bir Echo Reply (“buradayım”) cevabı alır. Böylece hedefe ulaşım olup olmadığı, gecikme süresi gibi bilgiler elde edilir)
-NetPractice’te ise **Check** işlemi aslında gerekli ping testlerini sizin için otomatik yapmaktadır.
+SWİTCH VE ROUTER mantığını detaylıca öğren
+
+
+Switch’in görevi: Aynı yerel ağ (LAN) içindeki cihazlar arasında Ethernet çerçevelerini MAC adreslerine bakarak iletmek. Bilinmeyen MAC’e flooding yapar, VLAN’larla broadcast domain’leri böler.
+
+Router’ın görevi: Farklı ağlar (subnet’ler veya internete) arasındaki IP paketlerini yönlendirmek. Hangi paketin hangi çıkışa gideceğini routing table’a göre belirler ve ağlar arasında iletişimi sağlar.
+
+OSI Katmanı: OSI (Open Systems Interconnection) modeli, farklı ağ protokollerinin ve cihazlarının birlikte uyum içinde çalışabilmesi için iletişimi yedi ayrı katmana bölerek tanımlayan kavramsal bir çerçevedir. Her katmanın kendine özgü görev ve sorumlulukları vardır: 
+
+
+
+
+
+
+

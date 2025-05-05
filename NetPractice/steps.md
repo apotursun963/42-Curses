@@ -1,4 +1,4 @@
-# Cihazların birbirleriyle doğrudan iletişim kurabilmesi için aynı ağda veya aynı alt ağda (subnet) olmaları gerekir. Eğer cihazlar farklı ağlarda veya alt ağlarda bulunuyorsa, iletişim kurabilmeleri için bir router (yönlendirici) veya başka bir ağ geçidi (gateway) gereklidir.
+# Cihazların birbirleriyle doğrudan iletişim kurabilmesi için aynı ağda veya aynı alt ağda (subnet) olmaları gerekir. Eğer cihazlar farklı ağlarda veya alt ağlarda bulunuyorsa, iletişim kurabilmeleri için bir router (yönlendirici) veya başka bir ağ geçidi (gateway) gereklidir. Yerel ağda iletişim, aynı ağ adresi (network address) paylaşıldığında, doğrudan gerçekleşir.
 
 
 - IP Adresi: Cihazın ağdaki adresi. İki kısımdan oluşur:
@@ -47,11 +47,96 @@ Network ID Nasıl Hesaplanır?
 
 Sonuç: Network ID = 192.168.1.0
 
+255.255.255.252 == /30
 
 - Hesaplama: IP adresi ve subnet maskesi arasında bit düzeyinde AND işlemi yapılır.
 
 
+127.0.0.1 ve genel olarak 127.0.0.0/8 bloğu, yalnızca o anki cihazın “kendi kendisiyle” (loopback) haberleşmesi için ayrılmıştır. Bu yüzden dışarı çıkıp başka bir makineyle asla fiziksel veya sanal ağ üzerinden paket alış-verişi yapamaz.
+
 # Level 1
 1. IP Adresses
 2. Subnet Mask
+
+# Level 2
+1. 
+
+
+
+127.0.0.0/30	-> C'nin Ağ Adresi
+127.0.0.4/30	-> D'nin Ağ Adresi
+Bu iki Ağ adresi farklı olduğu için birbirleriyle iletişim kuramazlar
+O yüzden D'nin host kısmını 2 yaptığımda ve IP AND MASK sonrası 127.0.0.0 oldu ve
+C ve D nin Ağ adresleri eşti olmuş oldu ve sonunda iletişim kurabilirler.
+
+
+
+
+
+IP adreslerinde bit sayısı (1) ardışık değilde kaç tane varsa o o kadar var demektir.
+MASK ise 1 bit sayısı ardışık olması gerekiyor
+
+
+
+IP adresinin Son değerleri “istediğiniz gibi” seçmek için temel kural — o alt ağın host bit’lerinin verdiği kullanılabilir aralık içinde kalmaktır.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+11000000 10101000 00110111 00000001 > 192.168.55.1
+11111111 11111111 11111111 11100000 > 255.255.255.224
+
+11000000 10101000 00110111 00000000 > 192.168.55.0
+A'nın Ağ Adresi: 192.168.55.0/10
+
+
+
+
+11000000 10101000 00110111 11011110 > 192.168.55.222
+11111111 11111111 11111111 00000000 > 255.255.255.224
+
+11000000 10101000 00110111 00000000 > 192.168.55.0
+B'nın Ağ Adresi: 192.168.55.0
+
+
+
+A'nın Ağ Adresi: 192.168.55.0
+B'nın Ağ Adresi: 192.168.55.222
+Sonuç, bu iki cihazın Ağ adresi aynı değil o yüzden aynı olması için 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
