@@ -52,7 +52,7 @@ Sonuç: Network ID = 192.168.1.0
 - Hesaplama: IP adresi ve subnet maskesi arasında bit düzeyinde AND işlemi yapılır.
 
 
-127.0.0.1 ve genel olarak 127.0.0.0/8 bloğu, yalnızca o anki cihazın “kendi kendisiyle” (loopback) haberleşmesi için ayrılmıştır. Bu yüzden dışarı çıkıp başka bir makineyle asla fiziksel veya sanal ağ üzerinden paket alış-verişi yapamaz.
+
 
 # Level 1
 1. IP Adresses
