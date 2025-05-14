@@ -85,6 +85,7 @@ Bir ağın adresini temsil eder. Ağdaki tüm cihazlar için aynıdır ve cihazl
 | **Bridge** | İki ağı birbirine bağlar, MAC tablosu ile filtreler| Veri Bağlantı Katmanı     |
 | **Repeater** | Sinyali güçlendirir, menzili artırır             | Fiziksel Katman           |
 
+
 #### Switch
 - Aynı LAN’daki cihazları MAC adresleriyle birbirine bağlar.
 - MAC adres tablosu sayesinde paketleri yalnızca hedef cihaza iletir.
