@@ -92,7 +92,6 @@ Bir ağın adresini temsil eder. Ağdaki tüm cihazlar için aynıdır ve cihazl
 
 #### Router
 - Farklı ağlar arasında IP tabanlı yönlendirme yapar.
-- NAT, DHCP, firewall gibi ek işlevler üstlenebilir.
 - Farklı subnet’teki iki cihaz, router olmadan doğrudan iletişim kuramaz.
 
 #### Modem
