@@ -80,9 +80,7 @@ Bir ağın adresini temsil eder. Ağdaki tüm cihazlar için aynıdır ve cihazl
 | ---------- | -------------------------------------------------- | ------------------------ |
 | **Switch** | Aynı LAN içindeki cihazları birbirine bağlar       | MAC Adresleriyle (2. Katman) |
 | **Router** | Farklı ağları (LAN↔WAN) birbirine yönlendirir      | IP Adresleriyle (3. Katman)  |
-| **Modem**  | ISP’ye bağlantı kurar, dijital/analog dönüşüm      | Fiziksel Katman           |
 | **Hub**    | Gelen veriyi tüm portlara iletir (verimsiz)        | Fiziksel Katman           |
-| **Bridge** | İki ağı birbirine bağlar, MAC tablosu ile filtreler| Veri Bağlantı Katmanı     |
 | **Repeater** | Sinyali güçlendirir, menzili artırır             | Fiziksel Katman           |
 
 
@@ -93,12 +91,6 @@ Bir ağın adresini temsil eder. Ağdaki tüm cihazlar için aynıdır ve cihazl
 #### Router
 - Farklı ağlar arasında IP tabanlı yönlendirme yapar.
 - Farklı subnet’teki iki cihaz, router olmadan doğrudan iletişim kuramaz.
-
-#### Modem
-- ISP ile bağlantı kurar, dijital ve analog sinyaller arasında dönüşüm yapar.
-
-#### Hub
-- Gelen veriyi tüm portlara iletir, bant genişliğini böler, çarpışma ihtimalini artırır.
 
 #### Bridge
 - İki ağı birbirine bağlar, MAC tablosu ile gereksiz trafiği engeller.
@@ -163,8 +155,6 @@ Bir ağ, daha küçük alt ağlara bölünebilir. Her alt ağın kendi ağ adres
   - IP: 192.168.1.10 → 11000000.10101000.00000001.00001010
   - Mask: 255.255.255.0 → 11111111.11111111.11111111.00000000
   - Network ID: 192.168.1.0
-
----
 
 ## 10. Pratik Notlar ve İpuçları
 - 127.0.0.0/8 bloğu yalnızca cihazın kendi kendisiyle (loopback) haberleşmesi içindir.

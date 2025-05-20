@@ -30,3 +30,19 @@ Verinin bir kaynaktan, ilgili alıcı grubuna gönderilmesidir. Herkes değil, s
 ---
 Ağ adresi : 144.221.128.0   ->> başlangıç adres: **144.221.128.1**
 Broadcast : 144.221.191.255 ->> Bitiş Adres: **144.221.191.254**
+
+
+
+
+
+
+
+
+
+
+
+
+
+ağ: 77.16.114.112
+Br: 77.16.114.127
+113 ile 126
