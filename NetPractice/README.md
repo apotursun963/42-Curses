@@ -197,9 +197,6 @@ Verinin bir kaynaktan, ilgili alıcı grubuna gönderilmesidir. Herkes değil, s
 - Multicast: Sadece ilgilenenlere mesaj (toplantı daveti gibi).
 
 
-
-## IP adresleri blokları
-
 ## Subnetting Amacı: Verilen bir IP adresinin hangi ağ bloğuna ait olduğunu bulmak.
 
 - Kullanılabilir IP aralığını hesapla
@@ -213,35 +210,53 @@ Broadcast : 144.221.191.255 ->> Bitiş Adres: **144.221.191.254**
 # Subnet Mask (Alt Ağ Maskesi)
 Alt Ağ Maskesi Sayesinde, IP adresinin hangi kısmının ağ, hangi kısmının cihaz (host) olduğunu öğrenebiliyoruz.
 
-
 ## Notes
+
 Bir IP adresi ve subnet maskesi verildiğinde **Network adresi**, **Broadcast adresi**, **Kullanılabilir ilk adres** ve **Kullanılabilir son adres** bilgilerini kolayca hesaplayabiliriz.
 
-- IP; 192.168.1.10/24   -->> subnet mask (/24)
+Örnek:
+- IP: `192.168.1.10/24` (subnet mask: `/24`)
 
-1. Öncelikle IP adresinin Network ve Host kısmını Bul
-- IP BİNARY   : 11000000 10101000 00000001 00001010 
-- MASK BİNARY : 11111111 11111111 11111111 00000000     ->> subnet maskteki 1 olan kısım network'tur
-                -------------------------- --------
-                    Network                  Host
-- 192.168.1.10  ->> 10 host'tur
+---
 
+### 1. IP Adresinin Network ve Host Kısmını Bulma
 
-2. Network Adresi Bulma (AND İşlemi yada host kısmını BİN olarak 0 yapmak)
-- IP BİNARY   : 11000000 10101000 00000001 00001010 
-- MASK BİNARY : 11111111 11111111 11111111 00000000
-- Sonuç       : 11000000 10101000 00000001 00000000
-- Ağ Adresi   : 192.168.1.0
+- **IP Binary:** `11000000 10101000 00000001 00001010`
+- **Mask Binary:** `11111111 11111111 11111111 00000000`  
+  (Subnet maskteki 1 olan kısım network'tur)
+- **Network:** İlk 24 bit (`11000000 10101000 00000001`)
+- **Host:** Son 8 bit (`00001010`)
+- `192.168.1.10` adresinde, `10` host kısmıdır.
 
+---
 
-3. Broadcast Adresi Bulma (IP ADRESİNİN HOST KISMINI BİN OLARAK 1 YAP SONRA AĞ ADRESİ HOST KISMI İLE TOPLA)
-- Broadcast Adresi; 192.168.1.11111111
-- Broadcast Adresi; 192.168.1.255
+### 2. Network Adresi Bulma
 
+Network adresini bulmak için IP adresi ile subnet maskesi arasında **AND** işlemi yapılır veya host kısmı binary olarak sıfırlanır.
 
-4. Network'ta kullanılabilir ilk ve son IP adreslerini belirleme
-- Network'ta kullanılabilir ilk adres bulma: Network Adresinin HOST kısmının Bir fazlasıdır.
-    - 192.168.1.1
-- Network'ta kullanılabilir son adres bulma: Broadcast Adresinin HOST kısmının Bir eksiğidir.
-    - 192.168.1.254
-- Biz **Network Adresini** (192.168.1.0) ve **Broadcast Adresini** (192.168.1.255) Hostlar için kullanamıyoruz. Sadece (192.168.1.1 ve 192.168.1.254) Arası kullanabiliriz.
+- **IP Binary:** `11000000 10101000 00000001 00001010`
+- **Mask Binary:** `11111111 11111111 11111111 00000000`
+- **Sonuç:** `11000000 10101000 00000001 00000000`
+- **Ağ Adresi:** `192.168.1.0`
+
+---
+
+### 3. Broadcast Adresi Bulma
+
+Broadcast adresi, IP adresinin host kısmı binary olarak 1 yapılır.
+
+- **Broadcast Adresi Binary:** `192.168.1.11111111`
+- **Broadcast Adresi:** `192.168.1.255`
+
+---
+
+### 4. Kullanılabilir İlk ve Son IP Adreslerini Belirleme
+
+- **Kullanılabilir ilk adres:** Network adresinin host kısmının bir fazlası  
+  - `192.168.1.1`
+- **Kullanılabilir son adres:** Broadcast adresinin host kısmının bir eksiği  
+  - `192.168.1.254`
+
+> **Not:** Network adresi (`192.168.1.0`) ve Broadcast adresi (`192.168.1.255`) hostlar için kullanılamaz. Sadece `192.168.1.1` ile `192.168.1.254` arasındaki adresler kullanılabilir.
+
+---
