@@ -1,8 +1,5 @@
 # NetPractice
 
-## Proje Tanımı
-NetPractice, ağ (networking) temellerini ve cihazlarını öğrenmek için hazırlanmış interaktif bir eğitim platformudur. Bu proje, temel ağ kavramlarını, IP adreslemesini, subnetting işlemlerini ve ağ cihazlarının görevlerini pratik örneklerle öğretmeyi amaçlar.
-
 ### IP Adresi (Internet Protocol)
 Her cihazın ağda tanımlanabilmesi için bir IP adresi gerekir. IP adresleri, cihazların birbirini bulmasını ve veri göndermesini sağlar.
 - **IPv4:** 32 bit, dört oktet (örn: 192.168.1.1)
