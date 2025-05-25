@@ -54,7 +54,7 @@ Bu fonksiyona “üye fonksiyon” denir çünkü sınıfın üyesidir.
 public ve private farkı
 ---
 - public: Herkes erişebilir, Sınıfın dışından da kullanılabilir.
-- Sadece sınıfın içinden erişilebilir, Dışarıdan direkt olarak erişmeye çalışırsan hata alırsın.
+- private: Sadece sınıfın içinden erişilebilir, Dışarıdan direkt olarak erişmeye çalışırsan hata alırsın.
 */
 
 #include <iostream>
@@ -84,5 +84,5 @@ Belirli bir isim veya elemanın hangi alanda (namespace, class vs.) olduğunu be
 */
 
 // 1. Namespace Üyesine Erişim
-// 2. Sınıf Dışında Üye Fonksiyon Tanımlama
+// 2. Sınıf Dışında Üye Fonksiyon Tanımlama (Erişme/kullanma)
 // 3. Global Değişkene Erişim   
