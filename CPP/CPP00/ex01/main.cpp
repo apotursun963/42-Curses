@@ -28,7 +28,8 @@ int main()
     pb.next = 0;        // Bir sonraki eklenecek kişinin hangi dizi indeksine yazılacağını gösterir.
     while (true)
 	{
-        std::cout << GREEN"PhoneBook> "RESET;
+        // std::cout << GREEN"PhoneBook> "RESET;
+        std::cout << "PhoneBook> ";
         std::getline(std::cin, cmd);
         if (std::cin.eof())
             return 0;

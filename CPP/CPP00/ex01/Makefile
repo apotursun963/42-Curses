@@ -1,12 +1,10 @@
 NAME = phonebook
 SRC = Contact.cpp PhoneBook.cpp main.cpp
-CPP = c++
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
 all: $(NAME)
 
 $(NAME): $(SRC)
-	$(CPP) $(CPPFLAGS) $(SRC) -o $(NAME)
+	c++ -Wall -Wextra -Werror -std=c++98 $(SRC) -o $(NAME)
 
 clean:
 	@rm -f $(NAME)

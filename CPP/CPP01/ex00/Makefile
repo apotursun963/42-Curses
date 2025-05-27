@@ -1,5 +1,5 @@
-NAME = megaphone
-SRC = megaphone.cpp
+NAME = zombie
+SRC = main.cpp Zombie.cpp newZombie.cpp randomChump.cpp
 
 all: $(NAME)
 
