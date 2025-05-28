@@ -21,7 +21,7 @@ public:
     void announce(void);
     void setname(std::string &inname);
     
-    ~Zombie();                      // destructure
+    ~Zombie();
 };
 
 Zombie* zombieHorde(int N, std::string name);

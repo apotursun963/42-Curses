@@ -14,14 +14,16 @@
 
 void PhoneBook::add(Contact& c)
 {
-    contacts[next] = c;
-    next = (next + 1) % 8;
+    contacts[next % 8] = c;
+    next++;
     if (count < 8)
         count++;
 }
 
 void PhoneBook::list()
 {
+    if (count == 0)
+        return ;
     std::cout << "| Index |First Name| Last Name| Nick Name|" << std::endl;
     std::cout << "------------------------------------------" << std::endl;
     for (int i = 0; i < count; ++i)

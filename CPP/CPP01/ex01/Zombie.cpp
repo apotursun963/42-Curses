@@ -22,5 +22,6 @@ void Zombie::setname(std::string& inname) {
 }
 
 Zombie::~Zombie() {
-    std::cout << name << std::endl;
+    std::cout << name << " destroyed" << std::endl;
+
 }

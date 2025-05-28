@@ -17,9 +17,6 @@
 # define GREEN "\033[32m"
 # define RESET "\033[0m"
 
-// std::getline(std::cin, variable);
-// - std::cin: Klavyeden (standart girişten) okuma yapar.
-// - variable: Okunan satırın atanacağı string değişken.
 int main()
 {
     PhoneBook pb;
@@ -28,8 +25,7 @@ int main()
     pb.next = 0;        // Bir sonraki eklenecek kişinin hangi dizi indeksine yazılacağını gösterir.
     while (true)
 	{
-        // std::cout << GREEN"PhoneBook> "RESET;
-        std::cout << "PhoneBook> ";
+        std::cout << GREEN"PhoneBook> "RESET;
         std::getline(std::cin, cmd);
         if (std::cin.eof())
             return 0;
@@ -53,20 +49,24 @@ int main()
         }
 		else if (cmd == "SEARCH")
 		{
-            pb.list();
-            std::cout << "Index to show: ";
-            std::string idxStr;
-            std::getline(std::cin, idxStr);
-            int idx = idxStr[0] - 48;
-			pb.show(idx);
+            if (pb.count != 0)
+            {
+                pb.list();
+                std::cout << "Index to show: ";
+                std::string idxStr;
+                std::getline(std::cin, idxStr);
+                int idx = idxStr[0] - 48;
+                if (!idxStr[1])
+                    pb.show(idx);
+            }
         }
         else if (cmd == "EXIT")
             break;
         else
-            std::cout << "Unknown command." << std::endl;
+            std::cout << "Unknown command" << std::endl;
     }
     return 0;
-}   
+}
 
 
 /*

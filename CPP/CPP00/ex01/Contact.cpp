@@ -19,7 +19,7 @@ void Contact::set(std::string& f, std::string& l, std::string& n, std::string& p
      this->firstName = f; this->lastName = l;
      this->nickName = n; this->phoneNumber = p; this->secret = s;
 }
-     
+
 std::string Contact::getFirstName() { return this->firstName; }
 std::string Contact::getLastName()  { return this->lastName; }
 std::string Contact::getNickName()  { return this->nickName; }
