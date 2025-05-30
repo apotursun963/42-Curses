@@ -15,7 +15,7 @@
 #include <string>
 
 // Belirli bir alt dizgeyi başka bir alt dizgeyle değiştiren fonksiyon
-std::string replaceAll(const std::string& str, const std::string& from, const std::string& to) {
+std::string replaceAll(const std::string& str,  const std::string& from, const std::string& to) {
     if (from.empty())
         return str;
 
@@ -32,7 +32,8 @@ std::string replaceAll(const std::string& str, const std::string& from, const st
     return result;
 }
 
-int main(int argc, char* argv[]) {
+int main(int argc, char **argv)
+{
     if (argc != 4) {
         std::cout << "Usage: " << argv[0] << " <filename> <search> <replace>" << std::endl;
         return 1;
@@ -55,7 +56,6 @@ int main(int argc, char* argv[]) {
     while (std::getline(inputFile, line)) {
         outputFile << replaceAll(line, argv[2], argv[3]) << std::endl;
     }
-
     inputFile.close();
     outputFile.close();
     return 0;
