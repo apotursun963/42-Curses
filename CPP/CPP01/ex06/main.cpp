@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42istanbul.com.tr +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 14:24:53 by atursun           #+#    #+#             */
-/*   Updated: 2025/05/30 15:45:49 by atursun          ###   ########.fr       */
+/*   Updated: 2025/06/01 12:25:35 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,3 +28,10 @@ int main(int argc, char **argv)
         return (std::cout << "Wrong level type\n", 0);
     test.complain(argv[1]);
 }
+
+
+/*
+Bu egzersizde (CPP01/ex06), bir önceki egzersizdeki Harl sınıfını biraz daha geliştiriyorsun.
+Temel amaç, kullanıcıdan bir seviye ("DEBUG", "INFO", "WARNING", "ERROR") alıp,
+bu seviyeden başlayarak tüm üst seviyeleri de ekrana bastırmak.
+*/

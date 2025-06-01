@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   HumanB.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42istanbul.com.tr +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 16:27:24 by atursun           #+#    #+#             */
-/*   Updated: 2025/05/30 17:08:39 by atursun          ###   ########.fr       */
+/*   Updated: 2025/05/31 15:25:17 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,6 @@
 #include "Weapon.hpp"
 
 HumanB::HumanB(std::string name) : name(name) {
-}
-
-HumanB::~HumanB() {
-
 }
 
 void HumanB::attack() {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Harl.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42istanbul.com.tr +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 12:49:48 by atursun           #+#    #+#             */
-/*   Updated: 2025/05/30 14:23:08 by atursun          ###   ########.fr       */
+/*   Updated: 2025/05/31 15:33:02 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void Harl::error(void)
 
 void Harl::complain(std::string level)
 {
-    // Üye fonksiyona işaretçi dizisi
     void (Harl::*funcPtr[4])() = {
         &Harl::debug,
         &Harl::info,

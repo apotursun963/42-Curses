@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Harl.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42istanbul.com.tr +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 14:24:31 by atursun           #+#    #+#             */
-/*   Updated: 2025/05/30 15:27:03 by atursun          ###   ########.fr       */
+/*   Updated: 2025/06/01 12:24:13 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void Harl::complain(std::string level)
     };
 
     std::string funcsname[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
-    int  size = sizeof(funcsname) / sizeof(funcsname[0]);
+    int size = sizeof(funcsname) / sizeof(funcsname[0]);
     int index = -1;
     for (int i=0; i < size; i++)
     {

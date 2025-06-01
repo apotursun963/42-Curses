@@ -34,4 +34,5 @@ aynı adı ver, bu diziyi döndür,
 sonra her birinin announce() metodunu çağırarak 
 doğru çalıştığını gör ve 
 iş bitince delete[] ile bellek sızıntısı olmadan temizle.
+
 */

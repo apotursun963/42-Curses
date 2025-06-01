@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42istanbul.com.tr +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 13:58:35 by atursun           #+#    #+#             */
-/*   Updated: 2025/05/30 14:01:25 by atursun          ###   ########.fr       */
+/*   Updated: 2025/06/01 12:22:23 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,3 +21,26 @@ int main()
     test.complain("WARNING");
     test.complain("ERROR");
 }
+
+
+/*
+Bir sınıf (Harl) tanımlıyorsun.
+Bu sınıfın içinde dört farklı seviye için (debug, info, warning, error) özel mesajlar yazan fonksiyonlar var.
+Kullanıcıdan bir seviye ismi (ör: "DEBUG") alınıyor ve complain fonksiyonu çağrılıyor.
+complain fonksiyonu, verilen seviyeye göre ilgili fonksiyonu çağırıyor. Bunu fonksiyon pointer dizisi ve string karşılaştırması ile yapıyor.
+
+
+Fonksiyonu İşaretçisi (pointer)
+---
+fonksiyon pointerı, bir fonksiyonun adresini tutan ve o fonksiyonu
+çağırmanı sağlayan bir değişkendir. Yani, bir fonksiyonu sanki bir değişkenmiş gibi başka bir yere gönderebilir ve çağırabilirsi
+
+void myFunction(); // Normal fonksiyon
+
+void (*funcPtr)(); // Fonksiyon pointerı tanımı
+funcPtr = &myFunction; // Adres atama (veya direkt myFunction)
+funcPtr(); // Fonksiyon çağrılır
+
+Fonksiyon pointerları, hangi fonksiyonun çağrılacağını dinamik olarak belirlemene olanak tanır. Özellikle çok sayıda benzer fonksiyonun olduğu durumlarda kodu sadeleştirir ve esnek hale getirir
+
+*/

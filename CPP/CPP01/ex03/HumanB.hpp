@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   HumanB.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42istanbul.com.tr +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 16:26:12 by atursun           #+#    #+#             */
-/*   Updated: 2025/05/30 17:16:44 by atursun          ###   ########.fr       */
+/*   Updated: 2025/05/31 15:23:45 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ private:
     Weapon *weapon;
 public:
 	HumanB(std::string name);
-	~HumanB();
     void setWeapon(Weapon &weapon);
     void attack();
 };

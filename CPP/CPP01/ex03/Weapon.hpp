@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Weapon.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42istanbul.com.tr +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 16:13:21 by atursun           #+#    #+#             */
-/*   Updated: 2025/05/30 16:33:14 by atursun          ###   ########.fr       */
+/*   Updated: 2025/05/31 15:23:49 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ private:
     std::string type;
 public:
     Weapon(std::string str);
-    ~Weapon();
     std::string &getType();
     void setType(std::string ntype);
 };

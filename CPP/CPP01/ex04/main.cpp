@@ -62,12 +62,30 @@ int main(int argc, char **argv)
 }
 
 /*
-Bir program yazmanız isteniyor. Program üç parametre alacak: bir dosya adı ve iki tane string (s1 ve s2).
-Program, verilen dosyayı açacak ve içeriğini yeni bir dosyaya (orijinal dosya adının sonuna .replace eklenmiş haliyle) kopyalayacak.
-Kopyalama sırasında, dosya içindeki her s1 ifadesini s2 ile değiştirecek.
+ex04 amacı
+---
+Bu egzersizin amacı, bir dosya içindeki belirli bir kelimeyi başka bir kelimeyle değiştirip sonucu yeni bir dosyaya yazan bir program geliştirmektir. 
 
-std::ifstream (input file stream):
-Dosyadan veri okumak için kullanılır. Yani bir dosyayı açıp içeriğini satır satır veya karakter karakter okuyabilirsiniz.
-std::ofstream (output file stream):
-Dosyaya veri yazmak için kullanılır. Yani bir dosya oluşturup içine veri yazabilirsiniz.
+Program üç parametre alır: (./replace input.txt s1 s2)
+- Dosya adı
+- Aranacak kelime (s1)
+- Yerine yazılacak kelime (s2)
+
+İşleyiş:
+- Dosya açılır, satır satır okunur.
+- Her satırda, s1 geçen tüm yerler s2 ile değiştirilir.
+- Sonuç, yeni bir dosyaya (input.txt.replace) yazılır.
+
+
+1. Dosya İşlemleri
+std::ifstream: Dosyadan okuma yapmak için kullanılır.
+std::ofstream: Dosyaya yazmak için kullanılır.
+Dosya açma, hata kontrolü ve dosya kapama işlemleri yapılır.
+
+2. String Manipülasyonu
+std::string::find(): Bir string içinde alt string aramak için kullanılır.
+std::string::substr(): Stringin bir kısmını almak için kullanılır.
+replaceAll fonksiyonu: Bir satırda geçen tüm s1’leri s2 ile değiştirir.
+
+
 */
