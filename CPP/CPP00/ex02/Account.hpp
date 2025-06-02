@@ -32,6 +32,7 @@ public:
 	Account( int initial_deposit );
 	~Account( void );
 
+	// nesneye özel fonksiyonlar (Her hesap için ayrı)
 	void	makeDeposit( int deposit );
 	bool	makeWithdrawal( int withdrawal );
 	int		checkAmount( void ) const;

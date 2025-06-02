@@ -9,7 +9,7 @@ $(NAME): $(SRC)
 clean:
 	@rm -f $(NAME)
 
-fclean: clean
+fclean:
 	@rm -f $(NAME)
 
 re: fclean all

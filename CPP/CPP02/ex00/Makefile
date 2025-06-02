@@ -1,5 +1,5 @@
-NAME = zombie
-SRC = main.cpp Zombie.cpp zombieHorde.cpp
+NAME = Fixed
+SRC = main.cpp Fixed.cpp
 
 all: $(NAME)
 
