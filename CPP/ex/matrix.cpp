@@ -8,9 +8,8 @@ Matrix::Matrix()
 
 }
 
-Matrix::Matrix(size_t rows, size_t cols) 
+Matrix::Matrix(size_t rows, size_t cols)
     : _rows(rows), _cols(cols), _data(new int[rows * cols]) {       // new int[rows * cols]() -> 0'lıyor
-
 }
 
 Matrix::Matrix(const Matrix& other) 
@@ -72,7 +71,7 @@ int Matrix::operator()(size_t i, size_t j) const {  // Değerler Değiştirileme
 Matrix Matrix::operator+(const Matrix& other) const {
     if (_rows != other._rows || _cols != other._cols)
         std::cout << "invalid size\n";
-
+    
     // Sonuç matrisi oluştur
     Matrix result(_rows, _cols);
 
