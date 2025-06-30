@@ -27,16 +27,6 @@ proje yaparken MD frks yap
 
 cub3D Adımlar
 -------------
-- Parsing
-1. Argüman Kontrolleri
-Argüman Sayısı 2 olması gerekiyor.
-Dosyanın var olup olmadığı ve verilen path'in bir dizin değil dosya olduğunu kontrol eder
-Dosya türü kontrolü (harita uzantısı: .cub ve texture uzantısı: .xpm) uzantılı kontrolü
-
-2. Dosyayı satır satır oku
-tüm dosyayı satır satır oku ve verileri belleğe ekle (tabi öncelikle dosya satır sayısını öğrenmen gerekiyorki belleğe satır sayısı kadar yer ayırabilsin)
-Texture yollarını (NO, SO, WE, EA) çıkar 
-Renk bilgilerini parse etme (F (floor) ve C (ceiling) renk kodları)
 
 3. Texture ve Renk İşleme
 RGB değer kontrolü: Renk değerlerinin 0-255 arasında olduğunu kontrol eder
@@ -44,21 +34,9 @@ RGB'den HEX'e dönüştürme: RGB değerlerini hexadecimal formata çevirir
 Texture dosya kontrolü: Tüm texture dosyalarının mevcut olduğunu kontrol eder
 Zorunlu texture kontrolü: NO, SO, WE, EA texture'larının hepsinin tanımlı olduğunu kontrol eder
 
-4. Harita Kontrolü
-Geçerli karakterler: Sadece '0', '1', 'N', 'S', 'E', 'W' karakterlerini kabul eder
-Oyuncu pozisyonu: Tek bir oyuncu başlangıç pozisyonu olduğunu kontrol eder
-Oyuncu yönü: N, S, E, W yönlerinden birinin tanımlı olduğunu kontrol eder
-Harita elemanları: Her karakterin geçerli bir harita elemanı olduğunu doğrular
-
-5. Harita Sınır Kontrolü
-Üst ve alt sınırlar: İlk ve son satırların tamamen '1' karakteri olduğunu kontrol eder
-Yan sınırlar: Her satırın ilk ve son karakterinin '1' olduğunu kontrol eder
-Kapalı harita: Haritanın dış dünyaya açık olmadığını garanti eder
-
 6. Oyun Haritası Oluşturma
 Harita boyutu hesaplama: En geniş satırı bulur ve harita genişliğini belirler
 Bellek tahsisi: Harita için uygun boyutta bellek ayırır
 Harita doldurma: Dosyadan okunan veriyi oyun haritası formatına dönüştürür
 Boş alanları doldurma: Kısa satırları boşluk karakteri ile tamamlar
-
 */

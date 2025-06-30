@@ -67,3 +67,4 @@ void	*tree(t_list *tokens)
 	}
 	return (create_exec(tokens));
 }
+ls -l | wc -l
