@@ -6,107 +6,106 @@
 /*   By: atursun <atursun@student.42istanbul.com.tr +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:36:29 by atursun           #+#    #+#             */
-/*   Updated: 2025/06/30 16:57:10 by atursun          ###   ########.fr       */
+/*   Updated: 2025/07/14 11:19:03 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void read_texture(t_cub *cub, int fd)
+int	skip_whitespaces(char *line, int i)
 {
-	char *line = get_next_line(fd);
-	int i = 0;
-	while (line != NULL && i != 4)
+	while (line[i] == ' ')
+		i++;
+	return (i);
+}
+
+static void	check_is_there_texture_file(t_cub *cub)
+{
+	int	fd1;
+	int	fd2;
+	int	fd3;
+	int	fd4;
+
+	fd1 = open(cub->texture.east, O_RDONLY);
+	fd2 = open(cub->texture.north, O_RDONLY);
+	fd3 = open(cub->texture.south, O_RDONLY);
+	fd4 = open(cub->texture.west, O_RDONLY);
+	if (fd1 == -1 || fd2 == -1 || fd3 == -1 || fd4 == -1)
+		error_msg("Wrong texture path", cub, 2);
+	close(fd1);
+	close(fd2);
+	close(fd3);
+	close(fd4);
+}
+
+int	check_texture(t_cub *cub, int i)
+{
+	if (!(cub->texture.north) || !(cub->texture.south)
+		|| !(cub->texture.west) || !(cub->texture.east))
+		error_msg("Some of the texture packs is missing", cub, 2);
+	if (check_extension(cub->texture.east, ".xpm"))
+		error_msg("Wall file extensions are not valid", cub, 2);
+	if (check_extension(cub->texture.north, ".xpm"))
+		error_msg("Wall file extensions are not valid", cub, 2);
+	if (check_extension(cub->texture.west, ".xpm"))
+		error_msg("Wall file extensions are not valid", cub, 2);
+	if (check_extension(cub->texture.south, ".xpm"))
+		error_msg("Wall file extensions are not valid", cub, 2);
+	check_is_there_texture_file(cub);
+	if (i > 4)
+		error_msg("texture file is more than four", cub, 2);
+	return (0);
+}
+
+static int	check_direction_in_map(t_cub *cub, char *line, int *i, int j)
+{
+	if (line[j] == 'N' && line[j + 1] == 'O' && *(++i))
 	{
-		if (line[0] == 'N' && line[1] == 'O')
+		if (cub->texture.north)
+			return (1);
+		cub->texture.north = ft_strtrim(line, "NO ");
+	}	
+	else if (line[j] == 'S' && line[j + 1] == 'O' && *(++i))
+	{
+		if (cub->texture.south)
+			return (1);
+		cub->texture.south = ft_strtrim(line, "SO ");
+	}
+	else if (line[j] == 'W' && line[j + 1] == 'E' && *(++i))
+	{
+		if (cub->texture.west)
+			return (1);
+		cub->texture.west = ft_strtrim(line, "WE ");
+	}
+	else if (line[j] == 'E' && line[j + 1] == 'A' && *(++i))
+	{
+		if (cub->texture.east)
+			return (1);
+		cub->texture.east = ft_strtrim(line, "EA ");
+	}
+	return (0);
+}
+
+void	read_texture(t_cub *cub, int fd, int i, int j)
+{
+	char	*line;
+
+	i = 0;
+	line = get_next_line(fd);
+	while (line != NULL)
+	{
+		j = 0;
+		while (line[j] == ' ' || line[j] == '\t')
+			j++;
+		line[ft_strlen(line) - 1] = '\0';
+		if (check_direction_in_map(cub, line, &i, j))
 		{
-			cub->texture.north = ft_strtrim(line, "NO ");
-			i++;
+			free(line);
+			error_msg("Duplicate texture", cub, 2);
 		}
-		else if (line[0] == 'S' && line[1] == 'O')
-		{
-			cub->texture.south = ft_strtrim(line, "SO ");
-			i++;
-		}
-		else if (line[0] == 'W' && line[1] == 'E')
-		{
-			cub->texture.west = ft_strtrim(line, "WE ");
-			i++;
-		}
-		else if (line[0] == 'E' && line[1] == 'A')
-		{
-			cub->texture.east = ft_strtrim(line, "EA ");
-			i++;
-		} 
 		free(line);
 		line = get_next_line(fd);
-		cub->map_index++;
 	}
+	check_texture(cub, i);
 	close(fd);
-}
-
-void	check_map(t_cub *cub)
-{
-    int i = 0;
-	int j = 0;
-    while (cub->map.map[i])
-    {
-		if (i == 0)
-		{		
-			while (cub->map.map[i][j])
-			{
-				if (cub->map.map[i][j] != '1' && cub->map.map[i][j] != '\n' 
-					&& cub->map.map[i][j] != ' ' && cub->map.map[i][j] != '\t')
-				{
-        			ft_putendl_fd("Error: Map line %d does not start and end with '1'", 1);
-            		exit(EXIT_FAILURE);
-        		}
-				j++;
-			}
-		}
-        int start = 0;
-        int end = ft_strlen(cub->map.map[i]) - 1;
-	
-        while (cub->map.map[i][start] == ' ' || cub->map.map[i][start] == '\t')
-            start++;
-        while (end >= 0 && (cub->map.map[i][end] == ' ' || cub->map.map[i][end] == '\t'
-			|| cub->map.map[i][end] == '\n'))
-            end--;
-
-        if (cub->map.map[i][start] != '1' || cub->map.map[i][end] != '1')
-        {
-        	ft_putendl_fd("Error: Map line %d does not start and end with '1'", 1);
-            exit(EXIT_FAILURE);
-        }
-        i++;
-    }
-	j = 0;
-	i--;
-	while (cub->map.map[i][j])
-	{
-		if (cub->map.map[i][j] != '1' && cub->map.map[i][j] != '\n' 
-			&& cub->map.map[i][j] != ' ' && cub->map.map[i][j] != '\t')
-		{
-        	ft_putendl_fd("Error: Map line %d does not start and end with '1'", 1);
-        	exit(EXIT_FAILURE);
-        }
-		j++;
-	}
-}
-
-int check_texture(t_cub *cub)
-{
-	if (check_extension(cub->texture.east, ".xpm"))
-		return (1);
-	if (check_extension(cub->texture.north, ".xpm"))
-		return (1);
-	if (check_extension(cub->texture.west, ".xpm"))
-		return (1);
-	if (check_extension(cub->texture.south, ".xpm"))
-		return (1);
-
-	int fd = open(cub->texture.east, O_RDONLY);
-	if (fd != -1)
-		return (1);
-	return (close(fd), 0);
 }
