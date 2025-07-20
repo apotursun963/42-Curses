@@ -6,29 +6,40 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 17:30:45 by mikkayma          #+#    #+#             */
-/*   Updated: 2025/07/16 12:40:04 by atursun          ###   ########.fr       */
+/*   Updated: 2025/07/20 21:24:24 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+/*
+Bu fonksiyon, 3D oyun ekranının arka planını (gökyüzü ve zemin) çizmek için kullanılır.
+öncesinde tüm ekranı iki renge boyar: üst yarı gökyüzü rengi, alt yarı zemin rengi.
+Ekran pikselleri soldan sağa, yukarıdan aşağıya sırayla numaralandırılır
+
+Örnek: WIDTH=800, HEIGHT=600 için
+- i=0 → x=0, y=0 (sol üst köşe)
+- i=799 → x=799, y=0 (sağ üst köşe)
+- i=800 → x=0, y=1 (ikinci satırın başı)
+- i=1599 → x=799, y=1 (ikinci satırın sonu)
+*/
 void	painting_sky_and_ground(t_cub *cub)
 {
 	int	total_pixels;
 	int	i;
-	int	x;
+	int	x;	// (x, y)Her pikselin ekrandaki koordinatları
 	int	y;
 
 	i = 0;
-	total_pixels = WIDTH * HEIGHT;
+	total_pixels = WIDTH * HEIGHT;	// Ekrandaki toplam piksel sayısı
 	while (i < total_pixels)
 	{
 		x = i % WIDTH;
 		y = i / WIDTH;
 		if (y < HEIGHT / 2)
-			my_mlx_pixel_put(cub, x, y, cub->fc.ceiling_c.colour);
+			my_mlx_pixel_put(cub, x, y, cub->fc.ceiling_c.colour);	// Üst yarı: Gökyüzü rengi
 		else
-			my_mlx_pixel_put(cub, x, y, cub->fc.floor_c.colour);
+			my_mlx_pixel_put(cub, x, y, cub->fc.floor_c.colour);	// Alt yarı: Zemin rengi
 		i++;
 	}
 }

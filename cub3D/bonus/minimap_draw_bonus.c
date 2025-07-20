@@ -6,7 +6,7 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 18:56:59 by mikkayma          #+#    #+#             */
-/*   Updated: 2025/07/18 12:04:08 by atursun          ###   ########.fr       */
+/*   Updated: 2025/07/20 16:41:06 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,7 @@ void	draw_minimap(t_cub *cub)
 	}
 }
 
-/*Haritanın boyutlarını hesaplar
+/*Haritanın boyutlarını (genişliğini ve yüksekliğini hesaplar) hesaplar
 - Harita yüksekliğini (satır sayısı) bulur
 - En uzun satırı belirleyerek harita genişliğini saptar
 - Bu değerleri cub->map.map_width ve cub->map.map_height yapılarında saklar

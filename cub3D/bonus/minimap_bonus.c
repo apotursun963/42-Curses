@@ -6,7 +6,7 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 17:11:11 by mikkayma          #+#    #+#             */
-/*   Updated: 2025/07/17 18:08:21 by atursun          ###   ########.fr       */
+/*   Updated: 2025/07/20 16:47:27 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ t_tmp	fill_tmp(int start_x, int start_y, int color)
 }
 
 /* Ana fonksiyon
-- Harita boyutlarını hesaplar
+- mapin genişlik ve yüksekliğini hesaplar
 - Oyuncunun minimap koordinatlarını belirler
 - Görüntü ofsetlerini ayarlar (oyuncuyu merkezde tutmak için)
 - Minimapın sınırlarını kontrol eder
@@ -95,8 +95,14 @@ Oyuncuyu minimapın merkezi olarak konumlandırmak için gerekli X ofsetini hesa
 void	minimap(t_cub *cub)
 {
 	calculate_map_height_and_with(cub);
+	
+	/*Koordinat sistemi dönüşümü yapılıyor:
+	Harita koordinat sisteminden (hücre birimi) → Minimap piksel sistemine dönüştürülüyor
+	Örnek: posx = 5.3 hücre × 10 piksel/hücre = 53 piksel pozisyonu
+	*/
 	cub->minimap.player_map_px = cub->player.posx * cub->minimap.cell_size;
 	cub->minimap.player_map_py = cub->player.posy * cub->minimap.cell_size;
+	
 	cub->minimap.offset_x = (MINIMAP_WIDTH / 2) - cub->minimap.player_map_px;
 	cub->minimap.offset_y = (MINIMAP_HEIGHT / 2) - cub->minimap.player_map_py;
 	check_minimap(cub);

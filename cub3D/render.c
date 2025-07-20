@@ -6,17 +6,19 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:10:14 by mikkayma          #+#    #+#             */
-/*   Updated: 2025/07/16 12:33:16 by atursun          ###   ########.fr       */
+/*   Updated: 2025/07/20 21:34:20 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
 /* Bu fonksiyon, ekranın her sütunu için ışın özelliklerini ayarlar.
-ray_dir_x ve ray_dir_y: Işının x ve y eksenlerindeki yönlerini belirler. Oyuncunun bakış yönü ve ekrandaki konuma göre hesaplanır.
-map_x ve map_y: Işının harita üzerinde başladığı konum (oyuncunun bulunduğu hücre).
-delta_dist_x ve delta_dist_y: Işının bir sonraki x veya y harita hücresine ulaşmak için kat etmesi gereken mesafe.
-hit: Işının bir duvara çarpıp çarpmadığını kontrol eden bayrak (0: çarpmadı, 1: çarptı).
+- ray_dir_x ve ray_dir_y: Işının x ve y eksenlerindeki yönlerini belirler. Oyuncunun bakış yönü ve ekrandaki konuma göre hesaplanır.
+- map_x ve map_y: (Işının Yönü) Işının harita üzerinde başladığı konum (oyuncunun bulunduğu hücre).
+- delta_dist_x ve delta_dist_y: Işının bir sonraki x veya y harita hücresine ulaşmak için kat etmesi gereken mesafe.
+- hit: Işının bir duvara çarpıp çarpmadığını kontrol eden bayrak (0: çarpmadı, 1: çarptı).
+
+Ray_dir_x'in ve Ray_dir_y Alabileceği Değerler: 0 (sol kenar) ve 1 (sağ kenar) 
 */
 static void	setup_ray(t_cub *cub, t_render *render, int x)
 {
@@ -122,7 +124,6 @@ void	calculate_wall_distance_and_height(t_cub *cub, t_render *render)
 	- Uygun dokuyu seçer (select_texture).
 	- Dokuyu çizer (draw_texture).
 3. Oluşturulan görüntüyü pencereye aktarır.
-
 */
 void	render_map(t_cub *cub)
 {

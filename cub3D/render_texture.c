@@ -6,7 +6,7 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:25:06 by mikkayma          #+#    #+#             */
-/*   Updated: 2025/07/16 12:47:54 by atursun          ###   ########.fr       */
+/*   Updated: 2025/07/20 17:16:13 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,24 @@ void	my_mlx_pixel_put(t_cub *cub, int x, int y, int color)
 {
 	char	*dst;
 
-	if (BONUS && color == 0x0B0A0A)
-		return ;
 	if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
 		return ;
 	dst = cub->mlx.win_data.texture_data;
 	dst += (y * cub->mlx.win_data.size_line + x
 			* (cub->mlx.win_data.bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
+	*(unsigned int *)dst = color;	// Piksel yazma: Hesaplanan adrese renk değerini yazar.
 }
 
+/*
+Bu fonksiyon, tüm duvar texture'larının bellek adreslerini alır.
+Her bir yön texture'ının (kuzey, güney, doğu, batı) image data'sına erişim için gerekli bellek adreslerini ve özelliklerini alır.
+
+Her texture için alınan bilgiler:
+texture_data: Piksel verilerinin bulunduğu bellek adresi
+bits_per_pixel: Piksel başına bit sayısı (genelde 32)
+size_line: Bir satırdaki byte sayısı
+endian: Byte sıralama bilgisi
+*/
 static void	get_addrs_of_texture(t_cub *cub)
 {
 	cub->south.texture_data = mlx_get_data_addr(cub->south.image, \
@@ -38,6 +46,12 @@ static void	get_addrs_of_texture(t_cub *cub)
 		&cub->west.bits_per_pixel, &cub->west.size_line, &cub->west.endian);
 }
 
+/*
+Bu fonksiyon, XPM dosyalarını MLX image'larına dönüştürür ve gerekli bellek adreslerini ayarlar.
+- Her yön için XPM dosyasını MLX image yapısına dönüştürür
+- Width ve height bilgilerini alır
+- Hata durumunda error_msg ile program sonlanır
+*/
 void	xpm_to_image(t_cub *cub)
 {
 	cub->north.image = mlx_xpm_file_to_image(cub->mlx.mlx, \
@@ -56,7 +70,11 @@ void	xpm_to_image(t_cub *cub)
 		&cub->west.tex_width, &cub->west.tex_height);
 	if (!cub->west.image)
 		error_msg("Texture is incorrect: West", cub, 4);
-	get_addrs_of_texture(cub);
+	get_addrs_of_texture(cub);	// Texture Adreslerini Alma
+	
+	// Ana Pencere Image'ını Oluşturma:
+	// Ekran boyutunda yeni bir image oluşturur
+	// Bu image, her frame'de tüm sahnenin çizileceği ana buffer'dır
 	cub->mlx.win_data.image = mlx_new_image(cub->mlx.mlx, WIDTH, HEIGHT);
 	cub->mlx.win_data.texture_data = mlx_get_data_addr(cub->mlx.win_data.image, \
 		&cub->mlx.win_data.bits_per_pixel, &cub->mlx.win_data.size_line, \

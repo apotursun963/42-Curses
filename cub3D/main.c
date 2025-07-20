@@ -6,7 +6,7 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 11:33:37 by mikkayma          #+#    #+#             */
-/*   Updated: 2025/07/18 15:50:45 by atursun          ###   ########.fr       */
+/*   Updated: 2025/07/20 21:12:06 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,10 +96,10 @@ int	main(int argc, char **argv)
 	{		
 		cub->minimap.cell_size = 15;
 		render_bonus(cub);
-		init_fps_counter(cub);
+		init_fps_counter(cub);		// FPS, bir görüntüde saniyede gösterilen kare sayısını ifade eden ve akıcılığı belirleyen ölçüdür
 	}
 	cub->mlx.win = mlx_new_window(cub->mlx.mlx, WIDTH, HEIGHT, "Cub3D");
-	render_map(cub);
+	render_map(cub);	
 	setup_hooks(cub);
 	mlx_loop(cub->mlx.mlx);
 }

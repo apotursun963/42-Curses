@@ -3,28 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   key_handle_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mikkayma <mikkayma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 12:41:34 by mikkayma          #+#    #+#             */
-/*   Updated: 2025/07/11 13:12:28 by mikkayma         ###   ########.fr       */
+/*   Updated: 2025/07/20 17:11:48 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
 
+/*
+Fare ile oyuncunun bakış açısını değiştirme (döndürme/rotate)
+*/
 int	handle_mouse_move(int x, int y, t_cub *cub)
 {
-	static int	prev_x;
-	double		rotation_speed;
+	static int	prev_x;        // Önceki fare x pozisyonu (static - bellekte kalıcı)
+	double		rotation_speed; // Dönüş hızı
 
-	(void)y;
-	prev_x = WIDTH / 2;
-	rotation_speed = ROT_SPEED;
-	if (x > prev_x)
-		rotate_player(cub, rotation_speed * (x - prev_x) / 13);
-	else if (x < prev_x)
+	(void)y;                   // y koordinatı kullanılmıyor
+	prev_x = WIDTH / 2;        // Referans noktası ekranın ortası
+	rotation_speed = ROT_SPEED; // Dönüş hızı sabiti
+	if (x > prev_x)		// Sağa hareket: Pozitif yönde döndürme
+		rotate_player(cub, rotation_speed * (x - prev_x) / 13);		// /13 ile dönüş hızı ayarlanıyor 
+	else if (x < prev_x)	// Sola hareket Negatif yönde döndürme
 		rotate_player(cub, -rotation_speed * (prev_x - x) / 13);
-	prev_x = WIDTH / 2;
+	prev_x = WIDTH / 2;		// Fare imlecini sürekli ekranın ortasına geri taşıyor
 	mlx_mouse_move(cub->mlx.mlx, cub->mlx.win, WIDTH / 2, HEIGHT / 2);
 	return (0);
 }

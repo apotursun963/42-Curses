@@ -12,6 +12,9 @@
 
 #include "cub3D.h"
 
+/* 
+Oyuncunun Dönüş hareketi
+*/
 void	rotate_player(t_cub *cub, double angle)
 {
 	double	old_dirx;
@@ -19,8 +22,11 @@ void	rotate_player(t_cub *cub, double angle)
 
 	old_planex = cub->plane_x;
 	old_dirx = cub->player.dirx;
+	// oyuncunun baktığı yönü döndürüyor
 	cub->player.dirx = cub->player.dirx * cos(angle) - cub->player.diry * sin(angle);
 	cub->player.diry = old_dirx * sin(angle) + cub->player.diry * cos(angle);
+	
+	// Kamera Düzlemini Döndür
 	cub->plane_x = cub->plane_x * cos(angle) - cub->plane_y * sin(angle);
 	cub->plane_y = old_planex * sin(angle) + cub->plane_y * cos(angle);
 }
@@ -76,6 +82,11 @@ void	init_movement_state(t_cub *cub)
 	cub->mouse_rotate_right = 0;
 }
 
+/*
+Hooks:
+MLX kütüphanesinde hooks, belirli olaylar gerçekleştiğinde 
+otomatik olarak çağrılacak fonksiyonları kaydetmek için kullanılır.
+*/
 void	setup_hooks(t_cub *cub)
 {
 	mlx_hook(cub->mlx.win, 2, 1L << 0, handle_keypress, cub);

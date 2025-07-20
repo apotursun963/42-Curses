@@ -12,6 +12,11 @@
 
 #include "cub3D.h"
 
+/* 
+Oyuncunun baktığı yön vektörü: (dirx, diry)
+Bu yön vektörünü MOVE_SPEED ile çarparak "hareket mesafesini" belirliyoruz
+Mevcut pozisyona ekliyoruz (+ işareti = ileri)
+*/
 static void	move_forward(t_cub *cub, double new_x, double new_y)
 {
 	new_x = cub->player.posx + cub->player.dirx * MOVE_SPEED;
@@ -32,6 +37,9 @@ static void	move_forward(t_cub *cub, double new_x, double new_y)
 	}
 }
 
+/*
+Aynı yön vektörü ama çıkarma (- işareti = geri)
+*/
 static void	move_backward(t_cub *cub, double new_x, double new_y)
 {
 	new_x = cub->player.posx - cub->player.dirx * MOVE_SPEED;
@@ -52,6 +60,10 @@ static void	move_backward(t_cub *cub, double new_x, double new_y)
 	}
 }
 
+/*
+Yön vektörünü 90° sola çeviriyor
+Matematik: (dirx, diry) → (diry, -dirx)
+*/
 static void	move_left(t_cub *cub, double new_x, double new_y)
 {
 	new_x = cub->player.posx + cub->player.diry * MOVE_SPEED;
@@ -72,6 +84,10 @@ static void	move_left(t_cub *cub, double new_x, double new_y)
 	}
 }
 
+/*
+Yön vektörünü 90° sağa çeviriyor
+Matematik: (dirx, diry) → (-diry, dirx)
+*/
 static void	move_right(t_cub *cub, double new_x, double new_y)
 {
 	new_x = cub->player.posx - cub->player.diry * MOVE_SPEED;
