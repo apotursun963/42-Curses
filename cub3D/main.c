@@ -6,7 +6,7 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 11:33:37 by mikkayma          #+#    #+#             */
-/*   Updated: 2025/07/20 21:12:06 by atursun          ###   ########.fr       */
+/*   Updated: 2025/07/22 19:16:35 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,30 @@ void	error_msg(char *msg, t_cub *cub, int is_free)
 	exit(EXIT_FAILURE);
 }
 
-int	check_extension(char *file, char *ext)
-{
-	char	*res;
+// int	check_extension(char *file, char *ext)
+// {
+// 	char	*res;
+// 	char	*filename;
 
-	res = ft_strrchr(file, '.');
-	if (!res || ft_strncmp(res, ext, 4) != 0 || ft_strlen(file) <= 4)
-		return (1);
-	return (0);
-}
+// 	res = ft_strrchr(file, '.');	// String içinde son bulduğu karakterin pozisyonunu döndürür
+// 	ft_putendl_fd(res, 1);
+// 	filename = ft_strrchr(file, '/');
+// 	ft_putendl_fd(filename, 1);
+// 	if (filename)
+// 		filename++;			// '/' karakterini atlayıp dosya adına geçiyorsunuz
+// 	else
+// 		filename = file;	 // '/' yoksa zaten dosya adı verilmiş demektir
+// 	// Gizli dosya kontrolü (dosya adı . ile başlıyorsa)
+// 	if (filename[0] == '.')
+// 		return (1);
+// 	// Uzantı kontrolü
+// 	if (!res || ft_strncmp(res, ext, 4) != 0 || ft_strlen(file) <= 4)
+// 		return (1);
+// 	// Dosya adının sadece uzantıdan ibaret olmaması kontrolü
+// 	if (res == filename)
+// 		return (1);
+// 	return (0);
+// }
 
 static void	init_cub_tex(t_cub *cub)
 {
@@ -99,7 +114,7 @@ int	main(int argc, char **argv)
 		init_fps_counter(cub);		// FPS, bir görüntüde saniyede gösterilen kare sayısını ifade eden ve akıcılığı belirleyen ölçüdür
 	}
 	cub->mlx.win = mlx_new_window(cub->mlx.mlx, WIDTH, HEIGHT, "Cub3D");
-	render_map(cub);	
+	render_map(cub);
 	setup_hooks(cub);
 	mlx_loop(cub->mlx.mlx);
 }

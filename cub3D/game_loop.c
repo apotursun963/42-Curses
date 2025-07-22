@@ -57,6 +57,7 @@ int	is_valid_position(t_cub *cub, double x, double y)
 	return (1);
 }
 
+
 static int	game_loop(t_cub *cub)
 {
 	move_player(cub);

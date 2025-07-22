@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_file_line.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42istanbul.com.tr +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 12:24:08 by mikkayma          #+#    #+#             */
-/*   Updated: 2025/07/14 11:17:04 by atursun          ###   ########.fr       */
+/*   Updated: 2025/07/22 11:17:17 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,11 @@ static int	is_map_line(char *line)
 	return (0);
 }
 
+/*
+texture dosyaları ve fc color değerlerini görürse geçiyor 
+yada mapin bir satırında duvar görürse 1 çıkıyor 
+eğer üçünüde görmezse hata veiryor
+*/
 int	unknown_line_check(t_cub *cub, char *line)
 {
 	if (is_empty_line(line))

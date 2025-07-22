@@ -6,7 +6,7 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 11:33:41 by mikkayma          #+#    #+#             */
-/*   Updated: 2025/07/20 16:25:50 by atursun          ###   ########.fr       */
+/*   Updated: 2025/07/22 11:21:54 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,5 @@ void	draw_player_in_minimap(t_cub *cub, float dx, float dy, int player_size);
 void	my_mlx_pixel_put_for_minimap(t_cub *cub, int x, int y, int color);
 void	draw_rectangle(t_cub *cub, t_tmp tmp, int width, int height);
 void	calculate_map_height_and_with(t_cub *cub);
-w
+
 #endif

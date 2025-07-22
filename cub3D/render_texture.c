@@ -6,7 +6,7 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:25:06 by mikkayma          #+#    #+#             */
-/*   Updated: 2025/07/20 17:16:13 by atursun          ###   ########.fr       */
+/*   Updated: 2025/07/22 11:54:07 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,9 @@ Bu fonksiyon, XPM dosyalarını MLX image'larına dönüştürür ve gerekli bel
 - Her yön için XPM dosyasını MLX image yapısına dönüştürür
 - Width ve height bilgilerini alır
 - Hata durumunda error_msg ile program sonlanır
+
+mlx_xpm_file_to_image fonksiyonu verdiğimiz .xpm dosyasının 
+uzunluk ve genişlik değerlerini döndürüyor.
 */
 void	xpm_to_image(t_cub *cub)
 {

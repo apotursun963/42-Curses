@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_file_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42istanbul.com.tr +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 13:03:04 by atursun           #+#    #+#             */
-/*   Updated: 2025/07/14 11:49:58 by atursun          ###   ########.fr       */
+/*   Updated: 2025/07/22 18:00:28 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	validate_map_line(char *line, t_cub *cub)
 		if (!(line[i] == '0' || line[i] == '1' || is_player(line[i])
 				|| line[i] == '\0' || line[i] == '\n' || line[i] == ' '))
 		{
-			if (BONUS && line[i] == 'D' && i++)
+			if (BONUS && line[i] == 'D' && i++)// BİLİNMEYEN bir karaketer olarak algılamamsı için countinue
 				continue ;
 			free(line);
 			error_msg("Unknown character", cub, 3);
@@ -44,6 +44,15 @@ void	validate_map_line(char *line, t_cub *cub)
 	}
 }
 
+/*
+
+Bu, oyuncunun bakış yönünü belirler
+diry = -1 demek oyuncu kuzeye (yukarı) bakıyor demektir
+Yön vektörü: (dirx=0, diry=-1) = Kuzey yönü
+
+plane : Bu, kamera düzleminin genişliğini kontrol eder
+ne kadar büüyükü değer verirsek görüşümüz o kadar artar
+*/
 static void	set_player_info(t_cub *cub, char *line)
 {
 	if (ft_strchr(line, 'N'))
@@ -76,7 +85,7 @@ void	set_coor_and_pos(t_cub *cub, char *line, int i)
 		|| ft_strchr(line, 'W') || ft_strchr(line, 'E'))
 	{
 		j = 0;
-		cub->player.posy = (double)i + 0.5;
+		cub->player.posy = (double)i + 0.5;		// index
 		while (line[j])
 		{
 			if (is_player(line[j]))
@@ -118,6 +127,6 @@ int	map_reel_lenght(char *file, t_cub *cub)
 	close(fd);
 	if (len == 0)
 		error_msg("there is not map", cub, 2);
-	len++;
+	len++;		// NULL için len++
 	return (len);
 }

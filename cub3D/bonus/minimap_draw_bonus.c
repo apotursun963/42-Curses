@@ -6,7 +6,7 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 18:56:59 by mikkayma          #+#    #+#             */
-/*   Updated: 2025/07/20 16:41:06 by atursun          ###   ########.fr       */
+/*   Updated: 2025/07/22 12:53:08 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	draw_player_in_minimap(t_cub *cub, float dx, float dy, int pl_size)
 		py = pl_y + (int)(dy * i);
 		my_mlx_pixel_put_for_minimap(cub, px, py, 0x00FF00);
 		i++;
-	}	
+	}
 }
 
 /* Tüm minimap haritasını çizen ana fonksiyon:

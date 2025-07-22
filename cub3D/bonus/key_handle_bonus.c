@@ -6,7 +6,7 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 12:41:34 by mikkayma          #+#    #+#             */
-/*   Updated: 2025/07/20 17:11:48 by atursun          ###   ########.fr       */
+/*   Updated: 2025/07/22 12:54:17 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	handle_mouse_move(int x, int y, t_cub *cub)
 	else if (x < prev_x)	// Sola hareket Negatif yönde döndürme
 		rotate_player(cub, -rotation_speed * (prev_x - x) / 13);
 	prev_x = WIDTH / 2;		// Fare imlecini sürekli ekranın ortasına geri taşıyor
-	mlx_mouse_move(cub->mlx.mlx, cub->mlx.win, WIDTH / 2, HEIGHT / 2);
+	mlx_mouse_move(cub->mlx.mlx, cub->mlx.win, prev_x, HEIGHT / 2);
 	return (0);
 }
 

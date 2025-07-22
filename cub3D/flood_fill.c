@@ -6,20 +6,27 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 18:08:37 by mikkayma          #+#    #+#             */
-/*   Updated: 2025/07/16 16:00:07 by atursun          ###   ########.fr       */
+/*   Updated: 2025/07/22 11:51:09 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+/*
+Bu fonksiyon, oyuncunun başlangıç pozisyonundan başlayarak haritada 
+ulaşılabilir tüm alanları işaretler. 
+Eğer algoritma sırasında harita sınırının dışına çıkarsa veya 
+boşluk/tab karakterine rastlarsa, 
+bu haritanın düzgün duvarlarla çevrilmediği anlamına gelir ve hata verir.
+*/
 static void	flood_fill(char **map_copy, int x, int y, int *error)
 {
-	if (y < 0 || x < 0)
+	if (y < 0 || x < 0)		// Sınır Kontrolleri
 	{
 		*error = 1;
 		return ;
 	}
-	if (!map_copy[y] || x >= (int)ft_strlen(map_copy[y]))
+	if (!map_copy[y] || x >= (int)ft_strlen(map_copy[y]))	// X, o satırın uzunluğundan büyükse
 	{
 		*error = 1;
 		return ;
@@ -31,11 +38,15 @@ static void	flood_fill(char **map_copy, int x, int y, int *error)
 	}
 	if (map_copy[y][x] == '1' || map_copy[y][x] == 'X')
 		return ;
-	map_copy[y][x] = 'X';
-	flood_fill(map_copy, x + 1, y, error);
-	flood_fill(map_copy, x - 1, y, error);
-	flood_fill(map_copy, x, y + 1, error);
-	flood_fill(map_copy, x, y - 1, error);
+	map_copy[y][x] = 'X';	// DAHA ÖNCE GEÇTİĞİMİZ YERLERİ X koyuyoruz
+	/*
+	Sağ, sol, aşağı, yukarı yönlere recursive olarak git
+	Her yöne aynı flood fill algoritmasını uygula
+	*/
+	flood_fill(map_copy, x + 1, y, error);	// SAĞ
+	flood_fill(map_copy, x - 1, y, error);	// SOL
+	flood_fill(map_copy, x, y + 1, error);	// AŞAĞI
+	flood_fill(map_copy, x, y - 1, error);	// YUKARI
 }
 
 static char	**create_map_copy(t_cub *cub)
@@ -65,6 +76,7 @@ static char	**create_map_copy(t_cub *cub)
 	return (copy);
 }
 
+// haritanın tamamı duvarlarla çevrilimi
 void	check_map_around_wall(t_cub *cub)
 {
 	char	**map_copy;

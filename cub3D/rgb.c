@@ -6,7 +6,7 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 13:37:13 by mikkayma          #+#    #+#             */
-/*   Updated: 2025/07/18 18:29:31 by atursun          ###   ########.fr       */
+/*   Updated: 2025/07/22 11:14:55 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,10 @@ static void	rbg_line(t_rgb *rgb, char *line, t_cub *cub)	// free'le
 	}
 }
 
+// 1010 1010 0000 0000 0000 0000
+// 0000 0000 1010 1010 0000 0000
+// 0000 0000 0000 0000 1010 1010
+// 1010 1010 1010 1010 1010 1010
 static unsigned int	rgb_to_colour(int r, int g, int b)
 {
 	return ((r << 16) | (g << 8) | b);

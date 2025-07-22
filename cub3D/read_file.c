@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mikkayma <mikkayma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:35:00 by atursun           #+#    #+#             */
-/*   Updated: 2025/07/14 16:43:37 by mikkayma         ###   ########.fr       */
+/*   Updated: 2025/07/22 11:24:00 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static char	*read_xpm_until_map(t_cub *cub, int fd)
 	}
 	if (!line)
 		error_msg("No map", cub, 2);
-	if (ft_strchr(line, 'W') || ft_strchr(line, 'E')
+	if (ft_strchr(line, 'W') || ft_strchr(line, 'E')	// mapin başında player olup olmadığını kontrol ediyorz
 		|| ft_strchr(line, 'N') || ft_strchr(line, 'S'))
 	{
 		free(line);
@@ -74,7 +74,7 @@ static void	read_map(t_cub *cub, char *file)
 	cub->map.map = ft_calloc(map_lengt + 1, sizeof(char *));
 	while (tmp != NULL && tmp[0] != '\0')
 	{
-		if (!ft_strchr(tmp, '1'))
+		if (!ft_strchr(tmp, '1'))	// eğer herhangi satırda duvar yoksa o zaman break
 			break ;
 		validate_map_line(tmp, cub);
 		set_coor_and_pos(cub, tmp, i);
