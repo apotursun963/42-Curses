@@ -71,7 +71,7 @@ int Account::checkAmount() const {
     return this->_amount;
 }
 
-// Nesneye özel func: Hesabın mevcut durumunu (bakiye, işlem sayıları) ekrana yazar.
+// Nesneye özel func: Hesabın mevcut durumunu (bakiye, işlem sayıları) ekrana yazar
 void Account::displayStatus() const {
     _displayTimestamp();
     std::cout << "index:" << _accountIndex << ";amount:" << checkAmount()

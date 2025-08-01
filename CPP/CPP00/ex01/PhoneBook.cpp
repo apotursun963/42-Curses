@@ -9,6 +9,10 @@ void PhoneBook::add(Contact& c)
         count++;
 }
 
+/*
+setw = "set width" (genişlik ayarla)
+std::setw(5) = Bir sonraki çıktı elemanının minimum genişliğini 5 karakter olarak ayarlar
+*/
 void PhoneBook::list()
 {
     if (count == 0)

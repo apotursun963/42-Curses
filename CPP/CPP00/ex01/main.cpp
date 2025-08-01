@@ -45,7 +45,7 @@ int main()
                 std::string idxStr;
                 std::getline(std::cin, idxStr);
                 int idx = idxStr[0] - 48;
-                if (!idxStr[1])
+                if (!idxStr[1])     // eğer ikinci karakteri yoksa (ör: 7 5) değilse 
                     pb.show(idx);
             }
         }
