@@ -25,3 +25,4 @@ Ayrıca bu sınıf, C++’ta "Orthodox Canonical Form" denilen 4 temel kuralı i
 - Destructor (yıkıcı)
 C++’ta olmayan bir sayı türü olan fixed-point number'ı kendi sınıfınla oluşturuyorsun.
 */
+
