@@ -1,9 +1,0 @@
-
-
-
-### Kısaca Özeti:
-
-* **Amaç:** Basit bir 3D oyun motoru (Wolfenstein 3D tarzı) geliştirmek.
-* **Teknik:** 2D haritadan ışın izleme (raycasting) yöntemiyle 3D perspektif görünüm oluşturulur.
-
-Raycasting, 2D bir haritadan 3D görünümlü bir sahne oluşturmak için kullanılan bir grafik render tekniğidir.

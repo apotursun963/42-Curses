@@ -6,7 +6,7 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 13:52:05 by mikkayma          #+#    #+#             */
-/*   Updated: 2025/07/18 12:27:46 by atursun          ###   ########.fr       */
+/*   Updated: 2025/07/25 11:52:01 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@
 # define KEY_RIGHT 65363
 # define KEY_ESC 65307
 
-# define MOUSE_LEFT 1
-# define MOUSE_RIGHT 3
 # ifndef BONUS
 #  define BONUS 0
 # endif
@@ -165,7 +163,6 @@ typedef struct s_render
 
 typedef struct s_cub
 {
-	int				len_of_file;
 	double			plane_x;
 	double			plane_y;
 	int				is_player;
@@ -205,13 +202,14 @@ void	select_texture(t_cub *cub, t_render *render);
 void	draw_texture(t_cub *cub, t_render *render, int x, int y);
 void	move_ray(t_render *render);
 void	check_map_around_wall(t_cub *cub);
+void	continue_ray_after_door(t_cub *cub, t_render *render);
 
 void	validate_map_line(char *line, t_cub *cub);
 void	set_coor_and_pos(t_cub *cub, char *line, int i);
 int		map_reel_lenght(char *file, t_cub *cub);
 int		skip_whitespaces(char *line, int i);
-void	read_texture(t_cub *cub, int fd, int i, int j);
-int		check_texture(t_cub *cub, int i);
+void	read_texture(t_cub *cub, int fd, int j);
+int		check_texture(t_cub *cub);
 void	open_file(t_cub *cub, char *file);
 int		check_extension(char *file, char *ext);
 void	check_map(t_cub *cub);
@@ -229,5 +227,5 @@ int		handle_close(t_cub *cub);
 void	rotate_player(t_cub *cub, double angle);
 int		unknown_line_check(t_cub *cub, char *line);
 void	calculate_wall_distance_and_height(t_cub *cub, t_render *render);
-
+void	check_the_door_after_the_door(t_cub *cub, t_render *render);
 #endif

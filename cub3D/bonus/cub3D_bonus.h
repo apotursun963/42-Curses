@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: mikkayma <mikkayma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 11:33:41 by mikkayma          #+#    #+#             */
-/*   Updated: 2025/07/22 11:21:54 by atursun          ###   ########.fr       */
+/*   Updated: 2025/07/23 16:35:51 by mikkayma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,8 @@ void	draw_player_in_minimap(t_cub *cub, float dx, float dy, int player_size);
 void	my_mlx_pixel_put_for_minimap(t_cub *cub, int x, int y, int color);
 void	draw_rectangle(t_cub *cub, t_tmp tmp, int width, int height);
 void	calculate_map_height_and_with(t_cub *cub);
+void	draw_floor_and_ceiling(t_cub *cub, int x, int y);
+int		calculate_the_walls_behind_the_door(t_cub *cub,
+			t_render bg_render, int y);
 
 #endif

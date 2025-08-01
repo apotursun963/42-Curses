@@ -10,13 +10,14 @@ MLX_PATH = libs/mlx/
 LIBFT = $(LIBFT_PATH)libft.a
 MLX = $(MLX_PATH)libmlx.a
 
-SRC = main.c read_file.c read_texture.c render.c rgb.c check_map.c free.c \
-	key_handle.c movement.c game_loop.c read_file_utils.c \
-	render_texture.c flood_fill.c read_file_line.c render_utils.c
+SRC = main.c mandatory/parse/read_file.c mandatory/parse/read_texture.c mandatory/render/render.c mandatory/parse/rgb.c mandatory/parse/check_map.c mandatory/free.c \
+	mandatory/key_handle.c mandatory/movement.c mandatory/game_loop.c mandatory/parse/read_file_utils.c \
+	mandatory/render/render_texture.c mandatory/parse/flood_fill.c mandatory/parse/read_file_line.c mandatory/render/render_utils.c
 
-BONUS_SRC = bonus/key_handle_bonus.c bonus/door_bonus.c  bonus/door_render_bonus.c \
-			bonus/minimap_bonus.c bonus/wall_collisions_bonus.c bonus/fps_counter.c \
-			bonus/minimap_draw_bonus.c bonus/door_play_sprite_bonus.c bonus/door_utils_bonus.c
+BONUS_SRC = bonus/key_handle_bonus.c bonus/door/door_bonus.c  bonus/door/door_render_bonus.c \
+			bonus/minimap/minimap_bonus.c bonus/wall_collisions_bonus.c bonus/fps_counter.c \
+			bonus/minimap/minimap_draw_bonus.c bonus/door/door_play_sprite_bonus.c \
+			bonus/door/door_utils_bonus.c bonus/door/door_render_utils_bonus.c
 
 OBJ = $(SRC:.c=.o)
 OBJ_BONUS = $(SRC:.c=_bonus.o)
