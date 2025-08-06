@@ -62,7 +62,7 @@ int main()
 ex01 (Phone Book (Telefon Rehberi))
 ----
 Komut satırında çalışan, kullanıcıdan veri alıp saklayan ve 
-gösterebilen bir telefon rehberi uygulaması yazacaksın.
+gösterebilen bir "telefon rehberi uygulaması" yazacaksın.
 
 İki Sınıf Oluşturacaksın
 - PhoneBook: Rehberin kendisi. İçinde en fazla 8 kişi (Contact) saklayabilen bir dizi olacak.

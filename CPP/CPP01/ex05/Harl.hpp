@@ -13,4 +13,5 @@ private:
     void error( void );
 public:
     void complain(std::string level);
+    // Bu fonksiyon, parametre olarak verilen level (örn. "DEBUG", "INFO" vb.) stringine göre yukarıdaki dört fonksiyondan birini çağırmalı.
 };

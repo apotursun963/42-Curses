@@ -30,6 +30,7 @@ void (*funcPtr)(); // Fonksiyon pointerı tanımı
 funcPtr = &myFunction; // Adres atama (veya direkt myFunction)
 funcPtr(); // Fonksiyon çağrılır
 
-Fonksiyon pointerları, hangi fonksiyonun çağrılacağını dinamik olarak belirlemene olanak tanır. Özellikle çok sayıda benzer fonksiyonun olduğu durumlarda kodu sadeleştirir ve esnek hale getirir
+Fonksiyon pointerları, hangi fonksiyonun çağrılacağını dinamik olarak belirlemene olanak tanır. 
+Özellikle çok sayıda benzer fonksiyonun olduğu durumlarda kodu sadeleştirir ve esnek hale getirir
 
 */

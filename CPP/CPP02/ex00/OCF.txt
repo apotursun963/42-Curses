@@ -20,3 +20,4 @@ OCF, aşağıdaki 4 özel fonksiyonun tanımlanması anlamına gelir:
 3. Copy Assignment Operator (Copy Assignment Operator)
 4. Destructor (Nesne yok edilirken çağrılan, belleği temizleyen fonksiyon)
 
+Yani: kurucu, kopya kurucu, kopya atama operatörü ve yıkıcı **eksiksiz** olmalı.

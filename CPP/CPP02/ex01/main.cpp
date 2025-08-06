@@ -23,6 +23,12 @@ int main( void ) {
 /*
 bu egzersizdeki amacımız << operatöünü "overload" etmek
 
+Bu egzersizde, Fixed sınıfına (class)
+tam sayı (int) ve ondalıklı sayı (float) değerleriyle çalışabilecek yeni özellikler ekleyeceksin.
+
+
+
+
 Overload (Aşırlı Yükleme):
 bir fonksiyonu veya operatörü yeniden tanımlamak
 */

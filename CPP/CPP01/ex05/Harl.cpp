@@ -28,6 +28,8 @@ void Harl::error(void)
 
 void Harl::complain(std::string level)
 {
+    // Harl sınıfına ait dört üye fonksiyon işaretçisi dizisi tanımlanıyor
+    // yani 4 fonksiyonun işaretçisini/adreslerini tutuyor.
     void (Harl::*funcPtr[4])() = {
         &Harl::debug,
         &Harl::info,

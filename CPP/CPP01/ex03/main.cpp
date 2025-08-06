@@ -53,5 +53,4 @@ setWeapon(Weapon &weapon): Sonradan silah atanabilir.
 attack() Fonksiyonu: Silahı varsa saldırı mesajı basar.
 Önemli: Silah pointer olduğu için, HumanB başta silahsız olabilir ve istediği zaman silahı değiştirilebilir.
 
-
 */

@@ -1,4 +1,4 @@
-NAME = zombie
+NAME = brain
 SRC = main.cpp
 
 all: $(NAME)

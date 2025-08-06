@@ -5,14 +5,14 @@
 
 class Fixed {
 private:
-    int value;
-    static const int fractionalBits = 8;
+    int fixed_point_value;          // Sabit noktalı sayının değerini saklar.
+    static const int fraction = 8;      //  Kesirli bit sayısını saklar (her zaman 8 olacak)
 public:
-    Fixed();                         // Default Constructor
-    Fixed(const Fixed &other);       // Copy Constructor 
-    Fixed &operator=(const Fixed &other); // Copy Assignment Operator (atama operatörü func)
+    Fixed();                         // Default Constructor: Değeri (fixed-point number) 0’a ayarlar.
+        Fixed(const Fixed &other);       // Copy Constructor 
+        Fixed &operator=(const Fixed &other); // Copy Assignment Operator (kopya atama operatörü func) (burada = operatürünü overload ediiyoruz)
     ~Fixed();
-    int getRawBits(void) const;     // value değerini döndürür. const olduğu için nesneyi değiştirmez.
+    int getRawBits(void) const;     // value değerini döndürür.
     void setRawBits(int const raw);  // value'ya raw değerini atar.
 };
 
@@ -20,4 +20,17 @@ public:
 Assignment Operator (atama operatörü =)
 Bir nesneneyi başka bir nesneye kopyalamadır. yani bir nesnenin içindeki verileri başka bir nesneye atamak.
 örnek olarak iki tane (a ve b) nesnesi oluşturulur. b nesnesine a atanır (kopyalanır) (ama aynı adresi paylaşmazlar)
+
+overload:
+Aynı isimli fonksiyon veya operatörü, farklı parametrelerle birden fazla tanımlayabilmektir. 
+ve farklı çalışmasını sağlamak.
+
+- Kopya Kurucu:
+Yeni nesne oluşturur ve verileri başka bir nesneden alır.
+(Nesne yaratılırken çağrılır.)
+- Kopya Atama Operatörü:
+Var olan nesnenin verilerini başka bir nesneden alır.
+(Nesne zaten var, sadece içeriği değiştiriliyor.)
+
+
 */

@@ -24,3 +24,8 @@ int main(int argc, char **argv)
     }
     return 0;
 }
+
+/*
+Bu program komut satırından aldığı argümanları büyük harfe çevirip ekrana yazacak. 
+Argüman verilmezse özel bir mesaj basacak.
+*/

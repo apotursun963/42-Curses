@@ -6,6 +6,7 @@
 
 
 // static değişkenler
+// Bellekte bir yer verdim init ederk. init yapmazsam hata linker hatası veriyor
 int Account::_nbAccounts = 0;
 int Account::_totalAmount = 0;
 int Account::_totalNbDeposits = 0;
@@ -114,21 +115,24 @@ Amaç: Bir banka hesabı (Account) sınıfı tasarlamak.
 Hem static (tüm hesaplar için ortak) hem de nesneye özel (her hesap için ayrı) fonksiyonlar/değişkenler var.
 
 
-- static fonksiyon: 
 Static fonksiyon, sınıfa ait olup, nesneye (yani bir objeye) ait değildir.
+Yani sınıftan nesne oluşturmadan/türetmeden direkt çağırabilirsin.
 Static fonksiyonlar, sadece static değişkenlere ve diğer static fonksiyonlara erişebilir.
 Nesne oluşturulmadan da çağrılabilirler.
 
-Static değişkenler: Tüm hesaplar için ortak olan, genel bilgileri (toplam hesap sayısı, toplam para, toplam işlem sayısı gibi) tutar.
-Static fonksiyonlar: Bu ortak bilgileri almak veya ekrana yazdırmak için kullanılır.
-Static olanlar, tüm nesneler için ortaktır ve sınıfın genel durumunu temsil eder. Static olmayanlar ise her nesneye (her hesaba) özeldir.
+Static değişkenler: Tüm nesneler arasında ortak olur. Bellekte yalnızca bir tane bulunur, 
+hangi nesneden erişirseniz erişin aynı değeri görürsünüz.
 
 
-Constructor ve Destructor
----
-Account(int initial_deposit): Yeni bir hesap açar, ilk parayı yatırır, ekrana "created" mesajı yazar.
-~Account(): Hesap silindiğinde çağrılır, ekrana "closed" mesajı yazar.
+Constructor (Yapıcı Fonksiyon);
+Bir sınıftan nesne oluşturulduğunda otomatik olarak çağrılan özel fonksiyondur.
+Görevi: Nesneyi başlatmak, ilk değer atamalarını yapmak.
+İsmi, sınıf adıyla aynıdır ve dönüş tipi yoktur.
 
+Destructor (Yıkıcı Fonksiyon)
+Bir nesne yok edildiğinde (bellekten silindiğinde) otomatik olarak çağrılan özel fonksiyondur.
+Görevi: Bellek temizliği, dosya kapama gibi "temizlik" işlemlerini yapmak.
+İsmi, sınıf adının başına ~ (tilde) eklenerek yazılır ve dönüş tipi yoktur.
 
 
 static fonksiyonlar
@@ -160,10 +164,16 @@ _amount: Hesabın mevcut bakiyesi.
 _nbDeposits: Bu hesapta yapılan toplam para yatırma işlemi sayısı.
 _nbWithdrawals: Bu hesapta yapılan toplam para çekme işlemi sayısı.
 
-
 C++’da değişken adının başında alt çizgi (_) kullanmak, 
 genellikle özel (private) üye değişkenlerini belirtmek 
 için tercih edilir.
+
+
+Const;
+- Fonksiyon Prototipinin Sonunda const olan bir fonksiyonu sınıfın hiçbir üye değişkenini değiştirmeyeceğini belirtir.
+Sadece okuma yapar, hiçbir şeyi değiştirmez.
+- Değişken başıındaki const ise, o değişken değerini değiştirmeyeceğini belirtir.
+
 
 Hesap oluşturulurken, işlem yapılırken ve yok edilirken belirli bir formatta çıktı üretmelisin (log dosyasındaki gibi).
 Zaman damgalarını _displayTimestamp() fonksiyonu ile üretmelisin.

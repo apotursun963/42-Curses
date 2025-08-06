@@ -14,5 +14,5 @@ public:
     ~Zombie();                      // destructure
 };
 
-Zombie* newZombie(std::string name);    // This function creates a zombie, names it, and returns it so you can use it outside of the function scope.
-void randomChump(std::string name);     // This function creates a zombie, names it, and makes it announce itself 
+Zombie* newZombie(std::string name);    // Bu fonksiyon, heap’te (yani new ile) bir zombie oluşturacak ve pointer olarak geri döndürecek.
+void randomChump(std::string name);     // Bu fonksiyon, stack’te (yani direk değişken olarak) bir zombie oluşturacak, adını verecek ve hemen announce() fonksiyonunu çağıracak.

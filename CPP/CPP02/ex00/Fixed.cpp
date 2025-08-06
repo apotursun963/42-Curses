@@ -1,12 +1,13 @@
 
 #include "Fixed.hpp"
 
-Fixed::Fixed() : value(0) { 
+Fixed::Fixed() : fixed_point_value(0) { 
   std::cout << "Default constructor called" << std::endl;
 }
 
-Fixed::Fixed(const Fixed &other) : value(other.value) {
+Fixed::Fixed(const Fixed &other) {
   std::cout << "Copy constructor called" << std::endl;
+  *this = other;    // Atama operatörü ile kopyalama (Atama operatörü çağırılıyor)
 }
 
 Fixed &Fixed::operator=(const Fixed &other) {
@@ -22,9 +23,10 @@ Fixed::~Fixed() {
 }
 
 int Fixed::getRawBits(void) const {
-  return (std::cout << "getRawBits member function called" << std::endl, value);
+  std::cout << "getRawBits member function called" << std::endl;
+  return (fixed_point_value);
 }
 
 void Fixed::setRawBits(const int raw) {
-  value = raw;
+  fixed_point_value = raw;
 }

@@ -51,19 +51,26 @@ void Harl::complain(std::string level)
         case 0:
         {
             (this->*funcPtr[0])();
-            index++;
+            (this->*funcPtr[1])();
+            (this->*funcPtr[2])();
+            (this->*funcPtr[3])();
+            break;
         }
         case 1:
         {
             (this->*funcPtr[1])();
-            index++;
+            (this->*funcPtr[2])();
+            (this->*funcPtr[3])();
+            break;
         }
         case 2:
         {
             (this->*funcPtr[2])();
-            index++;
+            (this->*funcPtr[3])();
+            break;
         }
         case 3:
             (this->*funcPtr[3])();
+            break;
     }
 }

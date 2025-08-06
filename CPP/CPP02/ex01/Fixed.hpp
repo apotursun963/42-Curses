@@ -2,22 +2,24 @@
 #pragma once
 
 #include <iostream>
+#include <math.h>
 
 class Fixed {
 private:
-    int value;
-    static const int fractionalBits = 8;
+    int fixed_point_value;          // Sabit noktalı sayının değerini saklar.
+    static const int fraction = 8;
 public:
-    Fixed(const int num_int);
-    Fixed(const float num_flo);
     Fixed();                         
     Fixed(const Fixed &other);       
     Fixed &operator=(const Fixed &other); 
     ~Fixed();
-    int getRawBits(void) const;    
+    Fixed(const int num_int);
+    Fixed(const float num_flo);
+    float toFloat(void) const;  // Sabit noktalı değeri float olarak döndürür.
+    int toInt(void) const;      // Sabit noktalı değeri int olarak döndürür.
+    int getRawBits(void) const;
     void setRawBits(int const raw);
-    float toFloat(void) const;  // converts the fixed-point value to a floating-point value.
-    int toInt(void) const;      // that converts the fixed-point value to an integer value.
 };
-
+// Sabit noktalı sayının float temsilini ekrana veya bir stream'e yazdırmak için << operatörünü aşırı yüklemen (overload) gerekiyor.
 std::ostream &operator<<(std::ostream &out, const Fixed &right);
+// Ekrana/akışa float formatında yazdırılabilmeli (<< operatörü ile).
