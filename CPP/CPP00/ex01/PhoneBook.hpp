@@ -7,9 +7,9 @@
 
 class PhoneBook
 {
-private:
+private:    // neden bunları private yaptım çünkü "subjecte bizden sadece sınıf içinde kullanılacak değişkenler private olmalı diyordu."
     Contact contacts[8];
-    void printField(std::string);  // neden private: çünkü, adece PhoneBook sınıfının kendi iç işleyişinde (list()) kullanılmak üzere tasarlanmıştır.
+    void printField(std::string);
 public:
     int count;				// Şu anda rehberde kaç kişi olduğunu tutar.
     int next;				// Yeni bir kişi ekleneceğinde hangi dizin kullanılacak onu gösterir (dairesel ekleme için kullanılır).

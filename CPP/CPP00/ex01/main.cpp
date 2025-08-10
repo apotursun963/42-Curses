@@ -15,7 +15,7 @@ int main()
     while (true)
 	{
         std::cout << GREEN"PhoneBook> "RESET;
-        std::getline(std::cin, cmd);
+        std::getline(std::cin, cmd);        // cin: Console input (konsoldan/klavyeden giriş) demektir.
         if (std::cin.eof())
             return 0;
         if (cmd == "ADD")

@@ -80,6 +80,9 @@ void Account::displayStatus() const {
 }
 
 // Her işlem çıktısının başına, şu anki tarihi ve saati [YYYYMMDD_HHMMSS] formatında ekrana yazdırır.
+/*
+    
+*/
 void Account::_displayTimestamp() {
     std::time_t t = std::time(0);       // Şu anki zamanı (saniye cinsinden) alır.
     std::tm *now = std::localtime(&t);  // Zamanı yerel zamana çevirir (yıl, ay, gün, saat, dakika, saniye olarak).
@@ -164,8 +167,8 @@ _amount: Hesabın mevcut bakiyesi.
 _nbDeposits: Bu hesapta yapılan toplam para yatırma işlemi sayısı.
 _nbWithdrawals: Bu hesapta yapılan toplam para çekme işlemi sayısı.
 
-C++’da değişken adının başında alt çizgi (_) kullanmak, 
-genellikle özel (private) üye değişkenlerini belirtmek 
+C++’da değişken/fonksiyon adının başında alt çizgi (_) kullanmak, 
+genellikle özel (private) üye değişkenlerini/fonksiyonları belirtmek 
 için tercih edilir.
 
 
