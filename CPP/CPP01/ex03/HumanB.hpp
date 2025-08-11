@@ -15,7 +15,7 @@ public:
 };
 
 /*
-HumanA: Silahı referans ile alır, yani silahsız olamaz ve silahı sonradan değiştirilemez.
+HumanA: Silahı referans ile tutar, yani silahsız olamaz ve silahı sonradan değiştirilemez.
 (başka bir silaha atanamaz, ama silahın tipi değişirse etkilenir).
 HumanB: Silahı işaretçi ile tutar, başlangıçta silahsız olabilir ve istediği zaman silah atanabilir.
 

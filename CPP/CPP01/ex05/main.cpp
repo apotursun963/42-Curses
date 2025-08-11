@@ -19,7 +19,7 @@ Kullanıcıdan bir seviye ismi (ör: "DEBUG") alınıyor ve complain fonksiyonu 
 complain fonksiyonu, verilen seviyeye göre ilgili fonksiyonu çağırıyor. Bunu fonksiyon pointer dizisi ve string karşılaştırması ile yapıyor.
 
 
-Fonksiyonu İşaretçisi (pointer)
+Fonksiyon İşaretçisi (pointer)
 ---
 fonksiyon pointerı, bir fonksiyonun adresini tutan ve o fonksiyonu
 çağırmanı sağlayan bir değişkendir. Yani, bir fonksiyonu sanki bir değişkenmiş gibi başka bir yere gönderebilir ve çağırabilirsi

@@ -9,6 +9,7 @@ void Zombie::announce(void) {
 
 void Zombie::setname(std::string& inname) {
     name = inname;
+    std::cout << name << " created" << std::endl;
 }
 
 Zombie::~Zombie() {
