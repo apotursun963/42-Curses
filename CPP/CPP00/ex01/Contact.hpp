@@ -3,7 +3,6 @@
 
 #include <string>
 
-// kapsülleme bir classın detaylarını/özelliklerini olabildiğince gizlemek/korumak anlamına gelir.
 class Contact
 {
 private:

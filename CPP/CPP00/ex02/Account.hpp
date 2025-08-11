@@ -23,17 +23,15 @@ public:
 
 	typedef Account		t;
 
-	// her nesne için ortaktır yani döndürdüğü değerler her nesne için aynıdır. 
 	static int	getNbAccounts( void );
 	static int	getTotalAmount( void );
 	static int	getNbDeposits( void );
 	static int	getNbWithdrawals( void );
 	static void	displayAccountsInfos( void );
 
-	Account( int initial_deposit );		// ilk para yatırma
+	Account( int initial_deposit );
 	~Account( void );
 
-	// nesneye özel fonksiyonlar (Her hesap/nesne için ayrı değer döndürür)
 	void	makeDeposit( int deposit );
 	bool	makeWithdrawal( int withdrawal );
 	int		checkAmount( void ) const;
@@ -42,15 +40,13 @@ public:
 
 private:
 
-	// sınıftan oluşturulan her nesne için aynı değerleri tutarlar
 	static int	_nbAccounts;
 	static int	_totalAmount;
 	static int	_totalNbDeposits;
 	static int	_totalNbWithdrawals;
 
 	static void	_displayTimestamp( void );
-	
-	// Her hesap/nesne için ayrı değer tutar
+
 	int				_accountIndex;
 	int				_amount;
 	int				_nbDeposits;
