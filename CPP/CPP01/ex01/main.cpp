@@ -12,16 +12,3 @@ int main()
     delete[] Zombie1;
     return 0;
 }
-
-
-
-
-
-
-/*
-Tek seferde N adet Zombie nesnesini dinamik olarak oluşturup hepsine
-aynı adı ver, bu diziyi döndür, 
-sonra her birinin announce() metodunu çağırarak 
-doğru çalıştığını gör ve 
-iş bitince delete[] ile bellek sızıntısı olmadan temizle.
-*/

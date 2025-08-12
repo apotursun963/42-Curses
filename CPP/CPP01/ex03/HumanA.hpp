@@ -8,7 +8,7 @@
 class HumanA {
 private:
     std::string name;
-    Weapon &weapon;     // referans olduğu için mutlaka silahlı olmalı çünkü her zaman bir nesneye bağlıdırlar
+    Weapon &weapon;   
 public:
     HumanA(std::string name, Weapon &weapon);
     void attack();

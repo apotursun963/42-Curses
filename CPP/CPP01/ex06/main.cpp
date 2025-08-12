@@ -18,11 +18,3 @@ int main(int argc, char **argv)
         return (std::cout << "Wrong level type\n", 0);
     test.complain(argv[1]);
 }
-
-
-/*
-Bu egzersizde, bir önceki egzersizdeki Harl sınıfını biraz daha geliştiriyorsun.
-Temel amaç, kullanıcıdan bir seviye ("DEBUG", "INFO", "WARNING", "ERROR") alıp,
-bu seviyeden başlayarak tüm üst seviyedeki mesajı ekrana bastırmak.
-mesela WARNING yazdır çıktı olarak WARNING ve ERROR mesajları yazdırılır.
-*/
