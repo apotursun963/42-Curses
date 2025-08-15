@@ -12,7 +12,7 @@ Fixed::Fixed(const float num_flo)   // Bu ondalıklı sayıyı sabit noktalı fo
   // std::cout << "Float constructor called\n";
 }
 
-Fixed::Fixed() : value(0) { 
+Fixed::Fixed() : value(0) {
   // std::cout << "Default constructor called" << std::endl;
 }
 

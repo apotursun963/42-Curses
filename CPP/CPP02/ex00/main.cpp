@@ -23,12 +23,12 @@ ses veya bilimsel programlama gibi alanlarda oldukça kullanışlıdır. C++’d
 sayı tipi bulunmadığı için, siz bu özelliği ekleyeceksiniz.
 
 
-
 Ayrıca bu sınıf, C++’ta "Orthodox Canonical Form" denilen 4 temel kuralı içermelidir:
 - Default constructor (varsayılan yapıcı)
 - Copy constructor (kopya yapıcı)
 - Copy assignment operator (kopya atama operatörü)
 - Destructor (yıkıcı)
 C++’ta olmayan bir "sayı türü" olan fixed-point number'ı kendi sınıfınla oluşturuyorsun.
+
 */
 

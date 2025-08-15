@@ -12,9 +12,8 @@ Fixed::Fixed(const Fixed &other) {
 
 Fixed &Fixed::operator=(const Fixed &other) {
   std::cout << "Copy assignment operator called" << std::endl;
-  if (this == &other)   // Eğer bu iki nesne aynıysa, kendini kendine atamaya çalışıyorsun demektir. (a = a)
-    return *this;
-  this->setRawBits(other.getRawBits());   // Değeri kopyala
+  if (this != &other)   // Eğer bu iki nesne aynıysa, kendini kendine atamaya çalışıyorsun demektir. (a = a)
+	  this->setRawBits(other.getRawBits());   // Değeri kopyala
   return *this;
 }
 

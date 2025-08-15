@@ -2,6 +2,36 @@
 
 #include "Fixed.hpp"
 
+Fixed::Fixed() : fixed_point_value(0) { 
+  std::cout << "Default constructor called" << std::endl;
+}
+
+Fixed::Fixed(const Fixed &other) {
+  std::cout << "Copy constructor called" << std::endl;
+  *this = other;
+}
+
+Fixed &Fixed::operator=(const Fixed &other) {
+  std::cout << "Copy assignment operator called" << std::endl;
+  if (this != &other)                       // Eğer bu iki nesne aynıysa, kendini kendine atamaya çalışıyorsun demektir. (a = a)
+    this->setRawBits(other.getRawBits());   // Değeri kopyala
+  return *this;
+}
+
+Fixed::~Fixed() {
+  std::cout << "Destructor called" << std::endl;
+}
+
+int Fixed::getRawBits(void) const {
+  std::cout << "getRawBits member function called" << std::endl;
+  return (fixed_point_value);
+}
+
+void Fixed::setRawBits(const int raw) {
+  fixed_point_value = raw;
+}
+
+
 // Bu tam sayıyı, sabit noktalı (fixed-point) formata çeviriyor.
 /*
 num_int << fraction ifadesi, sayı değerini 8 bit sola kaydırır. 
@@ -20,41 +50,12 @@ Fixed::Fixed(const float num_flo) : fixed_point_value(static_cast<int>(roundf(nu
   std::cout << "Float constructor called\n";
 }
 
-Fixed::Fixed() : fixed_point_value(0) { 
-  std::cout << "Default constructor called" << std::endl;
-}
-
-Fixed::Fixed(const Fixed &other) {
-  std::cout << "Copy constructor called" << std::endl;
-  *this = other;
-}
-
-Fixed &Fixed::operator=(const Fixed &other) {
-  std::cout << "Copy assignment operator called" << std::endl;
-  if (this == &other)   // Eğer bu iki nesne aynıysa, kendini kendine atamaya çalışıyorsun demektir. (a = a)
-    return *this;
-  this->setRawBits(other.getRawBits());   // Değeri kopyala
-  return *this;
-}
-
-Fixed::~Fixed() {
-  std::cout << "Destructor called" << std::endl;
-}
-
-int Fixed::getRawBits(void) const {
-  std::cout << "getRawBits member function called" << std::endl;
-  return (fixed_point_value);
-}
-
-void Fixed::setRawBits(const int raw) {
-  fixed_point_value = raw;
-}
-
-
+// Fixed-point değeri int olarak döndür.
 int Fixed::toInt(void) const {
   return (int(fixed_point_value) / int(1 << fraction));
 }
 
+// Fixed-point değeri float olarak döndür.
 float Fixed::toFloat(void) const {
   return (float(fixed_point_value) / float(1 << fraction));
 }

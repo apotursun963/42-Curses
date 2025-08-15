@@ -32,5 +32,4 @@ Yeni nesne oluşturur ve verileri başka bir nesneden alır.
 Var olan nesnenin verilerini başka bir nesneden alır.
 (Nesne zaten var, sadece içeriği değiştiriliyor.)
 
-
 */

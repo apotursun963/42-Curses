@@ -17,8 +17,6 @@ int main(void) {
 
 
 /*
-Bu egzersizde bizden istediği, Fixed sınıfına bu operatörleri “yeniden tanımlayarak” (overload ederek) 
-sabit nokta sayılar (Fixed nesneleri) üzerinde şu işlemlerin yapılabilmesini sağlamak:
-C++’ta bu operatörleri kendi sınıfınızın ihtiyaçlarına göre yeniden tanımlayıp “Fixed tipleri için geçerli” hâle getirmek demektir.
+Bu egzersizde senden istenen şey, Fixed sınıfını genişletip C++’ta operator overloading yaparak, 
+fixed-point sayıların karşılaştırma, aritmetik ve artırma/azaltma işlemlerini destekleyen bir sınıf haline getirmek.
 */
-
