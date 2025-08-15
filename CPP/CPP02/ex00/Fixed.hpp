@@ -5,15 +5,15 @@
 
 class Fixed {
 private:
-    int fixed_point_value;          // Sabit noktalı sayının değerini saklar.
+    int fixed_point_value;              // Sabit noktalı sayının değerini saklar.
     static const int fraction = 8;      //  Kesirli bit sayısını saklar (her zaman 8 olacak)
 public:
     Fixed();                         // Default Constructor: Değeri (fixed-point number) 0’a ayarlar.
-        Fixed(const Fixed &other);       // Copy Constructor 
-        Fixed &operator=(const Fixed &other); // Copy Assignment Operator (kopya atama operatörü func) (burada = operatürünü overload ediiyoruz)
+    Fixed(const Fixed &other);       // Copy Constructor 
+    Fixed &operator=(const Fixed &other); // Copy Assignment Operator (kopya atama operatörü func) (burada = operatürünü overload ediiyoruz)
     ~Fixed();
-    int getRawBits(void) const;     // value değerini döndürür.
-    void setRawBits(int const raw);  // value'ya raw değerini atar.
+    int getRawBits(void) const;     // fixed_point_value değerini döndürür.
+    void setRawBits(int const raw);  // fixed_point_value'ya raw değerini atar.
 };
 
 /*
