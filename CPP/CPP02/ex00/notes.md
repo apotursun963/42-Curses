@@ -7,6 +7,62 @@ Fixed point, Sayının bir kısmı tam sayı, bir kısmı ise sabit bir sayıda 
 Kayan noktalı sayılar hassas fakat doğrulukları düşüktür, tam sayılar ise çok doğrudur fakat hassasiyetleri düşüktür Ve Fixed-point aritmetik, ikisinin arasında bir çözüm sunar.
 Özetle, Fixed Point veri tipini temsil eden bir sınıf yazacak ve OCF kurallarına uyumamız gerekiyor.
 
+---
+Önemli
+Sola kaydırmak (<< 8), sayının tüm bitlerini 8 pozisyon sola taşır.
+Sağdan 8 tane sıfır eklenir
+
+Sabit noktalı formatta, tam sayı kısmını saklarken ondalık için yer açmak gerekir.
+8 bit sola kaydırınca, sayı 256 ile çarpılmış olur.
+Böylece, ondalık kısmı için 8 bit boşluk bırakmış oluruz.
+
+8 bit sola kaydırmamızın sebebi, sabit noktalı formatta sayının kesirli kısmı için bellekte yer açmaktır.
+Yani, 8 bit sola kaydırınca, sayının en sağındaki 8 bit “boş” olur ve bu alanı kesirli kısmı saklamak için kullanırız.
+
+Ne Oluyor?
+- Sola kaydırınca: Sayının değeri 256 ile çarpılır (örneğin 5 → 1280).
+- Sağdaki 8 bit: Artık kesirli kısmı saklamak için ayrılmıştır.
+Yani, tam sayı kısmı solda, kesirli kısmı sağda tutulur.
+Örnek:
+- 5.75’i fixed-point’e çevirmek için:
+5.75 × 256 = 1472       << 8
+- 1472’nin binary hali: 00000000 0000000 00000101 11000000
+    - Soldaki bitler tam kısmı (5), sağdaki 8 bit kesirli kısmı (.75) temsil eder.
+Kısaca:
+- Sola kaydırınca: Tam sayı kısmı büyür, sağda kesirli kısım için yer açılır.
+- O boş kalan 8 bit: Kesirli kısmı saklamak için kullanılır.
+Böylece hem tam hem kesirli kısmı tek bir integer’da tutabilirsin.
+
+Projede kesirli kısmı doğrudan elde etmen gerekmiyor; çünkü fixed-point formatında, tam ve kesirli kısım zaten tek bir integer’da saklanıyor.
+Senin yapman gereken, fixed-point değeri saklamak ve istenirse gerçek değeri (float veya int olarak) geri döndürmek.
+
+int ve float tipindeki sayıları fixed-point'e çevirmek için 8 bit sola kaydırma (çarpma) mantığı kullanılır.
+Ancak, float tipini fixed-point'e çevirirken önce 256 ile çarpıp sonra yuvarlaman gerekir.
+
+- Integer'ı Fixed-point'e Çevirme
+int value = 100;
+int fractionalBits = 8;
+int fixedPointValue = value << fractionalBits; // 100 << 8 = 25600
+<< operatörü, integer'ı 8 bit sola kaydırır. Bu, 100'ü 256 ile çarpmakla aynıdır.
+
+- Fixed-point'ten Integer'a Geri Çevirme
+int restoredValue = fixedPointValue >> fractionalBits; // 25600 >> 8 = 100
+
+
+- Float → Fixed-point
+float f = 5.75f;
+int fractionalBits = 8;
+int fixedValue = static_cast<int>(roundf(f * (1 << fractionalBits))); // 5.75 * 256 = 1472
+
+- Fixed-point → Float
+float restored = static_cast<float>(fixedValue) / (1 << fractionalBits); // 1472 / 256 = 5.75
+Fixed-point değeri tekrar 256'ya bölünür.
+
+
+Kısacası, Fixed Point sayısı, Tam ve kesirli kısım tek integer’da saklanıyor
+---
+
+
 Örnek
 Temel Prensip
 Fixed-point sayı, bir tam sayı (integer) olarak saklanır; bu tam sayı, gerçek değeri elde etmek için sabit bir bölene (2^n, n = kesirli bit sayısı) bölünür.

@@ -60,6 +60,8 @@ float Fixed::toFloat(void) const {
   return (float(fixed_point_value) / float(1 << fraction));
 }
 
+
+
 // Bu bir operatör overload fonksiyonudur. << operatöürünü overload ediyor
 /*
 const Fixed &right:

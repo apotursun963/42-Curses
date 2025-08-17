@@ -20,6 +20,7 @@ public:
     float toFloat(void) const;      // Sabit noktalı değeri float olarak döndürür.
     int toInt(void) const;          // Sabit noktalı değeri int olarak döndürür.
 };
+// Nesne std::cout’a yazdırılırken, fixed-point değeri float’a çevrilip ekrana basılır.
 // Sabit noktalı sayının float temsilini ekrana veya bir stream'e yazdırmak için << operatörünü aşırı yüklemen (overload) gerekiyor.
 std::ostream &operator<<(std::ostream &out, const Fixed &right);
 // Ekrana/akışa float formatında yazdırılabilmeli (<< operatörü ile).
