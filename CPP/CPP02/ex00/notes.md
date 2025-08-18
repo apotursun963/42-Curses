@@ -1,5 +1,6 @@
 
 Proje Açıklaması
+https://baseconvert.com/ieee-754-floating-point
 ---
 Bu projede, "fixed-point" sayı tipini temsil eden bir sınıf tasarlayacaksın. Fixed-point sayılar, bilgisayarda tam sayı (int) ve kayan noktalı sayıların (float/double) bazı dezavantajlarını ortadan kaldırmak ve özellikle performans, doğruluk, aralık ve hassasiyet arasında daha iyi bir denge sunmak için tercih edilir. Grafik ve ses işleme gibi alanlarda sıkça kullanılırlar.
 Yani, Kısacası C++ yerleşik olarak bulunmayan bir sayı veri tipini oluşturmak.
@@ -32,6 +33,7 @@ Kısaca:
 - Sola kaydırınca: Tam sayı kısmı büyür, sağda kesirli kısım için yer açılır.
 - O boş kalan 8 bit: Kesirli kısmı saklamak için kullanılır.
 Böylece hem tam hem kesirli kısmı tek bir integer’da tutabilirsin.
+(int veya float tipindeki sayıyı 8 bit sola kaydırmak demek o sayıyı 256 çarpmak anlamına gelir)
 
 Projede kesirli kısmı doğrudan elde etmen gerekmiyor; çünkü fixed-point formatında, tam ve kesirli kısım zaten tek bir integer’da saklanıyor.
 Senin yapman gereken, fixed-point değeri saklamak ve istenirse gerçek değeri (float veya int olarak) geri döndürmek.
@@ -48,15 +50,20 @@ int fixedPointValue = value << fractionalBits; // 100 << 8 = 25600
 - Fixed-point'ten Integer'a Geri Çevirme
 int restoredValue = fixedPointValue >> fractionalBits; // 25600 >> 8 = 100
 
+(Yani İnt bir sayıyı fixed çevirmek için 8 sola kaydırmamız gerekiyor (yada 256 ile çarpmak), 
+eğer fixed bir sayıyı int çevirmek istiyrosak bu sefer fixed sayıyı 8 bit sağ kaydırmamız gerekiyor (yada 256 ile bölmek))
+
+
 
 - Float → Fixed-point
 float f = 5.75f;
 int fractionalBits = 8;
-int fixedValue = static_cast<int>(roundf(f * (1 << fractionalBits))); // 5.75 * 256 = 1472
+int fixedValue =  int(5.75 * (1 << fractionalBits)); = 1472
+float değeri 256 ile çarpılır
 
 - Fixed-point → Float
-float restored = static_cast<float>(fixedValue) / (1 << fractionalBits); // 1472 / 256 = 5.75
-Fixed-point değeri tekrar 256'ya bölünür.
+float restored = float(fixedValue) / (1 << fractionalBits); = 1472 / 256 = 5.75
+Fixed point değeri 256 bölünür
 
 
 Kısacası, Fixed Point sayısı, Tam ve kesirli kısım tek integer’da saklanıyor
@@ -115,7 +122,4 @@ OCF, aşağıdaki 4 özel fonksiyonun tanımlanması anlamına gelir:
 4. Destructor (Nesne yok edilirken çağrılan, belleği temizleyen fonksiyon)
 
 Yani: kurucu, kopya kurucu, kopya atama operatörü ve yıkıcı **eksiksiz** olmalı.
-
-
----
 
