@@ -11,6 +11,7 @@ private:
 public:
     Fixed(const int num_int);
     Fixed(const float num_flo);
+
     Fixed();                         
     Fixed(const Fixed &other);
     Fixed &operator=(const Fixed &other); 
