@@ -123,3 +123,7 @@ OCF, aşağıdaki 4 özel fonksiyonun tanımlanması anlamına gelir:
 
 Yani: kurucu, kopya kurucu, kopya atama operatörü ve yıkıcı **eksiksiz** olmalı.
 
+
+
+
+- Letaifi Hamse

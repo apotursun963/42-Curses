@@ -51,6 +51,8 @@ int Fixed::toInt(void) const {
 /*
 num_flo * (1 << fraction) ile ondalık sayı 8 bit sola kaydırılır (yani 256 ile çarpılır). 
 Sonra roundf fonksiyonu ile en yakın tam sayıya yuvarlanır ve tam sayı olarak saklanır.
+Bit kaydırma sadece int olan sayılar için geçerlidir.
+
 */
 Fixed::Fixed(const float num_flo) : fixed_point_value(int(roundf(num_flo * (1 << fraction)))) {
 	std::cout << "Float constructor called\n";

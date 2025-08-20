@@ -26,7 +26,7 @@ int main(void) {
         std::cout << "f > r\n";
     else
         std::cout << "r > f\n";
-    
+
     Fixed const h(7);
     Fixed const l(8);
 

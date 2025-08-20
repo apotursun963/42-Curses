@@ -2,7 +2,7 @@
 #pragma once
 
 #include <iostream>
-#include <math.h>       // cmath.h kullanman gerekiyor ama öyle bir dosya yok diyor
+#include <cmath>
 
 class Fixed {
 private:

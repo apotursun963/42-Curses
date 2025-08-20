@@ -2,7 +2,7 @@
 #pragma once
 
 #include <iostream>
-#include <math.h>
+#include <cmath>
 
 class Fixed {
 private:

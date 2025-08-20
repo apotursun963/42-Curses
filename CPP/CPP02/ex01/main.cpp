@@ -39,8 +39,6 @@ Operator overload ekle:
 - << (insertion operator) overload’u → std::cout << fixedPointObj; şeklinde kullanıldığında sayının 
 float karşılığını ekrana yazdırmalı.
 
-
-Sadece roundf fonksiyonunu (<cmath> kütüphanesinden) kullanabilirsin.
 */
 
 /*
