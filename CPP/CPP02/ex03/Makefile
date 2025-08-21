@@ -1,5 +1,5 @@
 NAME = Fixed
-SRC = main.cpp Fixed.cpp
+SRC = main.cpp Fixed.cpp bsp.cpp Point.cpp
 
 all: $(NAME)
 
