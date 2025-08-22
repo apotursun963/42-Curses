@@ -19,37 +19,3 @@ int main( void ) {
     std::cout << "d is " << d.toInt() << " as integer" << std::endl;
     return 0;
 }
-
-/*
-Bir önceki egzersizde yaptığın Fixed sınıfını daha kullanışlı hale getireceksin. 
-Şu anda sınıf sadece 0.0 değerini tutabiliyor, bunu değiştireceksin.
-
-Yapman gerekenler:
-
-1. Yeni yapıcılar (constructor) ekle:
-- int parametre alan bir constructor → Bu int değeri fixed-point formata çevir.
-- float parametre alan bir constructor → Bu float değeri fixed-point formata çevir. 
-    (Her iki durumda da fractional bits değeri 8 olacak, tıpkı exercise 00’da olduğu gibi.)
-
-2. Yeni üye fonksiyonlar ekle:
-- float toFloat(void) const; → Fixed-point değeri float olarak döndür.
-- int toInt(void) const; → Fixed-point değeri int olarak döndür.
-
-Operator overload ekle:
-- << (insertion operator) overload’u → std::cout << fixedPointObj; şeklinde kullanıldığında sayının 
-float karşılığını ekrana yazdırmalı.
-
-*/
-
-/*
-bu egzersizdeki amacımız << operatöünü "overload" etmek
-
-Bu egzersizde, Fixed sınıfına (class)
-tam sayı (int) ve ondalıklı sayı (float) değerleriyle çalışabilecek yeni özellikler ekleyeceksin.
-
-
-
-
-Overload (Aşırlı Yükleme):
-bir fonksiyonu veya operatörü yeniden tanımlamak
-*/

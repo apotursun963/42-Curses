@@ -12,7 +12,7 @@ public:
     Point &operator=(const Point &other);
     ~Point();
 
-    Point(float x, float y);
+    Point(const float x, const float y);
 
     Fixed GetX();
     Fixed GetY();

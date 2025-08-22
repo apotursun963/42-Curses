@@ -1,24 +1,19 @@
 
 #include "Fixed.hpp"
 
-/*
-- this → nesnenin adresi (pointer)
-- *this → nesnenin kendisi (değer)
-
-*/
 Fixed::Fixed() : fixed_point_value(0) { 
   std::cout << "Default constructor called" << std::endl;
 }
 
 Fixed::Fixed(const Fixed &other) {
   std::cout << "Copy constructor called" << std::endl;
-  *this = other;    // Atama operatörü ile kopyalama (Atama operatörü çağırılıyor)
+  *this = other;
 }
 
 Fixed &Fixed::operator=(const Fixed &other) {
   std::cout << "Copy assignment operator called" << std::endl;
-  if (this != &other)   // Eğer bu iki nesne aynıysa, kendini kendine atamaya çalışıyorsun demektir. (a = a)
-	  this->setRawBits(other.getRawBits());   // Değeri kopyala
+  if (this != &other)
+	  this->setRawBits(other.getRawBits());
   return *this;
 }
 

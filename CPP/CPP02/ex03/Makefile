@@ -1,16 +1,20 @@
 NAME = Fixed
-SRC = main.cpp Fixed.cpp bsp.cpp Point.cpp
+SRCS = main.cpp Fixed.cpp Point.cpp bsp.cpp
+OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)
 
-$(NAME): $(SRC)
-	c++ -Wall -Wextra -Werror -std=c++98 $(SRC) -o $(NAME)
+$(NAME): $(OBJS)
+	@c++ -Wall -Wextra -Werror -std=c++98 $(OBJS) -o $(NAME)
+
+%.o: %.cpp
+	@c++ -Wall -Wextra -Werror -std=c++98 -c $< -o $@
 
 clean:
-	@rm -f $(NAME)
+	@rm -rf $(OBJS)
 
-fclean:
-	@rm -f $(NAME)
+fclean: clean
+	@rm -rf $(NAME)
 
 re: fclean all
 

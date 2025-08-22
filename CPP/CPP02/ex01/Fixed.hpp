@@ -6,8 +6,8 @@
 
 class Fixed {
 private:
-    int fixed_point_value;          // Sabit noktalı sayının değerini saklar.
-    static const int fraction = 8;
+    int fixed_point_value;     
+    static const int fractional_bit = 8;
 public:
     Fixed();
     Fixed(const Fixed &other);       
@@ -15,12 +15,9 @@ public:
     ~Fixed();
     int getRawBits(void) const;
     void setRawBits(int const raw);
-    Fixed(const int num_int);       // Bu constructure, int değerini fixed point formatına çeviriyor.
-    Fixed(const float num_flo);     // Bu constructure, float değerini fixed point formatına çeviriyor.
-    float toFloat(void) const;      // Sabit noktalı değeri float olarak döndürür.
-    int toInt(void) const;          // Sabit noktalı değeri int olarak döndürür.
+    Fixed(const int num_int);  
+    Fixed(const float num_flo);
+    float toFloat(void) const; 
+    int toInt(void) const;     
 };
-// Nesne std::cout’a yazdırılırken, fixed-point değeri float’a çevrilip ekrana basılır.
-// Sabit noktalı sayının float temsilini ekrana veya bir stream'e yazdırmak için << operatörünü aşırı yüklemen (overload) gerekiyor.
 std::ostream &operator<<(std::ostream &out, const Fixed &right);
-// Ekrana/akışa float formatında yazdırılabilmeli (<< operatörü ile).
