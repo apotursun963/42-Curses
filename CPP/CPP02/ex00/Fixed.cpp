@@ -1,6 +1,11 @@
 
 #include "Fixed.hpp"
 
+/*
+- this → nesnenin adresi (pointer)
+- *this → nesnenin kendisi (değer)
+
+*/
 Fixed::Fixed() : fixed_point_value(0) { 
   std::cout << "Default constructor called" << std::endl;
 }

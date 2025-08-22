@@ -4,8 +4,9 @@
 int main() {
     Fixed a;
     Fixed b(a);     // copy constructure: Yeni bir nesne doğar ve diğeriyle aynı veriye sahip olur.
-    Fixed c;
+    Fixed c;        // Fixed b(a); a nesnesini kullanarak b adında yeni bir Fixed nesnesi oluşturur. 
 
+    // b nesnesinin değerlerini c nesnesine kopyalar.
     c = b;          // Kopya atama operatörü: Zaten var olan bir nesne başka bir nesneyle aynı veriyle güncellenir.
                     // ikisin farkı: Her ikisi de kopyalama yapar ama biri yeni nesne yaratır, diğeri var olan nesneyi günceller.
     std::cout << a.getRawBits() << std::endl;

@@ -12,6 +12,7 @@ public:
     Fixed(const Fixed &other);       // Copy Constructor 
     Fixed &operator=(const Fixed &other); // Copy Assignment Operator (kopya atama operatörü func) (burada = operatürünü overload ediiyoruz)
     ~Fixed();
+
     int getRawBits(void) const;     // fixed_point_value değerini döndürür.
     void setRawBits(int const raw);  // fixed_point_value'ya raw değerini atar.
 };
