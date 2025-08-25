@@ -36,7 +36,6 @@ public:
     void takeDamage(unsigned int amount);       // hedeften saldırı alma
     void beRepaired(unsigned int amount);       // kendini onarma
 
-    // bunları kullanmıyıorsun ama yine araştır
     // getter ve setter fonksiynları yazılacak (private değişkenler değer atamak ve erişmek için)
     void            SetName(std::string name);
     void            SetHitPoints(int hitpoints);
@@ -47,6 +46,4 @@ public:
     int             GetHitPoints();
     int             GetEnergyPoints();
     int             GetAtacckDamage();
-
-
 };

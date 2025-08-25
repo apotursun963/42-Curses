@@ -1,11 +1,11 @@
 
-#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 int main(void)      // ekstra testlerde ekle
 {
-    ScavTrap Robot("ali");
-    ScavTrap Ar("hadi bakalım");
-    ScavTrap LA;
+    FragTrap Robot("ali");
+    FragTrap Ar("hadi bakalım");
+    FragTrap LA;
 
     Ar = LA;
 
@@ -31,7 +31,7 @@ int main(void)      // ekstra testlerde ekle
     LA.takeDamage(Robot.GetAtacckDamage());
     LA.beRepaired(3);
 
-    Robot.guardGate();
+    Robot.highFivesGuys();
 
     return 0;
 }
