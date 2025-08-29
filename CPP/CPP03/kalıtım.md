@@ -36,15 +36,3 @@ Kalıtım Türleri:
 
 ## C++ class flagleri
 - -Wshadow and -Wno-shadow 
-
-
-Constructor ve Destructor Çalışma Sırası
-Bir alt sınıf nesnesi oluşturulunca:
-- Önce üst sınıfın constructor’u çalışır.
-- Sonra alt sınıfın constructor’u çalışır.
-
-Nesne silinince:
-- Önce alt sınıfın destructor’u,
-- Sonra üst sınıfın destructor’u çalışır.
-
-

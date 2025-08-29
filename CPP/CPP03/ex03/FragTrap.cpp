@@ -2,18 +2,18 @@
 #include "FragTrap.hpp"
 
 FragTrap::FragTrap() : ClapTrap() {
-    this->SetName("tursun");
-    this->SetHitPoints(100);
-    this->SetEnergyPoints(100);
-    this->SetAttackDamage(30);
+    this->name = "berkcan";
+    this->hitPoints = 100;
+    this->energyPoints = 100;
+    this->attackDamage = 30;
     std::cout << "FragTrap Default Constructor called" << std::endl;
 }
 
 FragTrap::FragTrap(std::string name) : ClapTrap(name) {
-    this->SetName(name);
-    this->SetHitPoints(100);
-    this->SetEnergyPoints(100);
-    this->SetAttackDamage(30);
+    this->name = name;
+    this->hitPoints = 100;
+    this->energyPoints = 100;
+    this->attackDamage = 30;
     std::cout << "FragTrap Constructor called" << std::endl;
 }
 
@@ -34,6 +34,9 @@ FragTrap::~FragTrap() {
 }
 
 void FragTrap::highFivesGuys() {
-    std::cout << GetName() << " Do You Want high five" << std::endl;
+    std::cout << this->name << " Do You Want high five" << std::endl;
 }
 
+int FragTrap::GetAtacckDamage(void) {
+    return this->attackDamage;
+}

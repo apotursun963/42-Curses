@@ -70,8 +70,6 @@ void ClapTrap::takeDamage(unsigned int amount) {
         return ;
     }
     this->hitPoints -= amount;
-    if (this->hitPoints < 0)     // Eğer hit points 0’ın altına düşerse genellikle 0’a sabitlenir (negatif olamaz).
-        this->hitPoints = 0;        // mesaj yazdır 
     std::cout << "ClapTrap " << this->name << " takes " << amount
               << " points of damage! (Remaining hit points: " 
               << this->hitPoints << ")" << std::endl;

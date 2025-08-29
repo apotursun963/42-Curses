@@ -4,28 +4,14 @@
 int main(void)      // ekstra testlerde ekle
 {
     ScavTrap Robot("ali");
-    ScavTrap Ar("hadi bakalım");
-    // ScavTrap LA;
+    ScavTrap Ar("batur");
+    ScavTrap LA;
 
-    // Ar = LA;
+    Ar = LA;
 
+    std::cout << "Robot Name: " << Robot.GetName() << std::endl;
+    std::cout << "Ar Name: " << Ar.GetName() << std::endl;
 
-    // ClapTrap Robot("İyi");
-    // ClapTrap Target;
-
-    // std::cout << "Robot Name: " << Robot.GetName() << std::endl;
-    // std::cout << "Robot Hit Points: " << Robot.GetHitPoints() << std::endl;
-    // std::cout << "Ar Name: " << Ar.GetName() << std::endl;
-
-    // // Enerji bitene kadar saldırı 
-    // for (int i=0; i < 11; i++)
-    //     Robot.attack("Target");
-
-    // // Can Puanı Sıfır Olunca Salıdır
-    // Target.takeDamage(10);
-    // Target.attack("Robot");
-
-    
     Robot.attack("AR");
     std::cout << "robot energy: " << Robot.GetEnergyPoints() << std::endl;
     Ar.takeDamage(Robot.GetAtacckDamage());

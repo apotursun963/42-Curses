@@ -5,22 +5,23 @@ DiamondTrap::DiamondTrap() : FragTrap(), ScavTrap()
 demek, DiamondTrap oluşturulurken FragTrap ve ScavTrap constructor’larını özellikle çağırmak demektir.
 */
 DiamondTrap::DiamondTrap() : FragTrap(), ScavTrap() {
-    this->SetName("tursun");
-    this->SetHitPoints(FragTrap::GetHitPoints());
-    this->SetEnergyPoints(ScavTrap::GetEnergyPoints());
-    this->SetAttackDamage(FragTrap::GetAtacckDamage());
+    this->name = "tursun";
+    this->hitPoints = FragTrap::hitPoints;
+    this->energyPoints = ScavTrap::energyPoints;
+    this->attackDamage = FragTrap::attackDamage;
     std::cout << "DiamondTrap Default Constructor called" << std::endl;
 }
 
-DiamondTrap::DiamondTrap(std::string name) 
-    : ClapTrap(name + "_clap_name"), FragTrap(name), ScavTrap(name), name(name) {
-    this->SetHitPoints(FragTrap::GetHitPoints());
-    this->SetEnergyPoints(ScavTrap::GetEnergyPoints());
-    this->SetAttackDamage(FragTrap::GetAtacckDamage());
+DiamondTrap::DiamondTrap(std::string name)
+    :  ClapTrap(name), FragTrap(name), ScavTrap(name) {
+    this->name = name;
+    ClapTrap::name = name + "_clap_name";
+    this->hitPoints = FragTrap::hitPoints;
+    this->energyPoints = ScavTrap::energyPoints;
+    this->attackDamage = FragTrap::attackDamage;
     std::cout << "DiamondTrap Constructor called" << std::endl;
 }
 
-// burada 3 tane farklı sınıftan çağırıyoson ama temlde hepsi ClapTrap'e gönderiyor sadece 1 sini yazmayı dene
 DiamondTrap::DiamondTrap(DiamondTrap const &other) : ClapTrap(other), FragTrap(other), ScavTrap(other) {
     *this = other;
     std::cout << "DiamondTrap Copy Constructor called" << std::endl;
@@ -33,12 +34,16 @@ DiamondTrap &DiamondTrap::operator=(const DiamondTrap &other) {
     return (*this);
 }
 
+std::string DiamondTrap::GetName(void) {
+    return this->name;
+}
+
 DiamondTrap::~DiamondTrap() {
     std::cout << "DiamondTrap Destructor called" << std::endl;
 }
 
 void DiamondTrap::whoAmI(void) {
-    std::cout << "my name is: " << this->name << std::endl;
+    std::cout << "my name is: " << this->name << " and my grandfather name is: " << ClapTrap::name << std::endl;    // _clap_name diye vermiyor
 }
 
 void DiamondTrap::attack(const std::string& target) {

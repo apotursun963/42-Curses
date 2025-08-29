@@ -37,6 +37,8 @@ public:
     void beRepaired(unsigned int amount);       // kendini onarma
 
     // getter ve setter fonksiynları yazılacak (private değişkenler değer atamak ve erişmek için)
+    // bu egzrszide değilde bir sonraki egzersizlerde kullanıyorum bunları çünkü miras aldığım için private değişkenlere doğrudan 
+    // erişemiyorum o yüzden değer atamak için Setter ve Değer döndürmek için Getter funcs ekliyorum.
     void            SetName(std::string name);
     void            SetHitPoints(int hitpoints);
     void            SetEnergyPoints(int energypoints);

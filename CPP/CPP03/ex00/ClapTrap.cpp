@@ -43,7 +43,7 @@ void    ClapTrap::SetEnergyPoints(int energypoints) {this->energyPoints = energy
 void    ClapTrap::SetAttackDamage(int attackdamage) {this->attackDamage = attackdamage;}
 
 std::string ClapTrap::GetName(void) {return this->name;}
-int ClapTrap::GetHitPoints(void) {return this->attackDamage;}
+int ClapTrap::GetHitPoints(void) {return this->hitPoints;}
 int ClapTrap::GetEnergyPoints(void) {return this->energyPoints;}
 int ClapTrap::GetAtacckDamage(void) {return this->attackDamage;}
 
@@ -80,8 +80,6 @@ void ClapTrap::takeDamage(unsigned int amount) {
         return ;
     }
     this->hitPoints -= amount;
-    if (this->hitPoints < 0)     // Eğer hit points 0’ın altına düşerse genellikle 0’a sabitlenir (negatif olamaz).
-        this->hitPoints = 0;        // mesaj yazdır 
     std::cout << "ClapTrap " << this->name << " takes " << amount
               << " points of damage! (Remaining hit points: " 
               << this->hitPoints << ")" << std::endl;
@@ -101,7 +99,7 @@ void ClapTrap::beRepaired(unsigned int amount) {
         std::cout << "ClapTrap " << this->name << " is dead can't attack :(" << std::endl;
         return ;
     }
-    this->hitPoints += amount;
+    this->hitPoints += amount;      // <<ÖNEMLİ!: can puanı 0 ise kendini onaramaz bunu kontrol et 2. if koşulu>>
     this->energyPoints -= 1;
     std::cout << "Claptrap " << this->name
               << " is repaired by " << amount

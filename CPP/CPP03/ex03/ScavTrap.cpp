@@ -1,19 +1,20 @@
 
 #include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 ScavTrap::ScavTrap() : ClapTrap() {
-    this->SetName("tursun");
-    this->SetHitPoints(100);
-    this->SetEnergyPoints(50);
-    this->SetAttackDamage(20);
+    this->name = "tursun";
+    this->hitPoints = 100;
+    this->energyPoints = 50;
+    this->attackDamage = 20;
     std::cout << "ScavTrap Default Constructor called" << std::endl;
 }
 
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name) {
-    this->SetName(name);
-    this->SetHitPoints(100);
-    this->SetEnergyPoints(50);
-    this->SetAttackDamage(20);
+    this->name = name;
+    this->hitPoints = 100;
+    this->energyPoints = 50;
+    this->attackDamage = 20;
     std::cout << "ScavTrap Constructor called" << std::endl;
 }
 
@@ -35,22 +36,25 @@ ScavTrap::~ScavTrap() {
 
 
 void ScavTrap::attack(const std::string& target) {
-    if (GetEnergyPoints() <= 0) {
-        std::cout << "ScavTrap " << GetName() << " does not have enough energy to attack :(" << std::endl;
+    FragTrap tmp;
+
+    int attackdamage = tmp.GetAtacckDamage();
+    if (this->energyPoints <= 0) {
+        std::cout << "ScavTrap " << this->name << " does not have enough energy to attack :(" << std::endl;
         return ;
     }
-    if (GetHitPoints() <= 0) {
-        std::cout << "ScavTrap " << GetName()<< " is dead can't attack :(" << std::endl;
+    if (this->hitPoints <= 0) {
+        std::cout << "ScavTrap " << this->name << " is dead can't attack :(" << std::endl;
         return ;
     }
-    SetEnergyPoints(GetEnergyPoints() - 1);
-    std::cout << "ScavTrap " << GetName()
+    this->energyPoints -= 1;
+    std::cout << "ScavTrap " << this->name
               << " attacks " << target
-              << ", causing " << GetAtacckDamage()
+              << ", causing " << attackdamage      // burası ne olması gerekiyor öğren normalde FrapTrap değeri olması gerekiyro
               << " points of damage!" << std::endl;
 }
 
 
 void ScavTrap::guardGate() {
-    std::cout << "ScavTrap " << GetName() << " is now in Gate keeper mode" << std::endl;
+    std::cout << "ScavTrap " << this->name << " is now guarding the gate" << std::endl;
 }

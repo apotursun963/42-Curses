@@ -13,6 +13,6 @@ public:
     ScavTrap &operator=(const ScavTrap &other);
     ~ScavTrap();
 
-    void attack(const std::string& target);     // burada bunu eklemene gerek yok subjecte demiyor galiba
+    void attack(const std::string& target);
     void guardGate();
 };
