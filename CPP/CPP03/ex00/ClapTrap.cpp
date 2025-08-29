@@ -48,6 +48,12 @@ int ClapTrap::GetEnergyPoints(void) {return this->energyPoints;}
 int ClapTrap::GetAtacckDamage(void) {return this->attackDamage;}
 
 
+/*
+Saldırı → ClapTrap saldırdığında, hedefin (target) can puanı (hit points) 
+ClapTrap’in attackDamage değeri kadar azalıyor.
+Her Saldırı işlemi 1 enerji puanı (energy point) harcıyor.
+Eğer ClapTrap'in enerji puanı veya can puanı 0 ise saldıramaz (attack).
+*/
 void ClapTrap::attack(const std::string& target) {
     if (this->energyPoints <= 0) {
         std::cout << "ClapTrap " << this->name << " does not have enough energy to attack :(" << std::endl;
@@ -64,6 +70,10 @@ void ClapTrap::attack(const std::string& target) {
               << " points of damage!" << std::endl;
 }
 
+/*
+Attack yapan tarafından saldırıldığında hitpoints değeri amount kadar yani claptrap'in 
+attackDamage değeri kadar azalır
+*/
 void ClapTrap::takeDamage(unsigned int amount) {
     if (this->hitPoints <= 0) {
         std::cout << "ClapTrap " << this->name << " is already dead :(" << std::endl;
@@ -77,6 +87,11 @@ void ClapTrap::takeDamage(unsigned int amount) {
               << this->hitPoints << ")" << std::endl;
 }
 
+/*
+ClapTrap kendini onardığında, can puanı (hit points) belirtilen miktar (amount) kadar artıyor.
+Her Onarma işlemi 1 enerji puanı harcatıyıor.
+Eğer ClapTrap'in enerji puanı veya can puanı 0 ise kendini onaramaz.
+*/
 void ClapTrap::beRepaired(unsigned int amount) {
     if (this->energyPoints <= 0) {
         std::cout << "ClapTrap " << this->name << " does not have enough energy to attack :(" << std::endl;

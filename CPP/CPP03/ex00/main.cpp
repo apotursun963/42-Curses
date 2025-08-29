@@ -33,11 +33,6 @@ Bizden bir robot sınıfı (ClapTrap) yazmamız isteniliyor.
 ve bu robotun canı, enerjisi, kendini onarma ve saldırı davranışları (funcs) olsun ve her hareketini ekrana yazsın.
 
 
-- Saldırı → ClapTrap saldırdığında, hedefin (target) can puanı (hit points) ClapTrap’in attackDamage değeri kadar azalıyor.
-- Onarma → ClapTrap kendini onardığında, can puanı (hit points) belirtilen miktar (amount) kadar artıyor.
-- Enerji kullanımı → Her saldırı veya onarma işlemi 1 enerji puanı (energy point) harcıyor.
-- Sınırlama → ClapTrap’in can puanı 0 veya enerji puanı 0 ise hiçbir şey yapamaz (saldıramaz, onaramaz).
-
 Bu alıştırmalarda ClapTrap nesneleri birbirleriyle savaşmayacak. 
 Yani parametrelerde başka bir ClapTrap nesnesi kullanılmayacak; sadece ekrana yazdırma gibi simülasyon yapılacak.
 

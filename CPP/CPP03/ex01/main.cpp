@@ -5,9 +5,9 @@ int main(void)      // ekstra testlerde ekle
 {
     ScavTrap Robot("ali");
     ScavTrap Ar("hadi bakalım");
-    ScavTrap LA;
+    // ScavTrap LA;
 
-    Ar = LA;
+    // Ar = LA;
 
 
     // ClapTrap Robot("İyi");
@@ -26,10 +26,10 @@ int main(void)      // ekstra testlerde ekle
     // Target.attack("Robot");
 
     
-    Robot.attack("LA");
+    Robot.attack("AR");
     std::cout << "robot energy: " << Robot.GetEnergyPoints() << std::endl;
-    LA.takeDamage(Robot.GetAtacckDamage());
-    LA.beRepaired(3);
+    Ar.takeDamage(Robot.GetAtacckDamage());
+    Ar.beRepaired(3);
 
     Robot.guardGate();
 
@@ -64,32 +64,5 @@ Bu üye fonksiyonu, ScavTrap’in artık Kapı Bekçisi Modunda (Gate keeper mod
 Özetle, ClapTrap’ten miras alan ScavTrap sınıfı yapıyorsun. 
 Varsayılan değerleri farklı (100 can, 50 enerji, 20 hasar) ve ayrıca guardGate() isminde ekstra bir yeteneği var.
 
-
-
-Kalıtım (inheritance) Nedir ?:
-- Kalıtım, bir sınıfın başka bir sınıfın özelliklerini (değişkenler, fonksiyonlar) miras almasıdır.
-- Böylece ortak özellikleri tekrar tekrar yazmak yerine kod tekrarını önler ve sınıflar arasında ilişki kurar
-Özet: Bir sınıfın başka bir sınıftan türemesidir.
-
-Kalıtım Türleri:
-- public inheritance
-    * Taban sınıfın public üyeleri → alt sınıfta da public olur.
-    * class Alt : public Taban { ... };
-- protected inheritance
-    * Taban sınıfın public üyeleri → alt sınıfta protected olur. Daha kısıtlı bir erişim sağlar
-    * class Alt : protected Taban { ... };
-- private inheritance
-    * Taban sınıfın public üyeleri → alt sınıfta private olur. Dışarıdan erişilemez.
-    * class Alt : private Taban { ... };
-
-
-Constructor ve Destructor Çalışma Sırası
-Bir alt sınıf nesnesi oluşturulunca:
-- Önce üst sınıfın constructor’u çalışır.
-- Sonra alt sınıfın constructor’u çalışır.
-
-Nesne silinince:
-- Önce alt sınıfın destructor’u,
-- Sonra üst sınıfın destructor’u çalışır.
 
 */

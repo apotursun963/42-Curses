@@ -26,7 +26,7 @@ int main(void)      // ekstra testlerde ekle
     RA.takeDamage(LA.GetAtacckDamage());
     RA.beRepaired(3);
 
-    LA.highFivesGuys();
+    LA.whoAmI();
 
     return 0;
 }

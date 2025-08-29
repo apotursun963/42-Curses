@@ -11,7 +11,6 @@ Virtual kullanmak, Sınıfın sadece bir kez miras alınmasını ve belirsizlikl
 class DiamondTrap : public FragTrap, public ScavTrap {  // iki sınıftan miras aldık
 private:
     std::string name;
-
 public:
     DiamondTrap();
     DiamondTrap(std::string name);
