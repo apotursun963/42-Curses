@@ -2,8 +2,12 @@
 #pragma once
 
 #include "Animal.hpp"
+#include "Brain.hpp"
 
 class Cat : public Animal {
+private:
+    Brain *CatBrain;
+
 public:
     Cat();
     Cat(const Cat &other);
