@@ -1,6 +1,5 @@
 
 #include "ScavTrap.hpp"
-#include "FragTrap.hpp"
 
 ScavTrap::ScavTrap() : ClapTrap() {
     this->name = "tursun";
@@ -34,11 +33,7 @@ ScavTrap::~ScavTrap() {
     std::cout << "ScavTrap Destructor called" << std::endl;
 }
 
-
 void ScavTrap::attack(const std::string& target) {
-    FragTrap tmp;
-
-    int attackdamage = tmp.GetAtacckDamage();
     if (this->energyPoints <= 0) {
         std::cout << "ScavTrap " << this->name << " does not have enough energy to attack :(" << std::endl;
         return ;
@@ -48,12 +43,11 @@ void ScavTrap::attack(const std::string& target) {
         return ;
     }
     this->energyPoints -= 1;
-    std::cout << "ScavTrap " << this->name
+    std::cout << "ScavTrap " << this->name     // Aloo_clap_name diye çıktı veriyor normalde nasıl vermesi gerekiyor öğren
               << " attacks " << target
-              << ", causing " << attackdamage      // burası ne olması gerekiyor öğren normalde FrapTrap değeri olması gerekiyro
+              << ", causing " << this->attackDamage
               << " points of damage!" << std::endl;
 }
-
 
 void ScavTrap::guardGate() {
     std::cout << "ScavTrap " << this->name << " is now guarding the gate" << std::endl;

@@ -12,7 +12,6 @@ public:
     FragTrap &operator=(const FragTrap &other);
     ~FragTrap();
 
-    int GetAtacckDamage(void);
 
     void highFivesGuys(void);
 };

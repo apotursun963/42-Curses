@@ -6,9 +6,9 @@ demek, DiamondTrap oluşturulurken FragTrap ve ScavTrap constructor’larını �
 */
 DiamondTrap::DiamondTrap() : FragTrap(), ScavTrap() {
     this->name = "tursun";
-    this->hitPoints = FragTrap::hitPoints;
-    this->energyPoints = ScavTrap::energyPoints;
-    this->attackDamage = FragTrap::attackDamage;
+    this->hitPoints = 100;
+    this->energyPoints = 50;
+    this->attackDamage = 30;
     std::cout << "DiamondTrap Default Constructor called" << std::endl;
 }
 
@@ -16,9 +16,9 @@ DiamondTrap::DiamondTrap(std::string name)
     :  ClapTrap(name), FragTrap(name), ScavTrap(name) {
     this->name = name;
     ClapTrap::name = name + "_clap_name";
-    this->hitPoints = FragTrap::hitPoints;
-    this->energyPoints = ScavTrap::energyPoints;
-    this->attackDamage = FragTrap::attackDamage;
+    this->hitPoints = 100;
+    this->energyPoints = 50;
+    this->attackDamage = 30;
     std::cout << "DiamondTrap Constructor called" << std::endl;
 }
 
@@ -35,7 +35,7 @@ DiamondTrap &DiamondTrap::operator=(const DiamondTrap &other) {
 }
 
 std::string DiamondTrap::GetName(void) {
-    return this->name;
+    return (this->name);
 }
 
 DiamondTrap::~DiamondTrap() {
@@ -44,6 +44,10 @@ DiamondTrap::~DiamondTrap() {
 
 void DiamondTrap::whoAmI(void) {
     std::cout << "my name is: " << this->name << " and my grandfather name is: " << ClapTrap::name << std::endl;    // _clap_name diye vermiyor
+}
+
+int DiamondTrap::GetAttackDamage() {
+    return this->attackDamage;
 }
 
 void DiamondTrap::attack(const std::string& target) {

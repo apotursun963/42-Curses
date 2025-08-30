@@ -21,6 +21,8 @@ public:
     void attack(const std::string& target);     // ScavTrap'ten miras almalı
 
     std::string     GetName();
+    int             GetAttackDamage();
+
     
     void whoAmI();
 };

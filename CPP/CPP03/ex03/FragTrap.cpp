@@ -36,7 +36,3 @@ FragTrap::~FragTrap() {
 void FragTrap::highFivesGuys() {
     std::cout << this->name << " Do You Want high five" << std::endl;
 }
-
-int FragTrap::GetAtacckDamage(void) {
-    return this->attackDamage;
-}
