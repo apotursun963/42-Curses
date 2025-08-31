@@ -2,7 +2,7 @@
 #include "DiamondTrap.hpp"
 #include "ClapTrap.hpp"
 
-int main(void)      // ekstra testlerde ekle
+int main(void)
 {
     DiamondTrap LA("Aloo");
     DiamondTrap RA;
@@ -20,16 +20,3 @@ int main(void)      // ekstra testlerde ekle
 
     return 0;
 }
-
-/*
-Hatalar
-
-*/
-
-
-
-/* ex03
-Virtual Kullanımı: 
-C++'da virtual inheritance (sanal kalıtım), bir temel sınıfın 
-birden fazla kez miras alınmasını önlemek için kullanılır.
-*/

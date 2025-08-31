@@ -43,7 +43,7 @@ void ScavTrap::attack(const std::string& target) {
         return ;
     }
     this->energyPoints -= 1;
-    std::cout << "ScavTrap " << this->name     // Aloo_clap_name diye çıktı veriyor normalde nasıl vermesi gerekiyor öğren
+    std::cout << "ScavTrap " << this->name
               << " attacks " << target
               << ", causing " << this->attackDamage
               << " points of damage!" << std::endl;

@@ -1,11 +1,9 @@
 
-
-
 #pragma once
 
 #include "ClapTrap.hpp"
 
-class ScavTrap : virtual public ClapTrap {  // ClapTrap sınıfından özellikleri/davranışları public olarak miras aldık.
+class ScavTrap : virtual public ClapTrap {
 public:
     ScavTrap();
     ScavTrap(std::string name);

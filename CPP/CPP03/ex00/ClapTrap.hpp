@@ -1,29 +1,14 @@
 
-
 #pragma once
 
 #include <iostream>
 
-
-/*
-Hit Points (HP) → Can/sağlık puanı.
-    - Robotun ne kadar hasar alabileceğini gösterir.
-    - 0 olursa robot “bitmiş” sayılır, artık hareket edemez.
-Energy Points (EP) → Enerji puanı.
-    - Robotun hareket edebilmesi için gereken yakıt/enerji gibi düşün.
-    - Her saldırı veya onarım 1 enerji puanı harcar. Enerjisi biterse hiçbir şey yapamaz.
-Attack Damage (AD) → Saldırı gücü.
-    - Robot saldırdığında hedefin canından ne kadar düşeceğini gösterir.
-    - Başlangıçta 0, ama farklı egzersizlerde artırılabiliyor.
-*/
-
-// clap trap normalde bir robottur (araştır)
 class ClapTrap {
 private:
-    std::string name;   // constructor’a parametre olarak verilecek.
-    int hitPoints;      // (başlangıç değeri: 10)
-    int energyPoints;   // (başlangıç değeri: 10)
-    int attackDamage;   // (başlangıç değeri: 0)
+    std::string name;
+    int hitPoints;
+    int energyPoints;
+    int attackDamage;
 public:
 
     ClapTrap();
@@ -32,13 +17,10 @@ public:
     ClapTrap &operator=(const ClapTrap &other);
     ~ClapTrap();
 
-    void attack(const std::string& target);     // hedefe saldır funcs
-    void takeDamage(unsigned int amount);       // hedeften saldırı alma
-    void beRepaired(unsigned int amount);       // kendini onarma
+    void attack(const std::string& target);     
+    void takeDamage(unsigned int amount);       
+    void beRepaired(unsigned int amount);       
 
-    // getter ve setter fonksiynları yazılacak (private değişkenler değer atamak ve erişmek için)
-    // bu egzrszide değilde bir sonraki egzersizlerde kullanıyorum bunları çünkü miras aldığım için private değişkenlere doğrudan 
-    // erişemiyorum o yüzden değer atamak için Setter ve Değer döndürmek için Getter funcs ekliyorum.
     void            SetName(std::string name);
     void            SetHitPoints(int hitpoints);
     void            SetEnergyPoints(int energypoints);

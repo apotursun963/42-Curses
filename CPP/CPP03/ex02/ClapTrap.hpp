@@ -4,11 +4,12 @@
 #include <iostream>
 
 class ClapTrap {
-protected:      // aslında private ti ama evo pagede protected istiyor
+protected:
     std::string name;
     int hitPoints;    
-    int energyPoints; 
-    int attackDamage; 
+    int energyPoints;
+    int attackDamage;
+
 public:
     ClapTrap();
     ClapTrap(std::string name);
@@ -24,6 +25,7 @@ public:
     void            SetHitPoints(int hitpoints);
     void            SetEnergyPoints(int energypoints);
     void            SetAttackDamage(int attackdamage);
+
     std::string     GetName();
     int             GetHitPoints();
     int             GetEnergyPoints();

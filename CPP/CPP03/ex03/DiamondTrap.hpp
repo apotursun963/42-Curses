@@ -2,13 +2,7 @@
 #include "FragTrap.hpp"
 #include "ScavTrap.hpp"
 
-/*
-FragTrap ve ScavTrap içinde ClapTrap Miras alındığı için
-DiamondTrap te veri çakışması olabililyor o yüzden 
-Her iki sınıfta ClapTrap'i Virtual Almamız gerekiyor.,
-Virtual kullanmak, Sınıfın sadece bir kez miras alınmasını ve belirsizliklerin önlenmesini sağlar.
-*/
-class DiamondTrap : public FragTrap, public ScavTrap {  // iki sınıftan miras aldık
+class DiamondTrap : public FragTrap, public ScavTrap {
 private:
     std::string name;
 public:
@@ -18,11 +12,10 @@ public:
     DiamondTrap &operator=(const DiamondTrap &other);
     ~DiamondTrap();
 
-    void attack(const std::string& target);     // ScavTrap'ten miras almalı
+    void attack(const std::string& target);
 
     std::string     GetName();
     int             GetAttackDamage();
 
-    
     void whoAmI();
 };

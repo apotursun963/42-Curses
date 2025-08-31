@@ -1,12 +1,6 @@
 
 #include "ClapTrap.hpp"
 
-// burada : ile init etmekle fonksiyonun için init etmek arasındaki farkı öğren
-/*
-Init list → değişkenler doğrudan başlatılır, kopya oluşmaz, daha verimli, const/reference olanlar için zorunlu.
-Fonksiyon gövdesi → önce default constructor çalışır, sonra atama yapılır.
-burda tek constructure mainde eğer nesen oluşturup ismini vermişse onuda kontrol et ve ayrı bir constructure
-*/ 
 ClapTrap::ClapTrap() : name("Kötü"), hitPoints(10), energyPoints(10), attackDamage(0) {
     std::cout << "ClapTrap Default Constructor called" << std::endl;
 }

@@ -1,9 +1,6 @@
 
 #include "DiamondTrap.hpp"
-/*
-DiamondTrap::DiamondTrap() : FragTrap(), ScavTrap()
-demek, DiamondTrap oluşturulurken FragTrap ve ScavTrap constructor’larını özellikle çağırmak demektir.
-*/
+
 DiamondTrap::DiamondTrap() : FragTrap(), ScavTrap() {
     this->name = "tursun";
     this->hitPoints = 100;
@@ -43,7 +40,7 @@ DiamondTrap::~DiamondTrap() {
 }
 
 void DiamondTrap::whoAmI(void) {
-    std::cout << "my name is: " << this->name << " and my grandfather name is: " << ClapTrap::name << std::endl;    // _clap_name diye vermiyor
+    std::cout << "my name is: " << this->name << " and my grandfather name is: " << ClapTrap::name << std::endl;
 }
 
 int DiamondTrap::GetAttackDamage() {
