@@ -3,13 +3,12 @@
 
 Brain::Brain() { 
     std::cout << "Brain Default constructor called" << std::endl;
-    SelectRandIdeas();
+    fillIdeas();
 }
 
 Brain::Brain(const Brain &other) {
 	std::cout << "Brain Copy constructor called" << std::endl;
-    for (int i=0; i < 100; i++)
-        this->ideas[i] = other.ideas[i];
+    *this = other;
 }
 
 Brain &Brain::operator=(const Brain &other) {
@@ -25,12 +24,11 @@ Brain::~Brain() {
     std::cout << "Brain Destructor called" << std::endl;
 }
 
-void Brain::fill_to_ideas(const std::string arr[]) {
-    for (int i=0; i < 100; i++)
-        this->ideas[i] = arr[i];        // yada random_ideas[rand() % 10];
+std::string Brain::getRandomIdea() {
+	return (this->ideas[rand() % 100]);
 }
 
-void Brain::SelectRandIdeas(void) {
+void Brain::fillIdeas(void) {
     std::string rndm_ids[100] = {
     "Where am I?",
     "Let's play!",
@@ -131,5 +129,6 @@ void Brain::SelectRandIdeas(void) {
     "Imagining a world of chew toys",
     "Dreaming about sleeping in the sun"
     };
-    fill_to_ideas(rndm_ids);
+    for (int i=0; i < 100; i++)
+        this->ideas[i] = rndm_ids[i];
 }

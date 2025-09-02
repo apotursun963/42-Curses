@@ -8,7 +8,6 @@ Cat::Cat() : AAnimal() {
 }
 
 Cat::Cat(const Cat &other) : AAnimal(other) {
-    delete this->CatBrain;
 	std::cout << "Cat Copy constructor called" << std::endl;
     this->CatBrain = new Brain(*other.CatBrain);
 }

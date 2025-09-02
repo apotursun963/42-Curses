@@ -1,5 +1,4 @@
 
-
 #include "WrongCat.hpp"
 
 WrongCat::WrongCat() {

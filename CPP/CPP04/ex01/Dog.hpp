@@ -1,5 +1,4 @@
 
-
 #pragma once
 
 #include "Animal.hpp"
@@ -16,4 +15,5 @@ public:
     ~Dog();
 
     void    makeSound(void) const;
+    Brain   *getDogBrain(void);
 };

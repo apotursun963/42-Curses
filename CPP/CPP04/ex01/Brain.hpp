@@ -1,8 +1,8 @@
 
-
 #pragma once
 
 #include <iostream>
+#include <cstdlib>
 
 class Brain {
 private:
@@ -14,7 +14,6 @@ public:
     Brain &operator=(const Brain &other);
     ~Brain();
 
-    void    SelectRandIdeas(void);
-    void    fill_to_ideas(const std::string arr[]);
-
+    void        fillIdeas(void);
+    std::string getRandomIdea(void);
 };

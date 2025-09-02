@@ -11,5 +11,4 @@ public:
     ~Cat();
 
     void    makeSound(void) const;
-
 };

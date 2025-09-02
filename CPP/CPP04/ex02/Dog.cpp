@@ -8,7 +8,6 @@ Dog::Dog() : AAnimal() {
 }
 
 Dog::Dog(const Dog &other) : AAnimal(other) {
-    delete this->DogBrain;
 	std::cout << "Dog Copy constructor called" << std::endl;
     this->DogBrain = new Brain(*other.DogBrain);
 }
@@ -34,4 +33,3 @@ Brain *Dog::getDogBrain(void) {
 void Dog::makeSound(void) const{
     std::cout << "Hav Havvv" << std::endl;
 }
-

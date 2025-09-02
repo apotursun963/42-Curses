@@ -1,7 +1,7 @@
 
 
-
 # pragma once
+
 #include <iostream>
 #include "WrongAnimal.hpp"
 
@@ -14,4 +14,3 @@ public:
 
     void    makeSound(void) const;
 };
-

@@ -25,7 +25,7 @@ Brain::~Brain() {
 }
 
 std::string Brain::getRandomIdea() {
-	return (this->ideas[rand() % 100]);     // bir sayıyı 100 ile modunu aldığımızda her zaman son iki basamağı elde ederiz. 
+	return (this->ideas[rand() % 100]);
 }
 
 void Brain::SelectRandIdeas(void) {
