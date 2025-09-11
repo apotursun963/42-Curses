@@ -23,6 +23,11 @@ int main(void)
 /* EX01
 Her Büroktartlara form verilyor ve bu Bürokratlar bu formları imzalayabilecek, ama belirli kurallara göre.
 
+Form için verilen gradeToSign ve gradeToExecute değerleri de Bureaucrat ile 
+aynı kurallara bağlı (1 en yüksek, 150 en düşük).
+Eğer değerler sınırların dışında olursa:
+Çok yüksek olursa → Form::GradeTooHighException
+Çok düşük olursa → Form::GradeTooLowException fırlatılacak.
 
 
 */
