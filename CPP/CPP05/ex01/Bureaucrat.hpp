@@ -22,6 +22,8 @@ public:
     void    increment(void);
     void    decrement(void);
 
+    void    signForm(std::string name, bool sign);
+
     // Bu, özel bir hata (istisna) sınıfıdır .
     // what() -> hata yakalandığında geri döneceğine dair mesaj yazılır.
     class GradeTooHighException : public std::exception {

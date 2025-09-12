@@ -1,16 +1,18 @@
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 int main(void)
 {
-	Bureaucrat	Odin("Odin", 1);
-	Bureaucrat	Loki("Loki", 150);
+	Bureaucrat	Odin("Odin", 75);
+	Bureaucrat	Loki("Loki", 1);
+	Form 		form("iddianame", 74);
 
 	std::cout << Odin << std::endl;
 	std::cout << Loki << std::endl;
 
 	try {
-        Odin.increment();
+        form.beSigned(Odin);
     }
 	catch (std::exception &e) {
 		std::cout << "Exception: " << e.what() << std::endl;
@@ -28,6 +30,5 @@ aynı kurallara bağlı (1 en yüksek, 150 en düşük).
 Eğer değerler sınırların dışında olursa:
 Çok yüksek olursa → Form::GradeTooHighException
 Çok düşük olursa → Form::GradeTooLowException fırlatılacak.
-
-
 */
+
