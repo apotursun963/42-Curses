@@ -1,24 +1,31 @@
 
+
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
 
+/*
+Main testleri kesinlikle arttır
+*/
 int main(void)
 {
-	Bureaucrat	Odin("Odin", 75);
-	Bureaucrat	Loki("Loki", 1);
 	Form 		form("iddianame", 74);
+	Bureaucrat	*Odin = NULL;
 
-	std::cout << Odin << std::endl;
-	std::cout << Loki << std::endl;
-
+	
 	try {
-        form.beSigned(Odin);
+		Odin = new Bureaucrat("Odin", 55);
+        form.beSigned(*Odin);
     }
 	catch (std::exception &e) {
 		std::cout << "Exception: " << e.what() << std::endl;
 	}
+	std::cout << *Odin << std::endl;
+	std::cout << form << std::endl;
+	delete Odin;
     return (0);
 }
+
+
 
 
 

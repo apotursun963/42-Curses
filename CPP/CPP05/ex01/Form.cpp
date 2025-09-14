@@ -49,10 +49,10 @@ void Form::beSigned(Bureaucrat &b) {
 std::ostream &operator<<(std::ostream &out, Form const &right) {
 	out << "Form name: " << right.getName() << std::endl;
     if (right.getSigned())
-        out << "Signed: True\n";
+        out << "Signed: True";
     else
-        out << "Signed: False\n";
-	return (out);
+        out << "Signed: False";
+    return (out);
 }
 
 
