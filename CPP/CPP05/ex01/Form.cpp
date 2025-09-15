@@ -4,8 +4,8 @@
 
 Form::Form() : name("tursun"), is_signed(false), gradeToSign(150), gradeToExecute(150)  {}
 
-Form::Form(std::string name, int Grade_To_Sign) 
-    : name(name), is_signed(false), gradeToSign(Grade_To_Sign), gradeToExecute(Grade_To_Sign - 1) {}
+Form::Form(std::string name, int Grade_To_Sign, int Grade_To_Execute) 
+    : name(name), is_signed(false), gradeToSign(Grade_To_Sign), gradeToExecute(Grade_To_Execute) {}
 
 Form::Form(const Form &other) 
     : name(other.name), is_signed(other.is_signed), gradeToSign(other.gradeToSign), gradeToExecute(other.gradeToExecute) {}

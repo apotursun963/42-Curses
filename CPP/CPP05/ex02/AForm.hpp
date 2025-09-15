@@ -1,24 +1,29 @@
 
+#pragma once
 
 #include "Bureaucrat.hpp"
 
 #include <string>
 #include <iostream>
 
-class Form {
+
+class Bureaucrat;       // Forward declaration -> nedir öğren
+
+class AForm {
 private:
-    std::string const name;                         // Formun adı
-    bool              is_signed;                    // Form imzalanmış mı? (Başlangıçta false).
+    std::string const name;                         // AFormun adı
+    bool              is_signed;                    // AForm imzalanmış mı? (Başlangıçta false).
     int const         gradeToSign;                  // İmzalamak için gereken seviye (derece)
     int const         gradeToExecute;               // Çalıştırmak için gereken seviye (derece)
 
 public:
-    Form();
-    Form(std::string name, int Grade_To_Sign, int Grade_To_Execute);
-    Form(const Form &other);
-    Form &operator=(const Form &other);
-    ~Form();
+    AForm();
+    AForm(std::string name, int Grade_To_Sign, int Grade_To_Execute);
+    AForm(const AForm &other);
+    AForm &operator=(const AForm &other);
+    ~AForm();       // Bunu virtual yap
 
+    virtual void execute(Bureaucrat const &executor) const = 0;
     void beSigned(Bureaucrat &b);
 
     std::string getName(void) const;
@@ -34,4 +39,4 @@ public:
         const char* what() const throw();
     };
 };
-std::ostream &operator<<(std::ostream &out, const Form &right);
+std::ostream &operator<<(std::ostream &out, const AForm &right);

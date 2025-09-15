@@ -1,27 +1,24 @@
 
-
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
+
 
 /*
 Main testleri kesinlikle arttır
 */
 int main(void)
 {
-	Form 		form("iddianame", 74);
-	Bureaucrat	*Odin = NULL;
+	Form 		form("iddianame", 74, 55);
 
-	
 	try {
-		Odin = new Bureaucrat("Odin", 55);
-        form.beSigned(*Odin);
+		Bureaucrat	Odin("Odin", -1);
+		std::cout << Odin << std::endl;
+        form.beSigned(Odin);
     }
 	catch (std::exception &e) {
 		std::cout << "Exception: " << e.what() << std::endl;
 	}
-	std::cout << *Odin << std::endl;
 	std::cout << form << std::endl;
-	delete Odin;
     return (0);
 }
 
@@ -38,4 +35,5 @@ Eğer değerler sınırların dışında olursa:
 Çok yüksek olursa → Form::GradeTooHighException
 Çok düşük olursa → Form::GradeTooLowException fırlatılacak.
 */
+
 

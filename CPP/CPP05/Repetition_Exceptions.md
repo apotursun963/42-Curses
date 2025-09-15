@@ -23,3 +23,6 @@ Program, fırlatılan (throw edilen) istisnayı yakalayıp işlemek için uygun 
 
 3. Handling the Exception (İstisnanın Ele Alınması)
 Catch bloğu, hataya yanıt vermek için gerekli mantığı içerir ve programın ya toparlanmasına ya da düzgün bir şekilde sonlanmasına imkân tanır.
+
+
+bilgisyaarı kilitleme: ft_lock
