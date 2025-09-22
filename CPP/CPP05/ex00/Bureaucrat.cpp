@@ -27,7 +27,8 @@ std::string Bureaucrat::getName(void) const { return (this->name); }
 void Bureaucrat::increment(void) {
     this->grade--;
     if (this->grade < 1)
-        throw (Bureaucrat::GradeTooHighException());
+        throw (Bureaucrat::GradeTooHighException());        // throw bir nesne fırlatıyor
+                    // Bu durumda program anında try bloğundan çıkar, ve uygun catch bloğu aramaya başlar.
 }
 
 void Bureaucrat::decrement(void) {
