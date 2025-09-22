@@ -9,10 +9,16 @@ int main(void)
 	std::cout << Odin << std::endl;
 	std::cout << Loki << std::endl;
 
-	try {
+	try {							// try bloğuna istisna/hata durumlarını oluşturabilecek kodları yazarız.
         Odin.increment();
     }
-	catch (std::exception &e) {
+	/*
+	- catch bloğu, fırlatılan istisnayı yakalar.
+	- std::exception &e → fırlatılan istisna std::exception sınıfından türemiş olmalı.
+	- Senin GradeTooHighException ve GradeTooLowException sınıfları std::exception’dan türediği için bu catch onları da yakalar.
+	- Yakalanan istisna nesnesinin mesajını almak için what() kullanılır:
+	*/
+	catch (std::exception &e) {	
 		std::cout << "Exception: " << e.what() << std::endl;
 	}
     return (0);
