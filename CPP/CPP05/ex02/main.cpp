@@ -163,7 +163,7 @@ Her form sadece bir parametre (`target`) alacak.
 ---
 
 
-Soyut ve Somut sınıfalr
+Soyut ve Somut sınıflar
 - Soyut sınıf saf sanal fonksiyon içerir ve ondan doğrudan nesne oluşturulamaz.
 - Somut sınıf, soyut sınıftan türeyip eksik fonksiyonları tamamlayan sınıftır.
 - Somut sınıflarda tüm fonksiyonlar implement edilmiştir, bu yüzden nesne oluşturulabilir.
