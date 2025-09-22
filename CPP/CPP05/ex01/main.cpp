@@ -11,7 +11,7 @@ int main(void)
 	Form 		form("iddianame", 74, 55);
 
 	try {
-		Bureaucrat	Odin("Odin", -1);
+		Bureaucrat	Odin("Odin", 73);
 		std::cout << Odin << std::endl;
         form.beSigned(Odin);
     }
