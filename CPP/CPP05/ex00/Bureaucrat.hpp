@@ -25,8 +25,14 @@ public:
 
     // Bu, özel bir hata (istisna) sınıfıdır .
     // what() -> hata yakalandığında geri döneceğine dair mesaj yazılır.
+    /*
+    - const char* -> dönüş tipi
+    - what() -> Fonksiyon ismi (std::exception sınıfında vardı zaten biz onu miras alıp override ediyoruz)
+    - const -> const memeber funcs yani sınıftaki üyelerin/özelliklerin durumlarını değiştiremez.
+    - throw() -> istisna bildirimi
+    */
     class GradeTooHighException : public std::exception {
-        const char* what() const throw();
+        const char* what() const throw();       // fonksiyonu prototipi
     };
 
     class GradeTooLowException : public std::exception {
