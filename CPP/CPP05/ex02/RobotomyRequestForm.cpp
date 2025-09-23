@@ -10,7 +10,7 @@ sign: Formu imzalamak için Bureaucrat’ın grade’i 72 veya daha yüksek olma
 exec: Formu çalıştırmak için Bureaucrat’ın grade’i 45 veya daha yüksek olmalı.
 */
 RobotomyRequestForm::RobotomyRequestForm(Bureaucrat &target) 
-    : AForm::AForm("Tree", 72, 45), target(target) {
+    : AForm::AForm("iddianame", 72, 45), target(target) {
 
     }
 

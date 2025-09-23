@@ -3,8 +3,7 @@
 
 // sign = 145, exec = 137
 ShrubberyCreationForm::ShrubberyCreationForm(Bureaucrat &target) 
-    : AForm::AForm("Tree", 145, 137), target(target) {
-
+    : AForm::AForm("iddianame", 145, 137), target(target) {
     }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &other) 
@@ -38,7 +37,7 @@ Formu çalıştırmak isteyen Bureaucrat’ın yetkisi yeterli mi kontrol edecek
 - Eğer her şey doğruysa, concrete class içindeki “gerçek işlemi” yapan fonksiyonu çağıracak.
 */
 void ShrubberyCreationForm::execute(Bureaucrat const &executor) const {
-    std::string file_name =  target.getName() + "_shrubbery";
+    std::string file_name =  this->target.getName() + "_shrubbery";
     std::ofstream output_file(file_name.c_str());
 
     executor.executeForm(*this);
@@ -58,4 +57,3 @@ void ShrubberyCreationForm::execute(Bureaucrat const &executor) const {
     }
     output_file.close();
 }
-

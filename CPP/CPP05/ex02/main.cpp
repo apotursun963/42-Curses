@@ -11,98 +11,58 @@ Main testleri kesinlikle arttır
 */
 int main(void)
 {
-	// AForm 		form("iddianame", 74, 55); -> soyut sınıftan doğrudan nesne oluşturmazsın
-	
-   Bureaucrat	Odin("Odin", 5);
-   // ShrubberyCreationForm aloo(Odin);
-   // RobotomyRequestForm baloo(Odin);
-   PresidentialPardonForm paloo(Odin);
+    std::cout << "<<<ShrubberyCreationForm Tests>>>" << std::endl;
+    {
+        Bureaucrat	Odin("Odin", 136);            // sign = 145, exec = 137
+        ShrubberyCreationForm aloo(Odin);
+     
+        std::cout << Odin << std::endl;
+        try {
+            aloo.beSigned(Odin);
+            aloo.execute(Odin);
+        }
+        catch (std::exception &e) {
+            std::cout << "Exception: " << e.what() << std::endl;
+        }
+        std::cout << aloo << std::endl;
 
-	try {
-		std::cout << Odin << std::endl;
-      paloo.beSigned(Odin);
-      paloo.execute(Odin);
-   }
-	catch (std::exception &e) {
-		std::cout << "Exception: " << e.what() << std::endl;
-	}
-	std::cout << paloo << std::endl;
+    }
+
+    std::cout << "<<<RobotomyRequestForm Tests>>>" << std::endl;
+    {
+        Bureaucrat	Sodin("Odin", 46);      // sign = 72, exec = 45
+
+        RobotomyRequestForm baloo(Sodin);
+     
+        std::cout << Sodin << std::endl;
+        try {
+            baloo.beSigned(Sodin);
+            baloo.execute(Sodin);
+        }
+        catch (std::exception &e) {
+            std::cout << "Exception: " << e.what() << std::endl;
+        }
+        std::cout << baloo << std::endl;
+
+    }
+
+    std::cout << "<<<PresidentialPardonForm Tests>>>" << std::endl;
+    {
+        Bureaucrat	Adin("Odin", 5);            // sign 25, exec 5
+        PresidentialPardonForm daloo(Adin);
+     
+        std::cout << Adin << std::endl;
+        try {
+            daloo.beSigned(Adin);
+            daloo.execute(Adin);
+        }
+        catch (std::exception &e) {
+            std::cout << "Exception: " << e.what() << std::endl;
+        }
+        std::cout << daloo << std::endl;
+    }
     return (0);
 }
-
-
-/* tester
-
-int main(void)
-{
-    std::cout << "=== ShrubberyCreationForm Testleri ===" << std::endl;
-    {
-        Bureaucrat alice("Alice", 140);
-        ShrubberyCreationForm shrub("garden");
-
-        try {
-            alice.signForm(shrub);
-            alice.executeForm(shrub);
-        } catch (std::exception &e) {
-            std::cout << "Exception: " << e.what() << std::endl;
-        }
-        std::cout << shrub << std::endl;
-    }
-
-    std::cout << "\n=== RobotomyRequestForm Testleri ===" << std::endl;
-    {
-        Bureaucrat bob("Bob", 45);
-        RobotomyRequestForm robot("Bender");
-
-        try {
-            bob.signForm(robot);
-            for (int i = 0; i < 4; ++i) { // Birkaç kez dene, random sonucu görmek için
-                bob.executeForm(robot);
-            }
-        } catch (std::exception &e) {
-            std::cout << "Exception: " << e.what() << std::endl;
-        }
-        std::cout << robot << std::endl;
-    }
-
-    std::cout << "\n=== PresidentialPardonForm Testleri ===" << std::endl;
-    {
-        Bureaucrat odin("Odin", 5);
-        PresidentialPardonForm pardon("Loki");
-
-        try {
-            odin.signForm(pardon);
-            odin.executeForm(pardon);
-        } catch (std::exception &e) {
-            std::cout << "Exception: " << e.what() << std::endl;
-        }
-        std::cout << pardon << std::endl;
-    }
-
-    std::cout << "\n=== Başarısız Durum Testleri ===" << std::endl;
-    {
-        Bureaucrat low("LowRank", 150);
-        ShrubberyCreationForm shrub("failgarden");
-
-        try {
-            low.signForm(shrub); // Yetersiz grade
-        } catch (std::exception &e) {
-            std::cout << "Exception: " << e.what() << std::endl;
-        }
-
-        Bureaucrat mid("MidRank", 140);
-        try {
-            mid.executeForm(shrub); // İmzalanmamış formu çalıştırmaya çalışıyor
-        } catch (std::exception &e) {
-            std::cout << "Exception: " << e.what() << std::endl;
-        }
-    }
-
-    return 0;
-}
-*/
-
-
 
 
 
