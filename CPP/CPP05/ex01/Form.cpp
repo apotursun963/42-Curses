@@ -57,14 +57,5 @@ std::ostream &operator<<(std::ostream &out, Form const &right) {
 
 
 const char* Form::GradeTooLowException::what() const throw() {
-    return ("Bureaucrat's authority is too low to sign.");
+    return ("Bureaucrat's grade is too low to sign.");
 }
-
-const char* Form::GradeTooHighException::what() const throw() {
-    return ("Bureaucrat's authority is too high to sign.");
-}
-
-
-
-
-// out << "Need to be grade " << right.getSignGrade() << " to sign it, and grade " << right.getExecuteGrade() << " to execute it.";

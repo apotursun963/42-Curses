@@ -52,7 +52,6 @@ void Bureaucrat::signForm(std::string name, bool sign) {
         std::cout << this->name << " couldn’t sign " << name << "because his grade is not suitable" << std::endl; 
 }
 
-
 std::ostream &operator<<(std::ostream &out, Bureaucrat const &right) {
 	out << right.getName() << ", bureaucrat grade " << right.getGrade();
 	return (out);
