@@ -2,7 +2,7 @@
 
 // sign 25, exec 5
 PresidentialPardonForm::PresidentialPardonForm(Bureaucrat &target) 
-    : AForm::AForm("Tree", 25, 5), target(target) {
+    : AForm::AForm("iddianame", 25, 5), target(target) {
 
     }
 
