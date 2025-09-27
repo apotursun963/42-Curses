@@ -14,34 +14,36 @@ int main(void)
 {
     std::cout << "<<<ShrubberyCreationForm Tests>>>" << std::endl;
     {
-        Bureaucrat	            Odin("Odin", 110);
-        Intern                  new_eleman;
-        ShrubberyCreationForm   shru(Odin);
-
+        AForm *res_form = NULL;
         try {
-            new_eleman.makeForm("Shrubbery Creation", Odin);
-            shru.beSigned(Odin);
-            shru.execute(Odin);
+            Bureaucrat	            Huseyn("Huseyn", 110);
+            Intern                  new_eleman;
+
+            res_form = new_eleman.makeForm("Shrubbery Creation", "Bender");
+            res_form->beSigned(Huseyn);
+            res_form->execute(Huseyn);
         }
         catch (std::exception &e) {
             std::cout << "Exception: " << e.what() << std::endl;
         }
+        delete res_form;
     }
 
     std::cout << "<<<PresidentialPardonForm Tests>>>" << std::endl;
     {
-        Bureaucrat	            Thor("Odin", 25);
-        Intern                  new_eleman;
-        PresidentialPardonForm  pres(Thor);
-
+        AForm *res_form = NULL;
         try {
-            new_eleman.makeForm("Presidential Pardon", Thor);
-            pres.beSigned(Thor);
-            pres.execute(Thor);
+            Bureaucrat	            Thor("Huseyn", 25);
+            Intern                  new_eleman;
+
+            res_form = new_eleman.makeForm("Presidental Parodon", "Sender");
+            res_form->beSigned(Thor);
+            res_form->execute(Thor);
         }
         catch (std::exception &e) {
             std::cout << "Exception: " << e.what() << std::endl;
         }
+        delete res_form;
     }
     return (0);
 }

@@ -14,11 +14,12 @@ public:
     Intern &operator=(const Intern &other);
     ~Intern();
 
-    AForm *makeForm(std::string form, Bureaucrat & target) const;
 
-    AForm *makePresidential(Bureaucrat & target) const;
-    AForm *makeRobotomy(Bureaucrat & target) const;
-    AForm *makeShrubbery(Bureaucrat & target) const;
+    AForm *makeForm(std::string form, std::string target) const;
+
+    AForm *makePresidential(std::string target) const;
+    AForm *makeRobotomy(std::string target) const;
+    AForm *makeShrubbery(std::string target) const;
 
 	class WrongNameException : public std::exception {
         const char *	what() const throw();

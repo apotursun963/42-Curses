@@ -21,7 +21,7 @@ public:
     AForm(std::string name, int Grade_To_Sign, int Grade_To_Execute);
     AForm(const AForm &other);
     AForm &operator=(const AForm &other);
-    ~AForm();       // Bunu virtual yap
+    virtual ~AForm();       // Bunu virtual yap
 
     virtual void execute(Bureaucrat const &executor) const = 0;
     void beSigned(Bureaucrat &b);
@@ -30,10 +30,6 @@ public:
     bool        getSigned(void) const;
     int         getSignGrade(void) const;
     int         getExecuteGrade(void) const;
-
-    class GradeTooHighException : public std::exception {
-        const char* what() const throw();
-    };
 
     class GradeTooLowException : public std::exception {
         const char* what() const throw();
