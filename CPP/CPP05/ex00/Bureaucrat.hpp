@@ -1,11 +1,10 @@
+
 #pragma once
 
 #include <iostream>
 #include <string>
 
-
 class Bureaucrat {
-
 private:
     int               grade;        // bürokratın derecesi (1 en yüksek, 150 en düşük)
     std::string const name;         // sabit, değiştirilemez isim

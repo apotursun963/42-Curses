@@ -5,7 +5,12 @@
 Form::Form() : name("tursun"), is_signed(false), gradeToSign(150), gradeToExecute(150)  {}
 
 Form::Form(std::string name, int Grade_To_Sign, int Grade_To_Execute) 
-    : name(name), is_signed(false), gradeToSign(Grade_To_Sign), gradeToExecute(Grade_To_Execute) {}
+    : name(name), is_signed(false), gradeToSign(Grade_To_Sign), gradeToExecute(Grade_To_Execute) {
+    if ((Grade_To_Sign > 150) || (Grade_To_Execute > 150))
+        throw (Bureaucrat::GradeTooLowException());
+    if ((Grade_To_Sign < 1) || (Grade_To_Execute < 1))
+        throw (Bureaucrat::GradeTooHighException());
+}
 
 Form::Form(const Form &other) 
     : name(other.name), is_signed(other.is_signed), gradeToSign(other.gradeToSign), gradeToExecute(other.gradeToExecute) {}
@@ -45,7 +50,6 @@ void Form::beSigned(Bureaucrat &b) {
     }
 }
 
-
 std::ostream &operator<<(std::ostream &out, Form const &right) {
 	out << "Form name: " << right.getName() << std::endl;
     if (right.getSigned())
@@ -54,7 +58,6 @@ std::ostream &operator<<(std::ostream &out, Form const &right) {
         out << "Signed: False";
     return (out);
 }
-
 
 const char* Form::GradeTooLowException::what() const throw() {
     return ("Bureaucrat's grade is too low to sign.");

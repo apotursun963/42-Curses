@@ -5,61 +5,59 @@
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
 
-
 /*
-Main testleri kesinlikle arttır
+Buradaki target, formun işleyeceği hedefi ifade ediyor.
+Yani formun hangi nesne veya kişi üzerinde işlem yapacağını belirten parametre
 */
+
 int main(void)
 {
     std::cout << "<<<ShrubberyCreationForm Tests>>>" << std::endl;
     {
-        Bureaucrat	Odin("Odin", 136);            // sign = 145, exec = 137
-        ShrubberyCreationForm aloo(Odin);
-     
-        std::cout << Odin << std::endl;
         try {
-            aloo.beSigned(Odin);
-            aloo.execute(Odin);
+            Bureaucrat	Huseyn("Huseyn", 136);            // sign = 145, exec = 137
+            ShrubberyCreationForm aloo("palantir");
+
+            aloo.beSigned(Huseyn);
+            aloo.execute(Huseyn);
+    
+            std::cout << aloo << std::endl;
         }
         catch (std::exception &e) {
             std::cout << "Exception: " << e.what() << std::endl;
         }
-        std::cout << aloo << std::endl;
-
     }
 
     std::cout << "<<<RobotomyRequestForm Tests>>>" << std::endl;
     {
-        Bureaucrat	Sodin("Odin", 46);      // sign = 72, exec = 45
-
-        RobotomyRequestForm baloo(Sodin);
-     
-        std::cout << Sodin << std::endl;
         try {
+            Bureaucrat	Sodin("Huseyn", 44);      // sign = 72, exec = 45
+            RobotomyRequestForm baloo("spider");
+
             baloo.beSigned(Sodin);
             baloo.execute(Sodin);
+
+            std::cout << baloo << std::endl;
         }
         catch (std::exception &e) {
             std::cout << "Exception: " << e.what() << std::endl;
         }
-        std::cout << baloo << std::endl;
-
     }
 
     std::cout << "<<<PresidentialPardonForm Tests>>>" << std::endl;
     {
-        Bureaucrat	Adin("Odin", 5);            // sign 25, exec 5
-        PresidentialPardonForm daloo(Adin);
-     
-        std::cout << Adin << std::endl;
         try {
+            Bureaucrat	Adin("Huseyn", 3);            // sign 25, exec 5
+            PresidentialPardonForm daloo("tursun");
+    
             daloo.beSigned(Adin);
             daloo.execute(Adin);
+
+            std::cout << daloo << std::endl;
         }
         catch (std::exception &e) {
             std::cout << "Exception: " << e.what() << std::endl;
         }
-        std::cout << daloo << std::endl;
     }
     return (0);
 }
@@ -131,4 +129,3 @@ Soyut ve Somut sınıflar
 - ShrubberyCreationForm, RobotomyRequestForm, PresidentialPardonForm ise somut sınıflardır, çünkü execute() fonksiyonlarını kendileri yazarlar.
 
 */
-

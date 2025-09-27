@@ -45,6 +45,11 @@ const char* Bureaucrat::GradeTooHighException::what() const throw() {
     return ("Grade is too High");
 }
 
+/*
+Bu kod bir operator overloading örneği. 
+Yani << (insertion operator) özel olarak tanımlanıyor ki, bir Bureaucrat nesnesini
+std::cout veya başka bir std::ostream ile kolayca ekrana yazdırabilesin.
+*/
 std::ostream &operator<<(std::ostream &out, Bureaucrat const &right) {
 	out << right.getName() << ", bureaucrat grade " << right.getGrade();
 	return (out);

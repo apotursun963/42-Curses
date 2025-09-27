@@ -7,10 +7,10 @@
 
 class RobotomyRequestForm : public AForm {
 private:
-    Bureaucrat &target;
+    std::string target;
 
 public:
-    RobotomyRequestForm(Bureaucrat &target);
+    RobotomyRequestForm(std::string target);
     RobotomyRequestForm(const RobotomyRequestForm &other);
     RobotomyRequestForm &operator=(const RobotomyRequestForm &other);
     ~RobotomyRequestForm();

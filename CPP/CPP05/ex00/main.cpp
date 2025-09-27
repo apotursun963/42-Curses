@@ -3,23 +3,37 @@
 
 int main(void)
 {
-	Bureaucrat	Odin("Odin", 1);
-	Bureaucrat	Loki("Loki", 150);
+	std::cout << "<<<Hasan Test>>>\n";
+	{
+		try {
+			Bureaucrat	Hasan("Hasan", 75);
+			std::cout << Hasan << std::endl;
+	
+			Hasan.increment();
+			std::cout << "Hasan's Current Grade After increment: " << Hasan.getGrade() << std::endl;
+    	}
+		catch (std::exception &e) {	
+			std::cout << "Exception: " << e.what() << std::endl;
+		}
+	}
 
-	std::cout << Odin << std::endl;
-	std::cout << Loki << std::endl;
+	std::cout << "<<<Huseyn Test>>>\n";
+	{
+		try {							// try bloğuna istisna/hata durumlarını oluşturabilecek kodları yazarız.
+			Bureaucrat	Huseyn("Huseyn", 150);
+			std::cout << Huseyn << std::endl;
 
-	try {							// try bloğuna istisna/hata durumlarını oluşturabilecek kodları yazarız.
-        Odin.increment();
-    }
-	/*
-	- catch bloğu, fırlatılan istisnayı yakalar.
-	- std::exception &e → fırlatılan istisna std::exception sınıfından türemiş olmalı.
-	- Senin GradeTooHighException ve GradeTooLowException sınıfları std::exception’dan türediği için bu catch onları da yakalar.
-	- Yakalanan istisna nesnesinin mesajını almak için what() kullanılır:
-	*/
-	catch (std::exception &e) {	
-		std::cout << "Exception: " << e.what() << std::endl;
+			Huseyn.decrement();
+		}
+		/*
+		- catch bloğu, fırlatılan istisnayı yakalar.
+		- std::exception &e → fırlatılan istisna std::exception sınıfından türemiş olmalı.
+		- Senin GradeTooHighException ve GradeTooLowException sınıfları std::exception’dan türediği için bu catch onları da yakalar.
+		- Yakalanan istisna nesnesinin mesajını almak için what() kullanılır:
+		*/
+		catch (std::exception &e) {
+			std::cout << "Exception: " << e.what() << std::endl;
+		}
 	}
     return (0);
 }

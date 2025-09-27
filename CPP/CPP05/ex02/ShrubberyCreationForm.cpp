@@ -2,7 +2,7 @@
 #include "ShrubberyCreationForm.hpp"
 
 // sign = 145, exec = 137
-ShrubberyCreationForm::ShrubberyCreationForm(Bureaucrat &target) 
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target) 
     : AForm::AForm("iddianame", 145, 137), target(target) {
     }
 
@@ -42,18 +42,18 @@ void ShrubberyCreationForm::execute(Bureaucrat const &executor) const {
 
     executor.executeForm(*this);
     if (this->getSigned() == true) {
-        output_file << "      &&& &&  & &&" << std::endl;
-        output_file << "   && &\\/&\\|& ()|/ @, &&" << std::endl;
-        output_file << "   &\\/(/&/&||/& /_/)_&/_&" << std::endl;
-        output_file << " &() &\\/&|()|/&\\/ '%\" & ()" << std::endl;
-        output_file << "&_\\/&_/|&/&||/& /_/)_&/_&" << std::endl;
-        output_file << "&&   && & &| &| /& & % ()&" << std::endl;
-        output_file << "   ()&_---()&\\&\\|&&-&&--%" << std::endl;
-        output_file << "           &&     \\|||" << std::endl;
-        output_file << "           |||     |||" << std::endl;
-        output_file << "           |||     |||" << std::endl;
-        output_file << "           |||     |||" << std::endl;
-        output_file << "       ____|||____ |||" << std::endl;
+        output_file << "      &&& &&  & &&\n";
+        output_file << "   && &\\/&\\|& ()|/ @, &&\n";
+        output_file << "   &\\/(/&/&||/& /_/)_&/_&\n";
+        output_file << " &() &\\/&|()|/&\\/ '%\" & ()\n";
+        output_file << "&_\\/&_/|&/&||/& /_/)_&/_&\n";
+        output_file << "&&   && & &| &| /& & % ()&\n";
+        output_file << "   ()&_---()&\\&\\|&&-&&--%\n";
+        output_file << "           &&     \\|||\n";
+        output_file << "           |||     |||\n";
+        output_file << "           |||     |||\n";
+        output_file << "           |||     |||\n";
+        output_file << "       ____|||____ |||\n";
     }
     output_file.close();
 }

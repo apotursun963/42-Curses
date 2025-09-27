@@ -4,8 +4,13 @@
 
 AForm::AForm() : name("tursun"), is_signed(false), gradeToSign(150), gradeToExecute(150)  {}
 
-AForm::AForm(std::string name, int Grade_To_Sign, int Grade_To_Execute)
-    : name(name), is_signed(false), gradeToSign(Grade_To_Sign), gradeToExecute(Grade_To_Execute) {}
+AForm::AForm(std::string name, int Grade_To_Sign, int Grade_To_Execute) 
+    : name(name), is_signed(false), gradeToSign(Grade_To_Sign), gradeToExecute(Grade_To_Execute) {
+    if ((Grade_To_Sign > 150) || (Grade_To_Execute > 150))
+        throw (Bureaucrat::GradeTooLowException());
+    if ((Grade_To_Sign < 1) || (Grade_To_Execute < 1))
+        throw (Bureaucrat::GradeTooHighException());
+}
 
 AForm::AForm(const AForm &other) 
     : name(other.name), is_signed(other.is_signed), gradeToSign(other.gradeToSign), gradeToExecute(other.gradeToExecute) {}
@@ -57,9 +62,5 @@ std::ostream &operator<<(std::ostream &out, AForm const &right) {
 
 
 const char* AForm::GradeTooLowException::what() const throw() {
-    return ("Bureaucrat's authority is too low to sign.");
-}
-
-const char* AForm::GradeTooHighException::what() const throw() {
-    return ("Bureaucrat's authority is too high to sign.");
+    return ("Bureaucrat's grade is too low to sign.");
 }

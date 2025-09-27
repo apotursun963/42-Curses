@@ -1,7 +1,13 @@
 
+Bu egzersizdeki amacımız Bir önceki Egzersizde olan "Form" sınıfını Soyut (AForm) hale getirip 
+Bu soyut sınıftan 3 tane somut sınıf (Form Sınıfı) türemesi gerekiyor. Bu Formlar
+imzalanması ve çalıştırılması için farklı yetki seviyeleri var. Eğer Bir Somut sınıf
+İmzalanması ve Çalıştırılması için yetki seviyeleri geçerliyse imzalayabilir ve Çalıştırılabilir
+(3 Somut Sınıfın Farklı 3 Çalıştırma özelliği var (ağaç oluştuyor, bazısı ekrana basıyor))
 
-Amaç
-Soyut bir form (AForm) ve ondan türeyen 3 farklı Somut sınıf form (ShrubberyCreationForm, RobotomyRequestForm, PresidentialPardonForm) ile bir Bureaucrat (memur) sınıfı var. Her formun imzalanması ve çalıştırılması için farklı yetki seviyeleri (grade) gerekiyor
+
+
+
 
 
 Sınıflar ve Görevleri
@@ -35,3 +41,29 @@ Akış
 - Bureaucrat, yeterli grade’e sahipse formu imzalar.
 - Form imzalandıktan sonra, yine yeterli grade’e sahip bir Bureaucrat formu çalıştırabilir.
 - Her formun execute fonksiyonu kendi özel işini yapar (dosya yazma, random işlem, mesaj yazma).
+
+
+
+Özetle
+---
+
+### 🔹 Exercise 02: Formları Gerçekten Çalıştırmak
+
+* **Önceki form sistemini genişletiyorsun.**
+* `Form` soyut sınıfa (`AForm`) dönüşüyor.
+* Üç tane **somut form sınıfı** ekliyorsun:
+
+  1. `ShrubberyCreationForm` → ASCII ağaç dosyası oluşturur.
+  2. `RobotomyRequestForm` → %50 ihtimalle hedefi robotize eder.
+  3. `PresidentialPardonForm` → hedefi affeder.
+* Her formun **sign** ve **exec** için ayrı `grade` limitleri var.
+* `execute(Bureaucrat const &executor) const` metodu ekleniyor:
+
+  * Form **imzalı mı** kontrol edilir.
+  * `executor`’ın grade’i yeterli mi kontrol edilir.
+  * Değilse **exception fırlatılır**.
+  * Yeterliyse formun kendi özel aksiyonu çalıştırılır.
+* `Bureaucrat` sınıfına `executeForm(AForm const &form)` ekleniyor → bürokrat formu çalıştırmayı **dener** ve başarılı/başarısız olduğunu ekrana yazar.
+
+👉 Yani **Exercise 02’nin amacı**:
+Formların sadece kâğıt üzerinde kalmaması, gerçekten "iş yapar" hale gelmesi.
