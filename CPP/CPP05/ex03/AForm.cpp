@@ -1,5 +1,4 @@
 
-
 #include "AForm.hpp"
 
 AForm::AForm() : name("tursun"), is_signed(false), gradeToSign(150), gradeToExecute(150)  {}
@@ -26,12 +25,6 @@ int         AForm::getSignGrade(void) const { return (this->gradeToSign); }
 int         AForm::getExecuteGrade(void) const { return (this->gradeToExecute); }
 
 
-/*
-- Eğer bürokratın derecesi AFormun imzalanması için gereken dereceden yüksek 
-ya da eşit ise (unutma: 1 en yüksek derece, yani 1 > 2), AFormun durumunu signed = true yapacak.
-- Eğer bürokratın derecesi çok düşükse (yani yeterince “yüksek” değilse), AForm::GradeTooLowException fırlatacak.
-- Bürokratın derecesi yeterliyse AForm imzalanıyo
-*/
 void AForm::beSigned(Bureaucrat &b) {
     if (this->is_signed) {
         std::cout << this->name << " is already signed" << std::endl;
@@ -45,7 +38,6 @@ void AForm::beSigned(Bureaucrat &b) {
     }
 }
 
-
 std::ostream &operator<<(std::ostream &out, AForm const &right) {
 	out << "AForm name: " << right.getName() << std::endl;
     if (right.getSigned())
@@ -54,7 +46,6 @@ std::ostream &operator<<(std::ostream &out, AForm const &right) {
         out << "Signed: False";
     return (out);
 }
-
 
 const char* AForm::GradeTooLowException::what() const throw() {
     return ("Bureaucrat's grade is too low to sign.");

@@ -8,8 +8,8 @@ class AForm;
 
 class Bureaucrat {
 private:
-    int               grade;        // bürokratın derecesi (1 en yüksek, 150 en düşük)
-    std::string const name;         // sabit, değiştirilemez isim
+    int               grade;
+    std::string const name;
 
 public:
     Bureaucrat();
@@ -27,8 +27,6 @@ public:
     void    executeForm(AForm const & form) const;
     void    signForm(std::string name, bool sign);
 
-    // Bu, özel bir hata (istisna) sınıfıdır .
-    // what() -> hata yakalandığında geri döneceğine dair mesaj yazılır.
     class GradeTooHighException : public std::exception {
         const char* what() const throw();
     };

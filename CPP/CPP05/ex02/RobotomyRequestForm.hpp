@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <cstdlib>
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
 

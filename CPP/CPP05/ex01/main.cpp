@@ -8,8 +8,8 @@ int main(void)
 	{		
 		try {
 			Form form1("iddianame", 74, 55);
-
 			Bureaucrat	Hasan("Hasan", 73);
+
 			std::cout << Hasan << std::endl;
 			form1.beSigned(Hasan);
 
@@ -25,8 +25,8 @@ int main(void)
 		
 		try {
 			Form form2("iddianame", 74, 55);
-
 			Bureaucrat	Huseyn("Huseyn", 76);
+
 			std::cout << Huseyn << std::endl;
 			form2.beSigned(Huseyn);
 
@@ -38,20 +38,3 @@ int main(void)
 	}
     return (0);
 }
-
-
-
-
-
-/* EX01
-Her Büroktartlara form verilyor ve bu Bürokratlar bu formları imzalayabilecek,
-ama belirli kurallara göre.
-
-Form için verilen gradeToSign ve gradeToExecute değerleri de Bureaucrat ile 
-aynı kurallara bağlı (1 en yüksek, 150 en düşük).
-Eğer değerler sınırların dışında olursa:
-Çok yüksek olursa → Form::GradeTooHighException
-Çok düşük olursa → Form::GradeTooLowException fırlatılacak.
-*/
-
-

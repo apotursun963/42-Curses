@@ -1,5 +1,4 @@
 
-
 #include "Bureaucrat.hpp"
 
 #include <string>
@@ -7,10 +6,10 @@
 
 class Form {
 private:
-    std::string const name;                         // Formun adı
-    bool              is_signed;                    // Form imzalanmış mı? (Başlangıçta false).
-    int const         gradeToSign;                  // İmzalamak için gereken seviye (derece)
-    int const         gradeToExecute;               // Çalıştırmak için gereken seviye (derece)
+    std::string const name;
+    bool              is_signed;
+    int const         gradeToSign;
+    int const         gradeToExecute;
 
 public:
     Form();

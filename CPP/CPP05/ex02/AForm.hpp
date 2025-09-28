@@ -6,25 +6,23 @@
 #include <string>
 #include <iostream>
 
-
-class Bureaucrat;       // Forward declaration -> nedir öğren
+class Bureaucrat;
 
 class AForm {
 private:
-    std::string const name;                         // AFormun adı
-    bool              is_signed;                    // AForm imzalanmış mı? (Başlangıçta false).
-    int const         gradeToSign;                  // İmzalamak için gereken seviye (derece)
-    int const         gradeToExecute;               // Çalıştırmak için gereken seviye (derece)
+    std::string const name;
+    bool              is_signed;
+    int const         gradeToSign;
+    int const         gradeToExecute;
 
 public:
     AForm();
     AForm(std::string name, int Grade_To_Sign, int Grade_To_Execute);
     AForm(const AForm &other);
     AForm &operator=(const AForm &other);
-    virtual ~AForm();       // Bunu virtual yap
+    virtual ~AForm();
 
-    // sanal funcs: Bu fonksiyon sanaldır, yani polymorphism (çok biçimlilik) için kullanılacak.
-    virtual void execute(Bureaucrat const &executor) const = 0; // pure virtual: prototoipi var gövdesi yok alt sınıflarda implement edilmesi gerekiyor
+    virtual void execute(Bureaucrat const &executor) const = 0;
     void beSigned(Bureaucrat &b);
 
     std::string getName(void) const;

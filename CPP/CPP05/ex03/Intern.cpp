@@ -21,7 +21,6 @@ const char *Intern::WrongNameException::what() const throw() {
 }
 
 AForm *Intern::makeForm(std::string form_name, std::string target) const {
-    // AForm *form = NULL;
 	AForm *(Intern::*funcPtr[3])(std::string target) const = {
         &Intern::makePresidential,
         &Intern::makeRobotomy,
@@ -44,12 +43,7 @@ AForm *Intern::makeForm(std::string form_name, std::string target) const {
 	return (NULL);
 }
 
-// 3'ünü kısaltabilirisin 
 AForm *Intern::makePresidential(std::string target) const {
-	/*
-    - heap’te nesne oluşturuyor.
-    - Adresi geçici bir pointer değişkenine atamıyorum.
-    */
     return (new PresidentialPardonForm(target)); 
 }
 

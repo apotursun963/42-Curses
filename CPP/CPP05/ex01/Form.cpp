@@ -1,5 +1,4 @@
 
-
 #include "Form.hpp"
 
 Form::Form() : name("tursun"), is_signed(false), gradeToSign(150), gradeToExecute(150)  {}
@@ -30,13 +29,6 @@ bool        Form::getSigned(void) const { return (this->is_signed); }
 int         Form::getSignGrade(void) const { return (this->gradeToSign); }
 int         Form::getExecuteGrade(void) const { return (this->gradeToExecute); }
 
-
-/*
-- Eğer bürokratın derecesi formun imzalanması için gereken dereceden yüksek 
-ya da eşit ise (unutma: 1 en yüksek derece, yani 1 > 2), formun durumunu signed = true yapacak.
-- Eğer bürokratın derecesi çok düşükse (yani yeterince “yüksek” değilse), Form::GradeTooLowException fırlatacak.
-- Bürokratın derecesi yeterliyse form imzalanıyo
-*/
 void Form::beSigned(Bureaucrat &b) {
     if (this->is_signed) {
         std::cout << this->name << " is already signed" << std::endl;

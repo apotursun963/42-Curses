@@ -4,7 +4,7 @@
 #include "AForm.hpp"
 #include "Bureaucrat.hpp"
 
-class AForm;            // bunlar neden burada tanımlıyorsun mesela
+class AForm;
 class Bureaucrat;
 
 class Intern {
