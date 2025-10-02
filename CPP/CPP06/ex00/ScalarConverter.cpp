@@ -35,7 +35,7 @@ void    Int_Convert(std::string literal) {
         std::cout << "char: impossible\n";
     else {
         if (std::isprint(static_cast<char>(num)))
-            std::cout << "char: " << static_cast<char>(num) << std::endl;
+            std::cout << "char: '" << static_cast<char>(num) << "'" << std::endl;
         else
             std::cout << "char: Non displayable" << std::endl;
     }
@@ -47,11 +47,11 @@ void    Int_Convert(std::string literal) {
 void    Char_Convert(std::string literal) {
     char chr = literal[0];
 
-    if (chr < 0 || chr > 127)
-        std::cout << "char: impossible\n";
+    if (chr < 0 || chr > 126)         // 127 olacak geri al
+        std::cout << "char: impossible\n";      
     else {
-        if (std::isprint(static_cast<char>(chr)))
-            std::cout << "char: " << static_cast<char>(chr) << std::endl;
+        if (std::isprint(chr))
+            std::cout << "char: '" << chr << "'" << std::endl;
         else
             std::cout << "char: Non displayable" << std::endl;
     }
@@ -67,7 +67,7 @@ void    Float_Convert(std::string literal) {
         std::cout << "char: impossible\n";
     else {
         if (std::isprint(static_cast<char>(num)))
-            std::cout << "char: " << static_cast<char>(num) << std::endl;
+            std::cout << "char: '" << static_cast<char>(num) << "'" << std::endl;
         else
             std::cout << "char: Non displayable" << std::endl;
     }
@@ -83,7 +83,7 @@ void    Float_Double(std::string literal) {
         std::cout << "char: impossible\n";
     else {
         if (std::isprint(static_cast<char>(num)))
-            std::cout << "char: " << static_cast<char>(num) << std::endl;
+            std::cout << "char: '" << static_cast<char>(num) << "'" << std::endl;
         else
             std::cout << "char: Non displayable" << std::endl;
     }
@@ -92,6 +92,23 @@ void    Float_Double(std::string literal) {
     std::cout << "double: " << std::fixed << std::setprecision(1) << num << std::endl;
 }
 
+void    pseudo_literal(std::string literal) {       // yada burada sayı değerlerini yaz max olan değerleri
+    std::cout << "char: impossible" << std::endl;
+    std::cout << "int: impossible" << std::endl;
+
+    if (literal == "+inf" || literal == "+inff") {
+        std::cout << "float: +inff" << std::endl;
+        std::cout << "double: +inf" << std::endl;
+    }
+    if (literal == "-inf" || literal == "-inff") {
+        std::cout << "float: -inff" << std::endl;
+        std::cout << "double: -inf" << std::endl;
+    }
+    if (literal == "nan" || literal == "nanf") {
+        std::cout << "float: nanf" << std::endl;
+        std::cout << "double: nan" << std::endl;
+    }
+}
 
 // ***
 bool is_Int(std::string param) {
@@ -118,10 +135,6 @@ bool is_Char(std::string param) {
 
 
 bool is_Float(std::string param) {
-    if (param == "+inff"
-    || param == "-inff"
-    || param == "nanf")
-        return (true);
     size_t len_param = param.length();
     if (param[len_param -1] != 'f' || len_param < 2)
         return (false);
@@ -143,10 +156,6 @@ bool is_Float(std::string param) {
 }
 
 bool is_Double(std::string param) {
-    if (param == "+inf"
-    || param == "-inf"
-    || param == "nan")
-        return (true);
     size_t len_param = param.length();
     if (len_param < 1)
         return (false);
@@ -167,8 +176,25 @@ bool is_Double(std::string param) {
     return (is_there_dot);
 }
 
+bool    is_pseudo(std::string param) {
+    if (param == "+inff" || param == "-inff" || param == "nanf"
+    || param == "+inf" || param == "-inf" || param == "nan")
+        return (true);
+    return (false);
+}
+
+void    impossible() {
+    std::cout << "char: impossible" << std::endl;
+    std::cout << "int: impossible" << std::endl;
+    std::cout << "float: impossible" << std::endl;
+    std::cout << "double: impossible" << std::endl;
+}
+
+// Çoğu fonksiyonu birleştir ve convert fonksiynda ekle/birleştir
 void ScalarConverter::convert(std::string literal) {
-    if (is_Int(literal))
+    if (is_pseudo(literal))
+        pseudo_literal(literal);
+    else if (is_Int(literal))
         Int_Convert(literal);
     else if (is_Char(literal))
         Char_Convert(literal);
@@ -176,9 +202,7 @@ void ScalarConverter::convert(std::string literal) {
         Float_Convert(literal);
     else if (is_Double(literal))
         Float_Double(literal);
-    //else
+    else
+        impossible();        
 }
-
-
-
 

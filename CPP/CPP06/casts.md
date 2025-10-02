@@ -1,4 +1,6 @@
 
+# Program çalışma zamanları öğren (run/compile)
+
 # Casts (Tür/Tip Dönüşümü)
 
 Cast, bir veri türündeki ifadeyi başka bir veri türüne dönüştürme işlemidir.
