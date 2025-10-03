@@ -1,5 +1,5 @@
-NAME = 
-SRCS = main.cpp 
+NAME = Serialization
+SRCS = main.cpp Serialization.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)

@@ -3,7 +3,6 @@
 
 #include <iostream>
 
-
 class ScalarConverter {     // hepsi private olacakmışı mikail diyor ona sor
 private:
     ScalarConverter();

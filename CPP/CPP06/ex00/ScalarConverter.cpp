@@ -47,14 +47,10 @@ void    Int_Convert(std::string literal) {
 void    Char_Convert(std::string literal) {
     char chr = literal[0];
 
-    if (chr < 0 || chr > 126)         // 127 olacak geri al
-        std::cout << "char: impossible\n";      
-    else {
-        if (std::isprint(chr))
-            std::cout << "char: '" << chr << "'" << std::endl;
-        else
-            std::cout << "char: Non displayable" << std::endl;
-    }
+    if (std::isprint(chr))
+        std::cout << "char: '" << chr << "'" << std::endl;
+    else
+        std::cout << "char: Non displayable" << std::endl;
     std::cout << "int: " << static_cast<int>(chr) << std::endl;
     std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(chr) << "f" << std::endl;
     std::cout << "double: " << std::fixed << std::setprecision(1) << static_cast<double>(chr) << std::endl;

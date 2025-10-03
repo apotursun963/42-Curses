@@ -34,7 +34,7 @@ double d = static_cast<double>(i);
 * Derleyici tarafından kontrol edilen, güvenli bir dönüşüm sağlar.
 * Temel tipler arası dönüşümlerde ve türetilmiş sınıflar arasında (eğer mantıklıysa) kullanılır.
 * Örneğin, `int` → `double` gibi.
-* **Runtime** kontrolü yapmaz, sadece derleme zamanında kontrol eder.
+* Derleme zamanında kontrol eder.
 
 ---
 
