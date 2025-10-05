@@ -1,6 +1,9 @@
 
 # Program çalışma zamanları öğren (run/compile)
 
+
+
+
 # Casts (Tür/Tip Dönüşümü)
 
 Cast, bir veri türündeki ifadeyi başka bir veri türüne dönüştürme işlemidir.
@@ -90,4 +93,3 @@ char* c = reinterpret_cast<char*>(p);
 | dynamic_cast     | Polimorfik sınıflarda güvenli pointer dönüşümü   | Yüksek   | Evet            |
 | const_cast       | const/volatile kaldırma                          | Orta     | Hayır           |
 | reinterpret_cast | Düşük seviye pointer/datanın farklı yorumlanması | Düşük    | Hayır           |
-

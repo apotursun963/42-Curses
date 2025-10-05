@@ -10,7 +10,7 @@
 #include <ctime> 
 
 /* Görevi
-- A, B veya C sınıflarından bir nesne yaratıp Base* olarak döndüyor.
+- A, B veya C sınıflarından rastgele bir nesne yaratıp Base* olarak döndüyor.
 */
 Base    *generate(void) {
 
@@ -45,6 +45,7 @@ Açıklamak
     - B* (başarılı)
 */
 void    identify(Base* p) {
+    std::cout << "Pointer Casting" << std::endl;
     if (dynamic_cast<A*>(p))
         std::cout << "Type: A" << std::endl;
     if (dynamic_cast<B*>(p))
@@ -58,7 +59,7 @@ Bu fonksiyon, pointer kullanmadan referans üzerinden nesnenin türünü bulmal�
 Kısacası, Referans üzerinden nesnenin gerçek tipini yazdırıyor, pointer yasak
 */
 void    identify(Base& p) {
-
+    std::cout << "Reference Casting" << std::endl;
     try {
         A &a = dynamic_cast<A&>(p);
         (void)a;
