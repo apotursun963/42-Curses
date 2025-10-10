@@ -4,30 +4,10 @@
 
 ScalarConverter::ScalarConverter() {}
 ScalarConverter::~ScalarConverter() {}
-ScalarConverter::ScalarConverter(const ScalarConverter &other) {
-    (void)other;
-}
-
-ScalarConverter &ScalarConverter::operator=(const ScalarConverter &other) {
-    (void)other;
-    return (*this);
-}
-
-// ---
+ScalarConverter::ScalarConverter(const ScalarConverter &other) {(void)other;}
+ScalarConverter &ScalarConverter::operator=(const ScalarConverter &other) { (void)other; return (*this);}
 
 
-
-#include <cctype>
-#include <string>
-#include <string>
-#include <iomanip>
-#include <cstdlib>  // atoi, ...
-
-
-/*
-std::setprecision(1) -> virgülden sonra 1 basamak gösterir
-std::fixed -> sayı bilimsel olarak gösterilmesin diye yapıyrouz ve ondalıklı olarak gösterililecektir.
-*/
 void    Int_Convert(std::string literal) {
     int num = atoi(literal.c_str());
 
@@ -88,7 +68,7 @@ void    Float_Double(std::string literal) {
     std::cout << "double: " << std::fixed << std::setprecision(1) << num << std::endl;
 }
 
-void    pseudo_literal(std::string literal) {       // yada burada sayı değerlerini yaz max olan değerleri
+void    pseudo_literal(std::string literal) {
     std::cout << "char: impossible" << std::endl;
     std::cout << "int: impossible" << std::endl;
 
@@ -106,7 +86,7 @@ void    pseudo_literal(std::string literal) {       // yada burada sayı değerl
     }
 }
 
-// ***
+
 bool is_Int(std::string param) {
     size_t i = 0;
     if (param.empty())
@@ -124,7 +104,9 @@ bool is_Int(std::string param) {
 }
 
 bool is_Char(std::string param) {
-    if (param.length() == 1 && std::isprint(param[0]) && !std::isdigit(param[0]))
+    if (param.length() == 1
+    && std::isprint(param[0])
+    && !std::isdigit(param[0]))
         return (true);
     return (false);
 }
@@ -139,7 +121,7 @@ bool is_Float(std::string param) {
     if (param[0] == '+' || param[0] == '-')
         j = 1;
     while (j < param.length() - 1) {    // -1 f'yi dahil etmemesi gerekiyor
-        if (param[j] == '.') {      // iki if'i birleştir
+        if (param[j] == '.') {
             if (is_there_dot == 1)
                 return (false);
             is_there_dot = 1;
@@ -186,7 +168,6 @@ void    impossible() {
     std::cout << "double: impossible" << std::endl;
 }
 
-// Çoğu fonksiyonu birleştir ve convert fonksiynda ekle/birleştir
 void ScalarConverter::convert(std::string literal) {
     if (is_pseudo(literal))
         pseudo_literal(literal);
@@ -201,4 +182,3 @@ void ScalarConverter::convert(std::string literal) {
     else
         impossible();        
 }
-

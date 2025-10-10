@@ -6,7 +6,7 @@
 ---
 
 ### Kaynak Kodun Yazılması
-Kaynak kod, İnsan tarafından okunabilir kod dosyasıdır. C dilinde bu dosya genellikle .c uzantısıyla kaydedilir. Örneğin, main.c.
+Kaynak kod, İnsan tarafından okunabilir kod dosyasıdır. C dilinde bu dosya genellikle .c uzantısıyla kaydedilir. Örneğin, main.c
 
 ### Ön İşlemci Aşaması (preprocessor)
 Ön işleyici, yazılmış kaynak kodun derlenmeden önce işleyen bir programdır. Adını, kaynak kodu derleyiciye geçmeden önce işlediği için alır. Ön işleyicinin temel işlevi, kodun derleyiciye iletilmeden önce çeşitli işlemler yapmaktır.
@@ -39,4 +39,4 @@ Bağlama (Linking), derleme sürecinin son aşamasıdır ve bir programın çal�
 
 **Özetle**, Programın yaşam döngüsü, bir programın yazılmasından çalıştırılmasına kadar geçen süreçtir. İlk aşama, kaynak kodun yazılmasıdır; bu kod, programcı tarafından yazılır ve genellikle `.c` gibi uzantılarla kaydedilir. Ardından, `ön işleyici` geçilir. Bu aşamada, başlık dosyaları eklenir, makrolar tanımlanır ve koşullu derleme yapılır. Bu işlemlerle kod, derleyiciye uygun hale getirilir. `Derleme zamanı`, kaynak kodun makine diline çevrildiği süreçtir. Bu aşamada, derleyici kodu analiz eder ve makine diline dönüştürür. Ancak, bu aşamada sözdizimi ve bağlantı hataları gibi hatalar da ortaya çıkabilir. `Bağlama (linking)` aşamasında, derlenmiş kodlar ve dış kütüphaneler birleştirilerek çalıştırılabilir dosya oluşturulur. Bu işlem statik veya dinamik bağlama şeklinde olabilir. Son olarak, `çalıştırma zamanı` başlar. Program artık gerçek işlevlerini yerine getirir ve dinamik işlemler devreye girer. Ancak, bu aşamada bölgesel hatalar, sonsuz döngüler, bölme hataları ve bellek sızıntıları gibi çalıştırma zamanı hataları meydana gelebilir. Bu hatalar, programın düzgün çalışmamasına veya bellek kaynaklarının tükenmesine yol açabilir.
 
-![cycle-life](https://media.geeksforgeeks.org/wp-content/uploads/20230404112946/Compilation-Process-in-C.png)
+[cycle-life](https://media.geeksforgeeks.org/wp-content/uploads/20230404112946/Compilation-Process-in-C.png)

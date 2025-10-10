@@ -51,4 +51,3 @@ private:
     T   *arr;
     int _size;
 };
-

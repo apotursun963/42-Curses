@@ -84,9 +84,17 @@ void    identify(Base& p) {
 
 int main(void)
 {
-    Base    *inst = generate();
+    Base *inst = generate();
     
     identify(inst);
     identify(*inst);
     return 0;
 }
+
+/*
+dynamic_cast -> bir üst sınıftan alt sınıfa (superclass → subclass) işaretçi veya referans
+dönüşümünü güvenli bir şekilde yapar.
+* Polimorfik (yani içinde sanal fonksiyon olan) sınıflarda kullanılır.
+* Pointer veya referans tipleri arasında güvenli dönüşüm sağlar.
+* Eğer dönüşüm başarısızsa, pointer için `nullptr`, referans için ise `bad_cast` istisnası döner.
+*/

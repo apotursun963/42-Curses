@@ -16,7 +16,6 @@ int main(int argc, char **argv)
 
 
 
-
 /* ex00
 Amaç, convert fonkskiynunda parametre olarak verilen string değerini 
 4 farklı tipe (char, float(tek duyarlılık), double(çift duyarlılık), int) dönüştürüp ekrana yazdırmaktır.
@@ -27,4 +26,15 @@ Adımlar
 3. Karakterin Yazdırılması
 4. Pseudo-literals Kontrolü
 
+---
+Static_cast -> Temel Veri tipler arasında yapılan Güvenli bir tür dönüşümüdür.
+Derleme Zamanında Kontrol edilir.
+
+---
+std::setprecision(1) -> virgülden sonra 1 basamak gösterir
+std::fixed -> sayı bilimsel olarak gösterilmesin diye yapıyrouz ve ondalıklı olarak gösterililecektir.
+
+---
+Float ve Double farkı aslında Float bellekte 32 bit 
+Double ise 64 bit yer kaplamasıdır.
 */

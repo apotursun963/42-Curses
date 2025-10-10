@@ -9,4 +9,3 @@ böyle int, float, double, string gibi tiplerle işlemler yapabilir veya kod tek
 - Template (Şablon) Tanımlamak için -> template <typename T>
 Tanımın Anlamı; “Ben bir fonksiyon ya da sınıf yazıyorum, T adında bir tip parametresi alacak.
 Bu T, programı kullanırken gerçek bir veri tipiyle (int, double, string, vs.) değiştirilecek.”
-

@@ -2,8 +2,13 @@
 #pragma once
 
 #include <iostream>
+#include <cctype>
+#include <string>
+#include <string>
+#include <iomanip>
+#include <cstdlib>
 
-class ScalarConverter {     // hepsi private olacakmışı mikail diyor ona sor
+class ScalarConverter {     // hepsi private olacakmış mikail diyor ona göre
 private:
     ScalarConverter();
     ScalarConverter(const ScalarConverter &other);
