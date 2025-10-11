@@ -1,6 +1,6 @@
 
 /*
-Kendi maini ve intra maini yaz ve değerlendir hangisini pushlayacağını karar ver
+kendi maini yaz ve yazdığın maini pushla OK!
 */
 
 #include "Array.hpp"

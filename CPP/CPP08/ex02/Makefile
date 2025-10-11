@@ -1,4 +1,4 @@
-NAME = template
+NAME = MutantStack
 SRCS = main.cpp
 OBJS = $(SRCS:.cpp=.o)
 

@@ -6,6 +6,7 @@
 #include <cstdlib>
 #include <ctime>
 
+// leak kontrolü yap
 template <typename T>
 class Array {
 public:
