@@ -1,81 +1,37 @@
 
 #include "whatever.hpp"
 
+int main(void)
+{
+    int a = 7, b = 10, c = 7;
+    swap(a, b);
+    int res_min_int = ::min(a, b);
+    int res_max_int = ::max(a, b);
+    int res_eq_int = ::max(c, b);
 
-template <typename T>
-void    swap(T &num1, T &num2) {
-    T tmp = num1;
-    num1 = num2;
-    num2 = tmp;
-}
+    std::cout << "swap -> " << "a: " << a << ", b: " << b << std::endl;
+    std::cout << "min -> " << res_min_int << std::endl;
+    std::cout << "max -> " << res_max_int << std::endl;
+    std::cout << "max -> " << res_eq_int << std::endl;
 
-template <typename T>
-T    min(T num1, T num2) {
-    if (num2 <= num1)
-        return (num2);
-    else
-        return (num1);
-}
+    std::cout << "-------\n";
 
-template <typename T>
-T    max(T num1, T num2) {
-    if (num2 >= num1)
-        return (num2);
-    else
-        return (num1);
-}
-
-// subjectin maini 
-int main( void ) {
-    int a = 2;
-    int b = 3;
-    ::swap( a, b );
-    std::cout << "a = " << a << ", b = " << b << std::endl;
-    std::cout << "min( a, b ) = " << ::min( a, b ) << std::endl;
-    std::cout << "max( a, b ) = " << ::max( a, b ) << std::endl;
-    std::string c = "chaine1";
-    std::string d = "chaine2";
-    ::swap(c, d);
-    std::cout << "c = " << c << ", d = " << d << std::endl;
-    std::cout << "min( c, d ) = " << ::min( c, d ) << std::endl;
-    std::cout << "max( c, d ) = " << ::max( c, d ) << std::endl;
+    /*
+    stringlerde Karşılaştırma mantığı ilk karakterden başlar → eşitse sonraki karakterlere bakar.
+    */
+    std::string str1 = "abdullah", str2 = "tursun", str3 = "abdullah";
+    swap(str1, str2);
+    std::string res_min_str = ::min(str1, str2);
+    std::string res_max_str = ::max(str1, str2);
+    std::string res_eq_str = ::max(str2, str3);
+    
+    std::cout << "swap -> " << "str1: " << str1 << ", str2: " << str2 << std::endl;
+    std::cout << "min -> " << res_min_str << std::endl;
+    std::cout << "max -> " << res_max_str << std::endl;
+    std::cout << "max -> " << res_eq_str << std::endl;
+    
     return 0;
 }
-
-// int main(void)
-// {
-//     int a = 7, b = 10, c = 7;
-//     swap(a, b);
-//     int res_min_int = ::min(a, b);
-//     int res_max_int = ::max(a, b);
-//     int res_eq_int = ::max(c, b);
-
-//     std::cout << "swap -> " << "a: " << a << ", b: " << b << std::endl;
-//     std::cout << "min -> " << res_min_int << std::endl;
-//     std::cout << "max -> " << res_max_int << std::endl;
-//     std::cout << "max -> " << res_eq_int << std::endl;
-
-//     std::cout << "-------\n";
-
-//     /*
-//     stringlerde Karşılaştırma mantığı ilk karakterden başlar → eşitse sonraki karakterlere bakar.
-//     */
-//     std::string str1 = "abdullah", str2 = "tursun", str3 = "abdullah";
-//     swap(str1, str2);
-//     std::string res_min_str = ::min(str1, str2);
-//     std::string res_max_str = ::max(str1, str2);
-//     std::string res_eq_str = ::max(str2, str3);
-    
-//     std::cout << "swap -> " << "str1: " << str1 << ", str2: " << str2 << std::endl;
-//     std::cout << "min -> " << res_min_str << std::endl;
-//     std::cout << "max -> " << res_max_str << std::endl;
-//     std::cout << "max -> " << res_eq_str << std::endl;
-    
-//     return 0;
-// }
-
-
-
 
 
 

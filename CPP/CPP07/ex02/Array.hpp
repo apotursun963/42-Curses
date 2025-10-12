@@ -1,5 +1,4 @@
 
-
 #pragma once
 
 #include <iostream>
@@ -39,9 +38,8 @@ public:
             return (this->arr[idx]);
         throw (Array::OutOfRangeException());
     }
-    int size() const {
-        return (this->_size);
-    }
+
+    int size() const { return (this->_size); }
 
     class OutOfRangeException: public std::exception {
         const char *what() const throw() {
