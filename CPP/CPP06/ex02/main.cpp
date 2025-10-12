@@ -5,18 +5,15 @@
 #include "B.hpp"
 #include "C.hpp"
 
-#include <cstdlib>  // rand()
+#include <cstdlib>
 #include <iostream> 
 #include <ctime> 
 
-/* Görevi
-- A, B veya C sınıflarından rastgele bir nesne yaratıp Base* olarak döndüyor.
-*/
 Base    *generate(void) {
 
     Base    *pointer;
-    srand(time(NULL));           // her seferinde yeni numara döndüyor
-    int     random = rand() % 3;        // rand() 0 ile rand_max arası sayı üretir.
+    srand(time(NULL));
+    int     random = rand() % 3;
 
     if (random == 0) {
         pointer = new A;
@@ -33,17 +30,6 @@ Base    *generate(void) {
     return (pointer);
 }
 
-/*
-- Bu fonksiyon, kendisine gelen Base işaretçisinin gerçekte hangi türe ait olduğunu bulur.
-örnke, p bir A nesnesini işaret ediyorsa, "A" yazdırır.
-Kısacası, Pointer üzerinden nesnenin gerçek tipini yazdırıyor
-
-Açıklamak
-- p işaretçisi sırasıyla A*, B*, C*’ye dönüştürülmeye çalışılıyor.
-- Başarılı olan dönüşüm nullptr değil, o zaman tip ekrana yazdırılıyor.
-- Örneğin p aslında bir B nesnesini işaret ediyorsa:
-    - B* (başarılı)
-*/
 void    identify(Base* p) {
     std::cout << "Pointer Casting" << std::endl;
     if (dynamic_cast<A*>(p))
@@ -54,10 +40,6 @@ void    identify(Base* p) {
         std::cout << "Type: C" << std::endl;
 }
 
-/*
-Bu fonksiyon, pointer kullanmadan referans üzerinden nesnenin türünü bulmalı.
-Kısacası, Referans üzerinden nesnenin gerçek tipini yazdırıyor, pointer yasak
-*/
 void    identify(Base& p) {
     std::cout << "Reference Casting" << std::endl;
     try {
@@ -90,11 +72,3 @@ int main(void)
     identify(*inst);
     return 0;
 }
-
-/*
-dynamic_cast -> bir üst sınıftan alt sınıfa (superclass → subclass) işaretçi veya referans
-dönüşümünü güvenli bir şekilde yapar.
-* Polimorfik (yani içinde sanal fonksiyon olan) sınıflarda kullanılır.
-* Pointer veya referans tipleri arasında güvenli dönüşüm sağlar.
-* Eğer dönüşüm başarısızsa, pointer için `nullptr`, referans için ise `bad_cast` istisnası döner.
-*/

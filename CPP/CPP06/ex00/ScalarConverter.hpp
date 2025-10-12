@@ -8,7 +8,7 @@
 #include <iomanip>
 #include <cstdlib>
 
-class ScalarConverter {     // hepsi private olacakmış mikail diyor ona göre
+class ScalarConverter {
 private:
     ScalarConverter();
     ScalarConverter(const ScalarConverter &other);
@@ -16,5 +16,5 @@ private:
     ~ScalarConverter();
 
 public:
-    static void    convert(std::string literal);    // literal -> Sabit değer
+    static void    convert(std::string literal);
 };

@@ -120,7 +120,7 @@ bool is_Float(std::string param) {
     size_t j = 0;
     if (param[0] == '+' || param[0] == '-')
         j = 1;
-    while (j < param.length() - 1) {    // -1 f'yi dahil etmemesi gerekiyor
+    while (j < param.length() - 1) {
         if (param[j] == '.') {
             if (is_there_dot == 1)
                 return (false);
