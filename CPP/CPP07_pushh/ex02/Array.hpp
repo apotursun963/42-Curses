@@ -8,12 +8,12 @@
 template <class T>
 class Array {
 private:
-    T   *arr;
-    unsigned int _size;
+    T               *arr;
+    unsigned int    _size;
 
 public:
     Array() : arr(new T[0]), _size(0) {}
-    Array(unsigned int n) : arr(new T[n]), _size(n) {}  // n elemanlı bir dizi oluşturur.
+    Array(unsigned int n) : arr(new T[n]), _size(n) {}
     Array(const Array &other) : arr(new T[other._size]), _size(other._size) {
         for (unsigned int i=0; i < _size; i++)
             arr[i] = other.arr[i];
@@ -30,8 +30,6 @@ public:
     }
     ~Array() { delete[] this->arr; }
 
-    // Eğer index sınır dışındaysa (index >= _size) std::exception fırlatmalı.
-    // operator[] ile dizi elemanlarına erişebilmemiz gerekiyor
     T   operator[](unsigned int idx) const {
         if (idx >= _size)
             throw (Array::OutOfRangeException());

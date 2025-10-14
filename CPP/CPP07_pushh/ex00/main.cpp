@@ -16,9 +16,6 @@ int main(void)
 
     std::cout << "-------\n";
 
-    /*
-    stringlerde Karşılaştırma mantığı ilk karakterden başlar → eşitse sonraki karakterlere bakar.
-    */
     std::string str1 = "abdullah", str2 = "tursun", str3 = "abdullah";
     swap(str1, str2);
     std::string res_min_str = ::min(str1, str2);
@@ -32,19 +29,3 @@ int main(void)
     
     return 0;
 }
-
-
-
-
-
-
-/* ex00
-üç fonksiyon yazılacak
-- swap: parametre olarak verilen iki değeri swap(takas) edecek. return yok
-- min: parametre olarak verilen iki değeri karşılaştırır. küçük olan return edilir. eğer ikisi eşitse ikinci return edilir
-- max: parametre olarak verilen iki değeri karşılaştırır. Büyük olan return edilir. eğer ikisi eşitse ikinci return edilir
-Bu üç fonksiyon her hangi bir tip ile çalışabilmeli istenilen tek şey her iki parametre aynı tipte olacak
-ve bütün karşıaştırma operatörlerini desteklemeli
-*/
-
-

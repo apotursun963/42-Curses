@@ -1,23 +1,19 @@
 
-/*
-kendi maini yaz ve yazdığın maini pushla OK!
-*/
-
 #include "Array.hpp"
 
 int main(int, char **)
 {
     Array<int> nums(15);
 
-    for (int i=0; i < nums.size(); i++)     // diziyi doldurduk
+    for (int i=0; i < nums.size(); i++)
         nums[i] = i + 1;
-    for (int i=0; i < nums.size(); i++)     // diziyi doldurduk
+    for (int i=0; i < nums.size(); i++)
         std::cout << nums[i] << ", ";    
 
-    Array<int> nums_copy = nums;    // copy constructure
+    Array<int> nums_copy = nums;    
     nums_copy[0] = 777;
 
-    Array<int> nums_assign = nums;  // assigment operator
+    Array<int> nums_assign = nums;  
     nums_assign[1] = 888;
 
     std::cout << "\nCopied nums_copy[0]: " << nums_copy[0] << std::endl;
@@ -28,11 +24,10 @@ int main(int, char **)
 
     try {
         std::cout << nums[0] << std::endl;
-        std::cout << nums[20] << std::endl;     // out of range
+        std::cout << nums[20] << std::endl;
     }
     catch (std::exception &e) {
         std::cout << "Exception: " << e.what() << std::endl;
-    }    
-
+    }
     return 0;
 }
