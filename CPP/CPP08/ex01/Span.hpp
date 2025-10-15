@@ -20,6 +20,6 @@ public:
     int     longestSpan();
 
 private:
-    size_t max_size;
-    std::vector<int> vec;
+    size_t              max_size;
+    std::vector<int>    vec;
 };
