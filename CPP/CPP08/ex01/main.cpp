@@ -3,32 +3,38 @@
 
 int main(int, char **)
 {
-    Span sp(5);
+    {
+        Span sp(5);
 
-    try {
-        sp.addNumber(74);
-        sp.addNumber(4);
-        sp.addNumber(50);
-        sp.addNumber(2);
-    }
-    catch (std::exception &e) {
-        std::cout << e.what() << std::endl;
-    }
+        try {
+            sp.addNumber(74);
+            sp.addNumber(4);
+            sp.addNumber(50);
+            sp.addNumber(2);
+        }
+        catch (std::exception &e) {
+            std::cout << e.what() << std::endl;
+        }
 
-    try {
-        int shn = sp.shortestSpan();
-        std::cout << "Shortest span value is: " << shn << std::endl;
-    }
-    catch (std::exception &e) {
-        std::cout << e.what() << std::endl;
-    }
+        try {
+            int shn = sp.shortestSpan();
+            std::cout << "Shortest span value is: " << shn << std::endl;
+        }
+        catch (std::exception &e) {
+            std::cout << e.what() << std::endl;
+        }
 
-    try {
-        int lng = sp.longestSpan();
-        std::cout << "Longest span value is: " << lng << std::endl;
+        try {
+            int lng = sp.longestSpan();
+            std::cout << "Longest span value is: " << lng << std::endl;
+        }
+        catch (std::exception &e) {
+            std::cout << e.what() << std::endl;
+        }
     }
-    catch (std::exception &e) {
-        std::cout << e.what() << std::endl;
+    {
+        // önemli bir test bunu yapman gerekiyor
+        std::cout << "Testing with 10.000 random number" << std::endl;
     }
 
     return 0;

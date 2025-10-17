@@ -48,7 +48,4 @@ std::stack’ten türetilmiş ama iterator’larla gezilebilen bir sınıf (Muta
 
 push(), pop(), top(), size() zaten stack üzerinde çalışıyro ayrıca iterator funcs (begin, end) ekliyceksin
 
-
-
-
 */

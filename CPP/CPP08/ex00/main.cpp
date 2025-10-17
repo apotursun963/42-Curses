@@ -1,14 +1,8 @@
 
-
-
 #include "easyfind.hpp"
-
-
 
 int main(int, char **)
 {
-    // std::vector<int> vec = {7, 235, 213, 75, 3};     +98 standardında süslü parantez yasak 
-
     std::vector<int> vec;
     vec.push_back(7);
     vec.push_back(235);

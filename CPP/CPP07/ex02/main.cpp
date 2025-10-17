@@ -1,8 +1,4 @@
 
-/*
-kendi maini yaz ve yazdığın maini pushla OK!
-*/
-
 #include "Array.hpp"
 
 int main(int, char **)
@@ -12,7 +8,7 @@ int main(int, char **)
     for (int i=0; i < nums.size(); i++)     // diziyi doldurduk
         nums[i] = i + 1;
     for (int i=0; i < nums.size(); i++)     // diziyi doldurduk
-        std::cout << nums[i] << ", ";    
+        std::cout << nums[i] << ", ";
 
     Array<int> nums_copy = nums;    // copy constructure
     nums_copy[0] = 777;
@@ -32,7 +28,7 @@ int main(int, char **)
     }
     catch (std::exception &e) {
         std::cout << "Exception: " << e.what() << std::endl;
-    }    
+    }
 
     return 0;
 }
