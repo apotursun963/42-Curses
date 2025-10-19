@@ -17,15 +17,14 @@ void    Span::addNumber(int num) {
     if (this->vec.size() < max_size)
         this->vec.push_back(num);
     else
-        throw std::runtime_error("Vector is already full Or empty");
+        throw std::runtime_error("Vector is already full Or empty");    // doğru düzgün mesaj ver
 }
 
+// bunuda incele yaptığın doğrumu diye çünkü iterate var gibi
 int Span::shortestSpan() {
     if (vec.size() < 2)
         throw std::runtime_error("to find shortestSpan it must be atleast 2 element");
-
     std::sort(vec.begin(), vec.end());
-
     int dif = 0;
     int shortest = INT_MAX;
     for (size_t i = 0; i < vec.size() - 1; i++) {

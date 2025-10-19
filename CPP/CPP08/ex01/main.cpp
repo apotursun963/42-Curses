@@ -34,6 +34,8 @@ int main(int, char **)
     }
     {
         // önemli bir test bunu yapman gerekiyor
+        // evo page bak orada "addNumber() ile tek tek eklemektense daha iyi yolu var diyor"
+        // bunu burada göstermen gerekiyor
         std::cout << "Testing with 10.000 random number" << std::endl;
     }
 
