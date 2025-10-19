@@ -92,7 +92,7 @@ derleyici her ikisini bağımsızca uygun hale getirir.
 */
 
 template <typename T, typename F>   // bu funcs iki tür parametre alır (T, F)
-void    iter(T *arr, int len, void(*func)(F)) {
+void    iter(T *arr, int len, F func) {    // önemli (F func) olması gerekiyormuş adam dedi ama evo page test geçmeye bilir çünkü eskiymiş o
     int i = -1;
     while (++i < len)
         func(arr[i]);

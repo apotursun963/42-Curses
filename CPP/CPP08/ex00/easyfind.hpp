@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <list>
+#include <deque>
 #include <algorithm>
 
 /*
@@ -26,8 +27,6 @@ Bu, O container’a özgü iterator tipidir. yani Genel (template) hale getirir.
 
 template <typename T>
 typename T::iterator easyfind(T &container, int val) {
-    // std::vector<int>::iterator it = std::find(container.begin(), container.end(), val);  sadece vector ile çalışr
-
     typename T::iterator it = std::find(container.begin(), container.end(), val);
     if (it == container.end())
         throw std::runtime_error("'value' not found in container");
