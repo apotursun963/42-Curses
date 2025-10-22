@@ -3,28 +3,42 @@
 #include <string>
 
 
-// int topla(int a, int b) {
-//     return (a + b);
-// }
+int topla(int a, int b) {
+    return (a + b);
+}
 
-// float topla(float a, float b) {
-//     return (a + b);
-// }
+float topla(float a, float b) {
+    return (a + b);
+}
 
-// char topla(char a, char b) {
-//     return (a + b);
-// }
+char topla(char a, char b) {
+    return (a + b);
+}
 
 
-// int main(int , char **)
-// {
-//     std::cout << topla(6, 4) << std::endl;
-//     std::cout << topla(2.3f, 3.2f) << std::endl;
-//     std::cout << topla('1', '2') << std::endl;
+int main(int , char **)
+{
+    std::cout << topla(6, 4) << std::endl;
+    std::cout << topla(2.3f, 3.2f) << std::endl;
+    std::cout << topla('1', '2') << std::endl;
 
     
-//     return 0;
-// }
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -34,10 +48,6 @@
 
 // ---------
 
-/*
-Bu funcs sadece tek bir tür veri tipi alıyıor çünkü tek bir tane var (teypname T)
-yani a ve b sadece int, float yada buna benzer veri türleri olabilir.
-*/
 template <typename T>
 T   topla(T a, T b) {
     return (a + b);
@@ -72,6 +82,3 @@ int main(int, char **) {
 
     return 0;
 }
-
-
-

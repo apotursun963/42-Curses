@@ -32,7 +32,3 @@ Aynı işlevi farklı türler için tekrar yazmak yerine, tek bir şablon tanım
 
 Tanım -> template <class T>
 
-
-
-
-
