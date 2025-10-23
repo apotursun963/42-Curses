@@ -30,7 +30,6 @@ int main(int, char **)
     catch (std::exception &e) {
         std::cout << e.what() << std::endl;
     }
-
     return 0;
 }
 
@@ -49,7 +48,6 @@ longestSpan() → İçindeki sayılar arasındaki en büyük farkı bulur.
 Eğer sayılar 0 veya 1 tane ise, span bulunamaz → exception fırlat.
 
 En az 10,000 sayı ile test etmen öneriliyor. Daha fazlası daha iyi.
-
 iterator ile toplu ekleme
 addNumber()’u binlerce kez çağırmak yerine birden fazla sayıyı tek seferde ekleyebilmek için iterator kullan.
 */
