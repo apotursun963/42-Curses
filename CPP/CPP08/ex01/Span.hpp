@@ -6,8 +6,6 @@
 #include <algorithm>
 #include <climits>
 
-#define Ten_Thousand 10000
-
 class Span {
 public:
     Span();

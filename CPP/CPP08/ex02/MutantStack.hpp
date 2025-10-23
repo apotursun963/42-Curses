@@ -5,9 +5,6 @@
 #include <stack>
 
 
-/*
-typename: Derleyiciye “bu bir tür ismi” der
-*/
 template <typename T>
 class MutantStack : public std::stack<T> {
 public:
