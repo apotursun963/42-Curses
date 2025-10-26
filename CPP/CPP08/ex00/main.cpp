@@ -69,7 +69,6 @@ int main(int, char **)
             std::cout << e.what() << std::endl;
         }
     }
-
     return 0;
 }
 
@@ -96,5 +95,4 @@ Iterator’lar sayesinde:
 - Container içindeki her elemana sırayla erişebilirsin,
 - Elemanları okuyabilir, değiştirebilir, silebilir veya ekleyebilirsin,
 - Container’lar arasında ortak bir dolaşım yöntemi kullanabilirsin.
-
 */

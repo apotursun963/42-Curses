@@ -15,7 +15,7 @@ int main(int, char **)
         catch (std::exception &e) {
             std::cout << e.what() << std::endl;
         }
-    
+
         try {
             int shn = sp.shortestSpan();
             std::cout << "Shortest span value is: " << shn << std::endl;

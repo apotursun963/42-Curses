@@ -2,7 +2,6 @@
 #include "MutantStack.hpp"
 
 int main(int, char**) {
-
     MutantStack<int> mstack;
 
     mstack.push(6);

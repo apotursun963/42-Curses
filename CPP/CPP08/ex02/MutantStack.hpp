@@ -35,10 +35,9 @@ Ama kendi içinde verileri bir başka container’da tutar.
 - Tabi görünüşte -> std::stack<T>     = stack bu deque'yi kullanır
 - std::stack<<int, std::deque<int>> s;  // stack bu deque'yi kullanır
 
-
 std::stack, STL’deki “container adapter” denen yapılardan biridir. 
 Yani kendi başına bir container değildir — başka bir container’ı içinde kullanır.
-stack içinde container olarak list, vector veya deque kullanabilir 
+stack içinde container olarak list, vector veya deque kullanabilir
 
 - std::stack hangi veri yapısını içeride kullanıyorsa, container_type onun türüdür.
 Yani std::stack, içeride bir std::deque<int> kullanır.
