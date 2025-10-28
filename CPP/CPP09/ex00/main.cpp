@@ -1,0 +1,132 @@
+
+#include "BitcoinExchange.hpp"
+
+
+int main(int argc, char **argv)
+{
+    if (argc == 2) {
+        std::cout << argv[1] << std::endl;
+
+
+
+
+
+        return (0);
+    }
+    std::cerr << "Wrong Argument Number" << std::endl;
+    return (1);
+}
+
+
+
+/* ex00 Amaç
+Belirli bir tarihte belirli miktardaki Bitcoin’in değerini hesaplayan bir C++ programı yazacaksın.
+Program, iki veri kaynağı kullanacak:
+- Verilen CSV dosyası → Bitcoin fiyatlarını tarih bazında içerir (örnek: data.csv).
+- Kullanıcı girdisi dosyası → Değerlendirilecek tarih ve miktarları içerir (örnek: input.txt).
+Program, her giriş satırındaki Bitcoin miktarını o tarihe (veya en yakın önceki tarihe) ait fiyatla çarparak sonucu ekrana yazacak.
+
+Program bir dosya argümanı almalı:
+    - ./btc input.txt/csv
+Dosya satır formatı tam olarak şöyle olmalı:
+    - date | value
+- date
+    - Tarih biçimi: YYYY-MM-DD  
+- value
+    - float veya integer olabilir | 0 ile 1000 arasında olmalı
+    - Negatif veya 1000’den büyük değer → hata
+
+- En az bir STL container kullanılmalı (örnek: std::map, std::vector).
+- Hatalar uygun şekilde yönetilmeli ve ekrana anlamlı hata mesajı basılmalı:
+    - Dosya açılamazsa → Error: could not open file.
+    - Hatalı tarih → Error: bad input => ...
+    - Negatif sayı → Error: not a positive number.
+    - Çok büyük sayı → Error: too large a number.
+
+Hesaplama Kuralı
+Tarih, fiyat veritabanında birebir bulunmuyorsa:
+- Bir önceki (en yakın küçük) tarih kullanılmalı.
+- Gelecekteki (üst) tarih kullanılmamalı!
+    - sonuç format -> YYYY-MM-DD => value = result
+
+Örnek Çıktı
+--
+    $> ./btc
+    Error: could not open file.
+    $> ./btc input.txt
+    2011-01-03 => 3 = 0.9
+    2011-01-03 => 2 = 0.6
+    2011-01-03 => 1 = 0.3
+    2011-01-03 => 1.2 = 0.36
+    2011-01-09 => 1 = 0.32
+    Error: not a positive number.
+    Error: bad input => 2001-42-42
+    2012-01-11 => 1 = 7.1
+    Error: too large a number.
+
+    Sonuçları şu formatta yazdırın: YYYY-MM-DD => value = result.
+*/
+
+
+/*
+Map container
+---
+std::map, C++’ta anahtar–değer (key–value) ikililerini tutan bir associative container’dır.
+Yani, her veriyi bir anahtar (key) ile ilişkilendirir ve bu anahtar sayesinde o veriye erişirsin.
+map otomatik olarak anahtar sırasına göre (A → Z) sıralar.
+| Özellik                 | Açıklama                                                                  |
+| ----------------------- | ------------------------------------------------------------------------- |
+| 🔑 **Anahtar (key)**    | Her elemanın benzersiz kimliği                                            |
+| 📦 **Değer (value)**    | Anahtara bağlı veri                                                       |
+| 🧭 **Sıralı**           | Elemanlar **artan sırada (ascending)** tutulur                            |
+| 🚫 **Tekil anahtarlar** | Aynı anahtardan iki tane olamaz                                           |
+| ⚡ **O(log n)** erişim   | Ağaç tabanlı (Red-Black Tree) yapı sayesinde hızlı arama, ekleme ve silme |
+
+
+### Kullanımı   
+#include <map>
+
+std::map<string, int> yas;
+
+- Key tipi: string
+- Value tipi: int
+- Yani her isim (string) bir yaş (int) değeriyle eşleştirilecek.
+
+### map'te kullanılan funcs
+| Fonksiyon          | Açıklama                        |
+| ------------------ | ------------------------------- |
+| `size()`           | Eleman sayısını döner           |
+| `empty()`          | Map boş mu kontrol eder         |
+| `clear()`          | Tüm elemanları siler            |
+| `count(key)`       | Anahtar varsa 1, yoksa 0 döner  |
+| `begin()`, `end()` | İlk ve son eleman iterator’ları |
+
+*/
+
+
+
+/* Önemli
+
+1. CSV Veritabanını Yükleme
+data.csv dosyasını okuyarak tarih ve döviz kuru çiftlerini bir STL container (örneğin, std::map) içine yükleyin. std::map kullanımı, tarihleri sıralı bir şekilde saklamanızı sağlar ve en yakın önceki tarihi kolayca bulmanıza olanak tanır.
+2. Girdi Dosyasını İşleme
+Program, bir dosya argümanı alacak (input.txt gibi).
+Dosyayı satır satır okuyarak her satırdaki tarihi ve değeri ayrıştırın.
+Tarih ve değer formatını kontrol edin. Geçersiz formatlar için uygun hata mesajları yazdırın.
+3. Hesaplama
+Girdi dosyasındaki her tarih için, data.csv'den en yakın önceki tarihi bulun.
+İlgili tarihteki döviz kuru ile değeri çarparak sonucu hesaplayın.
+4. Hata Yönetimi
+Dosya açılamazsa: Error: could not open file.
+Geçersiz tarih formatı: Error: bad input => ...
+Negatif değer: Error: not a positive number.
+1000'den büyük değer: Error: too large a number.
+5. Çıktı Formatı
+Sonuçları şu formatta yazdırın: YYYY-MM-DD => value = result.
+6. Kod Yapısı
+BitcoinExchange.hpp: Sınıf tanımı ve metod prototipleri.
+BitcoinExchange.cpp: Sınıfın metodlarının implementasyonu.
+main.cpp: Programın giriş noktası.
+
+
+*/
