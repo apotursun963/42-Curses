@@ -1,19 +1,36 @@
 
 #include "BitcoinExchange.hpp"
 
+#include <fstream>
+#include <stdexcept>
+
+void    ctrl_db(char **argv) {
+
+    std::string line;
+    std::ifstream file(argv[1]);
+
+    if (!file.is_open())
+        throw std::runtime_error("Error: Can not open file");
+    while (std::getline(file, line)) {
+        std::cout << line << std::endl;
+        if (line.empty())
+            throw std::runtime_error("Error: There is empty line in file");
+    }
+    std::cout << "başarılı\n";
+}
 
 int main(int argc, char **argv)
 {
     if (argc == 2) {
-        std::cout << argv[1] << std::endl;
-
-
-
-
-
-        return (0);
+        try {
+            ctrl_db(argv);
+        }
+        catch (std::exception &e) {
+            std::cerr << e.what() << std::endl;
+            return (1);
+        }
     }
-    std::cerr << "Wrong Argument Number" << std::endl;
+    std::cerr << "Usage: ./btc [input.csv]" << std::endl;   // yada [data.csv]
     return (1);
 }
 
@@ -108,21 +125,28 @@ std::map<string, int> yas;
 /* Önemli
 
 1. CSV Veritabanını Yükleme
-data.csv dosyasını okuyarak tarih ve döviz kuru çiftlerini bir STL container (örneğin, std::map) içine yükleyin. std::map kullanımı, tarihleri sıralı bir şekilde saklamanızı sağlar ve en yakın önceki tarihi kolayca bulmanıza olanak tanır.
+data.csv dosyasını okuyarak tarih ve döviz kuru çiftlerini bir STL container (örneğin, std::map) içine yükleyin. 
+std::map kullanımı, tarihleri sıralı bir şekilde saklamanızı sağlar ve en yakın önceki tarihi 
+kolayca bulmanıza olanak tanır.
+
 2. Girdi Dosyasını İşleme
 Program, bir dosya argümanı alacak (input.txt gibi).
 Dosyayı satır satır okuyarak her satırdaki tarihi ve değeri ayrıştırın.
 Tarih ve değer formatını kontrol edin. Geçersiz formatlar için uygun hata mesajları yazdırın.
+
 3. Hesaplama
 Girdi dosyasındaki her tarih için, data.csv'den en yakın önceki tarihi bulun.
 İlgili tarihteki döviz kuru ile değeri çarparak sonucu hesaplayın.
+
 4. Hata Yönetimi
 Dosya açılamazsa: Error: could not open file.
 Geçersiz tarih formatı: Error: bad input => ...
 Negatif değer: Error: not a positive number.
 1000'den büyük değer: Error: too large a number.
+
 5. Çıktı Formatı
 Sonuçları şu formatta yazdırın: YYYY-MM-DD => value = result.
+
 6. Kod Yapısı
 BitcoinExchange.hpp: Sınıf tanımı ve metod prototipleri.
 BitcoinExchange.cpp: Sınıfın metodlarının implementasyonu.
