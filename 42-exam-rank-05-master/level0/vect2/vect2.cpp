@@ -1,188 +1,143 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   vect2.cpp                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: fatkeski <fatkeski@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/28 20:39:15 by fatkeski          #+#    #+#             */
-/*   Updated: 2025/08/01 21:14:24 by fatkeski         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "vect2.hpp"
 
-vect2::vect2()
-{
-	this->x = 0;
-	this->y = 0;
-}
-
-vect2::vect2(int num1, int num2)
-{
-	this->x = num1;
-	this->y = num2;
-}
-
-vect2::vect2(const vect2& source)
-{
-	*this = source;
-}
-
-vect2& vect2::operator=(const vect2& source)
-{
-	if(this != &source)
-	{
-		this->x = source.x;
-		this->y = source.y;
+vect2::vect2() : x(0), y(0) {}
+vect2::vect2(int n1, int n2) : x(n1), y(n2) {}
+vect2::vect2(const vect2& other) {*this = other;}
+vect2& vect2::operator=(const vect2& other) {
+	if(this != &other) {
+		this->x = other.x;
+		this->y = other.y;
 	}
 	return(*this);
 }
+vect2::~vect2() {}
 
-int vect2::operator[](int index) const
-{
+
+int vect2::operator[](int index) const {
 	if(index == 0)
 		return(this->x);
 	return(this->y);
 }
 
-int& vect2::operator[](int index)
-{
+int& vect2::operator[](int index) {
 	if(index == 0)
 		return(this->x);
 	return(this->y);
 }
 
-vect2 vect2::operator-() const
-{
+/* negatif vektör
+her bileşenin işaretini değiştir ve yeni bir nesne olarak döndürür.
+{3, 5} → {-3, -5} döndürür
+*/
+vect2 vect2::operator-() const {
 	vect2 temp = *this;
 	temp[0] = -temp[0];
 	temp[1] = -temp[1];
 	return(temp);
 }
 
-
-vect2 vect2::operator*(int num) const
-{
+/*
+Bu fonksiyon, vektörü bir sayıyla çarpar ve sonucu yeni bir vektör olarak döndürür.
+Yani, orijinal vektörü değiştirmez, sadece çarpılmış bir kopyasını üretir.
+*/
+vect2 vect2::operator*(int num) const {
 	vect2 temp;
-
 	temp.x = this->x * num;
 	temp.y = this->y * num;
 	return(temp);
 }
 
-vect2& vect2::operator*=(int num)
-{
+// Bu fonksiyon, vektörün kendisini bir sayıyla çarpar ve sonucu kendisine geri yazar.
+vect2& vect2::operator*=(int num) {
 	this->x *= num;
 	this->y *= num;
 	return(*this);
 }
 
-vect2& vect2::operator+=(const vect2& obj)
-{
-	this->x += obj.x;
-	this->y += obj.y;
+vect2& vect2::operator+=(const vect2& other) {
+	this->x += other.x;
+	this->y += other.y;
 	return(*this);
 }
 
-vect2& vect2::operator-=(const vect2& obj)
-{
-	this->x -= obj.x;
-	this->y -= obj.y;
+vect2& vect2::operator-=(const vect2& other) {
+	this->x -= other.x;
+	this->y -= other.y;
 	return(*this);
 }
 
-vect2& vect2::operator*=(const vect2& obj)
-{
-	this->x *= obj.x;
-	this->y *= obj.y;
+vect2& vect2::operator*=(const vect2& other) {
+	this->x *= other.x;
+	this->y *= other.y;
 	return(*this);
 }
 
-vect2 vect2::operator+(const vect2& obj) const
-{
+vect2 vect2::operator+(const vect2& other) const {
 	vect2 temp = *this;
-
-	temp.x += obj.x;
-	temp.y += obj.y;
+	temp.x += other.x;
+	temp.y += other.y;
 	return(temp);
 }
 
-vect2 vect2::operator-(const vect2& obj) const
-{
+vect2 vect2::operator-(const vect2& other) const {
 	vect2 temp = *this;
-	temp.x -= obj.x;
-	temp.y -= obj.y;
+	temp.x -= other.x;
+	temp.y -= other.y;
 	return(temp);
 }
 
-vect2 vect2::operator*(const vect2& obj) const
-{
+vect2 vect2::operator*(const vect2& other) const {
 	vect2 temp = *this;
-	temp.x *= obj.x;
-	temp.y *= obj.y;
+	temp.x *= other.x;
+	temp.y *= other.y;
 	return(temp);
 }
 
-vect2& vect2::operator++()
-{
+vect2& vect2::operator++() {
 	this->x += 1;
 	this->y += 1;
 	return(*this);
 }
 
-vect2 vect2::operator++(int)
-{
+vect2 vect2::operator++(int) {
 	vect2 temp = *this;
 
 	++(*this);
 	return(temp);
 }
 
-vect2& vect2::operator--()
-{
+vect2& vect2::operator--() {
 	this->x -= 1;
 	this->y -= 1;
 	return(*this);
 }
 
-vect2 vect2::operator--(int)
-{
+vect2 vect2::operator--(int) {
 	vect2 temp = *this;
 
 	--(*this);
 	return(temp);
 }
 
-bool vect2::operator==(const vect2& obj) const
-{
-	if((this->x == obj.x) && (this->y == obj.y))
+bool vect2::operator==(const vect2& other) const {
+	if((this->x == other.x) && (this->y == other.y))
 		return(true);
 	return(false);
 }
 
-bool vect2::operator!=(const vect2& obj) const
-{
-	return(!(obj == *this));
+bool vect2::operator!=(const vect2& other) const {
+	return(!(other == *this));
 }
 
-vect2::~vect2()
-{
-
+std::ostream& operator<<(std::ostream& out,const vect2& other) {
+	std::cout << "{" << other[0] << ", " << other[1] << "}";
+	return(out);
 }
 
-
-std::ostream& operator<<(std::ostream& os,const vect2& obj)
-{
-	std::cout << "{" << obj[0] << ", " << obj[1] << "}";
-	return(os);
-}
-
-
-vect2 operator*(int num, const vect2& obj)
-{
-	vect2 temp(obj);
+// vektörü değil, sayının solda olduğu çarpma işlemini (3 * v) mümkün kılar
+vect2 operator*(int num, const vect2& other) {
+	vect2 temp(other);
 	temp *= num;
 	return(temp);
 }
-

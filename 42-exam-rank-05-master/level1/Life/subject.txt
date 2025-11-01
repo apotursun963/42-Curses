@@ -1,4 +1,3 @@
-[EN]
 
 Assignment name : life
 Expected files : *.c *.h
@@ -47,19 +46,3 @@ $> echo 'dxss' | ./a.out 3 3 2 | cat -e
 O $
 O $
 O $
-
-[TR]
-
-width ve height tahtanın boyutlarıdır ve iterations yaşam oyununun yineleme sayısıdır.
-
-Tahtanın ilk yapılandırması, standart girdideki bir dizi komutla çizilecektir.
-
-Tahtanın sol üst köşesinden başlayan bir kalem düşünün. Her komut şu karakterlerden biridir:
-w a s d -> kalemi yukarı, sola, aşağı ve sağa hareket ettir.
-x -> çizimi başlatmak veya durdurmak için kalemi kaldır veya indir.
-
-Dosya sonuna ulaşıldığında, programınız bu tahtada bir yaşam oyunu simülasyonu yapmalı ve 
-sonucu standart çıktıda 
-(canlı her hücre 'O' karakteriyle, ölü her hücre ise bir boşlukla temsil edilecektir) yazdırmalıdır. 
-
-Dizinin dışındaki her hücre ölü kabul edilecektir.

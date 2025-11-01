@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   life.h                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: fbetul <fbetul@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/01 03:20:24 by fbetul            #+#    #+#             */
-/*   Updated: 2025/08/01 03:30:24 by fbetul           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #ifndef LIFE
 #define LIFE
@@ -16,7 +5,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>
-
 
 typedef struct s_game
 {
@@ -36,6 +24,5 @@ void fill_board(t_game* game);
 int play(t_game* game);
 void print_board(t_game* game);
 void free_board(t_game* game);
-
 
 #endif
