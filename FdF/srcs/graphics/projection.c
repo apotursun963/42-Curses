@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   projection.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 12:59:17 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/10 12:23:39 by atursun          ###   ########.fr       */
+/*   Updated: 2025/11/30 17:28:05 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/fdf.h"
 
 char	*get_projection_name(t_fdf *fdf)
-{	
+{
 	char	*projection;
 
 	projection = "";
