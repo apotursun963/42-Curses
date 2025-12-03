@@ -4,40 +4,29 @@
 #include <fstream>
 #include <stdexcept>
 
-void    ctrl_db(char **argv) {
-
-    std::string line;
-    std::ifstream file(argv[1]);
-
-    if (!file.is_open())
-        throw std::runtime_error("Error: Can not open file");
-    while (std::getline(file, line)) {
-        std::cout << line << std::endl;
-        if (line.empty())
-            throw std::runtime_error("Error: There is empty line in file");
-    }
-    std::cout << "başarılı\n";
-}
-
 int main(int argc, char **argv)
 {
     if (argc == 2) {
         try {
-            ctrl_db(argv);
+            
+            BitcoinExchange btc;
+            btc.add_to_database("data.csv");
+            btc.process_input(argv[1]);
         }
         catch (std::exception &e) {
             std::cerr << e.what() << std::endl;
             return (1);
         }
     }
-    std::cerr << "Usage: ./btc [input.csv]" << std::endl;   // yada [data.csv]
+    if (argc != 2)
+        std::cerr << "Usage: ./btc [input.csv]" << std::endl;   // yada [data.csv]
     return (1);
 }
 
 
 
 /* ex00 Amaç
-Belirli bir tarihte belirli miktardaki Bitcoin’in değerini hesaplayan bir C++ programı yazacaksın.
+Belirli bir tarihte belirli miktardaki Bitcoin’in değerini hesaplayan bir program yaz.
 Program, iki veri kaynağı kullanacak:
 - Verilen CSV dosyası → Bitcoin fiyatlarını tarih bazında içerir (örnek: data.csv).
 - Kullanıcı girdisi dosyası → Değerlendirilecek tarih ve miktarları içerir (örnek: input.txt).
@@ -48,10 +37,11 @@ Program bir dosya argümanı almalı:
 Dosya satır formatı tam olarak şöyle olmalı:
     - date | value
 - date
-    - Tarih biçimi: YYYY-MM-DD  
-- value
+    - Tarih biçimi: YYYY-MM-DD
+- value: o tarihte kullanıcının kaç adet Bitcoin’e sahip olduğu
     - float veya integer olabilir | 0 ile 1000 arasında olmalı
     - Negatif veya 1000’den büyük değer → hata
+- Value bitcoin fiyatı çarpılır ve kullanıcıya kaç para ettiği hesaplanır.
 
 - En az bir STL container kullanılmalı (örnek: std::map, std::vector).
 - Hatalar uygun şekilde yönetilmeli ve ekrana anlamlı hata mesajı basılmalı:
@@ -85,6 +75,18 @@ Tarih, fiyat veritabanında birebir bulunmuyorsa:
 */
 
 
+
+/*
+Örnek:
+- Input -> 2011-01-03 | 3
+- Database -> 2011-01-03, 0.3
+- çıktı -> 2011-01-03 => 3 = 0.9
+- çünkü: 3 (value) × 0.3 (bitcoin fiyatı) = 0.9
+
+
+
+*/
+
 /*
 Map container
 ---
@@ -97,7 +99,6 @@ map otomatik olarak anahtar sırasına göre (A → Z) sıralar.
 | 📦 **Değer (value)**    | Anahtara bağlı veri                                                       |
 | 🧭 **Sıralı**           | Elemanlar **artan sırada (ascending)** tutulur                            |
 | 🚫 **Tekil anahtarlar** | Aynı anahtardan iki tane olamaz                                           |
-| ⚡ **O(log n)** erişim   | Ağaç tabanlı (Red-Black Tree) yapı sayesinde hızlı arama, ekleme ve silme |
 
 
 ### Kullanımı   
