@@ -1,6 +1,4 @@
 
-
-
 #include "BitcoinExchange.hpp"
 #include <cstring>
 #include <cstdlib>

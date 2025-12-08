@@ -1,11 +1,9 @@
 
-
-#pragma once
+#pragma once    
 
 #include <iostream>
 #include <fstream>
 #include <map>
-
 
 class BitcoinExchange {
 public:
@@ -20,5 +18,3 @@ private:
         std::map<std::string, double> exrts;
 
 };
-
-

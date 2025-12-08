@@ -8,7 +8,6 @@ int main(int argc, char **argv)
 {
     if (argc == 2) {
         try {
-            
             BitcoinExchange btc;
             btc.add_to_database("data.csv");
             btc.process_input(argv[1]);
@@ -153,5 +152,16 @@ BitcoinExchange.hpp: Sınıf tanımı ve metod prototipleri.
 BitcoinExchange.cpp: Sınıfın metodlarının implementasyonu.
 main.cpp: Programın giriş noktası.
 
-
 */
+
+
+
+
+
+
+
+
+
+
+
+
