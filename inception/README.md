@@ -47,6 +47,11 @@ Bir web uygulaması vardır; fronted ve backend ayrı servistir ikisinin farklı
 Component, belirli bir görevi yerine getiren, kendi içinde çalışan, bağımsız bir modüldür.
 Bir uygulama, birçok component’in birleşmesiyle oluşur.
 
+-localhost(127.0.0.1) -> localhost, kendi bilgisayarını ifade eden özel bir isimdir. “Kendi bilgisayarım” demektir.
+    - http://localhost:3000 -> tarayıcıya yazarsan
+    - “Kendi bilgisayarımda 3000 numaralı portta çalışan uygulamaya bağlan.” anlamına geliyor
+kısacası, localhost = Senin kendi bilgisayarın. Dış internetle ilgisi yoktur.
+
 
 
 ## Docker Nedir ?
@@ -134,8 +139,23 @@ Birbirlerini hiç görmezler → çakışma 0.
 Her servis kendi container’ında → çakışma tamamen ortadan kalkar.
 
 
-Docker, containerlar ve işletim sistemi arasında olan bağlantıları kurar.
+- Docker, containerlar ve işletim sistemi arasında olan bağlantıları kurar.
 Container -> Docker <- OS
+
+- Dockerfile adımları/komutları tek tek yazdığımız dosyadır
+Image ise Dockerfile'a yazdığımız adımları tek tek takip ederek çalıştırılmak üzere
+hazır hale getiren bir pakettir.
+container ise hazırladığımız bu image'ı çalıştıracağımız bir ortam.
+
+
+
+## Docker Client && Engine (server)
+- Client: Terminalde yazdığın Docker komutlarını çalıştıran araçtır. Komutları Server’a gönderir.
+    - Tek işi, Docker Engine’e istek göndermek.
+- Server (Engine): Container’ları gerçekten çalıştıran motordur.
+    - Asıl iş burada olur Container oluşturma, network kurma, storage yönetimi vs.
+- İkisi farklı sürüm olabilir ve bu normaldir.
+
 
 
 ## Virtualization ve Containerization farkını güzel bir şekilde öğren
