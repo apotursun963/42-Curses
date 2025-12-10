@@ -97,4 +97,45 @@ VM (Sanal Makine) gibi kendi işletim sistemini taşımaz, sadece uygulamayı ç
     - Bu sayede uygulama: Her bilgisayarda, Her işletim sisteminde, Aynı şekilde Sorunsuz çalışır.
 
 
+# Örnek Senaryo
+bir web uygulaması var ve bu uygulamanın altında farklı servisler var ve bu 
+servisler farklı kütüphaneler ve bağımlılıklar kullandığında "çakışma" olabilir.
+Yani, Servisler aynı makinede çalışıyorsa çakışma çok kolay olur.
+örnek senaryolar
+- Bir servis Python 3.8 ister, diğeri Python 3.11, aynı bilgisayarda aynı anda kullanmak zordur.
+- İki servis aynı portu dinlemek ister (mesela ikisi de 3000).
+- Bir servis PostgreSQL 14, diğeri PostgreSQL 16 ister — sürüm karmaşası çıkar.
+Bu nedenle servisler arasında bağımlılık çakışması çok yaygın bir problemdir.
+
+Bunun çözümü ise, Containerization'dır.
+Her servisi kendi kutusuna koymak.
+yani bir servis var ve servisin kullandığı kütüphaneleri, bağımlılıkları ayrı
+ve izole bir şekilde diğer servislerden ayrı olacak şekilde paketlemek/koymak.
+Böylece servisler birbirlerine asla karışmaz.
+Peki Containerization bunu nasıl yapıyor.
+- Her servis için ayrı bir Dockerfile yazılır
+- Her Dockerfile kendi ortamını yaratır.
+
+Örnek Çakışma durumu:
+- Backend → Node 16
+- Frontend → Node 20
+Normalde aynı bilgisayarda sorun olur.
+Ama Docker sayesinde:
+Her ikisi de kendi Node sürümü ile çalışır.
+Birbirlerini hiç görmezler → çakışma 0.
+
+Özetle Containerization ile;
+- Servisler birbirinden tamamen izole olur.
+- Her servis farklı diller, farklı kütüphaneler, farklı sürümler kullanabilir.
+- Port çakışmaları engellenir.
+- Bağımlılık çakışmaları engellenir.
+- Servisler bağımsız geliştirilir ve deploy edilir.
+
+Her servis kendi container’ında → çakışma tamamen ortadan kalkar.
+
+
+Docker, containerlar ve işletim sistemi arasında olan bağlantıları kurar.
+Container -> Docker <- OS
+
+
 ## Virtualization ve Containerization farkını güzel bir şekilde öğren
