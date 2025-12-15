@@ -1,8 +1,4 @@
 
-# inception
-Projenin Bizden istediği; Docker üzerinden bir Wordpress sitesi kurmanız isteniyor. Bununla birlikte Nginx ve MariaDB servislerini kullanmanız gerekiyor.
-
-
 ## Docker Nedir ?
 Docker; Uygulamalar oluşturmanı, test etmeni ve depolamanı sağlayan bir yazılım platformudur.
 container (kapsayıcı) denilen izole ortamlar içinde uygulamları çalıştırmamızı sağlar. (vm ile farkı nedir)
