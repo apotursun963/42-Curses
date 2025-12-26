@@ -1,4 +1,3 @@
-
 ## Docker Nedir ?
 Docker; Uygulamalar oluşturmanı, test etmeni ve depolamanı sağlayan bir yazılım platformudur.
 container (kapsayıcı) denilen izole ortamlar içinde uygulamları çalıştırmamızı sağlar. (vm ile farkı nedir)
@@ -9,7 +8,7 @@ Temel Amaç
 - Yazılımı, çalışması için gerekli her şeyle birlikte tek bir pakette toplamak.
 - Her ortamda (geliştirme, test, üretim) aynı şekilde çalışmasını sağlamak.
 - Kurulum, yapılandırma ve bağımlılık sorunlarını ortadan kaldırmak.
-
+ 
 
 
 -Deploy(Dağıtmak) -> Uygulamayı yayına almak/Uygulamayı çalışır hale getirmek/Sunucuya/cihaza yükleyip çalıştırmak
