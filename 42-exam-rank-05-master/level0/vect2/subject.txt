@@ -15,9 +15,21 @@ produce the same output as:
 
 You will find a main in this directory that must work with your class.
 
+---TR ÖZETİ---
+- vect2 adlı bir sınıf oluşturun. bu sınıf içinde intleri olan 2 boyutlu matematiksel vektörü temsil eder.
+- Toplama, Çıkarma ve Skaler ile Çarpmayı desktelemelidir. (örneğin (vect2(2,2) * 2 == vect2(4,4)) is true).
+- [] operatörü vecktörün bileşenine (0 ve 1) ile erişmek için kullanılabilir, sınır kontrolü gerekmez
+- fonksiyonunuz << operatörü ile yazdırılabilir olması gerekir. örneğin:
+        std::cout << v << std::endl;
+- Aynı çıktıyı üretir:
+        std::cout << "{" << v[0] << ", " << v[1] << "}" << std::endl;
+- klasörde main.cpp dosyası vardır. class ile çalışır
+
+
+
+
 #include "vect2.hpp"
 #include <iostream>
-
 int main()
 {
     vect2 v1; // 0, 0
