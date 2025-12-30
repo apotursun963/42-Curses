@@ -1,4 +1,15 @@
 
+/*
+önemli not
+eğer funcs protopin sonunda const varsa demekki mevcut nesne/obje (this) üzerinde 
+değer güncelleyemezsin. o zaman hemen kopyasını (tmp) oluşturup onun üzerinde işlem yapman gerekiyor
+ve bazende tmp döndürmen gerekiyor
+eğer const yoksa ise o zaman mevcut obje üzerinde değer güncelleyebilirsin ve bu seferde 
+tmp/copy nesne oluşturmana gerek kalmaz. direkt olarak this üzerinden işlemler yapılabilir.
+*/
+// vect2 sınıfını yazmak için kodlama (OİPVÇNBÇS)
+
+
 #include "vect2.hpp"
 #include <iostream>
 
