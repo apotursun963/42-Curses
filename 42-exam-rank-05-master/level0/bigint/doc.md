@@ -19,9 +19,7 @@ Normalde:
 Yani:
 - Sayının büyüklüğü **önceden sınırlı değil**
 - Sayı:
-  - string
-  - vector / array
-  gibi yapılarla tutulur
+  - string olarak tutulur
 
 📌 Örnek:
 ```cpp
@@ -129,28 +127,4 @@ Kurallar:
 ✅ Doğru:
 ```txt
 123
-```
-
----
-
-## 🔹 Beklenen İç Yapı (Özgürsün ama…)
-
-Senin kararın ama genelde:
-
-### ✔️ Yaygın Yaklaşım
-```cpp
-std::string digits;
-```
-veya
-```cpp
-std::vector<int> digits;
-```
-
-Örnek iç temsil:
-```cpp
-"12345"
-```
-veya
-```cpp
-[1, 2, 3, 4, 5]
 ```

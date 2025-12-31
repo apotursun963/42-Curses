@@ -2,23 +2,20 @@
 #include "bigint.hpp"
 
 bigint::bigint() : str("0") {}
-bigint::bigint(unsigned int num) {
-	std::stringstream ss;
-	ss << num;
-	this->str = ss.str();		// str'i yazdır bakalım
-}
+bigint::bigint(unsigned int num) : str(std::to_string(num)) {}
 bigint::bigint(const bigint& source) { *this = source;}
 bigint& bigint::operator=(const bigint& source) {
 	if (this != &source)
 		this->str = source.str;
-	return(*this);
+	return (*this);
 }
 bigint::~bigint() {}
 
 
 std::string bigint::getStr() const { return (this->str); }
 
-
+// stringi ters çevirir
+// Bu işlem, toplama işlemini basamak basamak (sağdan sola) gerçekleştirmek için yapılır.
 std::string reverse(const std::string& str) {
 	std::string revStr;
 	for(size_t i = str.length(); i > 0; i--)
@@ -26,6 +23,7 @@ std::string reverse(const std::string& str) {
 	return (revStr);
 }
 
+// İki bigint nesnesini toplar ve sonucu bir dize olarak döner.
 std::string addition(const bigint& obj1, const bigint& obj2) {
 	std::string str1 = reverse(obj1.getStr());
 	std::string str2 = reverse(obj2.getStr());
@@ -33,106 +31,121 @@ std::string addition(const bigint& obj1, const bigint& obj2) {
 	size_t len1 = str1.length();
 	size_t len2 = str2.length();
 
-	if(len1 > len2)
+	// Uzunlukları Eşitleme
+	// bir sayı diğerinden basamak (uzunluk) olarak büyükse/uzunsa
+	// sonlarına sıfır eklenerek eşitlenir. Bu toplama işlemini kolaylaştırmak için yapılır
+	if (len1 > len2)
 	{
 		int diff = len1 - len2;
-		while(diff > 0)
-		{
+		while (diff-- > 0)
 			str2.push_back('0');
-			diff--;
-		}
 	}
-	else if(len2 > len1)
+	else if (len2 > len1)
 	{
 		int diff = len2 - len1;
-		while(diff > 0)
-		{
+		while (diff-- > 0)
 			str1.push_back('0');
-			diff--;
-		}
 	}
 
-	int carry = 0;
-	int digit1;
-	int digit2;
-	size_t len = str1.length();
-	for(size_t i = 0; i < len; i++)
-	{
+	// Toplama İşlemi
+	int carry = 0;  // Bir sonraki basamağa taşınacak değeri tutar.
+	int digit1, digit2;
+	// Döngü, dizelerin her bir basamağını toplar
+	for (size_t i = 0; i < str1.length(); i++) {
 		digit1 = str1[i] - '0';
-		// std::cout <<  "digit1:" << digit1 << std::endl;
 		digit2 = str2[i] - '0';
-		// std::cout << "digit2:" << digit2 << std::endl;
+		// digit1 ve digit2 toplanır, önceki basamaktan gelen carry eklenir.
 		int res = digit1 + digit2 + carry;
-		// std::cout << res << std::endl;
-		if(res > 9)
-		{
+		if (res > 9) {	// Eğer toplam 9'dan büyükse, carry hesaplanır ve toplamın birler basamağı result dizisine eklenir.
 			carry = res / 10;
 			result.push_back((res % 10) + '0');
 		}
-		else
+		else // Eğer toplam 9'dan küçükse, carry sıfırlanır ve toplam doğrudan result dizisine eklenir.
 			result.push_back(res + '0');
 	}
-	if(carry != 0)
+	if (carry != 0) // Döngü bittikten sonra, hala bir carry değeri varsa, bu değer result dizisine eklenir.
 		result.push_back(carry + '0');
-	return(reverse(result));
+	return (reverse(result));	// sonucu ters çevirerek doğru sonuç elde edilir
 }
 
-bigint bigint::operator+(const bigint& other)const
-{
+/*
+İki bigint nesnesini toplar ve sonucu döner.
+*/
+bigint bigint::operator+(const bigint& other) const {
 	bigint temp(other);
 	temp.str.clear();
 	std::string result = addition(*this, other);
 	temp.str = result;
-	//std::cout << "r: " << result << std::endl;
-
-	return(temp);
+	return (temp);
 }
 
+/*
+Mevcut nesneye başka bir bigint ekler.
+*/
 bigint& bigint::operator+=(const bigint& other) {
 	(*this) = (*this) + other;
-	return(*this);
+	return (*this);
 }
 
+/*
+Ön ek artış operatörü (++x). Nesneyi 1 artırır.
+*/
 bigint& bigint::operator++() {
 	*(this) = *(this) + bigint(1);
 	return(*this);
 }
 
+/*
+Son ek artış operatörü (x++). Nesneyi 1 artırır, ancak önceki değeri döner.
+*/
 bigint bigint::operator++(int) {
 	bigint temp = (*this);
 	*(this) = *(this) + bigint(1);
 	return(temp);
 }
 
-
-bigint bigint::operator<<(unsigned int n)const {
+/*
+bigint nesnesinin değerini sola kaydırır. 
+Ancak, bu işlem bit düzeyinde değil, sayının sonuna n adet 0 ekleyerek gerçekleştirilir
+kısacası, "123" değeri var ve n = 2
+sonuç: 12300 olur
+*/
+bigint bigint::operator<<(unsigned int n) const {
 	bigint temp = *this;
 
-	temp.str.insert(temp.str.end(), n, '0');
-	//std::cout << temp.str << std::endl;
-	return(temp);
+	temp.str.insert(temp.str.end(), n, '0'); // tmp'nin sonuna n adet 0 eklendir
+	return (temp);
 }
 
-bigint bigint::operator>>(unsigned int n)const {
+/*
+Bu fonksiynda aynı şekilde bigint nesnesininin değerini
+n kadar sağa kaydırır. 
+Ancak, bu işlem bit düzeyinde değil, 
+sayının sonundan n adet karakter silerek gerçekleştirilir.
+*/
+bigint bigint::operator>>(unsigned int n) const {
 	bigint temp = *this;
 	size_t len = temp.str.length();
-	if(n >= len)
+	if(n >= len) // Eğer n, sayının uzunluğundan büyük veya eşitse, sayı tamamen silinir ve "0" yapılır.
 		temp.str = "0";
 	else
 		temp.str.erase(temp.str.length() - n, n); // ilk parametre: silme yapacağın yerin başlangıç indexi, diğeri: kaç tane eleman silinecek
-	return(temp);
+	return (temp);
 }
 
+// Bu fonksiyon, mevcut nesneyi sola kaydırır ve sonucu doğrudan mevcut nesneye atar.
 bigint& bigint::operator<<=(unsigned int n) {
-	(*this) = (*this) << n;
-	return(*this);
+	(*this) = (*this) << n;	// << operatörü çağırılıyor (yukarda)
+	return (*this);
 }
 
+// Bu fonksiyon, mevcut nesneyi sağa kaydırır ve sonucu doğrudan mevcut nesneye atar.
 bigint& bigint::operator>>=(unsigned int n) {
 	(*this) = (*this) >> n;
-	return(*this);
+	return (*this);
 }
 
+// Bir stringi unsigned int türüne çevirir.
 unsigned int stringToUINT(std::string str) {
 	std::stringstream ss(str);
 	unsigned int res;
@@ -140,61 +153,84 @@ unsigned int stringToUINT(std::string str) {
 	return (res);
 }
 
+/*
+Bu fonksiyon, bir bigint nesnesini başka bir bigint nesnesi kadar sola kaydırır.
+- other nesnesinin str değeri unsigned int'e dönüştürülür.
+- << operatörü çağrılarak mevcut nesne sola kaydırılır.
+*/
 bigint bigint::operator<<(const bigint& other) const {
 	bigint temp;
 	temp = (*this) << stringToUINT(other.str);
 	return(temp);
 }
 
+/*
+Bu fonksiyon, bir bigint nesnesini başka bir bigint nesnesi kadar sağa kaydırır.
+- other nesnesinin str değeri unsigned int'e dönüştürülür.
+- >> operatörü çağrılarak mevcut nesne sağa kaydırılır.
+*/
 bigint bigint::operator>>(const bigint& other) const {
 	bigint temp;
 	temp = (*this) >> stringToUINT(other.str);
 	return(temp);
 }
 
+/*
+Bu fonksiyon, mevcut nesneyi başka bir bigint nesnesi kadar sola kaydırır ve sonucu mevcut nesneye atar.
+- << operatörü çağırılır
+- güncellenmiş nesene döndürülür
+*/
 bigint& bigint::operator<<=(const bigint& other) {
 	(*this) = (*this) << stringToUINT(other.str);
 	return(*this);
 }
 
+/*
+Bu fonksiyon, mevcut nesneyi başka bir bigint nesnesi kadar sağa kaydırır ve sonucu mevcut nesneye atar.
+- >> operatörü çağırılır
+- güncellenmiş nesene döndürülür
+*/
 bigint& bigint::operator>>=(const bigint& other) {
 	(*this) = (*this) >> stringToUINT(other.str);
-	return(*this);
+	return (*this);
 }
 
+
 bool bigint::operator==(const bigint& other) const {
-	if(this->getStr() == other.getStr())
-		return(true);
-	return(false);
+	return (this->getStr() == other.getStr());
 }
 
 bool bigint::operator!=(const bigint& other) const {
-	if(this->getStr() != other.getStr())
-		return(true);
-	return(false);
+	return (this->getStr() != other.getStr());
 }
 
+// Bu fonksiyon, bir bigint nesnesinin diğerinden küçük olup olmadığını kontrol eder.
 bool bigint::operator<(const bigint& other) const {
 	std::string str1 = this->str;
 	std::string str2 = other.getStr();
 	size_t len1 = str1.length();
 	size_t len2 = str2.length();
 
-	if(len1 != len2)
+	if (len1 != len2)
 		return (len1 < len2);
-	return (str1 < str2);  // thanks for your feedback, mjuicha!! o7
+	return (str1 < str2);  //  Eğer uzunluklar eşitse, std::string'in < operatörü kullanılarak alfabetik sıralama yapılır.
 }
 
+// < operatörü çağırılarak this nesnesinin küçük olup olmadığı kontrol edilir
 bool bigint::operator>(const bigint& other) const {
-	return(!(((*this) < other)));
+	return(!(*this < other));
 }
 
+// Bu fonksiyon, bir bigint nesnesinin diğerine küçük eşit olup olmadığını kontrol eder.
+// < ve == operatörleri çağırılır
 bool bigint::operator<=(const bigint& other) const {
-	return((((*this) < other) || ((*this) == other)));
+	return (((*this < other) || (*this == other)));
 }
 
+// Bu fonksiyon, bir bigint nesnesinin diğerine büyük eşit olup olmadığını kontrol eder
+// > ve == operatörleri çağırılır
 bool bigint::operator>=(const bigint& other) const {
-	return((((*this) > other) || ((*this) == other)));
+	return (((*this > other) || (*this == other)));
 }
 
 std::ostream& operator<<(std::ostream& output, const bigint& obj) {
