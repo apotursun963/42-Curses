@@ -1,5 +1,4 @@
 #include "bigint.hpp"
-#include <iostream>
 
 int main()
 {

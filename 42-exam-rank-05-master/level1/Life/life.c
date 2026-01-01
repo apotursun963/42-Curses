@@ -131,7 +131,7 @@ int main(int argc, char** argv)
 {
 	t_game game;
 
-	if(argc != 4 || init_game(&game, argv) == -1)
+	if (argc != 4 || init_game(&game, argv) == -1)
 		return (1);
 	fill_board(&game);
 	for(int i = 0; i < game.iterations; i++) {

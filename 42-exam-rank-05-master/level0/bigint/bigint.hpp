@@ -30,6 +30,7 @@ public:
 	n ve other parametreli olanlar
 	sonrasında 4 tane opeatör vardır
 	= olmayan operatörlerde const vardır
+	other olanların içerisnde stringtouint funcs var
 	*/
 	bigint operator<<(unsigned int n) const;
 	bigint operator<<(const bigint& other) const;

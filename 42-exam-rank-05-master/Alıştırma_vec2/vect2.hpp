@@ -1,9 +1,10 @@
 
+
 #pragma once
 
 #include <iostream>
 
-class vect2 {   // OİPVÇNBÇS
+class vect2 { // OİPVÇNBÇS
 private:
     int x;
     int y;
