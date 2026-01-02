@@ -2,7 +2,11 @@
 #include "bigint.hpp"
 
 bigint::bigint() : str("0") {}
-bigint::bigint(unsigned int num) : str(std::to_string(num)) {}
+bigint::bigint(unsigned int num) {
+    std::stringstream ss;
+	ss << num;
+	this->str = ss.str();
+}
 bigint::bigint(const bigint& other) {*this = other;}
 bigint &bigint::operator=(const bigint& other) {
     if (this != &other)

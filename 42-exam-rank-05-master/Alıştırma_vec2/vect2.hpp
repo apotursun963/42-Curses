@@ -1,7 +1,5 @@
 
-
 #pragma once
-
 #include <iostream>
 
 class vect2 { // OİPVÇNBÇS
@@ -40,3 +38,4 @@ public:
 };
 vect2 operator*(int num, const vect2& other);
 std::ostream &operator<<(std::ostream &out, const vect2& other);
+
