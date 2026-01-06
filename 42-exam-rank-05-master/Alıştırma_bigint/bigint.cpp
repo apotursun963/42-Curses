@@ -1,5 +1,11 @@
 
-#include "bigint.hpp"
+#include "bigint.hpp"           // bigint hatalı lan
+/* fatma abla şey demişti
+benim repodaki bigintte shift işlemlerinde kayıdırıken 0 olduğu durumun kontrolü eksik sadece. 
+
+1. bitsel shift operatörlerinde this->str == 0 olma durumu eksik gibi galiba hepsi için eklemen gerekiyor.
+2. bool bigint::operator>(const bigint& other); fonksiyonunda mantıksal bir hata var gibi.
+*/
 
 bigint::bigint() : str("0") {}
 bigint::bigint(unsigned int num) {

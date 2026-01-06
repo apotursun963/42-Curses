@@ -46,3 +46,77 @@ $> echo 'dxss' | ./a.out 3 3 2 | cat -e
 O $
 O $
 O $
+
+
+[TR]
+Program, standart girdiden (stdin) aldığı çizim komutlarıyla başlangıç tahtasını oluşturur, 
+ardından belirtilen sayıda Game of Life iterasyonu çalıştırır ve sonucu ekrana basar.
+
+Çalıştırma şekli: ./life width height iterations
+| Parametre    | Açıklama                            |
+| ------------ | ----------------------------------- |
+| `width`      | Oyun tahtasının genişliği           |
+| `height`     | Oyun tahtasının yüksekliği          |
+| `iterations` | Game of Life kaç kez çalıştırılacak |
+
+
+Program, başlangıç tahtasını stdin’den gelen karakter komutları ile çizer.
+Pen (Kalem) Mantığı
+---
+Kalem en başta sol üst köşede (0,0) başlar.
+Kalemin iki durumu vardır:
+- Kapalı → hareket eder ama çizmez
+- Açık → geçtiği hücreleri “canlı” yapar
+* lift - lower mantığı
+
+| Komut | Anlamı                   |
+| ----- | ------------------------ |
+| `w`   | Yukarı git               |
+| `a`   | Sola git                 |
+| `s`   | Aşağı git                |
+| `d`   | Sağa git                 |
+| `x`   | Kalemi aç/kapat (toggle) |
+⚠️ Tahta sınırlarının dışına çıkılırsa, o hücreler yok sayılır.
+
+
+Game of Life Kuralları
+EOF (dosya sonu) geldiğinde çizim tamamlanır ve Game of Life başlar.
+
+Her hücre için:
+🟢 Canlı bir hücre:
+- 2 veya 3 canlı komşusu varsa → yaşar
+- Aksi halde → ölür
+
+⚪ Ölü bir hücre:
+- Tam olarak 3 canlı komşusu varsa → canlanır
+- Aksi halde → ölü kalır
+
+📌 Tahta dışındaki tüm hücreler ölü kabul edilir.
+
+
+🖨️ Çıktı Formatı
+- Canlı hücre → 'O'
+- Ölü hücre → ' ' (boşluk)
+- Her satır sonunda \n
+
+
+
+ÖZETLE
+**life** projesi, **Conway’s Game of Life** simülasyonunu yapan bir C programıdır.
+
+Program `./life width height iterations` şeklinde çalışır.
+Başlangıçta kalem sol üst köşededir ve **stdin’den** gelen `w a s d` komutlarıyla hareket eder, `x` ile çizim açılıp kapatılır. Kalem açıkken üzerinden geçilen hücreler **canlı** olur.
+
+Girdi (EOF) bittikten sonra, tahta üzerinde belirtilen sayıda **Game of Life iterasyonu** uygulanır. Tahta dışındaki hücreler her zaman **ölü** kabul edilir.
+
+Çıktıda:
+* Canlı hücreler `'O'`
+* Ölü hücreler `' '` (boşluk) ile gösterilir.
+Özetle:
+👉 **stdin ile çiz → Game of Life kurallarını uygula → sonucu ekrana bas**
+
+
+BİLGİ
+- echo 'sdxddssaaww' -> çizim komutlarını stdin üzerinden programına göndermek için kullanılır.
+
+
