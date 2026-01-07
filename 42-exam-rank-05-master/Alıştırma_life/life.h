@@ -2,11 +2,11 @@
 #ifndef LIFE
 #define LIFE
 
-#include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <stdlib.h>
 
-typedef struct s_game {     // 9 tane değişken var
+typedef struct s_game {
     int width;
     int height;
     int iterations;
@@ -15,10 +15,9 @@ typedef struct s_game {     // 9 tane değişken var
     int i;
     int j;
     int draw;
-    char **borad;
+    char **board;
 }   t_game;
 
-// 5 tane + 1 funcs var
 int     init_game(t_game *game, char **argv);
 void    fill_board(t_game *game);
 int     play(t_game *game);

@@ -6,7 +6,7 @@
 #include <unistd.h>
 #include <stdio.h>
 
-typedef struct s_game
+typedef struct s_game	 // 9 tane değişken var
 {
 	int width;
 	int height;
@@ -19,6 +19,7 @@ typedef struct s_game
 	char** board;
 } t_game;
 
+// 5 + 1 funcs var
 int init_game(t_game* game, char* argv[]);
 void fill_board(t_game* game);
 int play(t_game* game);

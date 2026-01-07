@@ -1,7 +1,7 @@
 
 #include "life.h"
 
-int init_game(t_game *game, char **argv) {
+int     init_game(t_game *game, char **argv) {
     game->width = atoi(argv[1]);
     game->height = atoi(argv[2]);
     game->iterations = atoi(argv[3]);
@@ -10,14 +10,13 @@ int init_game(t_game *game, char **argv) {
     game->i = 0;
     game->j = 0;
     game->draw = 0;
-    game->borad = (char **)malloc((game->height) * sizeof(char *));
-    if (!game->borad) return (-1);
+    game->board = (char **)malloc(game->height * sizeof(char *));
+    if (!game->board) return (-1);
     for (int i=0; i < game->height; i++) {
-        game->borad[i] = (char *)malloc(game->width * sizeof(char));
-        if (!game->borad[i])
-            return (free_board(game), -1);
+        game->board[i] = (char *)malloc(game->width * sizeof(char));
+        if (!game->board[i]) return (free_board(game), -1);
         for (int j=0; j < game->width; j++)
-            game->borad[i][j] = ' ';
+            game->board[i][j] = ' ';
     }
     return (0);
 }
@@ -45,19 +44,20 @@ void    fill_board(t_game *game) {
                 game->j++;
                 break;
             case 'x':
-                game->draw = !(game->draw);                
+                game->draw = !(game->draw);
                 break;
             default:
                 flag = 1;
                 break;
         }
-        if (game->draw && (flag == 0)) {
+        if (game->draw && flag == 0) {
             if ((game->i >= 0) && (game->i < game->height)
                 && (game->j >= 0) && (game->j < game->width))
-                game->borad[game->i][game->j] = game->alive;
+                game->board[game->i][game->j] = game->alive;
         }
     }
 }
+
 
 int count_neighbors(t_game *game, int i, int j) {
     int count = 0;
@@ -67,8 +67,10 @@ int count_neighbors(t_game *game, int i, int j) {
                 continue;
             int ni = i + di;
             int nj = j + dj;
-            if ((ni >=  0) && (nj >= 0) && (ni < game->height) && (nj < game->width)) {
-                if (game->borad[ni][nj] == game->alive)
+            if ((ni >= 0) && (nj >= 0)
+                && (ni < game->height)
+                && (nj < game->width)) {
+                if (game->board[ni][nj] == game->alive)
                     count++;
             }
         }
@@ -77,17 +79,16 @@ int count_neighbors(t_game *game, int i, int j) {
 }
 
 int play(t_game *game) {
-    char **tmp = (char **)malloc((game->height) * sizeof(char *));
+    char **tmp = (char **)malloc(game->height * sizeof(char *));
     if (!tmp) return (-1);
     for (int i=0; i < game->height; i++) {
-        tmp[i] = (char *)malloc((game->width) * sizeof(char));
-        if (!tmp[i])
-            return (-1);
+        tmp[i] = (char *)malloc(game->width * sizeof(char));
+        if (!tmp[i]) return (-1);
     }
     for (int i=0; i < game->height; i++) {
         for (int j=0; j < game->width; j++) {
             int neighbors = count_neighbors(game, i, j);
-            if (game->borad[i][j] == game->alive) {
+            if (game->board[i][j] == game->alive) {
                 if (neighbors == 2 || neighbors == 3)
                     tmp[i][j] = game->alive;
                 else
@@ -102,26 +103,25 @@ int play(t_game *game) {
         }
     }
     free_board(game);
-    game->borad = tmp;
+    game->board = tmp;
     return (0);
 }
 
 void    print_board(t_game *game) {
     for (int i=0; i < game->height; i++) {
         for (int j=0; j < game->width; j++)
-            putchar(game->borad[i][j]);
+            putchar(game->board[i][j]);
         putchar('\n');
     }
 }
 
-
 void    free_board(t_game *game) {
-    if (game->borad) {
+    if (game->board) {
         for (int i=0; i < game->height; i++) {
-            if (game->borad[i])
-                free(game->borad[i]);
+            if (game->board[i])
+                free(game->board[i]);
         }
-        free(game->borad);
+        free(game->board);
     }
 }
 
@@ -133,7 +133,7 @@ int main(int argc, char **argv) {
     fill_board(&game);
     for (int i=0; i < game.iterations; i++) {
         if (play(&game) == -1)
-            return (free_board(&game), -1);
+            return (free_board(&game), 1);
     }
     print_board(&game);
     free_board(&game);
