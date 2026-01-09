@@ -3,8 +3,9 @@
 #define LIFE
 
 #include <stdio.h>
-#include <unistd.h>
 #include <stdlib.h>
+#include <unistd.h>
+
 
 typedef struct s_game {
     int width;
@@ -18,10 +19,11 @@ typedef struct s_game {
     char **board;
 }   t_game;
 
-int     init_game(t_game *game, char **argv);
-void    fill_board(t_game *game);
-int     play(t_game *game);
-void    print_board(t_game *game);
-void    free_board(t_game *game);
+
+int init_game(t_game *game, char **argv);
+void fill_board(t_game *game);
+int play(t_game *game);
+void print_board(t_game *game);
+void free_board(t_game *game);
 
 #endif
