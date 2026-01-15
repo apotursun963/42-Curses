@@ -111,7 +111,7 @@ int play(t_game* game) {
 			}
 		}
 	}
-	free_board(game);
+	free_board(&game);
 	game->board = temp;
 	return(0);
 }

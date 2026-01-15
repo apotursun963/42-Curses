@@ -20,7 +20,7 @@ typedef struct s_game	 // 9 tane değişken var
 } t_game;
 
 // 5 + 1 funcs var
-int init_game(t_game* game, char* argv[]);
+int init_game(t_game* game, char** arg);
 void fill_board(t_game* game);
 int play(t_game* game);
 void print_board(t_game* game);
