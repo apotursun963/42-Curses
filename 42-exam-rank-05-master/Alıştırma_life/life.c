@@ -1,8 +1,7 @@
 
-
 #include "life.h"
 
-int init_game(t_game *game, char **argv) {
+int     init_game(t_game *game, char **argv) {
     game->width = atoi(argv[1]);
     game->height = atoi(argv[2]);
     game->iterations = atoi(argv[3]);
@@ -21,8 +20,6 @@ int init_game(t_game *game, char **argv) {
     }
     return (0);
 }
-
-
 void    fill_board(t_game *game) {
     char buffer;
     int flag = 0;
@@ -53,7 +50,7 @@ void    fill_board(t_game *game) {
                 break;
         }
         if (game->draw && flag == 0) {
-            if (((game->i >= 0) && (game->j >= 0))
+            if ((game->i >= 0) && (game->j >= 0)
                 && (game->i < game->height) && (game->j < game->width))
                 game->board[game->i][game->j] = game->alive;
         }
@@ -61,42 +58,42 @@ void    fill_board(t_game *game) {
 }
 
 int count_neighbors(t_game *game, int i, int j) {
-    int count = 0;
+    int count;
+
     for (int di=-1; di < 2; di++) {
         for (int dj=-1; dj < 2; dj++) {
             if ((di == 0) && (dj == 0))
                 continue;
-            int ni = i + di;
-            int nj = j + dj;
+            int ni = di + i;
+            int nj = dj + j;
             if ((ni >= 0) && (nj >= 0)
                 && (ni < game->height) && (nj < game->width)) {
-                if (game->board[ni][nj] == game->alive)
-                    count++;        
-            }
+                    if (game->board[ni][nj] == game->alive)
+                        count++;
+                }
         }
     }
     return (count);
 }
 
 int     play(t_game *game) {
-
     char **tmp = (char **)malloc(game->height * sizeof(char *));
     if (!tmp) return (-1);
-    for (int i=0; i < game->width; i++) {
+    for (int i=0; i < game->height; i++) {
         tmp[i] = (char *)malloc(game->width * sizeof(char));
         if (!tmp[i]) return (-1);
     }
     for (int i=0; i < game->height; i++) {
         for (int j=0; j < game->width; j++) {
-            int neighbor = count_neighbors(game, i, j);
+            int neighbors = count_neighbors(game, i, j);
             if (game->board[i][j] == game->alive) {
-                if (neighbor == 2 || neighbor == 3)
+                if (neighbors == 2 || neighbors == 3)
                     tmp[i][j] = game->alive;
                 else
                     tmp[i][j] = game->dead;
             }
             else {
-                if (neighbor == 3)
+                if (neighbors == 3)
                     tmp[i][j] = game->alive;
                 else
                     tmp[i][j] = game->dead;
@@ -108,12 +105,14 @@ int     play(t_game *game) {
     return (0);
 }
 void    print_board(t_game *game) {
+
     for (int i=0; i < game->height; i++) {
         for (int j=0; j < game->width; j++)
             putchar(game->board[i][j]);
         putchar('\n');
     }
 }
+
 void    free_board(t_game *game) {
     if (game->board) {
         for (int i=0; i < game->height; i++) {
@@ -124,7 +123,10 @@ void    free_board(t_game *game) {
     }
 }
 
+
+
 int main(int argc, char **argv) {
+
     t_game game;
 
     if (argc != 4 || init_game(&game, argv) == -1)
@@ -138,4 +140,5 @@ int main(int argc, char **argv) {
     free_board(&game);
     return (0);
 }
+
 

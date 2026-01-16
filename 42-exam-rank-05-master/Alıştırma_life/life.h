@@ -1,4 +1,5 @@
 
+
 #ifndef LIFE
 #define LIFE
 
@@ -6,8 +7,8 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-typedef struct s_game {
 
+typedef struct s_game {
     int width;
     int height;
     int iterations;
@@ -20,7 +21,7 @@ typedef struct s_game {
 }   t_game;
 
 
-int init_board(t_game *game, char **argv);
+int     init_game(t_game *game, char **argv);
 void    fill_board(t_game *game);
 int     play(t_game *game);
 void    print_board(t_game *game);
