@@ -6,7 +6,8 @@
 BitcoinExchange::BitcoinExchange() {}
 BitcoinExchange::BitcoinExchange(const BitcoinExchange& other) {*this = other;}
 BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange& other) {
-    (void)other;
+    if (this != &other)
+        this->exrts = other.exrts;
     return (*this);
 }
 BitcoinExchange::~BitcoinExchange() {}
@@ -14,37 +15,36 @@ BitcoinExchange::~BitcoinExchange() {}
 
 
 /*
-input file stream: ifstream -> dosyayı açıp içindeki verileri okumamıa olanak sağlıyor
+input file stream: ifstream -> dosyayı açıp içindeki verileri okuymama olanak sağlıyor
 */
 /*
 bu fonksyonu ile data.csv dosyasındaki verileri parsladım
 date ve rate olmak üzere map veri yapısına ekledim
 */
-void BitcoinExchange::add_to_database(std::string filename) {
+void BitcoinExchange::add_database(std::string filename) {
     std::ifstream file(filename.c_str());   // ifstream const kabul ettiği iççin c_str() yaptım
     if (file.is_open() == true) {
         std::string line;
         while (std::getline(file, line)) {
             size_t comma_idx = line.find(',', 0);   // hata durumlarını ele (mesela yoksa)
-            if (comma_idx == std::string::npos) {
-                std::cout << "Error: bad input => " << line << std::endl;
+            if (comma_idx == std::string::npos) {   // npos: no posotion (böyle bir karakter yok anlamına geliyr)
+                std::cout << "Error: bad input (büyük ihtimalle if'e girmez de neyse)=> " << line << std::endl;
                 continue;
             }
             std::string date = line.substr(0, comma_idx);
             std::string exrt = line.substr(comma_idx + 1);
             exrts[date] = atof(exrt.c_str());  // str -> double/float   (hatalı stringleri 0 olarak döndürür.)
+
+        // örnek mape eklenen verileri iterator ile yazdırma
+        // std::cout << "size: " << exrts.size() << std::endl;
+        // if (atof(exrt.c_str()) == 0) {
+        //     for (std::map<std::string, double>::iterator it = exrts.begin(); it != exrts.end(); it++)
+        //         std::cout << it->first << ": " << it->second << std::endl;
+        // }
         }
     }
     else
         throw std::runtime_error("Error: could not open file.");
-
-
-    // map veri yapısını yazdırma
-    // data.csv içinde olan verileri parsladım date ve rate olarak map'e ekledim
-    // std::cout << "size: " << exrts.size() << std::endl;  
-    // for (std::map<std::string, double>::iterator it = exrts.begin(); it != exrts.end(); ++it)   // elemanları yazdırmak
-    //     std::cout << "date: " << it->first << " rate: " << it->second << std::endl;
-
 }
 
 int ctrl_date(std::string date) {
@@ -63,11 +63,10 @@ int ctrl_date(std::string date) {
         if (!std::isdigit(cleaned_date[i]))
             return (1);
     }
+    int year = std::atoi(cleaned_date.substr(0, 4).c_str());
     int month = std::atoi(cleaned_date.substr(5, 2).c_str());
     int day = std::atoi(cleaned_date.substr(8, 2).c_str());
-    if (month < 1 || month > 12)
-        return (1);
-    if (day < 1 || day > days[month - 1])   // artık yıl olayıda varmış onu eklersin
+    if ((year < 2009 || year > 2022) || (month < 1 || month > 12) || (day < 1 || day > days[month - 1]))
         return (1);
     return (0);
 }
@@ -103,7 +102,7 @@ void BitcoinExchange::process_input(std::string input_file) {
                 // amaç: Girilen tarih map’te yoksa, o tarihten önceki en yakın tarihi bulmak.
                // lower_bound(): küçük OLMAYAN ilk elemanı döndürür. (date ≥ aranan olan ilk eleman)
                // basitle, “Bana aranan değere eşit ya da ondan büyük ilk şeyi ver.”
-                std::map<std::string, double>::const_iterator it = exrts.lower_bound(date);
+                std::map<std::string, double>::const_iterator it = exrts.lower_bound(date); // const_iterator: Sadece okuma
                 // it == exrts.end():
                 // eğer lower_bound(date) map’te date’ten büyük veya eşit hiçbir tarih bulamadı.
                 // it->first != date: lower_bound bir eleman buldu ama exact tarih değil.

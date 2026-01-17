@@ -9,15 +9,22 @@ int main(int argc, char **argv)
     if (argc == 2) {
         try {
             BitcoinExchange btc;
-            btc.add_to_database("data.csv");
+            btc.add_database("data.csv");
             btc.process_input(argv[1]);
+    
+            // <<<copy constructure mantığını anlamak için 'extrs' veri yapısnı public yaptım ve erişip yazdırdım ve doğru çalışıyor>>>
+            // BitcoinExchange btc2(btc);
+            // for (std::map<std::string, double>::iterator it = btc2.exrts.begin(); it != btc2.exrts.end(); it++)
+            //     std::cout << it->first << ": " << it->second << std::endl;
+            // std::cout << "size: " << btc2.exrts.size() << std::endl;
         }
         catch (std::exception &e) {
             std::cerr << e.what() << std::endl;
             return (1);
         }
+        return (0);
     }
-    if (argc != 2)
+    else
         std::cerr << "Error: could not open file." << std::endl;
     return (1);
 }
@@ -129,8 +136,8 @@ data.csv dosyasını okuyarak tarih ve döviz kuru çiftlerini bir STL container
 std::map kullanımı, tarihleri sıralı bir şekilde saklamanızı sağlar ve en yakın önceki tarihi 
 kolayca bulmanıza olanak tanır.
 
-2. Girdi Dosyasını İşleme
-Program, bir dosya argümanı alacak (input.txt gibi).
+2. Girdi (input) Dosyasını İşleme
+Program, bir dosya argümanı alacak (input.txt/csv gibi).
 Dosyayı satır satır okuyarak her satırdaki tarihi ve değeri ayrıştırın.
 Tarih ve değer formatını kontrol edin. Geçersiz formatlar için uygun hata mesajları yazdırın.
 
@@ -147,21 +154,5 @@ Negatif değer: Error: not a positive number.
 5. Çıktı Formatı
 Sonuçları şu formatta yazdırın: YYYY-MM-DD => value = result.
 
-6. Kod Yapısı
-BitcoinExchange.hpp: Sınıf tanımı ve metod prototipleri.
-BitcoinExchange.cpp: Sınıfın metodlarının implementasyonu.
-main.cpp: Programın giriş noktası.
-
 */
-
-
-
-
-
-
-
-
-
-
-
 

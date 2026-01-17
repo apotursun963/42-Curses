@@ -1,5 +1,5 @@
-NAME = 
-SRCS = main.cpp
+NAME = RPN
+SRCS = main.cpp RPN.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)
