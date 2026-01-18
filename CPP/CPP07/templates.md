@@ -22,9 +22,6 @@ template <typename T> -> bu tanımlama funcs tek bir veri Türü (T) alıyor/yan
 template <typename T, typename C> -> Bu ise iki tür veri tipini alıyor/iki veri türü ile işlem yapıyor
 
 
-
-
-
 Template Class (Sınıflar)
 ---
 Template sınıflar, birden fazla veri türüyle çalışabilen sınıf şablonlarıdır.

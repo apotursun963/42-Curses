@@ -1,5 +1,4 @@
 
-
 #pragma once
 
 #include <iostream>
@@ -21,4 +20,3 @@ public:
 private:
     std::stack<int> my_stack;
 };
-
