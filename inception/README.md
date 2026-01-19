@@ -1,4 +1,7 @@
 
+referanslar
+- https://github.com/e-kose/__docker__
+
 # inception
 Bu proje, Docker kullanarak sistem yönetimi bilginizi genişletmeyi amaçlamaktadır.
 Yeni kişisel sanal makinenizde çeşitli Docker imajlarını sanallaştıracaksınız.

@@ -1,8 +1,12 @@
 
 #include "PmergeMe.hpp"
 
-int    ctrl_aruments(int argc, char **args) {
-    for (int i=1; i < argc; i++) {
+int ctrl_aruments(int argc, char **args) {
+    for (int i=1; i < argc; i++) {  // duplicate için selection sort kullandığın için kasabilir
+        for (int j=i+1; j < argc; j++) {
+            if (atoi(args[i]) == atoi(args[j]))
+                return (1);
+        }
         std::string str = args[i];
         if (str.empty())
             return (1);
@@ -16,18 +20,19 @@ int    ctrl_aruments(int argc, char **args) {
     return (0);
 }
 
-
-
 int main(int argc, char **argv) {
 
     if (ctrl_aruments(argc, argv) || argc < 2)
         return (std::cerr << "Error" << std::endl, 1);
-    
+
+    PmergeMe me;
+    me.add_to_containers(argc, argv);
+    me.calculate_duration();
     return (0);
 }
 
 
-
+// ./PmergeMe `shuf -i 1-100000 -n 3000 | tr "\n" " "`
 /*
 senden merge-insert algoritmasını kullanarak sıralamanı istediği için biraz zor olabilir mantığını anlamak için
 bu yüzden ilk olarak normal basit std::sort ile sırala daha sonra egzersizin mantığını anladıktan sonra 
