@@ -2,14 +2,12 @@
 #include "PmergeMe.hpp"
 
 int ctrl_aruments(int argc, char **args) {
-    for (int i=1; i < argc; i++) {  // duplicate için selection sort kullandığın için kasabilir
+    for (int i=1; i < argc; i++) {  // duplicate için selection sort kullandığın için kasabilir (binary_search algoritmasını kullanabilrisn (ama bununla BS algoritmasının performansına bak ona göre değerlendir))
         for (int j=i+1; j < argc; j++) {
             if (atoi(args[i]) == atoi(args[j]))
                 return (1);
         }
         std::string str = args[i];
-        if (str.empty())
-            return (1);
         for (size_t j=0; j < str.size(); j++) {
             if (!std::isdigit(str[j]))
                 return (1);
