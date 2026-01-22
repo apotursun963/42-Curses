@@ -1,169 +1,168 @@
 
-# Ford–Johnson Algoritması
+**Ford–Johnson algoritması** (diğer adıyla **Merge–Insertion Sort**), karşılaştırma sayısını **teorik olarak en aza indirmeyi** amaçlayan, oldukça sofistike bir **sıralama algoritmasıdır**.
+Özellikle “**en az karşılaştırma ile sıralama**” problemiyle ilgilenen teorik bilgisayar biliminde önemlidir.
+Fazla karşılaştırma = daha yavaş çalışma + daha fazla kaynak tüketimi + teorik verimsizlik
+bu yüzden bu algoritma kullanmak daha iyi çünkü karşılaştırmayı çok aza indiriyor
+eğer çiftleme sonrasında tek bir eleman kalmışsa bu sayı 
+*Straggler* olarak kalır. en sonunda bu dizeye eklenir
 
-**Merge Insertion Sort** (diğer adıyla **Ford–Johnson algoritması**), karşılaştırma sayısını mümkün olduğunca **azaltmak** amacıyla tasarlanmış, teorik olarak çok güçlü ama pratikte uygulanması zor bir sıralama algoritmasıdır.
 
-Özellikle **42 school – PmergeMe** gibi projelerde karşına çıkar.
-
----
-
-## Merge Insertion Sort nedir? 🧠
-
-Merge Insertion Sort, **Merge Sort** ve **Insertion Sort** fikirlerini birleştirir ama aslında ikisinden de **daha özel** bir yaklaşıma sahiptir.
-
-🎯 **Amaç:**
-Bir diziyi **en az karşılaştırma** yaparak sıralamak.
-
-Bu algoritma:
-
-* “Karşılaştırma temelli sıralamalar” arasında **en az karşılaştırmaya yaklaşan** algoritmalardan biridir
-* Donald Knuth’un *The Art of Computer Programming* kitabında anlatılır
-* Teorik olarak çok güçlü, kodlaması zor
 
 ---
 
-## Temel fikir (yüksek seviyede)
+## 1️⃣ Temel fikir (neden özel?)
 
-Algoritma 3 ana aşamadan oluşur:
+Karşılaştırma tabanlı sıralamada alt sınır şudur:
+
+[
+\lceil \log_2(n!) \rceil
+]
+
+Ford–Johnson algoritması, bu sınıra **bilinen en yakın** algoritmalardan biridir.
+Pratikte ise karmaşıklığı yüzünden standart kütüphanelerde **kullanılmaz**.
 
 ---
 
-### 1️⃣ Elemanları **ikili gruplara ayırma**
+## 2️⃣ Yüksek seviyede mantık
 
-Dizi baştan sona **ikili (pair)** olarak ayrılır:
+Algoritma üç ana fikir üzerine kuruludur:
 
-```text
-[5, 2, 9, 1, 6, 3]
+### 🔹 1. Elemanları çiftlere ayır
 
-→ (5,2) (9,1) (6,3)
+Dizi şu şekilde bölünür:
+
+```
+(a1, a2), (a3, a4), (a5, a6), ...
 ```
 
-Her çift **kendi içinde sıralanır**:
-
-```text
-(2,5) (1,9) (3,6)
-```
-
-📌 Bu aşamada sadece **n / 2 karşılaştırma** yapılır.
+Her çift **kendi içinde sıralanır** (1 karşılaştırma).
 
 ---
 
-### 2️⃣ Büyük elemanlardan ana zincir oluşturma (main chain)
+### 🔹 2. Büyük elemanlardan ana dizi oluştur
 
-Her çiftteki **büyük elemanlar** alınır:
+Her çiftin **büyük elemanı** alınır:
 
-```text
-Büyükler → [5, 9, 6]
+```
+max(a1,a2), max(a3,a4), max(a5,a6), ...
 ```
 
-Bu büyük elemanlar **recursive olarak** tekrar Merge Insertion Sort ile sıralanır:
-
-```text
-[5, 6, 9]
-```
-
-📌 Bu listeye **main chain** denir.
+Bu büyük elemanlar **rekürsif olarak Ford–Johnson ile sıralanır**.
 
 ---
 
-### 3️⃣ Küçük elemanları özel sırayla ekleme (Insertion)
+### 🔹 3. Küçük elemanları özel sırayla ekle
 
-Küçük elemanlar:
+Her çiftin küçük elemanı,
+büyük elemanların oluşturduğu sıralı listeye **ikili arama** ile eklenir.
 
-```text
-Küçükler → [2, 1, 3]
-```
+Ama kritik nokta şu:
 
-Bunlar main chain içine **normal insertion sort gibi değil**,
-**Jacobsthal sayı dizisine göre belirlenen özel bir sırayla** eklenir.
+> Küçük elemanlar **rastgele değil**,
+> **Jacobsthal dizisi** ile belirlenen sırada eklenir.
 
-Bu sayede:
-
-* Gereksiz karşılaştırmalar önlenir
-* Her ekleme **binary search** ile yapılır
+Bu sıra, **karşılaştırma sayısını minimuma indirir**.
 
 ---
 
-## Jacobsthal Sayıları nedir? 🔢
-
-Merge Insertion Sort’un “sihirli” kısmı burasıdır.
+## 3️⃣ Jacobsthal dizisi (neden önemli?)
 
 Jacobsthal dizisi:
 
-```text
+```
+J(0)=0
+J(1)=1
+J(n)=J(n−1)+2·J(n−2)
+```
+
+Dizi:
+
+```
 0, 1, 1, 3, 5, 11, 21, ...
 ```
 
-Bu dizi, küçük elemanların **hangi sırayla** main chain’e ekleneceğini belirler.
-
-📌 Amaç:
-
-* En kötü durumda bile minimum karşılaştırma yapmak
+👉 Küçük elemanların **hangi sırayla ekleneceğini** belirler
+👉 Gereksiz karşılaştırmaları engeller
 
 ---
 
-## Görsel olarak akış
+## 4️⃣ Algoritmanın adım adım özeti
 
-![Image](https://media.geeksforgeeks.org/wp-content/uploads/20200601174332/Merge-Sort-Tutorial.png)
+1. Elemanları **ikili gruplara ayır**
+2. Her çiftte **küçük–büyük ayır**
+3. Büyükleri **rekürsif sırala**
+4. Küçükleri **Jacobsthal sırasına göre** ikili arama ile ekle
 
-![Image](https://www.dinocajic.com/wp-content/uploads/2023/12/Dec-7-16.webp)
-
-![Image](https://visualgo.net/img/merge.png)
-
----
-
-## Zaman Karmaşıklığı ⏱️
-
-| Özellik              | Değer                              |
-| -------------------- | ---------------------------------- |
-| Karşılaştırma sayısı | **≈ n log n (en iyiye çok yakın)** |
-| Big-O                | **O(n log n)**                     |
-| Bellek               | O(n)                               |
-| Stabil mi?           | ❌ Hayır                            |
-
-📌 Diğer O(n log n) algoritmalarına göre **daha az karşılaştırma** yapar.
+*Çiftle → ayır → büyükleri sırala → küçükleri ekle → bitir*
 
 ---
 
-## Avantajları ✅
+## 5️⃣ Zaman karmaşıklığı
 
-✔ En az karşılaştırmaya çok yakın
-✔ Teorik olarak çok güçlü
-✔ Küçük veri setlerinde çok verimli
-✔ Akademik olarak önemli
-
----
-
-## Dezavantajları ❌
-
-❌ Kodlaması çok karmaşık
-❌ Jacobsthal dizisi mantığı zor
-❌ Pratikte quicksort / mergesort daha basit
-❌ Hatalı implementasyon riski yüksek
+| Ölçüt                | Değer                    |
+| -------------------- | ------------------------ |
+| Karşılaştırma sayısı | **≈ log₂(n!) (optimal)** |
+| Asimptotik süre      | `O(n log n)`             |
+| Uygulama zorluğu     | ⭐⭐⭐⭐⭐                    |
 
 ---
 
-## Merge Sort & Insertion Sort ile farkı
+## 6️⃣ Basitleştirilmiş C++ örnek kod
 
-| Algoritma           | Temel Mantık                                            |
-| ------------------- | ------------------------------------------------------- |
-| Merge Sort          | Böl → sırala → birleştir                                |
-| Insertion Sort      | Tek tek yerleştir                                       |
-| **Merge Insertion** | Çiftle → büyükleri sırala → küçükleri özel sırayla ekle |
+> ⚠️ Not: Aşağıdaki kod **eğitici** ve **basitleştirilmiş** bir versiyondur
+> Tam Ford–Johnson implementasyonu oldukça uzundur.
 
----
+```cpp
+#include <iostream>
+#include <vector>
+#include <algorithm>
 
-## PmergeMe ile bağlantısı (önemli!) 🔥
+using namespace std;
 
-42’de senden şunlar beklenir:
+void fordJohnson(vector<int>& arr) {
+    if (arr.size() <= 1)
+        return;
 
-* **Ford–Johnson algoritmasını** kullanman
-* `std::vector` ve `std::deque` ile karşılaştırman
-* Süreyi **mikrosaniye** cinsinden ölçmen
-* “Before / After” çıktısı vermen
+    vector<int> small;
+    vector<int> large;
 
-Yani:
+    // 1. Çiftlere ayır
+    for (size_t i = 0; i + 1 < arr.size(); i += 2) {
+        if (arr[i] < arr[i + 1]) {
+            small.push_back(arr[i]);
+            large.push_back(arr[i + 1]);
+        } else {
+            small.push_back(arr[i + 1]);
+            large.push_back(arr[i]);
+        }
+    }
 
-> ❌ Normal merge sort yazmak **yetmez**
-> ✅ Merge Insertion mantığını uygulaman gerekir
+    // Tek eleman varsa
+    if (arr.size() % 2 == 1)
+        large.push_back(arr.back());
+
+    // 2. Büyükleri sırala (rekürsif)
+    fordJohnson(large);
+
+    // 3. Küçükleri ikili arama ile ekle
+    for (int x : small) {
+        auto pos = lower_bound(large.begin(), large.end(), x);
+        large.insert(pos, x);
+    }
+
+    arr = large;
+}
+
+int main() {
+    vector<int> v = {7, 3, 2, 9, 5, 1, 8, 4, 6};
+
+    fordJohnson(v);
+
+    for (int x : v)
+        cout << x << " ";
+}
+```
+
+
+## Algoritmalarda Karşılaştırma oranları
 

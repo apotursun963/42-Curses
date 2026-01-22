@@ -23,8 +23,8 @@ public:
     ~PmergeMe();
 
     void add_to_containers(int argc, char **args);
-    void sort_element_in_vector(void);
-    void sort_element_in_deque(void); 
+    void sort_elements_in_vector(std::vector<int>& array);
+    void sort_elements_in_deque(std::deque<int>& array); 
     void calculate_duration();
 
 
