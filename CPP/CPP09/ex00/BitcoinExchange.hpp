@@ -11,10 +11,10 @@ public:
     BitcoinExchange(const BitcoinExchange& other);
     BitcoinExchange &operator=(const BitcoinExchange& other);
     ~BitcoinExchange();
-    
+
     void    add_database(std::string filename);
     void    process_input(std::string input_file);
 
-    std::map<std::string, double> exrts;
-// private:
+private:
+    std::map<std::string, double> my_map;
 };

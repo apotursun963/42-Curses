@@ -1,5 +1,4 @@
 
-
 #pragma once
 
 #include <iostream>
@@ -27,8 +26,6 @@ public:
     void sort_elements_in_deque(std::deque<int>& array); 
     void calculate_duration();
 
-
-
 };
 
 /*
@@ -48,7 +45,5 @@ pop_back
 pop_front
 index erişimi (at)
 insert / erase (orta)
-
 */
-
 

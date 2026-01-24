@@ -11,12 +11,6 @@ int main(int argc, char **argv)
             BitcoinExchange btc;
             btc.add_database("data.csv");
             btc.process_input(argv[1]);
-    
-            // <<<copy constructure mantığını anlamak için 'extrs' veri yapısnı public yaptım ve erişip yazdırdım ve doğru çalışıyor>>>
-            // BitcoinExchange btc2(btc);
-            // for (std::map<std::string, double>::iterator it = btc2.exrts.begin(); it != btc2.exrts.end(); it++)
-            //     std::cout << it->first << ": " << it->second << std::endl;
-            // std::cout << "size: " << btc2.exrts.size() << std::endl;
         }
         catch (std::exception &e) {
             std::cerr << e.what() << std::endl;
@@ -61,23 +55,6 @@ Tarih, fiyat veritabanında birebir bulunmuyorsa:
 - Bir önceki (en yakın küçük) tarih kullanılmalı.
 - Gelecekteki (üst) tarih kullanılmamalı!
     - sonuç format -> YYYY-MM-DD => value = result
-
-Örnek Çıktı
---
-    $> ./btc
-    Error: could not open file.
-    $> ./btc input.txt
-    2011-01-03 => 3 = 0.9
-    2011-01-03 => 2 = 0.6
-    2011-01-03 => 1 = 0.3
-    2011-01-03 => 1.2 = 0.36
-    2011-01-09 => 1 = 0.32
-    Error: not a positive number.
-    Error: bad input => 2001-42-42
-    2012-01-11 => 1 = 7.1
-    Error: too large a number.
-
-    Sonuçları şu formatta yazdırın: YYYY-MM-DD => value = result.
 */
 
 
@@ -156,3 +133,8 @@ Sonuçları şu formatta yazdırın: YYYY-MM-DD => value = result.
 
 */
 
+/*
+evo page'de sorulan sorular
+1. Neden map container'ını kullandında diğerlerini kullanmadın
+2. 
+*/
