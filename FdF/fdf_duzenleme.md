@@ -31,3 +31,8 @@ Trigonometrik dönüşüm matrisleri kullanılarak döndürme işlemi gerçekle�
 5. Kendi Seçtiğiniz Ekstra Bir Özellik
 - Renkleri çıkar
 
+• Include one extra projection (such as parallel or conic)!
+• Zoom in and out.
+• Translate your model.  X
+• Rotate your model.     X
+• Add one more bonus of your choice. (RENK) X

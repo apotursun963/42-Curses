@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:01:38 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/10 12:17:23 by atursun          ###   ########.fr       */
+/*   Updated: 2026/01/25 11:01:16 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,8 +134,6 @@ float	scale_to_fit(t_map *map);
 void	reset(t_fdf *fdf);
 int		free_all(t_fdf *fdf);
 void	free_map(t_fdf *fdf);
-t_color	*color_init(t_point start, t_point end);
-t_color	*color_pallet_init(int min_color, int max_color);
 float	absolute(float nbr);
 float	max(float a, float b);
 float	min(float a, float b);
@@ -144,14 +142,9 @@ void	bresenham(t_fdf *fdf, t_point start, t_point end);
 void	pixel_to_image(t_image *image, float x, float y, int color);
 void	clear_image(t_image *image);
 void	write_menu_bar(t_fdf *fdf);
-int		get_color(t_color *color, int i_line, int line_size);
-void	rotate(t_cam *cam, t_line *line);
-void	rotate_x(t_line *line, double angle);
-void	rotate_y(t_line *line, double angle);
-void	rotate_z(t_line *line, double angle);
 void	projection(t_cam *cam, t_line *line);
 void	scale(t_line *line, int scale_factor);
-void	translate(t_line *line, int move_x, int move_y);
+void	translate_to_center(t_line *line, int move_x, int move_y);
 int		key_handle(int keycode, t_fdf *fdf);
 
 #endif
