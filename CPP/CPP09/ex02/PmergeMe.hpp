@@ -25,7 +25,6 @@ public:
     void sort_elements_in_vector(std::vector<int>& array);
     void sort_elements_in_deque(std::deque<int>& array); 
     void calculate_duration();
-
 };
 
 /*

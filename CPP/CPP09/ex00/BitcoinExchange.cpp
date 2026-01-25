@@ -13,10 +13,6 @@ BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange& other) {
 BitcoinExchange::~BitcoinExchange() {}
 
 
-
-/*
-input file stream: ifstream -> dosyayı açıp içindeki verileri okuymama olanak sağlıyor
-*/
 /*
 bu fonksyonu ile data.csv dosyasındaki verileri parsladım
 date ve rate olmak üzere map veri yapısına ekledim

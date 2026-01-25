@@ -106,4 +106,10 @@ Stack, LIFO yapısı sayesinde bu iki sayıyı otomatik ve doğru sırayla verir
 Bu sayede öncelik, parantez veya geri dönme ihtiyacı olmadan ifade tek geçişte hesaplanır.
 Bu yüzden RPN için en doğru ve doğal veri yapısı stack’tir.
 
+
+RPN’de ifade soldan sağa okunur:
+- Sayı görürsen → sakla
+- Operatör görürsen → en son saklanan iki sayıyı al, işlem yap, sonucu geri koy
+Yani sistem şunu ister:
+- “Son giren, ilk çıkar” (LIFO)
 */

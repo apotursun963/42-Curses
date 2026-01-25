@@ -109,7 +109,7 @@ void PmergeMe::sort_elements_in_vector(std::vector<int>& array) {
     }
 
     // Sonuç Olarak array Vektörünü Güncelleme
-    // Sonuç olarak, sıralı lrg vektörü, array'e atanarak sıralama işlemi tamamlanır.
+    // Sıralı lrg vektörü, array'e atanarak sıralama işlemi tamamlanır.
     array = lrg;
 }
 

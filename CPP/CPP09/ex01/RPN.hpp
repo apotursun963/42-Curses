@@ -5,7 +5,6 @@
 #include <cstdlib>
 #include <stack>
 
-
 class RPN {
 public:
     RPN();
