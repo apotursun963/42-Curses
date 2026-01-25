@@ -12,30 +12,21 @@
 
 #include "fdf.h"
 
-t_fdf	*init_fdf(char *file_name)
+void init_fdf(t_fdf	*fdf, char *file_name)
 {
-	t_fdf	*fdf;
-
-	fdf = malloc(sizeof(t_fdf));
-	if (!fdf)
-		return (0);
 	fdf->map = read_map(file_name);
 	if (!fdf->map)
-	{
 		free(fdf);
-		return (0);
-	}
 	fdf->mlx = mlx_init();
 	fdf->win_x = WIDTH;
 	fdf->win_y = HEIGHT;
-	fdf->win = mlx_new_window(fdf->mlx, fdf->win_x, fdf->win_y, NAME);
+	fdf->win = mlx_new_window(fdf->mlx, fdf->win_x, fdf->win_y, "FDF");
 	fdf->image = init_image(fdf->mlx);
 	if (!fdf->image)
 		free_map(fdf);
 	fdf->cam = init_cam(fdf->map);
 	if (!fdf->cam)
 		free_all(fdf);
-	return (fdf);
 }
 
 t_map	*init_map(void)

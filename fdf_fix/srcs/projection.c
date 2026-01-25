@@ -12,19 +12,6 @@
 
 #include "fdf.h"
 
-void	write_menu_bar(t_fdf *fdf)
-{
-	int		y;
-	void	*mlx;
-	void	*win;
-
-	y = 0;
-	mlx = fdf->mlx;
-	win = fdf->win;
-	mlx_string_put(mlx, win, 50, y += 50, C_TEXT, "ISOMETRIC PROJECTION");	// daha da uzat yazacağın şeyler için
-	mlx_string_put(mlx, win, 50, y += 35, C_TEXT, "PRESS 'ESC' TO CLOSE");
-}
-
 void	isometric(t_line *line)
 {
 	t_point	new_start;

@@ -12,13 +12,10 @@
 
 #include "fdf.h"
 
-int	key_handle(int keycode, t_fdf *fdf)
+int	handle_esc(int keycode, t_fdf *fdf)
 {
-	if (keycode == KEY_ESC)
+	if (keycode == 65307)
 		free_all(fdf);
-	else if (keycode == KEY_R)
-		reset(fdf);
-	render(fdf);
 	return (0);
 }
 
@@ -26,8 +23,8 @@ void	render_line(t_fdf *fdf, t_point start, t_point end)
 {
 	start.z *= fdf->cam->scale_z;
 	end.z *= fdf->cam->scale_z;
-	start.color = LINE_DEF;
-	end.color = LINE_DEF;
+	start.color = 0XFFFFFF;	// beyaz
+	end.color = 0XFFFFFF;	// beyaz
 	fdf->image->line = init_line(start, end, fdf);
 	if (!fdf->image->line)
 		free_all(fdf);
@@ -61,7 +58,7 @@ int	render(t_fdf *fdf)
 		y++;
 	}
 	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->image->image, 0, 0);
-	write_menu_bar(fdf);
+	mlx_string_put(fdf->mlx, fdf->win, 50, 100, 0XC70839, "PRESS 'ESC' TO CLOSE");
 	return (0);
 }
 
@@ -81,9 +78,12 @@ int	main(int argc, char **argv)
 
 	if (argc != 2 || !is_file_extension_valid(argv[1]))	// gizli dosyaları kontrol et detaylıca önemli çünkü
 		exit(1);
-	fdf = init_fdf(argv[1]);
+	fdf = malloc(sizeof(t_fdf));
+	if (!fdf)
+		return (1);
+	init_fdf(fdf, argv[1]);
 	render(fdf);
-	mlx_hook(fdf->win, 2, 1L << 0, &key_handle, fdf);
+	mlx_key_hook(fdf->win, handle_esc, fdf);
 	mlx_hook(fdf->win, 17, 0, &free_all, fdf);
 	mlx_loop(fdf->mlx);
 	return (0);

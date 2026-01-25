@@ -28,7 +28,7 @@ void	bresenham(t_fdf *fdf, t_point start, t_point end)
 	while (i_line < max_steps)
 	{
 		if (start.x > 0 && start.y > 0 && start.x < WIDTH && start.y < HEIGHT)
-			pixel_to_image(fdf->image, start.x, start.y, LINE_DEF);
+			pixel_to_image(fdf->image, start.x, start.y, 0XFFFFFF);
 		start.x += x_step;
 		start.y += y_step;
 		i_line++;
@@ -68,7 +68,7 @@ void	clear_image(t_image *image)
 		x = 0;
 		while (x < WIDTH)
 		{
-			pixel_to_image(image, x, y, BACK_DEF);
+			pixel_to_image(image, x, y, 0X000000);		// arka plan siyah
 			x++;
 		}
 		y++;

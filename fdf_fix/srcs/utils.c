@@ -73,11 +73,3 @@ float	scale_to_fit(t_map *map)
 		return (2);
 	return (scale_factor / 2);
 }
-
-void	reset(t_fdf *fdf)
-{
-	fdf->cam->scale_factor = scale_to_fit(fdf->map);
-	fdf->cam->scale_z = 1;
-	fdf->cam->move_x = WIDTH / 2;
-	fdf->cam->move_y = HEIGHT / 2;
-}

@@ -35,4 +35,4 @@ Trigonometrik dönüşüm matrisleri kullanılarak döndürme işlemi gerçekle�
 • Zoom in and out.       x
 • Translate your model.  x
 • Rotate your model.     x
-• Add one more bonus of your choice. (RENK) 
+• Add one more bonus of your choice. (RENK) x
