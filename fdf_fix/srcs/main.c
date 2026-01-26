@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:00:14 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/10 12:21:24 by atursun          ###   ########.fr       */
+/*   Updated: 2026/01/26 14:45:07 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,21 +62,22 @@ int	render(t_fdf *fdf)
 	return (0);
 }
 
+#include <stdio.h>
 int	is_file_extension_valid(char *filename)
 {
 	char	*res;
-
-	res = ft_strrchr(filename, '.');
-	if (ft_strncmp(res, ".fdf", 4) != 0)
-		return (0);
-	return (1);
+	
+	res = ft_strrchr(filename, '/');
+	if (!ft_strncmp(res, "/.fdf", 5))
+		return (1);
+	return (0);
 }
 
 int	main(int argc, char **argv)
 {
 	t_fdf	*fdf;
 
-	if (argc != 2 || !is_file_extension_valid(argv[1]))	// gizli dosyaları kontrol et detaylıca önemli çünkü
+	if (argc != 2 || is_file_extension_valid(argv[1]))
 		exit(1);
 	fdf = malloc(sizeof(t_fdf));
 	if (!fdf)
