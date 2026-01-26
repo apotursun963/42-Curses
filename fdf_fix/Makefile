@@ -9,7 +9,7 @@ MLX_PATH = ./libs/mlx_linux/
 LIBFT = $(LIBFT_PATH)libft.a
 MLX = $(MLX_PATH)libmlx.a
 
-SRC = srcs/main.c srcs/free.c srcs/draw.c srcs/utils.c srcs/init.c srcs/map.c
+SRC = srcs/main.c srcs/draw.c srcs/utils.c srcs/map.c
 
 OBJ = $(SRC:.c=.o)
 

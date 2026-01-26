@@ -6,7 +6,7 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:00:14 by atursun           #+#    #+#             */
-/*   Updated: 2026/01/26 15:48:38 by atursun          ###   ########.fr       */
+/*   Updated: 2026/01/26 19:22:39 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,26 +21,34 @@ int	handle_esc(int keycode, t_fdf *fdf)
 
 void	render_line(t_fdf *fdf, t_point start, t_point end)
 {
-	start.z *= fdf->cam->scale_z;
-	end.z *= fdf->cam->scale_z;
-	start.color = 0XFFFFFF;	// beyaz
-	end.color = 0XFFFFFF;	// beyaz
-	fdf->image->line = init_line(start, end);
-	if (!fdf->image->line)
-		free_all(fdf);
-	isometric(fdf->image->line);
-	scale(fdf->image->line, fdf->cam->scale_factor);
-	translate(fdf->image->line, fdf->cam->move_x, fdf->cam->move_y);	// to_center
-	bresenham(fdf, fdf->image->line->start, fdf->image->line->end);
-	free(fdf->image->line);
+	t_line line;
+
+	// init line
+	line.start = start;
+	line.end = end;
+	
+	isometric(&line);
+	
+	// scale
+	line.start.x *= fdf->cam->scale_factor;
+	line.start.y *= fdf->cam->scale_factor;
+	line.end.x *= fdf->cam->scale_factor;
+	line.end.y *= fdf->cam->scale_factor;
+
+	// translate
+	line.start.x += fdf->cam->move_x;
+	line.start.y += fdf->cam->move_y;
+	line.end.x += fdf->cam->move_x;
+	line.end.y += fdf->cam->move_y;
+
+	bresenham(fdf, line.start, line.end);
 }
 
-int	render(t_fdf *fdf)
+void	render_image(t_fdf *fdf)
 {
 	int	x;
 	int	y;
 
-	clear_image(fdf->image);
 	y = 0;
 	while (y < fdf->map->max_y)
 	{
@@ -48,18 +56,15 @@ int	render(t_fdf *fdf)
 		while (x < fdf->map->max_x)
 		{
 			if (x < fdf->map->max_x - 1)
-				render_line(fdf, fdf->map->coordinates[x][y], \
-					fdf->map->coordinates[x + 1][y]);
+				render_line(fdf, fdf->map->coord[x][y], \
+					fdf->map->coord[x + 1][y]);
 			if (y < fdf->map->max_y - 1)
-				render_line(fdf, fdf->map->coordinates[x][y], \
-					fdf->map->coordinates[x][y + 1]);
+				render_line(fdf, fdf->map->coord[x][y], \
+					fdf->map->coord[x][y + 1]);
 			x++;
 		}
 		y++;
 	}
-	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->image->image, 0, 0);
-	mlx_string_put(fdf->mlx, fdf->win, 50, 100, 0XC70839, "PRESS 'ESC' TO CLOSE");
-	return (0);
 }
 
 int	is_file_extension_valid(char *filename)
@@ -90,8 +95,10 @@ int	main(int argc, char **argv)
 		free(fdf);
 		return (1);
 	}
-	init_fdf(fdf);
-	render(fdf);
+	init_mlx_image_cam(fdf);
+	render_image(fdf);
+	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->image->image, 0, 0);
+	mlx_string_put(fdf->mlx, fdf->win, 50, 100, 0XC70839, "PRESS 'ESC' TO CLOSE");
 	mlx_key_hook(fdf->win, handle_esc, fdf);
 	mlx_hook(fdf->win, 17, 0, &free_all, fdf);
 	mlx_loop(fdf->mlx);

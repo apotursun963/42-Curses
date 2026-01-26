@@ -6,7 +6,7 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 12:59:28 by atursun           #+#    #+#             */
-/*   Updated: 2026/01/26 15:58:40 by atursun          ###   ########.fr       */
+/*   Updated: 2026/01/26 18:23:51 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,13 @@ void	fill_point(char *point, t_map *map, int x, int y)
 	char	**info;
 	int		i;
 
-	map->coordinates[x][y].x = (float)x;
-	map->coordinates[x][y].y = (float)y;
+	map->coord[x][y].x = (float)x;
+	map->coord[x][y].y = (float)y;
 	if (ft_strchr(point, ','))
 	{
 		info = ft_split(point, ',');
-		map->coordinates[x][y].z = (float)ft_atoi(info[0]);
-		map->coordinates[x][y].color = ft_atoi_base(info[1], HEXADECM);
+		map->coord[x][y].z = (float)ft_atoi(info[0]);
+		map->coord[x][y].color = ft_atoi_base(info[1], HEXADECM);
 		i = 0;
 		while (info[i])
 			free(info[i++]);
@@ -83,8 +83,8 @@ void	fill_point(char *point, t_map *map, int x, int y)
 	}
 	else
 	{
-		map->coordinates[x][y].z = (float)ft_atoi(point);
-		map->coordinates[x][y].color = false;
+		map->coord[x][y].z = (float)ft_atoi(point);
+		map->coord[x][y].color = false;
 	}
 }
 
@@ -126,8 +126,8 @@ t_map	*parse_map(char *file, t_map *map)
 	map->max_y = calculate_number_of_row(file);
 	if (map->max_y <= 0)
 		return (NULL);
-	map->coordinates = allocate_coordinates(map->max_x, map->max_y);
-	if (!map->coordinates)
+	map->coord = allocate_coordinates(map->max_x, map->max_y);
+	if (!map->coord)
 		return (free(map), NULL);
 	get_points(file, map);
 	center_to_origin(map);

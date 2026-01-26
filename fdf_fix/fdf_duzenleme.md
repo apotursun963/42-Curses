@@ -5,7 +5,7 @@
 
 
 
-
+# değişken/fonksiyon isimleri struct ve struct içindekilerin isimlerini değiştir
 
 
 

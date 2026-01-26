@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:00:56 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/10 12:24:10 by atursun          ###   ########.fr       */
+/*   Updated: 2026/01/26 19:25:55 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	bresenham(t_fdf *fdf, t_point start, t_point end)
 	i_line = 0;
 	while (i_line < max_steps)
 	{
-		if (start.x > 0 && start.y > 0 && start.x < WIDTH && start.y < HEIGHT)
-			pixel_to_image(fdf->image, start.x, start.y, 0XFFFFFF);
+		if ((start.x > 0 && start.y > 0) && (start.x < WIDTH && start.y < HEIGHT))
+			pixel_to_image(fdf->image, start.x, start.y, 0XFF3FFF);	// mor oldu beyaz da yapabilirsin
 		start.x += x_step;
 		start.y += y_step;
 		i_line++;
@@ -56,21 +56,37 @@ void	pixel_to_image(t_image *image, float x, float y, int color)
 	}
 }
 
-void	clear_image(t_image *image)
+void	free_coordinates(t_point **coordinates, int width)
 {
-	int	x;
-	int	y;
+	int		i;
 
-	ft_bzero(image->buffer, MAX_PIXEL);
-	y = 0;
-	while (y < HEIGHT)
-	{
-		x = 0;
-		while (x < WIDTH)
-		{
-			pixel_to_image(image, x, y, 0X000000);		// arka plan siyah
-			x++;
-		}
-		y++;
-	}
+	i = 0;
+	while (i < width)
+		free(coordinates[i++]);
+	free(coordinates);
+}
+
+void	free_map(t_fdf *fdf)
+{
+	free_coordinates(fdf->map->coord, fdf->map->max_x);
+	free(fdf->map);
+	mlx_destroy_window(fdf->mlx, fdf->win);
+	mlx_destroy_display(fdf->mlx);
+	free(fdf);
+	exit(1);
+}
+
+int	free_all(t_fdf *fdf)
+{
+	free_coordinates(fdf->map->coord, fdf->map->max_x);
+	free(fdf->map);
+	mlx_destroy_image(fdf->mlx, fdf->image->image);
+	free(fdf->image);
+	free(fdf->cam);
+	mlx_destroy_window(fdf->mlx, fdf->win);
+	mlx_destroy_display(fdf->mlx);
+	free(fdf->mlx);
+	free(fdf);
+	exit(1);
+	return (0);
 }

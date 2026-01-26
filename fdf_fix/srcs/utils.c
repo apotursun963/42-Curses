@@ -6,11 +6,56 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:00:30 by atursun           #+#    #+#             */
-/*   Updated: 2026/01/26 15:51:50 by atursun          ###   ########.fr       */
+/*   Updated: 2026/01/26 19:24:01 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+float	scale_to_fit(t_map *map)
+{
+	float	scale_x;
+	float	scale_y;
+	float	scale_factor;
+
+	scale_x = WIDTH / map->max_x;
+	scale_y = HEIGHT / map->max_y;
+	scale_factor = min(scale_x, scale_y);
+	if (scale_factor < 4)
+		return (2);
+	return (scale_factor / 2);
+}
+
+void init_mlx_image_cam(t_fdf	*fdf)
+{
+	t_image	*image;
+	t_cam	*cam;
+
+	// mlx init
+	fdf->mlx = mlx_init();
+	fdf->win_x = WIDTH;
+	fdf->win_y = HEIGHT;
+	fdf->win = mlx_new_window(fdf->mlx, fdf->win_x, fdf->win_y, "FDF");	
+
+	// image init
+	image = malloc(sizeof(t_image));
+	if (!image)
+		return ;
+	image->image = mlx_new_image(fdf->mlx, WIDTH, HEIGHT);
+	image->buffer = mlx_get_data_addr(image->image, &image->pixel_bits, \
+			&image->line_bytes, &image->endian);
+	image->line = NULL;
+	fdf->image = image;
+
+	// camera init
+	cam = malloc(sizeof(t_cam));
+	if (!cam)
+		return ;
+	cam->scale_factor = scale_to_fit(fdf->map);
+	cam->move_x = WIDTH / 2;
+	cam->move_y = HEIGHT / 2;
+	fdf->cam = cam;
+}
 
 void	isometric(t_line *line)
 {
@@ -25,22 +70,6 @@ void	isometric(t_line *line)
 	new_end.y = (line->end.x + line->end.y) * sin(ANG_30) - line->end.z;
 	line->end.x = new_end.x;
 	line->end.y = new_end.y;
-}
-
-void	scale(t_line *line, int scale_factor)
-{
-	line->start.x *= scale_factor;
-	line->start.y *= scale_factor;
-	line->end.x *= scale_factor;
-	line->end.y *= scale_factor;
-}
-
-void	translate(t_line *line, int move_x, int move_y)
-{
-	line->start.x += move_x;
-	line->start.y += move_y;
-	line->end.x += move_x;
-	line->end.y += move_y;
 }
 
 t_point	**allocate_coordinates(int width, int depth)
@@ -73,8 +102,8 @@ void	center_to_origin(t_map *map)
 		x = 0;
 		while (x < map->max_x)
 		{
-			map->coordinates[x][y].x -= map->max_x / 2;
-			map->coordinates[x][y].y -= map->max_y / 2;
+			map->coord[x][y].x -= map->max_x / 2;
+			map->coord[x][y].y -= map->max_y / 2;
 			x++;
 		}
 		y++;

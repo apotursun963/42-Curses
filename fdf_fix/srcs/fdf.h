@@ -6,7 +6,7 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:01:38 by atursun           #+#    #+#             */
-/*   Updated: 2026/01/26 16:00:56 by atursun          ###   ########.fr       */
+/*   Updated: 2026/01/26 19:21:26 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct s_point
 
 typedef struct s_map
 {
-	t_point	**coordinates;
+	t_point	**coord;
 	int		max_x;
 	int		max_y;
 	int		max_z;
@@ -57,7 +57,6 @@ typedef struct s_image
 typedef struct s_cam
 {
 	float	scale_factor;
-	float	scale_z;
 	float	move_x;
 	float	move_y;
 }	t_cam;
@@ -83,10 +82,7 @@ typedef struct s_fdf
 
 t_map	*parse_map(char *file_name, t_map *map);
 int		is_file_extension_valid(char *filename);
-void	init_fdf(t_fdf *fdf);
-t_image	*init_image(void *mlx);
-t_line	*init_line(t_point start, t_point end);
-t_cam	*init_cam(t_map *map);
+void	init_mlx_image_cam(t_fdf *fdf);
 t_point	**allocate_coordinates(int width, int depth);
 void	center_to_origin(t_map *map);
 int		free_all(t_fdf *fdf);
@@ -94,12 +90,9 @@ void	free_map(t_fdf *fdf);
 float	absolute(float nbr);
 float	max(float a, float b);
 float	min(float a, float b);
-int		render(t_fdf *fdf);
+void	render_image(t_fdf *fdf);
 void	bresenham(t_fdf *fdf, t_point start, t_point end);
 void	pixel_to_image(t_image *image, float x, float y, int color);
-void	clear_image(t_image *image);
 void	isometric(t_line *line);
-void	scale(t_line *line, int scale_factor);
-void	translate(t_line *line, int move_x, int move_y);
 
 #endif
