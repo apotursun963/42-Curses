@@ -6,7 +6,7 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 12:59:28 by atursun           #+#    #+#             */
-/*   Updated: 2026/01/26 18:23:51 by atursun          ###   ########.fr       */
+/*   Updated: 2026/01/26 22:21:08 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,22 +64,18 @@ int	calculate_number_of_row(char *file)
 	return (c_row);
 }
 
-void	fill_point(char *point, t_map *map, int x, int y)
+void	place_the_point(char *point, t_map *map, int x, int y)
 {
-	char	**info;
-	int		i;
+	char	**vertex;	// Vertex, 3D (veya 2D) uzayda bir şeklin tek bir köşe/noktasıdır. FDF’de 2,0xff gibi bir ifade, yüksekliği ve rengi olan bir vertexi temsil eder.
 
 	map->coord[x][y].x = (float)x;
 	map->coord[x][y].y = (float)y;
 	if (ft_strchr(point, ','))
 	{
-		info = ft_split(point, ',');
-		map->coord[x][y].z = (float)ft_atoi(info[0]);
-		map->coord[x][y].color = ft_atoi_base(info[1], HEXADECM);
-		i = 0;
-		while (info[i])
-			free(info[i++]);
-		free(info);
+		vertex = ft_split(point, ',');
+		map->coord[x][y].z = (float)ft_atoi(vertex[0]);
+		map->coord[x][y].color = ft_atoi_base(vertex[1], HEXADECM);
+		ft_free(vertex);
 	}
 	else
 	{
@@ -107,7 +103,7 @@ void	get_points(char *file, t_map *map)
 		x = 0;	// sütün sayısı (width)
 		while (x < map->max_x)
 		{
-			fill_point(split[x], map, x, y);
+			place_the_point(split[x], map, x, y);
 			free(split[x]);
 			x++;
 		}

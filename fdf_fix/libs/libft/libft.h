@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 18:34:46 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/10 12:16:31 by atursun          ###   ########.fr       */
+/*   Updated: 2026/01/26 19:29:29 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 char	*get_next_line(int fd);
 
+void	ft_free(char **str);
 int		ft_len_of_str(char *str);
 char	*ft_search_new_line(char *str);
 char	*ft_merge_str(char *leftover, char *buffer);
