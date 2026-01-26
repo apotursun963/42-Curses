@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:01:38 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/10 12:17:23 by atursun          ###   ########.fr       */
+/*   Updated: 2026/01/26 16:00:56 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ typedef struct s_line
 {
 	t_point	start;
 	t_point	end;
-	float	transform_z;
 }	t_line;
 
 typedef struct s_image
@@ -82,16 +81,14 @@ typedef struct s_fdf
 # define ANG_30			0.52359877
 # define ANG_45			0.78539816
 
-t_map	*read_map(char *file_name);
+t_map	*parse_map(char *file_name, t_map *map);
 int		is_file_extension_valid(char *filename);
-void	init_fdf(t_fdf *fdf, char *file_name);
-t_map	*init_map(void);
+void	init_fdf(t_fdf *fdf);
 t_image	*init_image(void *mlx);
-t_line	*init_line(t_point start, t_point end, t_fdf *fdf);
+t_line	*init_line(t_point start, t_point end);
 t_cam	*init_cam(t_map *map);
-t_point	**init_coordinates(int width, int depth);
+t_point	**allocate_coordinates(int width, int depth);
 void	center_to_origin(t_map *map);
-float	scale_to_fit(t_map *map);
 int		free_all(t_fdf *fdf);
 void	free_map(t_fdf *fdf);
 float	absolute(float nbr);

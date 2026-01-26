@@ -1,7 +1,7 @@
 NAME = fdf
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 MLX_FLAGS = -lm -lbsd -lmlx -lXext -lX11
 
 LIBFT_PATH = ./libs/libft/
@@ -9,7 +9,7 @@ MLX_PATH = ./libs/mlx_linux/
 LIBFT = $(LIBFT_PATH)libft.a
 MLX = $(MLX_PATH)libmlx.a
 
-SRC = srcs/main.c srcs/free.c srcs/draw.c srcs/utils.c srcs/init.c srcs/projection.c srcs/read.c
+SRC = srcs/main.c srcs/free.c srcs/draw.c srcs/utils.c srcs/init.c srcs/map.c
 
 OBJ = $(SRC:.c=.o)
 

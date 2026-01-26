@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read.c                                             :+:      :+:    :+:   */
+/*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 12:59:28 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/10 12:21:45 by atursun          ###   ########.fr       */
+/*   Updated: 2026/01/26 15:58:40 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	get_number_of_col(char *file)
+int	calculate_number_of_column(char *file)
 {
 	int		fd;
 	char	*line;
-	int		col;
+	int		c_col;
 	int		next_col;
 
 	fd = open(file, O_RDONLY, 0);
+	if (fd == -1)
+		return (-1);		
 	line = get_next_line(fd);
 	if (line == NULL)
 		return (0);
-	col = ft_len_of_word(line, ' ');
+	c_col = ft_len_of_word(line, ' ');
 	free(line);
 	while (1)
 	{
@@ -31,46 +33,49 @@ int	get_number_of_col(char *file)
 		if (line == NULL)
 			break ;
 		next_col = ft_len_of_word(line, ' ');
-		if (col != next_col)
+		if (c_col != next_col)
 			return (0);
 		free(line);
 	}
-	return (close(fd), col);
+	close(fd);
+	return (c_col);
 }
 
-int	get_number_of_row(char *file)
+int	calculate_number_of_row(char *file)
 {
 	int		fd;
-	int		row;
+	int		c_row;
 	char	*line;
 
-	row = 0;
+	c_row = 0;
 	fd = open(file, O_RDONLY, 0);
+	if (fd == -1)
+		return (-1);
 	while (1)
 	{
 		line = get_next_line(fd);
 		if (line == NULL)
 			break ;
-		if (ft_isprint(*line))
-			row++;
+		if (*line >= 32 && *line <= 126)
+			c_row++;
 		free(line);
 	}
-	return (close(fd), row);
+	close(fd);	
+	return (c_row);
 }
 
-void	fill_point(char *point, t_map *map, int coord_x, int coord_y)
+void	fill_point(char *point, t_map *map, int x, int y)
 {
 	char	**info;
 	int		i;
 
-	map->coordinates[coord_x][coord_y].x = (float)coord_x;
-	map->coordinates[coord_x][coord_y].y = (float)coord_y;
+	map->coordinates[x][y].x = (float)x;
+	map->coordinates[x][y].y = (float)y;
 	if (ft_strchr(point, ','))
 	{
 		info = ft_split(point, ',');
-		map->coordinates[coord_x][coord_y].z = (float)ft_atoi(info[0]);
-		map->coordinates[coord_x][coord_y].color = \
-			ft_atoi_base(info[1], HEXADECM);
+		map->coordinates[x][y].z = (float)ft_atoi(info[0]);
+		map->coordinates[x][y].color = ft_atoi_base(info[1], HEXADECM);
 		i = 0;
 		while (info[i])
 			free(info[i++]);
@@ -78,13 +83,9 @@ void	fill_point(char *point, t_map *map, int coord_x, int coord_y)
 	}
 	else
 	{
-		map->coordinates[coord_x][coord_y].z = (float)ft_atoi(point);
-		map->coordinates[coord_x][coord_y].color = false;
+		map->coordinates[x][y].z = (float)ft_atoi(point);
+		map->coordinates[x][y].color = false;
 	}
-	if (map->coordinates[coord_x][coord_y].z > map->max_z)
-		map->max_z = map->coordinates[coord_x][coord_y].z;
-	if (map->coordinates[coord_x][coord_y].z < map->min_z)
-		map->min_z = map->coordinates[coord_x][coord_y].z;
 }
 
 void	get_points(char *file, t_map *map)
@@ -92,40 +93,40 @@ void	get_points(char *file, t_map *map)
 	int		fd;
 	char	*line;
 	char	**split;
-	int		coord[2];
+	int		x;
+	int		y;
 
 	fd = open(file, O_RDONLY, 0);
-	coord[1] = 0;
+	y = 0;	// satır sayısı (height)
 	while (1)
 	{
 		line = get_next_line(fd);
 		if (line == NULL)
 			break ;
 		split = ft_split(line, ' ');
-		coord[0] = 0;
-		while (coord[0] < map->max_x)
+		x = 0;	// sütün sayısı (width)
+		while (x < map->max_x)
 		{
-			fill_point(split[coord[0]], map, coord[0], coord[1]);
-			free(split[coord[0]]);
-			coord[0]++;
+			fill_point(split[x], map, x, y);
+			free(split[x]);
+			x++;
 		}
 		free(split);
 		free(line);
-		coord[1]++;
+		y++;
 	}
 	close(fd);
 }
 
-t_map	*read_map(char *file)
+t_map	*parse_map(char *file, t_map *map)
 {
-	t_map	*map;
-
-	map = init_map();
-	if (!map)
+	map->max_x = calculate_number_of_column(file);
+	if (map->max_x <= 0)
 		return (NULL);
-	map->max_x = get_number_of_col(file);
-	map->max_y = get_number_of_row(file);
-	map->coordinates = init_coordinates(map->max_x, map->max_y);
+	map->max_y = calculate_number_of_row(file);
+	if (map->max_y <= 0)
+		return (NULL);
+	map->coordinates = allocate_coordinates(map->max_x, map->max_y);
 	if (!map->coordinates)
 		return (free(map), NULL);
 	get_points(file, map);

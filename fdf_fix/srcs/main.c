@@ -6,7 +6,7 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:00:14 by atursun           #+#    #+#             */
-/*   Updated: 2026/01/26 14:45:07 by atursun          ###   ########.fr       */
+/*   Updated: 2026/01/26 15:48:38 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	render_line(t_fdf *fdf, t_point start, t_point end)
 	end.z *= fdf->cam->scale_z;
 	start.color = 0XFFFFFF;	// beyaz
 	end.color = 0XFFFFFF;	// beyaz
-	fdf->image->line = init_line(start, end, fdf);
+	fdf->image->line = init_line(start, end);
 	if (!fdf->image->line)
 		free_all(fdf);
 	isometric(fdf->image->line);
@@ -62,7 +62,6 @@ int	render(t_fdf *fdf)
 	return (0);
 }
 
-#include <stdio.h>
 int	is_file_extension_valid(char *filename)
 {
 	char	*res;
@@ -76,16 +75,30 @@ int	is_file_extension_valid(char *filename)
 int	main(int argc, char **argv)
 {
 	t_fdf	*fdf;
+	t_map	*map;
 
 	if (argc != 2 || is_file_extension_valid(argv[1]))
 		exit(1);
 	fdf = malloc(sizeof(t_fdf));
 	if (!fdf)
 		return (1);
-	init_fdf(fdf, argv[1]);
+	map = malloc(sizeof(t_map));
+	if (!map)
+		return (1);
+	fdf->map = parse_map(argv[1], map);	// mapten sonra image'ı init_fdf içinde ve camerayı parse_map'ten sonra çağırırız
+	if (!fdf->map) {
+		free(fdf);
+		return (1);
+	}
+	init_fdf(fdf);
 	render(fdf);
 	mlx_key_hook(fdf->win, handle_esc, fdf);
 	mlx_hook(fdf->win, 17, 0, &free_all, fdf);
 	mlx_loop(fdf->mlx);
 	return (0);
 }
+
+/*
+.fdf içeriği boş olduğunda ve yok_boyle_dosya.fdf veridiğmizde leak alıyoruzz
+
+*/

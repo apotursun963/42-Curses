@@ -3,20 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atursun <atursun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:00:25 by atursun           #+#    #+#             */
-/*   Updated: 2025/02/10 12:20:57 by atursun          ###   ########.fr       */
+/*   Updated: 2026/01/26 15:44:54 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void init_fdf(t_fdf	*fdf, char *file_name)
+void init_fdf(t_fdf	*fdf)
 {
-	fdf->map = read_map(file_name);
-	if (!fdf->map)
-		free(fdf);
 	fdf->mlx = mlx_init();
 	fdf->win_x = WIDTH;
 	fdf->win_y = HEIGHT;
@@ -27,21 +24,6 @@ void init_fdf(t_fdf	*fdf, char *file_name)
 	fdf->cam = init_cam(fdf->map);
 	if (!fdf->cam)
 		free_all(fdf);
-}
-
-t_map	*init_map(void)
-{
-	t_map	*map;
-
-	map = malloc(sizeof(t_map));
-	if (!map)
-		return (NULL);
-	map->coordinates = NULL;
-	map->max_x = 0;
-	map->max_y = 0;
-	map->max_z = 0;
-	map->min_z = 0;
-	return (map);
 }
 
 t_image	*init_image(void *mlx)
@@ -58,6 +40,20 @@ t_image	*init_image(void *mlx)
 	return (image);
 }
 
+float	scale_to_fit(t_map *map)
+{
+	float	scale_x;
+	float	scale_y;
+	float	scale_factor;
+
+	scale_x = WIDTH / map->max_x;
+	scale_y = HEIGHT / map->max_y;
+	scale_factor = min(scale_x, scale_y);
+	if (scale_factor < 4)
+		return (2);
+	return (scale_factor / 2);
+}
+
 t_cam	*init_cam(t_map *map)
 {
 	t_cam	*cam;
@@ -72,7 +68,7 @@ t_cam	*init_cam(t_map *map)
 	return (cam);
 }
 
-t_line	*init_line(t_point start, t_point end, t_fdf *fdf)
+t_line	*init_line(t_point start, t_point end)
 {
 	t_line	*line;
 
@@ -87,7 +83,5 @@ t_line	*init_line(t_point start, t_point end, t_fdf *fdf)
 	line->end.y = end.y;
 	line->end.z = end.z;
 	line->end.color = end.color;
-	line->transform_z = max((fdf->map->max_z - fdf->map->min_z), \
-		max(fdf->map->max_x, fdf->map->max_y));
 	return (line);
 }
