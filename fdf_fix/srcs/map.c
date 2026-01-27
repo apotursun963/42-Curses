@@ -6,7 +6,7 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 12:59:28 by atursun           #+#    #+#             */
-/*   Updated: 2026/01/26 22:21:08 by atursun          ###   ########.fr       */
+/*   Updated: 2026/01/27 09:48:25 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,13 @@ void	get_points(char *file, t_map *map)
 	close(fd);
 }
 
+/*
+her fonksiynda tek tek open ile açmak yerine parse_map func orada aç
+ve diğerlerine fd gönder ama dikkat ilk okuyan funcs fd'nin sonuna kadar okuduğu için
+bir sonraki funcs bir şey okuyamaz çünkü fd dosyanın sonuna gelmiş
+bunu dikkate al
+1. okudğun satırı (line) free etmek yerine bir struct yap onun içine koy daha iyi değilmi
+*/
 t_map	*parse_map(char *file, t_map *map)
 {
 	map->max_x = calculate_number_of_column(file);
