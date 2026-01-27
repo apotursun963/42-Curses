@@ -14,24 +14,24 @@
 
 void	bresenham(t_fdf *fdf, t_point start, t_point end)
 {
-	float	x_step;
-	float	y_step;
-	int		max_steps;
-	int		i_line;
+	float	dx;
+	float	dy;
+	int		steps;
+	int		i;
 
-	x_step = end.x - start.x;
-	y_step = end.y - start.y;
-	max_steps = (int)max(absolute(x_step), absolute(y_step));
-	x_step /= max_steps;
-	y_step /= max_steps;
-	i_line = 0;
-	while (i_line < max_steps)
+	dx = end.x - start.x;
+	dy = end.y - start.y;
+	steps = max(absolute(dx), absolute(dy));
+	dx /= steps;
+	dy /= steps;
+	i = 0;
+	while (i <= steps)
 	{
 		if ((start.x > 0 && start.y > 0) && (start.x < WIDTH && start.y < HEIGHT))
-			pixel_to_image(fdf->image, start.x, start.y, 0XFF3FFF);	// mor oldu beyaz da yapabilirsin
-		start.x += x_step;
-		start.y += y_step;
-		i_line++;
+			pixel_to_image(fdf->image, start.x, start.y, start.color);
+		start.x += dx;
+		start.y += dy;
+		i++;
 	}
 }
 
@@ -39,7 +39,7 @@ void	pixel_to_image(t_image *image, float x, float y, int color)
 {
 	int	pixel;
 
-	pixel = ((int)y * image->line_bytes) + ((int)x * 4);
+	pixel = ((int)y * image->line_bytes) + ((int)x * 4);	// Bellekteki adresi hesaplar.
 	if (image->endian == 1)
 	{
 		image->buffer[pixel + 0] = (color >> 24);

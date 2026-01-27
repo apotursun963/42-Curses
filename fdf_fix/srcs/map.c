@@ -12,106 +12,74 @@
 
 #include "fdf.h"
 
-int	calculate_number_of_column(char *file)
+int	calculate_number_of_column(t_fdf *fdf)
 {
-	int		fd;
-	char	*line;
 	int		c_col;
 	int		next_col;
+	int		i;
 
-	fd = open(file, O_RDONLY, 0);
-	if (fd == -1)
-		return (-1);		
-	line = get_next_line(fd);
-	if (line == NULL)
+	if (fdf->map_line.count_line == 0)
 		return (0);
-	c_col = ft_len_of_word(line, ' ');
-	free(line);
-	while (1)
+	c_col = ft_len_of_word(fdf->map_line.line[0], ' ');
+	i = 1;
+	while (i < fdf->map_line.count_line)
 	{
-		line = get_next_line(fd);
-		if (line == NULL)
-			break ;
-		next_col = ft_len_of_word(line, ' ');
+		next_col = ft_len_of_word(fdf->map_line.line[i], ' ');
 		if (c_col != next_col)
 			return (0);
-		free(line);
+		i++;
 	}
-	close(fd);
 	return (c_col);
 }
 
-int	calculate_number_of_row(char *file)
-{
-	int		fd;
-	int		c_row;
-	char	*line;
 
-	c_row = 0;
-	fd = open(file, O_RDONLY, 0);
-	if (fd == -1)
-		return (-1);
-	while (1)
-	{
-		line = get_next_line(fd);
-		if (line == NULL)
-			break ;
-		if (*line >= 32 && *line <= 126)
-			c_row++;
-		free(line);
-	}
-	close(fd);	
-	return (c_row);
-}
-
+/*
+bazı haritalarda renkler hexa olarak veriliyor onları öyle göstermen gerekiyor ama 
+göstermiyor onu düzenle
+*/
 void	place_the_point(char *point, t_map *map, int x, int y)
 {
 	char	**vertex;	// Vertex, 3D (veya 2D) uzayda bir şeklin tek bir köşe/noktasıdır. FDF’de 2,0xff gibi bir ifade, yüksekliği ve rengi olan bir vertexi temsil eder.
 
-	map->coord[x][y].x = (float)x;
-	map->coord[x][y].y = (float)y;
+	map->coord[x][y].x = x;
+	map->coord[x][y].y = y;
 	if (ft_strchr(point, ','))
 	{
 		vertex = ft_split(point, ',');
-		map->coord[x][y].z = (float)ft_atoi(vertex[0]);
+		map->coord[x][y].z = ft_atoi(vertex[0]);
 		map->coord[x][y].color = ft_atoi_base(vertex[1], HEXADECM);
+		map->coord[x][y].has_color = 1;
 		ft_free(vertex);
 	}
 	else
 	{
-		map->coord[x][y].z = (float)ft_atoi(point);
-		map->coord[x][y].color = false;
+		map->coord[x][y].z = ft_atoi(point);
+		map->coord[x][y].has_color = 0;
 	}
 }
 
-void	get_points(char *file, t_map *map)
+void	get_points(t_fdf *fdf)
 {
-	int		fd;
-	char	*line;
 	char	**split;
 	int		x;
 	int		y;
 
-	fd = open(file, O_RDONLY, 0);
 	y = 0;	// satır sayısı (height)
-	while (1)
+	while (y < fdf->map_line.count_line)
 	{
-		line = get_next_line(fd);
-		if (line == NULL)
-			break ;
-		split = ft_split(line, ' ');
+		split = ft_split(fdf->map_line.line[y], ' ');
 		x = 0;	// sütün sayısı (width)
-		while (x < map->max_x)
+		while (x < fdf->map->max_x)
 		{
-			place_the_point(split[x], map, x, y);
+			if (!split) 
+				return ;
+			place_the_point(split[x], fdf->map, x, y);
 			free(split[x]);
 			x++;
 		}
 		free(split);
-		free(line);
 		y++;
 	}
-	close(fd);
 }
 
 /*
@@ -121,18 +89,44 @@ bir sonraki funcs bir şey okuyamaz çünkü fd dosyanın sonuna gelmiş
 bunu dikkate al
 1. okudğun satırı (line) free etmek yerine bir struct yap onun içine koy daha iyi değilmi
 */
-t_map	*parse_map(char *file, t_map *map)
+int read_map(int fd, t_fdf *fdf) {
+	fdf->map_line.count_line = 0;
+	fdf->map_line.line = malloc(sizeof(char *) * 10000);
+	if (!fdf->map_line.line)
+		return (0);
+	while (fdf->map_line.count_line < 10000) {
+		fdf->map_line.line[fdf->map_line.count_line] = get_next_line(fd);
+		if (fdf->map_line.line[fdf->map_line.count_line] == NULL)
+			break ;
+		fdf->map_line.count_line++;
+	}
+	fdf->map_line.line[fdf->map_line.count_line] = NULL;
+	return (fdf->map_line.count_line);
+}
+
+t_map	*parse_map(char *file, t_fdf *fdf)
 {
-	map->max_x = calculate_number_of_column(file);
-	if (map->max_x <= 0)
+	int		fd;
+
+	fd = open(file, O_RDONLY);
+	if (fd  == -1)
 		return (NULL);
-	map->max_y = calculate_number_of_row(file);
-	if (map->max_y <= 0)
+	if (read_map(fd, fdf) == 0) {
+		close(fd);
 		return (NULL);
-	map->coord = allocate_coordinates(map->max_x, map->max_y);
-	if (!map->coord)
-		return (free(map), NULL);
-	get_points(file, map);
-	center_to_origin(map);
-	return (map);
+	}
+	fdf->map->max_x = calculate_number_of_column(fdf);	// sütün sayısı (width) al
+	if (fdf->map->max_x == 0)
+		return (NULL);
+	fdf->map->max_y = fdf->map_line.count_line;		// satır sayısı (row) al
+	if (fdf->map->max_y == 0)
+		return (NULL);
+	fdf->map->coord = allocate_coordinates(fdf->map->max_x, fdf->map->max_y);
+	if (!fdf->map->coord)
+		return (free(fdf->map), NULL);
+	get_points(fdf);
+	ft_free(fdf->map_line.line);
+	center_map_to_origin(fdf->map, fdf->map->max_y, fdf->map->max_x);
+	close(fd);
+	return (fdf->map);
 }

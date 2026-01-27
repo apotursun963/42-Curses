@@ -33,9 +33,9 @@ void init_mlx_image_cam(t_fdf	*fdf)
 
 	// mlx init
 	fdf->mlx = mlx_init();
-	fdf->win_x = WIDTH;
-	fdf->win_y = HEIGHT;
-	fdf->win = mlx_new_window(fdf->mlx, fdf->win_x, fdf->win_y, "FDF");	
+	fdf->winX = WIDTH;
+	fdf->winY = HEIGHT;
+	fdf->win = mlx_new_window(fdf->mlx, fdf->winX, fdf->winY, "FDF");	
 
 	// image init
 	image = malloc(sizeof(t_image));
@@ -91,19 +91,19 @@ t_point	**allocate_coordinates(int width, int depth)
 	return (coordin);
 }
 
-void	center_to_origin(t_map *map)
+void	center_map_to_origin(t_map *map, int max_y, int max_x)
 {
 	int	x;
 	int	y;
 
 	y = 0;
-	while (y < map->max_y)
+	while (y < max_y)
 	{
 		x = 0;
-		while (x < map->max_x)
+		while (x < max_x)
 		{
-			map->coord[x][y].x -= map->max_x / 2;
-			map->coord[x][y].y -= map->max_y / 2;
+			map->coord[x][y].x -= max_x / 2;
+			map->coord[x][y].y -= max_y / 2;
 			x++;
 		}
 		y++;

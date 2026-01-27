@@ -27,6 +27,7 @@ typedef struct s_point
 	float	y;
 	float	z;
 	int		color;
+	int		has_color;
 }	t_point;
 
 typedef struct s_map
@@ -61,30 +62,38 @@ typedef struct s_cam
 	float	move_y;
 }	t_cam;
 
+typedef struct s_map_lines
+{
+	char **line;
+	int 	count_line;
+}	t_map_lines;
+
 typedef struct s_fdf
 {
-	void	*mlx;
-	void	*win;
-	int		win_x;
-	int		win_y;
-	t_map	*map;
-	t_image	*image;
-	t_cam	*cam;
+	void		*mlx;
+	void		*win;
+	int			winX;
+	int			winY;
+	t_map		*map;
+	t_image		*image;
+	t_cam		*cam;
+	t_map_lines map_line;
 }	t_fdf;
 
 # define WIDTH			2000
 # define HEIGHT			1500
 # define MAX_PIXEL		1000
-# define HEXADECM		"0123456789abcdef"
+# define WHITE			0XFFFFFF
 # define ANG_1			0.01745329
 # define ANG_30			0.52359877
 # define ANG_45			0.78539816
+# define HEXADECM		"0123456789abcdef"
 
-t_map	*parse_map(char *file_name, t_map *map);
+t_map	*parse_map(char *file, t_fdf *fdf);
 int		is_file_extension_valid(char *filename);
 void	init_mlx_image_cam(t_fdf *fdf);
 t_point	**allocate_coordinates(int width, int depth);
-void	center_to_origin(t_map *map);
+void	center_map_to_origin(t_map *map, int max_y, int max_x);
 int		free_all(t_fdf *fdf);
 void	free_map(t_fdf *fdf);
 float	absolute(float nbr);

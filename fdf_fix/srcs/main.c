@@ -23,12 +23,15 @@ void	render_line(t_fdf *fdf, t_point start, t_point end)
 {
 	t_line line;
 
-	// init line
 	line.start = start;
 	line.end = end;
-	
+	if (!start.has_color && !end.has_color)
+	{
+		line.start.color = WHITE;
+		line.end.color = WHITE;
+	}
 	isometric(&line);
-	
+
 	// scale
 	line.start.x *= fdf->cam->scale_factor;
 	line.start.y *= fdf->cam->scale_factor;
@@ -70,8 +73,12 @@ void	render_image(t_fdf *fdf)
 int	is_file_extension_valid(char *filename)
 {
 	char	*res;
-	
-	res = ft_strrchr(filename, '/');
+	int		fd;
+
+	fd = open(filename, O_RDONLY);
+	if (fd == -1)
+		return (1);
+	res = ft_strrchr(filename, '/');	// bu arada iç içe klasörde olabilir o yüzden ekstra incele bu fonksiyonu
 	if (!ft_strncmp(res, "/.fdf", 5))
 		return (1);
 	return (0);
@@ -80,17 +87,16 @@ int	is_file_extension_valid(char *filename)
 int	main(int argc, char **argv)
 {
 	t_fdf	*fdf;
-	t_map	*map;
 
 	if (argc != 2 || is_file_extension_valid(argv[1]))
 		exit(1);
 	fdf = malloc(sizeof(t_fdf));
 	if (!fdf)
 		return (1);
-	map = malloc(sizeof(t_map));
-	if (!map)
+	fdf->map = malloc(sizeof(t_map));
+	if (!fdf->map)
 		return (1);
-	fdf->map = parse_map(argv[1], map);	// mapten sonra image'ı init_fdf içinde ve camerayı parse_map'ten sonra çağırırız
+	fdf->map = parse_map(argv[1], fdf);	// mapten sonra image'ı init_fdf içinde ve camerayı parse_map'ten sonra çağırırız
 	if (!fdf->map) {
 		free(fdf);
 		return (1);
@@ -106,6 +112,6 @@ int	main(int argc, char **argv)
 }
 
 /*
-.fdf içeriği boş olduğunda ve yok_boyle_dosya.fdf veridiğmizde leak alıyoruzz
-
+proje bitti gibi ama sadece bazı yerlerin (değişkenlerin/fonksiyon isimlerinin sturct değişkenlerinin) isimlerini 
+değiştir ve projeyi bitir ve son hale getir sonrasında ise 
 */
