@@ -1,5 +1,4 @@
 
-
 # İzometrik projeksiyon Nedir ?
 Isometrik projeksiyon, 3 boyutlu bir nesneyi veya haritayı 2 boyutlu ekranda 3D görünüyormuş gibi göstermek için kullanılan özel bir matematiksel projeksiyon türüdür.
 kısacası, 3D noktaları 2D ekrana yansıtan bir teknik

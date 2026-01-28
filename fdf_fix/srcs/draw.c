@@ -6,7 +6,7 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:00:56 by atursun           #+#    #+#             */
-/*   Updated: 2026/01/26 22:27:20 by atursun          ###   ########.fr       */
+/*   Updated: 2026/01/28 13:19:55 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,19 +56,14 @@ void	pixel_to_image(t_image *image, float x, float y, int color)
 	}
 }
 
-void	free_coordinates(t_point **coordinates, int width)
-{
-	int		i;
-
-	i = 0;
-	while (i < width)
-		free(coordinates[i++]);
-	free(coordinates);
-}
-
 void	free_map(t_fdf *fdf)
 {
-	free_coordinates(fdf->map->coord, fdf->map->max_x);
+	int i;
+
+	i = 0;
+	while (i < fdf->map->maxX)		// free coordinates
+		free(fdf->map->coord[i++]);
+	free(fdf->map->coord);
 	free(fdf->map);
 	mlx_destroy_window(fdf->mlx, fdf->win);
 	mlx_destroy_display(fdf->mlx);
@@ -78,7 +73,12 @@ void	free_map(t_fdf *fdf)
 
 int	free_all(t_fdf *fdf)
 {
-	free_coordinates(fdf->map->coord, fdf->map->max_x);
+	int i;
+
+	i = 0;
+	while (i < fdf->map->maxX)		// free coordinates
+		free(fdf->map->coord[i++]);
+	free(fdf->map->coord);
 	free(fdf->map);
 	mlx_destroy_image(fdf->mlx, fdf->image->image);
 	free(fdf->image);

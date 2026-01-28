@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/04 13:00:14 by atursun           #+#    #+#             */
-/*   Updated: 2026/01/27 09:41:23 by atursun          ###   ########.fr       */
+/*   Created: 2026/01/28 12:23:48 by atursun           #+#    #+#             */
+/*   Updated: 2026/01/28 13:21:14 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,15 +53,15 @@ void	render_image(t_fdf *fdf)
 	int	y;
 
 	y = 0;
-	while (y < fdf->map->max_y)
+	while (y < fdf->map->maxY)
 	{
 		x = 0;
-		while (x < fdf->map->max_x)
+		while (x < fdf->map->maxX)
 		{
-			if (x < fdf->map->max_x - 1)
+			if (x < fdf->map->maxX - 1)
 				render_line(fdf, fdf->map->coord[x][y], \
 					fdf->map->coord[x + 1][y]);
-			if (y < fdf->map->max_y - 1)
+			if (y < fdf->map->maxY - 1)
 				render_line(fdf, fdf->map->coord[x][y], \
 					fdf->map->coord[x][y + 1]);
 			x++;
@@ -78,7 +78,7 @@ int	is_file_extension_valid(char *filename)
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 		return (1);
-	res = ft_strrchr(filename, '/');	// bu arada iç içe klasörde olabilir o yüzden ekstra incele bu fonksiyonu
+	res = ft_strrchr(filename, '/');
 	if (!ft_strncmp(res, "/.fdf", 5))
 		return (1);
 	return (0);
@@ -93,10 +93,7 @@ int	main(int argc, char **argv)
 	fdf = malloc(sizeof(t_fdf));
 	if (!fdf)
 		return (1);
-	fdf->map = malloc(sizeof(t_map));
-	if (!fdf->map)
-		return (1);
-	fdf->map = parse_map(argv[1], fdf);	// mapten sonra image'ı init_fdf içinde ve camerayı parse_map'ten sonra çağırırız
+	fdf->map = parse_map(argv[1], fdf);
 	if (!fdf->map) {
 		free(fdf);
 		return (1);
@@ -112,6 +109,6 @@ int	main(int argc, char **argv)
 }
 
 /*
-proje bitti gibi ama sadece bazı yerlerin (değişkenlerin/fonksiyon isimlerinin sturct değişkenlerinin) isimlerini 
-değiştir ve projeyi bitir ve son hale getir sonrasında ise 
+her şey bitti proje sorunsuz bir şekilde çalışıyor tek yapman gereken tekrar ve README.md hazırlaman
+
 */

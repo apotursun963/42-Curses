@@ -1,5 +1,4 @@
 
-
 Bu cümlenin anlamı FDF’in **temel koordinat mantığını** özetler. Aşağıdaki şekilde açıklanır:
 
 ---

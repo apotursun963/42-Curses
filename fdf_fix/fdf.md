@@ -1,7 +1,4 @@
 
-# 42 Docs kullanmaya çalış
-
-
 # FDF Nedir ?
 
 # ✅ **FDF Projesi**

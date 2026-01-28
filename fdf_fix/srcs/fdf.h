@@ -6,7 +6,7 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:01:38 by atursun           #+#    #+#             */
-/*   Updated: 2026/01/26 19:21:26 by atursun          ###   ########.fr       */
+/*   Updated: 2026/01/28 12:33:03 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,8 @@ typedef struct s_point
 typedef struct s_map
 {
 	t_point	**coord;
-	int		max_x;
-	int		max_y;
-	int		max_z;
-	int		min_z;
+	int		maxX;
+	int		maxY;
 }	t_map;
 
 typedef struct s_line
@@ -64,7 +62,7 @@ typedef struct s_cam
 
 typedef struct s_map_lines
 {
-	char **line;
+	char 	**line;
 	int 	count_line;
 }	t_map_lines;
 
@@ -74,9 +72,9 @@ typedef struct s_fdf
 	void		*win;
 	int			winX;
 	int			winY;
-	t_map		*map;
 	t_image		*image;
 	t_cam		*cam;
+	t_map		*map;
 	t_map_lines map_line;
 }	t_fdf;
 
@@ -96,9 +94,6 @@ t_point	**allocate_coordinates(int width, int depth);
 void	center_map_to_origin(t_map *map, int max_y, int max_x);
 int		free_all(t_fdf *fdf);
 void	free_map(t_fdf *fdf);
-float	absolute(float nbr);
-float	max(float a, float b);
-float	min(float a, float b);
 void	render_image(t_fdf *fdf);
 void	bresenham(t_fdf *fdf, t_point start, t_point end);
 void	pixel_to_image(t_image *image, float x, float y, int color);

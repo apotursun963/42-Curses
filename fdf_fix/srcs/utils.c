@@ -6,7 +6,7 @@
 /*   By: atursun <atursun@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:00:30 by atursun           #+#    #+#             */
-/*   Updated: 2026/01/26 19:24:01 by atursun          ###   ########.fr       */
+/*   Updated: 2026/01/28 12:31:29 by atursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ float	scale_to_fit(t_map *map)
 	float	scale_y;
 	float	scale_factor;
 
-	scale_x = WIDTH / map->max_x;
-	scale_y = HEIGHT / map->max_y;
+	scale_x = WIDTH / map->maxX;
+	scale_y = HEIGHT / map->maxY;
 	scale_factor = min(scale_x, scale_y);
 	if (scale_factor < 4)
 		return (2);
